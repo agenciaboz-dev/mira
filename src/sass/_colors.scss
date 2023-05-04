@@ -1,0 +1,21 @@
+$background-color: white;
+$background-secondary-color: #E1E1E1;
+$primary-color: #363775;
+$green: #34A853;
+$pink: #EC0F83;
+$purple: #53337d;
+$blue: #1a80b8;
+$dark_grey: #606060;
+$light_grey: #f3f2f2;
+
+:export {
+    primary: $primary-color;
+    background: $background-color;
+    background_secondary: $background-secondary-color;
+    green: $green;
+    pink: $pink;
+    purple: $purple;
+    blue: $blue;
+    dark_grey: $dark_grey;
+    light_grey: $light_grey;
+}
