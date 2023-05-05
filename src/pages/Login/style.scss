@@ -43,6 +43,11 @@
         flex-direction: column;
         padding-bottom: 5vw;
 
+        form {
+            flex-direction: column;
+            gap: 7vw;
+        }
+
         .form-wrapper {
             flex-direction: column;
             align-items: center;
