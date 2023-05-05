@@ -13,6 +13,10 @@ import { useProducts } from "../../hooks/useProducts"
 import CloseIcon from "@mui/icons-material/Close"
 import CancelPresentationIcon from "@mui/icons-material/CancelPresentation"
 import IconButton from "@mui/material/IconButton"
+import HelpIcon from "@mui/icons-material/Help"
+import { useColors } from "../../hooks/useColors"
+import { styles } from "./styles"
+import { CurrencyText } from "../CurrencyText"
 
 interface ProductModalProps {
     open: boolean
@@ -26,34 +30,11 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, resul
     const [product, setProduct] = useState<Product>()
 
     const { products } = useProducts()
+    const colors = useColors()
 
     const handleClose = (event: {}, reason: "backdropClick" | "escapeKeyDown") => {
         if (reason) return
         setOpen(false)
-    }
-
-    const dialog_style = {
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-    }
-
-    const title_style = {
-        fontSize: "5vw",
-        textAlign: "center",
-    }
-
-    const content_container_style = {
-        gap: "3vw",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-    }
-
-    const close_icon_style = {
-        width: "7vw",
-        height: "auto",
     }
 
     useEffect(() => {
@@ -78,9 +59,12 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, resul
     }, [error, product])
 
     return (
-        <Dialog open={open} onClose={handleClose} sx={dialog_style}>
+        <Dialog open={open} onClose={handleClose} sx={styles.dialog}>
             <IconButton sx={{ position: "absolute" }} onClick={() => setOpen(false)}>
-                <CancelPresentationIcon color="error" sx={close_icon_style} />
+                <CancelPresentationIcon color="error" sx={styles.close_icon} />
+            </IconButton>
+            <IconButton sx={{ position: "absolute", right: 0 }}>
+                <HelpIcon color="primary" sx={styles.close_icon} />
             </IconButton>
             {loading ? (
                 <CircularProgress color="primary" sx={{ alignSelf: "center" }} />
@@ -88,15 +72,29 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, resul
                 <>
                     {!!error ? (
                         <>
-                            <DialogTitle sx={title_style}>Erro</DialogTitle>
-                            <DialogContent sx={content_container_style}>
+                            <DialogTitle sx={styles.title}>Erro</DialogTitle>
+                            <DialogContent sx={styles.content_container}>
                                 Não foi possível reconhecer esse código QR
                             </DialogContent>
                         </>
                     ) : (
                         <>
-                            <DialogTitle sx={title_style}>{product?.name}</DialogTitle>
-                            <DialogContent sx={content_container_style}>{product?.description}</DialogContent>
+                            <DialogTitle sx={styles.title}>{product?.name}</DialogTitle>
+                            <DialogContent sx={styles.content_container}>
+                                <DialogContentText sx={{ textAlign: "justify" }}>{product?.description}</DialogContentText>
+                                <div className="price-container" style={styles.price_container}>
+                                    {product?.available ? (
+                                        <DialogContentText color={colors.green} sx={styles.text}>
+                                            Disponível
+                                        </DialogContentText>
+                                    ) : (
+                                        <DialogContentText color={colors.red} sx={styles.text}>
+                                            Indisponível
+                                        </DialogContentText>
+                                    )}
+                                    <CurrencyText value={product?.price!} style={styles.price} />
+                                </div>
+                            </DialogContent>
                         </>
                     )}
                     <DialogActions>
