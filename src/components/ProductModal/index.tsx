@@ -100,7 +100,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, resul
                         </>
                     )}
                     <DialogActions>
-                        <Button variant="contained" onClick={() => setOpen(false)}>
+                        <Button variant="contained" onClick={() => setOpen(false)} fullWidth>
                             Adicionar ao carrinho
                         </Button>
                     </DialogActions>
