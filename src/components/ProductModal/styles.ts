@@ -6,8 +6,12 @@ export const styles = {
     },
 
     title: {
-        fontSize: "5vw",
+        display: "flex",
+        width: "100%",
+        fontSize: "7vw",
         textAlign: "center",
+        alignItemz: "center",
+        justifyContent: "space-between",
     },
 
     content_container: {

@@ -60,12 +60,6 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, resul
 
     return (
         <Dialog open={open} onClose={handleClose} sx={styles.dialog}>
-            <IconButton sx={{ position: "absolute" }} onClick={() => setOpen(false)}>
-                <CancelPresentationIcon color="error" sx={styles.close_icon} />
-            </IconButton>
-            <IconButton sx={{ position: "absolute", right: 0 }}>
-                <HelpIcon color="primary" sx={styles.close_icon} />
-            </IconButton>
             {loading ? (
                 <CircularProgress color="primary" sx={{ alignSelf: "center" }} />
             ) : (
@@ -79,7 +73,15 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, resul
                         </>
                     ) : (
                         <>
-                            <DialogTitle sx={styles.title}>{product?.name}</DialogTitle>
+                            <DialogTitle sx={styles.title}>
+                                <IconButton onClick={() => setOpen(false)}>
+                                    <CancelPresentationIcon color="error" sx={styles.close_icon} />
+                                </IconButton>
+                                {product?.name}
+                                <IconButton>
+                                    <HelpIcon color="primary" sx={styles.close_icon} />
+                                </IconButton>
+                            </DialogTitle>
                             <DialogContent sx={styles.content_container}>
                                 <DialogContentText sx={{ textAlign: "justify" }}>{product?.description}</DialogContentText>
                                 <div className="price-container" style={styles.price_container}>
@@ -98,9 +100,15 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, resul
                         </>
                     )}
                     <DialogActions>
-                        <Button variant="contained" onClick={() => setOpen(false)} fullWidth>
-                            Adicionar ao carrinho
-                        </Button>
+                        {!!error ? (
+                            <Button variant="contained" onClick={() => setOpen(false)} fullWidth>
+                                Tentar novamente
+                            </Button>
+                        ) : (
+                            <Button variant="contained" onClick={() => setOpen(false)} fullWidth>
+                                Adicionar ao carrinho
+                            </Button>
+                        )}
                     </DialogActions>
                 </>
             )}
