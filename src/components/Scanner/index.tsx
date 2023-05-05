@@ -3,27 +3,25 @@ import { QrReader, OnResultFunction } from "react-qr-reader"
 import { Result } from "@zxing/library"
 import "./style.scss"
 
-interface ScannerProps {}
+interface ScannerProps {
+    handleResult: (result: string) => void
+}
 
-export const Scanner: React.FC<ScannerProps> = ({}) => {
-    const [data, setData] = useState<string[]>([])
-
-    const handleResult: OnResultFunction = (result, error) => {
+export const Scanner: React.FC<ScannerProps> = ({ handleResult }) => {
+    const onResult: OnResultFunction = (result, error) => {
         if (result?.getText() && result.getText() != "e") {
-            setData([...data, result.getText()])
+            handleResult(result.getText())
         }
     }
 
-    useEffect(() => {
-        console.log(data)
-    }, [data])
-
     return (
         <div className="Scanner-Component">
-            <QrReader constraints={{ facingMode: "environment" }} onResult={handleResult} />
-            {data.map((item) => (
-                <p key={data.indexOf(item)}>{item}</p>
-            ))}
+            <QrReader
+                constraints={{ facingMode: "environment" }}
+                onResult={onResult}
+                videoStyle={{ width: null, left: null }}
+                videoContainerStyle={{ height: "80vh", justifyContent: "center" }}
+            />
         </div>
     )
 }
