@@ -1,6 +1,14 @@
 @import '/src/sass/colors';
 
 .Camera-Page {
+    position: relative;
     width: 100%;
     flex-direction: column;
+
+    .button-container {
+        flex-direction: column;
+        justify-content: flex-end;
+        height: 100vh;
+        padding: 5vw;
+    }
 }

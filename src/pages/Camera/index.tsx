@@ -12,7 +12,11 @@ export const Camera: React.FC<CameraProps> = ({}) => {
     return (
         <div className="Camera-Page">
             <Scanner handleResult={handleResult} />
-            <Button>Cancelar leitura</Button>
+            <div className="button-container">
+                <Button variant="contained" sx={{ fontSize: "5vw", padding: "3vw" }}>
+                    Cancelar leitura
+                </Button>
+            </div>
         </div>
     )
 }

@@ -4,4 +4,15 @@
     width: 100%;
     flex-direction: column;
     align-items: center;
+    position: absolute;
+
+    .scanner-placeholder {
+        position: absolute;
+        width: 90vw;
+        height: 90vw;
+        border: 5px red solid;
+        box-shadow: 0 0 50vh rgba($color: #000000, $alpha: 1);
+
+        top: 25vh;
+    }
 }

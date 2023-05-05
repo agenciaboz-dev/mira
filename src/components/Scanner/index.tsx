@@ -20,8 +20,9 @@ export const Scanner: React.FC<ScannerProps> = ({ handleResult }) => {
                 constraints={{ facingMode: "environment" }}
                 onResult={onResult}
                 videoStyle={{ width: null, left: null }}
-                videoContainerStyle={{ height: "80vh", justifyContent: "center" }}
+                videoContainerStyle={{ height: "100vh", justifyContent: "center" }}
             />
+            <div className="scanner-placeholder"></div>
         </div>
     )
 }
