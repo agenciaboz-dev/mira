@@ -25,6 +25,14 @@
     }
 }
 
+.slide-up {
+    transform: translateY(-100vh);
+}
+  
+.slide-down {
+    transform: translateY(100vh);
+}
+
 form {
     display: flex;
     width: 100%;

@@ -5,6 +5,7 @@ import { BrowserRouter } from "react-router-dom"
 import { ProductsProvider } from "./contexts/productsContext"
 import { useMuiTheme } from "./hooks/useMuiTheme"
 import { Camera } from "./pages/Camera"
+import { Login } from "./pages/Login"
 import "./sass/_all.scss"
 
 function App() {
@@ -14,7 +15,7 @@ function App() {
             <ProductsProvider>
                 <BrowserRouter>
                     <Routes>
-                        <Route index element={<Camera />} />
+                        <Route index element={<Login />} />
                     </Routes>
                 </BrowserRouter>
             </ProductsProvider>
