@@ -10,6 +10,9 @@ import {
 import React, { useRef, useState, useEffect } from "react"
 import { Product } from "../../definitions/product"
 import { useProducts } from "../../hooks/useProducts"
+import CloseIcon from "@mui/icons-material/Close"
+import CancelPresentationIcon from "@mui/icons-material/CancelPresentation"
+import IconButton from "@mui/material/IconButton"
 
 interface ProductModalProps {
     open: boolean
@@ -29,14 +32,28 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, resul
         setOpen(false)
     }
 
+    const dialog_style = {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+    }
+
     const title_style = {
         fontSize: "5vw",
         textAlign: "center",
     }
 
     const content_container_style = {
-        flexDirection: "column",
         gap: "3vw",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+    }
+
+    const close_icon_style = {
+        width: "7vw",
+        height: "auto",
     }
 
     useEffect(() => {
@@ -61,7 +78,10 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, resul
     }, [error, product])
 
     return (
-        <Dialog open={open} onClose={handleClose} PaperProps={{ sx: { width: "85vw" } }}>
+        <Dialog open={open} onClose={handleClose} sx={dialog_style}>
+            <IconButton sx={{ position: "absolute" }} onClick={() => setOpen(false)}>
+                <CancelPresentationIcon color="error" sx={close_icon_style} />
+            </IconButton>
             {loading ? (
                 <CircularProgress color="primary" sx={{ alignSelf: "center" }} />
             ) : (
@@ -80,7 +100,9 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, resul
                         </>
                     )}
                     <DialogActions>
-                        <Button onClick={() => setOpen(false)}>Cancelar</Button>
+                        <Button variant="contained" onClick={() => setOpen(false)}>
+                            Adicionar ao carrinho
+                        </Button>
                     </DialogActions>
                 </>
             )}
