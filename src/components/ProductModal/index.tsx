@@ -17,6 +17,7 @@ import HelpIcon from "@mui/icons-material/Help"
 import { useColors } from "../../hooks/useColors"
 import { styles } from "./styles"
 import { CurrencyText } from "../CurrencyText"
+import { useValidadeCode } from "../../hooks/useValidateCode"
 
 interface ProductModalProps {
     open: boolean
@@ -31,6 +32,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, resul
 
     const { products } = useProducts()
     const colors = useColors()
+    const validateCode = useValidadeCode()
 
     const handleClose = (event: {}, reason: "backdropClick" | "escapeKeyDown") => {
         if (reason) return
@@ -39,15 +41,9 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, resul
 
     useEffect(() => {
         if (open) {
-            const splitted = result.split("/")
-            if (splitted.length == 2) {
-                if (splitted[0] == "mirasuprimentos") {
-                    const id = Number(splitted[1])
-                    setError(false)
-                    setProduct(products.filter((item) => item.id == id)[0])
-                } else {
-                    setError(true)
-                }
+            if (validateCode(result)) {
+                setError(false)
+                setProduct(products.filter((item) => item.id == Number(result.split("/")[1]))[0])
             } else {
                 setError(true)
             }
@@ -82,6 +78,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, resul
                                     <HelpIcon color="primary" sx={styles.close_icon} />
                                 </IconButton>
                             </DialogTitle>
+
                             <DialogContent sx={styles.content_container}>
                                 <DialogContentText sx={{ textAlign: "justify" }}>{product?.description}</DialogContentText>
                                 <div className="price-container" style={styles.price_container}>
