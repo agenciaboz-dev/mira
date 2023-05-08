@@ -1,9 +1,11 @@
 import { Button } from "@mui/material"
 import { Formik, Form } from "formik"
 import React from "react"
+import { useNavigate } from "react-router-dom"
 import { TextField } from "../../components/TextField"
 import { User } from "../../definitions/user"
 import { useApi } from "../../hooks/useApi"
+import { useUser } from "../../hooks/useUser"
 
 interface LoginFormProps {
     onSwitch: () => void
@@ -17,12 +19,19 @@ interface formValues {
 export const LoginForm: React.FC<LoginFormProps> = ({ onSwitch }) => {
     const initialValues: formValues = { user: "", password: "" }
     const api = useApi()
+    const { setUser } = useUser()
+    const navigate = useNavigate()
 
     const handleSubmit = (values: formValues) => {
         console.log(values)
         api.login({
             data: values,
-            callback: (response: { data: User }) => console.log(response.data),
+            callback: (response: { data: User }) => {
+                const user = response.data
+                if (user) {
+                    setUser(user)
+                }
+            },
         })
     }
 
