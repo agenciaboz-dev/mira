@@ -6,6 +6,7 @@ import { ProductsProvider } from "./contexts/productsContext"
 import { UserProvider } from "./contexts/userContext"
 import { useMuiTheme } from "./hooks/useMuiTheme"
 import { Camera } from "./pages/Camera"
+import { Chart } from "./pages/Chart"
 import { Login } from "./pages/Login"
 import "./sass/_all.scss"
 
@@ -18,6 +19,8 @@ function App() {
                     <BrowserRouter>
                         <Routes>
                             <Route index element={<Login />} />
+                            <Route path="/chart" element={<Chart />} />
+                            <Route path="/scan" element={<Camera />} />
                         </Routes>
                     </BrowserRouter>
                 </ProductsProvider>
