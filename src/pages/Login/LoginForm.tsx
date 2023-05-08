@@ -51,6 +51,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSwitch }) => {
                             value={values.password}
                             onChange={handleChange}
                             fullWidth
+                            type={"password"}
                         />
                         <Button type="submit" variant="contained">
                             Entrar
