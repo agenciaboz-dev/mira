@@ -1,7 +1,7 @@
-import { Button } from "@mui/material"
 import { Formik, Form } from "formik"
 import React from "react"
 import { useNavigate } from "react-router-dom"
+import { Button } from "../../components/Button"
 import { TextField } from "../../components/TextField"
 import { User } from "../../definitions/user"
 import { useApi } from "../../hooks/useApi"
