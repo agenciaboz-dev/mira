@@ -80,11 +80,13 @@
     height: 55vh;
     margin-top: 13vh;
     background-color: $purple;
-    padding: 0 10vw 5vw;
+    padding: 0 7vw 5vw;
     gap: 2vw;
 
     .submit-container {
         justify-content: space-between;
+        height: 12vw;
+        gap: 5vw;
     }
 }
 

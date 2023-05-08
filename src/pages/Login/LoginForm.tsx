@@ -1,6 +1,6 @@
-import { Checkbox, FormControlLabel } from "@mui/material"
+import { Checkbox, FormControlLabel, CircularProgress } from "@mui/material"
 import { Formik, Form } from "formik"
-import React from "react"
+import React, { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { Button } from "../../components/Button"
 import { TextField } from "../../components/TextField"
@@ -25,8 +25,13 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSwitch }) => {
     const navigate = useNavigate()
     const colors = useColors()
 
+    const [loading, setLoading] = useState(false)
+    const [loginError, setLoginError] = useState("")
+
     const handleSubmit = (values: formValues) => {
         console.log(values)
+        setLoading(true)
+        setLoginError("")
         api.login({
             data: values,
             callback: (response: { data: User }) => {
@@ -34,8 +39,11 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSwitch }) => {
                 if (user) {
                     setUser(user)
                     navigate("/cart")
+                } else {
+                    setLoginError("Usuário ou senha inválidos")
                 }
             },
+            finallyCallback: () => setLoading(false),
         })
     }
 
@@ -58,7 +66,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSwitch }) => {
                         />
                         <div className="submit-container">
                             <FormControlLabel
-                                sx={{ gap: "3vw", margin: "0" }}
+                                sx={{ gap: "3vw", margin: "0", whiteSpace: "nowrap" }}
                                 control={
                                     <Checkbox
                                         sx={{
@@ -77,10 +85,15 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSwitch }) => {
                                 }
                                 label="Matenha-me conectado"
                             />
-                            <Button type="submit" variant="contained">
-                                Entrar
+                            <Button type="submit" variant="contained" style={{ width: "30vw" }}>
+                                {loading ? (
+                                    <CircularProgress sx={{ color: "white" }} style={{ width: "5vw", height: "auto" }} />
+                                ) : (
+                                    "Login"
+                                )}
                             </Button>
                         </div>
+                        <h3 style={{ alignSelf: "center" }}>{loginError}</h3>
                     </Form>
                 )}
             </Formik>
