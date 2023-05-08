@@ -25,6 +25,7 @@
     "react-qr-reader": "^3.0.0-beta-1",
     "react-router-dom": "^6.11.1",
     "react-scripts": "5.0.1",
+    "react-slide-routes": "^3.0.3",
     "react-text-mask": "^5.5.0",
     "sass": "^1.62.1",
     "styled-components": "^5.3.10",
