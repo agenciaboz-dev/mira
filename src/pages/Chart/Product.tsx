@@ -1,8 +1,10 @@
 import { IconButton } from "@mui/material"
 import React, { useState } from "react"
+import MaskedInput from "react-text-mask"
 import { CurrencyText } from "../../components/CurrencyText"
 import { Product as ProductType } from "../../definitions/product"
 import { useChart } from "../../hooks/useChart"
+import { useNumberMask } from "../../hooks/useNumberMask"
 import { ReactComponent as TrashIcon } from "../../images/trash.svg"
 
 interface ProductProps {
@@ -10,8 +12,10 @@ interface ProductProps {
 }
 
 export const Product: React.FC<ProductProps> = ({ product }) => {
-    const [quantity, setQuantity] = useState("0")
+    const [quantity, setQuantity] = useState("1")
+
     const { chart, setChart } = useChart()
+    const numberMask = useNumberMask()
 
     const removeProduct = () => {
         setChart(chart.filter((item) => item.id != product.id))
@@ -24,7 +28,14 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
                     Produto: <span>{product.name}</span>
                 </p>
                 <p>
-                    Quantidade: <input type="text" value={quantity} onChange={(event) => setQuantity(event.target.value)} />
+                    Quantidade:{" "}
+                    <MaskedInput
+                        mask={numberMask}
+                        className="quantity-input"
+                        inputMode="numeric"
+                        value={quantity}
+                        onChange={(event) => setQuantity(event.target.value)}
+                    />
                 </p>
                 <p>
                     Preço: <CurrencyText value={product.price} />

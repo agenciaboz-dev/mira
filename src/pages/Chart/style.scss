@@ -39,6 +39,22 @@
             .text-container {
                 flex-direction: column;
                 font-weight: bold;
+                gap: 3vw;
+                width: 100%;
+
+                .quantity-input {
+                    width: 15vw;
+                    border-radius: 3vw;
+                    border: none;
+                    font-size: 5vw;
+                    padding: 3vw;
+                    outline-color: $dark_grey;
+                    outline: 1px solid $dark_grey;
+                }
+
+                .quantity-input:focus {
+                    outline-color: $blue;
+                }
 
                 span {
                     font-weight: normal;
