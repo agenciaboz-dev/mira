@@ -30,7 +30,7 @@
         
         .Product-Component {
             width: 99%;
-            border-radius: 10vw;
+            border-radius: 15vw;
             padding: 5vw 5vw;
             background-color: white;
             align-items: center;
@@ -48,7 +48,7 @@
             .text-container {
                 flex-direction: column;
                 font-weight: bold;
-                gap: 3vw;
+                gap: 1vw;
                 width: 100%;
 
                 .quantity-input {
@@ -57,7 +57,7 @@
                     border: none;
                     font-size: 4vw;
                     padding: 3vw;
-                    outline-color: $dark_grey;
+                    outline-color: $light_grey;
                     outline: 1px solid $dark_grey;
                 }
 
