@@ -18,6 +18,8 @@ import { useColors } from "../../hooks/useColors"
 import { styles } from "./styles"
 import { CurrencyText } from "../CurrencyText"
 import { useValidadeCode } from "../../hooks/useValidateCode"
+import { useChart } from "../../hooks/useChart"
+import { useNavigate } from "react-router-dom"
 
 interface ProductModalProps {
     open: boolean
@@ -31,12 +33,22 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, resul
     const [product, setProduct] = useState<Product>()
 
     const { products } = useProducts()
+    const { chart, setChart } = useChart()
     const colors = useColors()
     const validateCode = useValidadeCode()
+    const navigate = useNavigate()
 
     const handleClose = (event: {}, reason: "backdropClick" | "escapeKeyDown") => {
         if (reason) return
         setOpen(false)
+    }
+
+    const addToCart = () => {
+        if (product) {
+            setChart([...chart, product])
+            setOpen(false)
+            navigate("/chart")
+        }
     }
 
     useEffect(() => {
@@ -102,7 +114,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, resul
                                 Tentar novamente
                             </Button>
                         ) : (
-                            <Button variant="contained" onClick={() => setOpen(false)} fullWidth>
+                            <Button variant="contained" onClick={addToCart} fullWidth>
                                 Adicionar ao carrinho
                             </Button>
                         )}
