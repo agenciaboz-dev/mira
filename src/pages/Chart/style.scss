@@ -19,4 +19,28 @@
         justify-content: space-between;
         color: white;
     }
+
+    .product-list {
+        flex-direction: column;
+        overflow-y: auto;
+        width: 100%;
+        gap: 5vw;
+        
+        .Product-Component {
+            width: 100%;
+            border-radius: 7vw;
+            padding: 5vw 7vw;
+            background-color: white;
+            align-items: center;
+
+            .text-container {
+                flex-direction: column;
+                font-weight: bold;
+
+                span {
+                    font-weight: normal;
+                }
+            }
+        }
+    }
 }
