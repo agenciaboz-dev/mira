@@ -7,16 +7,16 @@ import { useProducts } from "../../hooks/useProducts"
 import { Product } from "./Product"
 import { useCart } from "../../hooks/useCart"
 
-interface ChartProps {}
+interface CartProps {}
 
-export const Chart: React.FC<ChartProps> = ({}) => {
+export const Cart: React.FC<CartProps> = ({}) => {
     const navigate = useNavigate()
     const { cart } = useCart()
 
     const icon_style = { color: "white", height: "10vw", width: "10vw" }
 
     return (
-        <div className="Chart-Page">
+        <div className="Cart-Page">
             <div className="title-container">
                 <IconButton>
                     <Avatar sx={icon_style} />

@@ -46,7 +46,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, resul
 
     const addToCart = () => {
         if (product) {
-            setCart([...cart, product])
+            setCart([...cart, { ...product, quantity: 1 }])
             setOpen(false)
             navigate("/cart")
         }

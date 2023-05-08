@@ -1,10 +1,10 @@
 import { createContext, useState } from "react"
 import React from "react"
-import { Product } from "../definitions/product"
+import { Cart } from "../definitions/cart"
 
 interface CartContextValue {
-    value: Product[]
-    setValue: (value: Product[]) => void
+    value: Cart[]
+    setValue: (value: Cart[]) => void
 }
 
 interface CartProviderProps {
@@ -16,7 +16,7 @@ const CartContext = createContext<CartContextValue>({} as CartContextValue)
 export default CartContext
 
 export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
-    const [value, setValue] = useState<Product[]>([])
+    const [value, setValue] = useState<Cart[]>([])
 
     return <CartContext.Provider value={{ value, setValue }}>{children}</CartContext.Provider>
 }
