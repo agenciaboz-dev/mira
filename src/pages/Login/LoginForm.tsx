@@ -72,10 +72,9 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSwitch }) => {
                                         sx={{
                                             "&.Mui-checked": {
                                                 color: "#9AF82E",
-                                                backgroundColor: "#9AF82E",
                                             },
                                             color: "#EBEBEB",
-                                            backgroundColor: "#EBEBEB",
+                                            backgroundColor: colors.purple,
                                             padding: 0,
                                             boxShadow: "3px 5px 0px #1A7FB7",
                                             borderRadius: "5px",
