@@ -20,22 +20,17 @@ export const Login: React.FC<LoginProps> = ({}) => {
 
     return (
         <div className="Login-Page">
-            <BackgroundElement
+            {/* <BackgroundElement
                 className={`background-element ${isSignUp ? "bigger" : ""}`}
                 style={{
                     position: "absolute",
                     width: "100vw",
                     top: "30vh",
                 }}
-            />
+            /> */}
             <div className="form-container">
-                <div className={`form-wrapper ${isSignUp ? "slide-up" : ""}`}>
-                    <Logo style={{ width: "60vw", flexShrink: 0 }} />
-                    <LoginForm onSwitch={toggleForms} />
-                </div>
-                <div className={`form-wrapper ${isSignUp ? "" : "slide-down"}`}>
-                    <SignupForm onSwitch={toggleForms} />
-                </div>
+                <Logo style={{ width: "60vw", flexShrink: 0 }} />
+                <LoginForm onSwitch={toggleForms} />
             </div>
         </div>
     )
