@@ -2,20 +2,20 @@ import { Avatar, Badge, IconButton } from "@mui/material"
 import React, { useEffect, useState } from "react"
 import MaskedInput from "react-text-mask"
 import { CurrencyText } from "../../components/CurrencyText"
-import { Product as ProductType } from "../../definitions/product"
 import { useCart } from "../../hooks/useCart"
 import { useNumberMask } from "../../hooks/useNumberMask"
 import { ReactComponent as TrashIcon } from "../../images/trash.svg"
 import { ReactComponent as QuestionIcon } from "../../images/question.svg"
 import { useColors } from "../../hooks/useColors"
+import { Cart } from "../../definitions/cart"
 
 interface ProductProps {
-    product: ProductType
+    product: Cart
 }
 
 export const Product: React.FC<ProductProps> = ({ product }) => {
-    const [quantity, setQuantity] = useState("1")
-    const [lastQuantity, setLastQuantity] = useState("1")
+    const [quantity, setQuantity] = useState(product.quantity)
+    const [lastQuantity, setLastQuantity] = useState(product.quantity)
 
     const { cart, setCart } = useCart()
     const numberMask = useNumberMask()
@@ -26,12 +26,14 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
     }
 
     const onQuantityChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
-        setQuantity(event.target.value)
+        setQuantity(Number(event.target.value))
     }
 
     const onQuantityBlur: React.FocusEventHandler<HTMLInputElement> = (event) => {
-        if (Number(quantity)) {
+        if (quantity) {
             setLastQuantity(quantity)
+            const products = cart.filter((item) => item.id != product.id)
+            setCart([...products, { ...product, quantity: quantity }])
         } else {
             setQuantity(lastQuantity)
         }
@@ -68,7 +70,7 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
                     />
                 </p>
                 <p>
-                    Preço: <CurrencyText value={product.price * Number(quantity)} />
+                    Preço: <CurrencyText value={product.price * quantity} />
                 </p>
             </div>
             <IconButton onClick={removeProduct} sx={{ marginLeft: "auto" }}>
