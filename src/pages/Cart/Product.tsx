@@ -30,7 +30,7 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
     }
 
     const onQuantityBlur: React.FocusEventHandler<HTMLInputElement> = (event) => {
-        if (quantity) {
+        if (Number(quantity)) {
             setLastQuantity(quantity)
         } else {
             setQuantity(lastQuantity)
@@ -68,7 +68,7 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
                     />
                 </p>
                 <p>
-                    Preço: <CurrencyText value={product.price} />
+                    Preço: <CurrencyText value={product.price * Number(quantity)} />
                 </p>
             </div>
             <IconButton onClick={removeProduct} sx={{ marginLeft: "auto" }}>
