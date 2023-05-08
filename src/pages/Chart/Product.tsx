@@ -1,4 +1,4 @@
-import { IconButton } from "@mui/material"
+import { Avatar, Badge, IconButton } from "@mui/material"
 import React, { useState } from "react"
 import MaskedInput from "react-text-mask"
 import { CurrencyText } from "../../components/CurrencyText"
@@ -6,6 +6,8 @@ import { Product as ProductType } from "../../definitions/product"
 import { useChart } from "../../hooks/useChart"
 import { useNumberMask } from "../../hooks/useNumberMask"
 import { ReactComponent as TrashIcon } from "../../images/trash.svg"
+import { ReactComponent as QuestionIcon } from "../../images/question.svg"
+import { useColors } from "../../hooks/useColors"
 
 interface ProductProps {
     product: ProductType
@@ -16,6 +18,7 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
 
     const { chart, setChart } = useChart()
     const numberMask = useNumberMask()
+    const colors = useColors()
 
     const removeProduct = () => {
         setChart(chart.filter((item) => item.id != product.id))
@@ -23,6 +26,17 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
 
     return (
         <div className="Product-Component">
+            <Badge
+                badgeContent={
+                    <IconButton>
+                        <QuestionIcon style={{ width: "5.5vw", height: "auto" }} />
+                    </IconButton>
+                }
+                color={"secondary"}
+                sx={{ color: colors.blue }}
+            >
+                <Avatar sx={{ width: "15vw", height: "15vw" }} />
+            </Badge>
             <div className="text-container">
                 <p>
                     Produto: <span>{product.name}</span>

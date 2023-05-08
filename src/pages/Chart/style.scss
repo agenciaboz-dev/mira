@@ -31,10 +31,19 @@
         .Product-Component {
             width: 99%;
             border-radius: 10vw;
-            padding: 5vw 7vw;
+            padding: 5vw 5vw;
             background-color: white;
             align-items: center;
             box-shadow: 2px 8px 0px $blue;
+            gap: 5vw;
+
+            .MuiBadge-badge {
+                top: 2vw;
+                right: 2vw;
+                width: 8vw;
+                height: 8vw;
+                border-radius: 100%;
+            }
 
             .text-container {
                 flex-direction: column;
@@ -43,10 +52,10 @@
                 width: 100%;
 
                 .quantity-input {
-                    width: 15vw;
+                    width: 13vw;
                     border-radius: 3vw;
                     border: none;
-                    font-size: 5vw;
+                    font-size: 4vw;
                     padding: 3vw;
                     outline-color: $dark_grey;
                     outline: 1px solid $dark_grey;
