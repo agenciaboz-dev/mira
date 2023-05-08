@@ -21,6 +21,7 @@ function App() {
                         <BrowserRouter>
                             <Routes>
                                 <Route index element={<Login />} />
+                                <Route path="/login/*" element={<Login />} />
                                 <Route path="/cart" element={<Cart />} />
                                 <Route path="/scan" element={<Camera />} />
                             </Routes>

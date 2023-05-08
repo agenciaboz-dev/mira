@@ -9,16 +9,14 @@ import { useApi } from "../../hooks/useApi"
 import { useColors } from "../../hooks/useColors"
 import { useUser } from "../../hooks/useUser"
 
-interface LoginFormProps {
-    onSwitch: () => void
-}
+interface LoginFormProps {}
 
 interface formValues {
     user: string
     password: string
 }
 
-export const LoginForm: React.FC<LoginFormProps> = ({ onSwitch }) => {
+export const LoginForm: React.FC<LoginFormProps> = ({}) => {
     const initialValues: formValues = { user: "", password: "" }
     const api = useApi()
     const { setUser } = useUser()
@@ -99,7 +97,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSwitch }) => {
 
             <div className="signup-text">
                 <p>Não tem conta?</p>
-                <p className="link" onClick={() => onSwitch()}>
+                <p className="link" onClick={() => navigate("/login/signup")}>
                     Cadastre-se
                 </p>
             </div>

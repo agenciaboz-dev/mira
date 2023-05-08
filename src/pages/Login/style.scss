@@ -71,7 +71,7 @@
 
 .LoginForm-Component {
     flex-direction: column;   
-    width: 100%;
+    width: 100vw;
     height: 100%;
     background-color: $purple;
     padding: 5vw 7vw;
@@ -85,9 +85,15 @@
 }
 
 .SignupForm-Component {
-    position: relative;
-    margin-top: -85%;
-    flex-direction: column;             
-    width: 100%;
+    flex-direction: column;
+    width: 100vw;
+    height: 100%;
+    background-color: $purple;
+    padding: 5vw 7vw;
+    gap: 5vw;
+
+    .form {
+        flex-direction: column;
+    }
 
 }
