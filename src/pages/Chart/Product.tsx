@@ -1,6 +1,8 @@
+import { IconButton } from "@mui/material"
 import React, { useState } from "react"
 import { CurrencyText } from "../../components/CurrencyText"
 import { Product as ProductType } from "../../definitions/product"
+import { useChart } from "../../hooks/useChart"
 import { ReactComponent as TrashIcon } from "../../images/trash.svg"
 
 interface ProductProps {
@@ -9,6 +11,11 @@ interface ProductProps {
 
 export const Product: React.FC<ProductProps> = ({ product }) => {
     const [quantity, setQuantity] = useState("0")
+    const { chart, setChart } = useChart()
+
+    const removeProduct = () => {
+        setChart(chart.filter((item) => item.id != product.id))
+    }
 
     return (
         <div className="Product-Component">
@@ -23,7 +30,9 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
                     Preço: <CurrencyText value={product.price} />
                 </p>
             </div>
-            <TrashIcon style={{ marginLeft: "auto" }} />
+            <IconButton onClick={removeProduct} sx={{ marginLeft: "auto" }}>
+                <TrashIcon />
+            </IconButton>
         </div>
     )
 }
