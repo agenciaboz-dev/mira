@@ -25,7 +25,7 @@ export const Login: React.FC<LoginProps> = ({}) => {
                 style={{
                     position: "absolute",
                     width: "100vw",
-                    bottom: "-5vw",
+                    top: "30vh",
                 }}
             />
             <div className="form-container">

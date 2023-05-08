@@ -29,6 +29,7 @@ export const TextField: React.FC<TextFieldProps> = (props) => {
                 sx: {
                     backgroundColor: "white",
                     borderRadius: "10vw",
+                    boxShadow: "2px 8px 0px #1A7FB7",
                 },
             }}
         />

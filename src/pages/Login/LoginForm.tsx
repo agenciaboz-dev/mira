@@ -1,3 +1,4 @@
+import { Checkbox, FormControlLabel } from "@mui/material"
 import { Formik, Form } from "formik"
 import React from "react"
 import { useNavigate } from "react-router-dom"
@@ -5,6 +6,7 @@ import { Button } from "../../components/Button"
 import { TextField } from "../../components/TextField"
 import { User } from "../../definitions/user"
 import { useApi } from "../../hooks/useApi"
+import { useColors } from "../../hooks/useColors"
 import { useUser } from "../../hooks/useUser"
 
 interface LoginFormProps {
@@ -21,6 +23,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSwitch }) => {
     const api = useApi()
     const { setUser } = useUser()
     const navigate = useNavigate()
+    const colors = useColors()
 
     const handleSubmit = (values: formValues) => {
         console.log(values)
@@ -53,9 +56,31 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSwitch }) => {
                             fullWidth
                             type={"password"}
                         />
-                        <Button type="submit" variant="contained">
-                            Entrar
-                        </Button>
+                        <div className="submit-container">
+                            <FormControlLabel
+                                sx={{ gap: "3vw", margin: "0" }}
+                                control={
+                                    <Checkbox
+                                        sx={{
+                                            "&.Mui-checked": {
+                                                color: "#9AF82E",
+                                                backgroundColor: "#9AF82E",
+                                            },
+                                            color: "#EBEBEB",
+                                            backgroundColor: "#EBEBEB",
+                                            padding: 0,
+                                            boxShadow: "3px 5px 0px #1A7FB7",
+                                            borderRadius: "5px",
+                                        }}
+                                        defaultChecked
+                                    />
+                                }
+                                label="Matenha-me conectado"
+                            />
+                            <Button type="submit" variant="contained">
+                                Entrar
+                            </Button>
+                        </div>
                     </Form>
                 )}
             </Formik>
