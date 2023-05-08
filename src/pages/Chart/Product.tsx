@@ -1,5 +1,5 @@
 import { Avatar, Badge, IconButton } from "@mui/material"
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import MaskedInput from "react-text-mask"
 import { CurrencyText } from "../../components/CurrencyText"
 import { Product as ProductType } from "../../definitions/product"
@@ -15,6 +15,7 @@ interface ProductProps {
 
 export const Product: React.FC<ProductProps> = ({ product }) => {
     const [quantity, setQuantity] = useState("1")
+    const [lastQuantity, setLastQuantity] = useState("1")
 
     const { chart, setChart } = useChart()
     const numberMask = useNumberMask()
@@ -23,6 +24,20 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
     const removeProduct = () => {
         setChart(chart.filter((item) => item.id != product.id))
     }
+
+    const onQuantityChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
+        setQuantity(event.target.value)
+    }
+
+    const onQuantityBlur: React.FocusEventHandler<HTMLInputElement> = (event) => {
+        if (quantity) {
+            setLastQuantity(quantity)
+        } else {
+            setQuantity(lastQuantity)
+        }
+    }
+
+    useEffect(() => {}, [quantity])
 
     return (
         <div className="Product-Component">
@@ -48,7 +63,8 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
                         className="quantity-input"
                         inputMode="numeric"
                         value={quantity}
-                        onChange={(event) => setQuantity(event.target.value)}
+                        onChange={onQuantityChange}
+                        onBlur={onQuantityBlur}
                     />
                 </p>
                 <p>
