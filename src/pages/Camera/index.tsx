@@ -1,5 +1,6 @@
 import { Button } from "@mui/material"
 import React, { useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 import { ProductModal } from "../../components/ProductModal"
 import { Scanner } from "../../components/Scanner"
 import "./style.scss"
@@ -10,6 +11,8 @@ export const Camera: React.FC<CameraProps> = ({}) => {
     const [scanning, setScanning] = useState(true)
     const [productModal, setProductModal] = useState(false)
     const [result, setResult] = useState("")
+
+    const navigate = useNavigate()
 
     const handleResult = (result: string) => {
         console.log(result)
@@ -30,7 +33,7 @@ export const Camera: React.FC<CameraProps> = ({}) => {
         <div className="Camera-Page">
             <Scanner scanning={scanning} handleResult={handleResult} />
             <div className="button-container">
-                <Button variant="contained" sx={{ fontSize: "5vw", padding: "3vw" }}>
+                <Button variant="contained" sx={{ fontSize: "5vw", padding: "3vw" }} onClick={() => navigate(-1)}>
                     Cancelar leitura
                 </Button>
             </div>
