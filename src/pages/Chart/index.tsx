@@ -5,13 +5,13 @@ import QrCodeScannerIcon from "@mui/icons-material/QrCodeScanner"
 import { useNavigate } from "react-router-dom"
 import { useProducts } from "../../hooks/useProducts"
 import { Product } from "./Product"
-import { useChart } from "../../hooks/useChart"
+import { useCart } from "../../hooks/useCart"
 
 interface ChartProps {}
 
 export const Chart: React.FC<ChartProps> = ({}) => {
     const navigate = useNavigate()
-    const { chart } = useChart()
+    const { cart } = useCart()
 
     const icon_style = { color: "white", height: "10vw", width: "10vw" }
 
@@ -27,7 +27,7 @@ export const Chart: React.FC<ChartProps> = ({}) => {
                 </IconButton>
             </div>
             <div className="product-list">
-                {chart.map((product) => (
+                {cart.map((product) => (
                     <Product key={product.id} product={product} />
                 ))}
             </div>

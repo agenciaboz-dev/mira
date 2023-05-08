@@ -2,7 +2,7 @@ import { ThemeProvider } from "@mui/material"
 import React from "react"
 import { Route, Routes } from "react-router"
 import { BrowserRouter } from "react-router-dom"
-import { ChartProvider } from "./contexts/chartContext"
+import { CartProvider } from "./contexts/cartContext"
 import { ProductsProvider } from "./contexts/productsContext"
 import { UserProvider } from "./contexts/userContext"
 import { useMuiTheme } from "./hooks/useMuiTheme"
@@ -17,15 +17,15 @@ function App() {
         <ThemeProvider theme={muiTheme}>
             <UserProvider>
                 <ProductsProvider>
-                    <ChartProvider>
+                    <CartProvider>
                         <BrowserRouter>
                             <Routes>
                                 <Route index element={<Login />} />
-                                <Route path="/chart" element={<Chart />} />
+                                <Route path="/cart" element={<Chart />} />
                                 <Route path="/scan" element={<Camera />} />
                             </Routes>
                         </BrowserRouter>
-                    </ChartProvider>
+                    </CartProvider>
                 </ProductsProvider>
             </UserProvider>
         </ThemeProvider>

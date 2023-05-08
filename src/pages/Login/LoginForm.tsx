@@ -30,7 +30,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSwitch }) => {
                 const user = response.data
                 if (user) {
                     setUser(user)
-                    navigate("/chart")
+                    navigate("/cart")
                 }
             },
         })

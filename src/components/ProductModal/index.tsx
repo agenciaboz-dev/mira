@@ -18,7 +18,7 @@ import { useColors } from "../../hooks/useColors"
 import { styles } from "./styles"
 import { CurrencyText } from "../CurrencyText"
 import { useValidadeCode } from "../../hooks/useValidateCode"
-import { useChart } from "../../hooks/useChart"
+import { useCart } from "../../hooks/useCart"
 import { useNavigate } from "react-router-dom"
 
 interface ProductModalProps {
@@ -34,7 +34,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, resul
     const [inChart, setInChart] = useState(false)
 
     const { products } = useProducts()
-    const { chart, setChart } = useChart()
+    const { cart, setCart } = useCart()
     const colors = useColors()
     const validateCode = useValidadeCode()
     const navigate = useNavigate()
@@ -46,14 +46,14 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, resul
 
     const addToCart = () => {
         if (product) {
-            setChart([...chart, product])
+            setCart([...cart, product])
             setOpen(false)
-            navigate("/chart")
+            navigate("/cart")
         }
     }
 
     const checkChart = () => {
-        chart.map((item) => {
+        cart.map((item) => {
             if (item.id == product?.id) {
                 setInChart(true)
                 return

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react"
 import MaskedInput from "react-text-mask"
 import { CurrencyText } from "../../components/CurrencyText"
 import { Product as ProductType } from "../../definitions/product"
-import { useChart } from "../../hooks/useChart"
+import { useCart } from "../../hooks/useCart"
 import { useNumberMask } from "../../hooks/useNumberMask"
 import { ReactComponent as TrashIcon } from "../../images/trash.svg"
 import { ReactComponent as QuestionIcon } from "../../images/question.svg"
@@ -17,12 +17,12 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
     const [quantity, setQuantity] = useState("1")
     const [lastQuantity, setLastQuantity] = useState("1")
 
-    const { chart, setChart } = useChart()
+    const { cart, setCart } = useCart()
     const numberMask = useNumberMask()
     const colors = useColors()
 
     const removeProduct = () => {
-        setChart(chart.filter((item) => item.id != product.id))
+        setCart(cart.filter((item) => item.id != product.id))
     }
 
     const onQuantityChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
