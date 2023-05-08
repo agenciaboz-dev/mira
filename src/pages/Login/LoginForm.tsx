@@ -2,20 +2,28 @@ import { Button } from "@mui/material"
 import { Formik, Form } from "formik"
 import React from "react"
 import { TextField } from "../../components/TextField"
+import { User } from "../../definitions/user"
+import { useApi } from "../../hooks/useApi"
 
 interface LoginFormProps {
     onSwitch: () => void
 }
 
 interface formValues {
-    login: string
+    user: string
     password: string
 }
 
 export const LoginForm: React.FC<LoginFormProps> = ({ onSwitch }) => {
-    const initialValues: formValues = { login: "", password: "" }
+    const initialValues: formValues = { user: "", password: "" }
+    const api = useApi()
+
     const handleSubmit = (values: formValues) => {
         console.log(values)
+        api.login({
+            data: values,
+            callback: (response: { data: User }) => console.log(response.data),
+        })
     }
 
     return (
@@ -26,13 +34,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSwitch }) => {
             <Formik initialValues={initialValues} onSubmit={handleSubmit}>
                 {({ values, handleChange }) => (
                     <Form>
-                        <TextField
-                            name="login"
-                            placeholder="E-mail"
-                            value={values.login}
-                            onChange={handleChange}
-                            fullWidth
-                        />
+                        <TextField name="user" placeholder="E-mail" value={values.user} onChange={handleChange} fullWidth />
                         <TextField
                             name="password"
                             placeholder="Senha"
