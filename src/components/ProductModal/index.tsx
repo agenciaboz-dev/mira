@@ -31,6 +31,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, resul
     const [error, setError] = useState(false)
     const [loading, setLoading] = useState(true)
     const [product, setProduct] = useState<Product>()
+    const [inChart, setInChart] = useState(false)
 
     const { products } = useProducts()
     const { chart, setChart } = useChart()
@@ -51,6 +52,17 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, resul
         }
     }
 
+    const checkChart = () => {
+        chart.map((item) => {
+            if (item.id == product?.id) {
+                setInChart(true)
+                return
+            } else {
+                setInChart(false)
+            }
+        })
+    }
+
     useEffect(() => {
         if (open) {
             if (validateCode(result)) {
@@ -64,6 +76,10 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, resul
 
     useEffect(() => {
         if (error || product) setLoading(false)
+
+        if (product) {
+            checkChart()
+        }
     }, [error, product])
 
     return (
@@ -112,6 +128,10 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, resul
                         {!!error ? (
                             <Button variant="contained" onClick={() => setOpen(false)} fullWidth>
                                 Tentar novamente
+                            </Button>
+                        ) : inChart ? (
+                            <Button variant="contained" color="success" onClick={() => setOpen(false)} fullWidth>
+                                Produto já está no carrinho
                             </Button>
                         ) : (
                             <Button variant="contained" onClick={addToCart} fullWidth>
