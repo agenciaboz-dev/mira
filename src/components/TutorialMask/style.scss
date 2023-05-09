@@ -1,14 +1,39 @@
 .tutorial-mask {
-    background-color: lightgreen;
+    flex-direction: column;
+    background-color: transparentize(lightgreen, 0.4);
     position: absolute;
     top: 0;
     left: 0;
     height: 100%;
     width: 100%;
-    opacity: 0.6;
+    -webkit-mask-image: radial-gradient(circle 15vw at (80.5vw 15.5vw), transparent 100%, black 100%);
+    mask-image: radial-gradient(circle 15vw at (80.5vw 15.5vw), transparent 100%, black 100%);
 
-    img {
-        height: 15vw;
-        width: 15vw;
+    .focus {
+        position: absolute;
+        width: 30vw;
+        height: 30vw;
+        border-radius: 50%;
+        background-color: transparentize(red, 0.7);
+        top: 0.5vw;
+        right: 4.5vw;
+        z-index: 9999;
+    }
+
+    .text-balloon {
+        background-color: white;
+        padding: 5vw;
+        border-radius: 5vw;
+        width: 90vw;
+        margin: 40vw auto -5vw;
+        text-align: center;
+    }
+
+    .balloon-tip {
+        margin: 0 10vw 0 auto;
+    }
+
+    .avatar {
+        width: 60%;
     }
 }

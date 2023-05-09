@@ -1,4 +1,4 @@
-import { Avatar, IconButton, Menu, MenuItem } from "@mui/material"
+import { Avatar, Button, IconButton, Menu, MenuItem } from "@mui/material"
 import React, { useEffect, useState } from "react"
 import "./style.scss"
 import QrCodeScannerIcon from "@mui/icons-material/QrCodeScanner"
@@ -7,6 +7,8 @@ import { useProducts } from "../../hooks/useProducts"
 import { Product } from "./Product"
 import { useCart } from "../../hooks/useCart"
 import { useUser } from "../../hooks/useUser"
+import { useLocalStorage } from "../../hooks/useLocalStorage"
+import { TutorialMask } from "../../components/TutorialMask"
 
 interface CartProps {}
 
@@ -18,6 +20,9 @@ export const Cart: React.FC<CartProps> = ({}) => {
     const { cart } = useCart()
     const { logout } = useUser()
 
+    const storage = useLocalStorage()
+    const [tutorial, setTutorial] = useState(false)    
+
     const icon_style = { color: "white", height: "10vw", width: "10vw" }
 
     const handleClose = () => {
@@ -27,6 +32,17 @@ export const Cart: React.FC<CartProps> = ({}) => {
     useEffect(() => {
         setOpen(Boolean(anchorEl))
     }, [anchorEl])
+
+    
+    useEffect(() => {
+        const has_accessed = storage.get('has_accessed')
+        if (has_accessed){
+            console.log('acessou')
+        }else{
+            console.log('nao')
+            setTutorial(true)
+        }
+    }, [])    
 
     return (
         <div className="Cart-Page">
@@ -39,6 +55,9 @@ export const Cart: React.FC<CartProps> = ({}) => {
                     <QrCodeScannerIcon sx={icon_style} />
                 </IconButton>
             </div>
+
+            {tutorial && <TutorialMask />}
+
             <div className="product-list">
                 {cart.map((product) => (
                     <Product key={product.id} product={product} />
@@ -56,6 +75,7 @@ export const Cart: React.FC<CartProps> = ({}) => {
                 <MenuItem onClick={handleClose}>Perfil</MenuItem>
                 <MenuItem onClick={logout}>Sair</MenuItem>
             </Menu>
+
         </div>
     )
 }
