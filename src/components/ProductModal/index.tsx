@@ -25,13 +25,12 @@ import { ProductStory } from "../ProductStory"
 interface ProductModalProps {
     open: boolean
     setOpen: (open: boolean) => void
-    result: string
+    product: Product
 }
 
-export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, result }) => {
+export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, product }) => {
     const [error, setError] = useState(false)
     const [loading, setLoading] = useState(true)
-    const [product, setProduct] = useState<Product>()
     const [inChart, setInChart] = useState(false)
     const [story, setStory] = useState(false)
 
@@ -66,23 +65,8 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, resul
     }
 
     useEffect(() => {
-        if (open) {
-            if (validateCode(result)) {
-                setError(false)
-                setProduct(products.filter((item) => item.id == Number(result.split("/")[1]))[0])
-            } else {
-                setError(true)
-            }
-        }
-    }, [open])
-
-    useEffect(() => {
-        if (error || product) setLoading(false)
-
-        if (product) {
-            checkChart()
-        }
-    }, [error, product])
+        checkChart()
+    }, [])
 
     return (
         <Dialog open={open} onClose={handleClose} sx={styles.dialog}>

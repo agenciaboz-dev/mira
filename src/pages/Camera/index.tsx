@@ -6,16 +6,22 @@ import { Scanner } from "../../components/Scanner"
 import "./style.scss"
 import CancelIcon from "@mui/icons-material/Cancel"
 import { useColors } from "../../hooks/useColors"
+import { useValidadeCode } from "../../hooks/useValidateCode"
+import { Product } from "../../definitions/product"
+import { useProducts } from "../../hooks/useProducts"
 
 interface CameraProps {}
 
 export const Camera: React.FC<CameraProps> = ({}) => {
     const [scanning, setScanning] = useState(true)
-    const [productModal, setProductModal] = useState(false)
     const [result, setResult] = useState("")
+    const [product, setProduct] = useState<Product>()
+    const [error, setError] = useState(false)
 
     const navigate = useNavigate()
     const colors = useColors()
+    const validateCode = useValidadeCode()
+    const { products } = useProducts()
 
     const handleResult = (result: string) => {
         console.log(result)
@@ -23,31 +29,47 @@ export const Camera: React.FC<CameraProps> = ({}) => {
         setScanning(false)
     }
 
+    const retry = () => {
+        setError(false)
+        setScanning(true)
+        setResult("")
+    }
+
     useEffect(() => {
         console.log(result)
-        if (result) setProductModal(true)
+        if (result) {
+            if (validateCode(result)) {
+                setError(false)
+                setProduct(products.filter((item) => item.id == Number(result.split("/")[1]))[0])
+            } else {
+                setError(true)
+            }
+        }
     }, [result])
 
     useEffect(() => {
-        if (!productModal && result) setResult("")
-    }, [productModal])
+        console.log({ error })
+    }, [error])
 
     return (
         <div className="Camera-Page">
             <Scanner scanning={scanning} handleResult={handleResult} />
             <div className="button-wrapper">
                 <div className="button-container">
+                    {error && <h2>QR Code não identificado</h2>}
                     <Button
-                        disabled
+                        disabled={!error}
+                        onClick={retry}
+                        fullWidth
                         variant="contained"
                         style={{
                             fontSize: "3.5vw",
                             padding: "2vw",
                             color: "white",
-                            background: "linear-gradient(90deg, #9F9F9F 0%, #565656 91.94%)",
+                            background: !error ? "linear-gradient(90deg, #9F9F9F 0%, #565656 91.94%)" : "",
                         }}
                     >
-                        Aponte a camera para um QR Code
+                        {error ? "Tentar novamente" : "Aponte a camera para um QR Code"}
                     </Button>
                     <div className="cancel-button" onClick={() => navigate(-1)}>
                         <CancelIcon sx={{ color: colors.red, width: "8vw", height: "auto" }} />
@@ -55,7 +77,6 @@ export const Camera: React.FC<CameraProps> = ({}) => {
                     </div>
                 </div>
             </div>
-            <ProductModal open={productModal} setOpen={setProductModal} result={result} />
         </div>
     )
 }
