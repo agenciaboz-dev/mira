@@ -20,6 +20,7 @@ import { CurrencyText } from "../CurrencyText"
 import { useValidadeCode } from "../../hooks/useValidateCode"
 import { useCart } from "../../hooks/useCart"
 import { useNavigate } from "react-router-dom"
+import { ProductStory } from "../ProductStory"
 
 interface ProductModalProps {
     open: boolean
@@ -32,6 +33,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, resul
     const [loading, setLoading] = useState(true)
     const [product, setProduct] = useState<Product>()
     const [inChart, setInChart] = useState(false)
+    const [story, setStory] = useState(false)
 
     const { products } = useProducts()
     const { cart, setCart } = useCart()
@@ -102,7 +104,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, resul
                                     <CancelPresentationIcon color="error" sx={styles.close_icon} />
                                 </IconButton>
                                 {product?.name}
-                                <IconButton>
+                                <IconButton onClick={() => setStory(true)}>
                                     <HelpIcon color="primary" sx={styles.close_icon} />
                                 </IconButton>
                             </DialogTitle>
@@ -141,6 +143,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, resul
                     </DialogActions>
                 </>
             )}
+            {product && <ProductStory product={product} open={story} setOpen={setStory} />}
         </Dialog>
     )
 }
