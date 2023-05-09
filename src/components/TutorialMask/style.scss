@@ -8,6 +8,7 @@
     width: 100%;
     -webkit-mask-image: radial-gradient(circle 15vw at (80.5vw 15.5vw), transparent 100%, black 100%);
     mask-image: radial-gradient(circle 15vw at (80.5vw 15.5vw), transparent 100%, black 100%);
+    z-index: 9;
 
     .focus {
         position: absolute;
@@ -17,7 +18,7 @@
         background-color: transparentize(red, 0.7);
         top: 0.5vw;
         right: 4.5vw;
-        z-index: 9999;
+        z-index: 10;
     }
 
     .text-balloon {
