@@ -4,6 +4,8 @@
     position: relative;
     width: 100%;
     flex-direction: column;
+    height: 100%;
+    overflow: hidden;
 
     .button-wrapper {
         flex-direction: column;
