@@ -1,9 +1,11 @@
-import { Button } from "@mui/material"
 import React, { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
+import { Button } from "../../components/Button"
 import { ProductModal } from "../../components/ProductModal"
 import { Scanner } from "../../components/Scanner"
 import "./style.scss"
+import CancelIcon from "@mui/icons-material/Cancel"
+import { useColors } from "../../hooks/useColors"
 
 interface CameraProps {}
 
@@ -13,6 +15,7 @@ export const Camera: React.FC<CameraProps> = ({}) => {
     const [result, setResult] = useState("")
 
     const navigate = useNavigate()
+    const colors = useColors()
 
     const handleResult = (result: string) => {
         console.log(result)
@@ -32,10 +35,25 @@ export const Camera: React.FC<CameraProps> = ({}) => {
     return (
         <div className="Camera-Page">
             <Scanner scanning={scanning} handleResult={handleResult} />
-            <div className="button-container">
-                <Button variant="contained" sx={{ fontSize: "5vw", padding: "3vw" }} onClick={() => navigate(-1)}>
-                    Cancelar leitura
-                </Button>
+            <div className="button-wrapper">
+                <div className="button-container">
+                    <Button
+                        disabled
+                        variant="contained"
+                        style={{
+                            fontSize: "3.5vw",
+                            padding: "2vw",
+                            color: "white",
+                            background: "linear-gradient(90deg, #9F9F9F 0%, #565656 91.94%)",
+                        }}
+                    >
+                        Aponte a camera para um QR Code
+                    </Button>
+                    <div className="cancel-button" onClick={() => navigate(-1)}>
+                        <CancelIcon sx={{ color: colors.red, width: "8vw", height: "auto" }} />
+                        Cancelar leitura
+                    </div>
+                </div>
             </div>
             <ProductModal open={productModal} setOpen={setProductModal} result={result} />
         </div>

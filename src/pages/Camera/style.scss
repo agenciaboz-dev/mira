@@ -5,10 +5,26 @@
     width: 100%;
     flex-direction: column;
 
-    .button-container {
+    .button-wrapper {
         flex-direction: column;
         justify-content: flex-end;
         height: 100vh;
         padding: 5vw;
+        
+        .button-container {
+            z-index: 1;
+            background-color: white;
+            flex-direction: column;
+            box-shadow: 2px 8px 0px $blue;
+            border-radius: 10vw;
+            padding: 5vw;
+            gap: 3vw;
+
+            .cancel-button {
+                justify-content: center;
+                gap: 2vw;
+                font-size: 5vw;
+            }
+        }
     }
 }

@@ -10,9 +10,11 @@
         position: absolute;
         width: 90vw;
         height: 90vw;
-        border: 5px red solid;
+        // border: 5px red solid;
+        border-radius: 5vw;
         box-shadow: 0 0 50vh rgba($color: #000000, $alpha: 1);
 
         top: 30vh;
     }
+
 }

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { QrReader, OnResultFunction } from "react-qr-reader"
-import { Result } from "@zxing/library"
 import "./style.scss"
+import { ReactComponent as Border } from "../../images/scanner/border.svg"
 
 interface ScannerProps {
     handleResult: (result: string) => void
@@ -24,7 +24,7 @@ export const Scanner: React.FC<ScannerProps> = ({ handleResult, scanning }) => {
                 videoStyle={{ width: null, left: null }}
                 videoContainerStyle={{ height: "100vh", justifyContent: "center" }}
             />
-            <div className="scanner-placeholder"></div>
+            <Border className="scanner-placeholder" />
         </div>
     )
 }
