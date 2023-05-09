@@ -72,3 +72,28 @@
         }
     }
 }
+
+.FinishContainer-Component {
+    margin-top: auto;
+    width: 100%;
+    flex-direction: column;
+    box-shadow: 2px 8px 0px $blue;
+    border-radius: 15vw;
+    background-color: white;
+    padding: 7vw;
+    color: $dark_grey;
+    gap: 2vw;
+
+    p {
+        font-size: 6vw;
+    }
+
+    h3 {
+        font-size: 7vw;
+    }
+
+    .total-container {
+        justify-content: space-between;
+        align-items: center;
+    }
+}

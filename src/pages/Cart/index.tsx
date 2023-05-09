@@ -7,6 +7,7 @@ import { useProducts } from "../../hooks/useProducts"
 import { Product } from "./Product"
 import { useCart } from "../../hooks/useCart"
 import { useUser } from "../../hooks/useUser"
+import { FinishContainer } from "./FinishContainer"
 
 interface CartProps {}
 
@@ -44,6 +45,9 @@ export const Cart: React.FC<CartProps> = ({}) => {
                     <Product key={product.id} product={product} />
                 ))}
             </div>
+
+            <FinishContainer />
+
             <Menu
                 id="basic-menu"
                 anchorEl={anchorEl}
