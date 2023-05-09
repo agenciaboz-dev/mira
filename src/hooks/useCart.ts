@@ -8,7 +8,7 @@ export const useCart = () => {
         return cartContext.value.reduce((total, product) => {
             return total + product.price * product.quantity
         }, 0)
-    }, cartContext.value)
+    }, [cartContext.value])
 
     return { cart: cartContext.value, setCart: cartContext.setValue, total }
 }
