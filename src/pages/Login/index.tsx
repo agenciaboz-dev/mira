@@ -30,7 +30,7 @@ export const Login: React.FC<LoginProps> = ({}) => {
                         index
                         element={
                             <div style={{ flexDirection: "column", alignItems: "center", height: "100%" }}>
-                                <Logo style={{ width: "60vw", flexShrink: 0 }} />
+                                <Logo style={{ width: "50vw", height: "auto", flexShrink: 0 }} />
                                 <LoginForm />
                             </div>
                         }

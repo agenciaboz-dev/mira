@@ -2,7 +2,7 @@
 
 .Login-Page {
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     position: relative;
     overflow: hidden;
     flex-direction: column;
@@ -10,30 +10,13 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    // padding-bottom: 5vh;
 
     align-items: center;
 
     .link {
         color: #9AF82E;
         cursor: pointer;
-    }
-
-    .background-element {
-        // height: 100%;
-        // transform-origin: top;
-        transition: transform 0.5s ease-in-out;
-    }
-    
-    .background-element::after {
-        content: "";
-        display: flex;
-        width: 100vw;
-        height: 200vh;
-        background-color: $purple;
-    }
-
-    .bigger {
-        transform: translateY(-20%);
     }
 
     .link:hover {
@@ -63,7 +46,7 @@
             width: 100%;
             justify-content: center;
             gap: 2vw;
-            margin-top: auto;
+            // margin-top: auto;
         }
     }
 }
