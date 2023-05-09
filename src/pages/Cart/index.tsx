@@ -15,7 +15,7 @@ interface CartProps {}
 
 export const Cart: React.FC<CartProps> = ({}) => {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
-    const [open, setOpen] = useState(Boolean(anchorEl))
+    const open = Boolean(anchorEl)
 
     const navigate = useNavigate()
     const { cart } = useCart()
@@ -29,10 +29,6 @@ export const Cart: React.FC<CartProps> = ({}) => {
     const handleClose = () => {
         setAnchorEl(null)
     }
-
-    useEffect(() => {
-        setOpen(Boolean(anchorEl))
-    }, [anchorEl])
 
     
     useEffect(() => {
