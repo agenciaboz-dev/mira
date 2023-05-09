@@ -10,7 +10,7 @@ export const FinishContainer: React.FC<FinishContainerProps> = ({}) => {
     return (
         <div className="FinishContainer-Component">
             <p>
-                {cart.length} {cart.length > 1 ? "Itens" : "Item"} no carrinho
+                {cart.length || "Nenhum"} {cart.length > 1 ? "itens" : "item"} no carrinho
             </p>
 
             <div className="total-container">
