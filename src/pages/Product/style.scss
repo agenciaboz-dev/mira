@@ -24,10 +24,16 @@
         padding: 3vw 6vw;
         color: $dark_grey;
         transition: ease-in-out 0.5s;
+        gap: 3vw;
 
         .title-container {
             width: 100%;
             align-items: center;
+        }
+
+        .specs-container {
+            flex-wrap: wrap;
+            justify-content: space-between;
         }
     }
 }

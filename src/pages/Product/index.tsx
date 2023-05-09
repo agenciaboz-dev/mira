@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { Product as ProductType } from "../../definitions/product"
+import { Paper } from "@mui/material"
 import { useProducts } from "../../hooks/useProducts"
 import "./style.scss"
 import KeyboardArrowUpRoundedIcon from "@mui/icons-material/KeyboardArrowUpRounded"
@@ -8,6 +9,7 @@ import IconButton from "@mui/material/IconButton"
 import CancelIcon from "@mui/icons-material/Cancel"
 import { useColors } from "../../hooks/useColors"
 import { CurrencyText } from "../../components/CurrencyText"
+import { styles } from "./styles"
 
 interface ProductProps {}
 
@@ -45,6 +47,20 @@ export const Product: React.FC<ProductProps> = ({}) => {
                 </div>
                 <CurrencyText value={product.price} />
                 <p>{product.description}</p>
+                <div className="specs-container">
+                    <Paper sx={styles.paper}>
+                        <h3>Dimensões</h3>
+                        <p>18 X 27</p>
+                    </Paper>
+                    <Paper sx={styles.paper}>
+                        <h3>Tipo</h3>
+                        <p>Chata / Lisa</p>
+                    </Paper>
+                    <Paper sx={styles.paper}>
+                        <h3>Peso</h3>
+                        <p>1 Kg</p>
+                    </Paper>
+                </div>
             </div>
         </div>
     )
