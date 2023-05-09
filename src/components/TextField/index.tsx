@@ -21,7 +21,7 @@ const StyledTextField = styled(Text)`
     }
 `
 
-export const TextField: React.FC<TextFieldProps> = (props) => {
+export const TextField: React.FC<TextFieldProps> = (props, {}) => {
     return (
         <StyledTextField
             {...props}

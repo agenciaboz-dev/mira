@@ -10,6 +10,10 @@ import CancelIcon from "@mui/icons-material/Cancel"
 import { useColors } from "../../hooks/useColors"
 import { CurrencyText } from "../../components/CurrencyText"
 import { styles } from "./styles"
+import { ReactComponent as MinusIcon } from "../../images/product/minus.svg"
+import { ReactComponent as PlusIcon } from "../../images/product/plus.svg"
+import { TextField } from "../../components/TextField"
+import { Button } from "../../components/Button"
 
 interface ProductProps {}
 
@@ -24,6 +28,7 @@ export const Product: React.FC<ProductProps> = ({}) => {
 
     const [product, setProduct] = useState(products.filter((item) => item.id == id)[0])
     const [expanded, setExpanded] = useState(false)
+    const [quantity, setQuantity] = useState(1)
 
     return (
         <div className="Product-Page">
@@ -47,6 +52,7 @@ export const Product: React.FC<ProductProps> = ({}) => {
                 </div>
                 <CurrencyText value={product.price} />
                 <p>{product.description}</p>
+
                 <div className="specs-container">
                     <Paper sx={styles.paper}>
                         <h3>Dimensões</h3>
@@ -60,6 +66,13 @@ export const Product: React.FC<ProductProps> = ({}) => {
                         <h3>Peso</h3>
                         <p>1 Kg</p>
                     </Paper>
+                </div>
+
+                <div className="cart-container">
+                    <MinusIcon />
+                    <TextField value={quantity} onChange={(event) => setQuantity(Number(event.target.value))} />
+                    <PlusIcon />
+                    <Button>Adicionar ao carrinho</Button>
                 </div>
             </div>
         </div>
