@@ -20,9 +20,17 @@
     }
 
     .background-element {
-        height: 100%;
+        // height: 100%;
         // transform-origin: top;
         transition: transform 0.5s ease-in-out;
+    }
+    
+    .background-element::after {
+        content: "";
+        display: flex;
+        width: 100vw;
+        height: 200vh;
+        background-color: $purple;
     }
 
     .bigger {
@@ -37,25 +45,21 @@
         width: 100%;
         height: 100%;
         overflow: hidden;
-        padding: 0 10vw;
         color: white;
         z-index: 2;
         flex-direction: column;
-        padding-bottom: 5vw;
+        align-items: center;
 
+        
         form {
             flex-direction: column;
-            gap: 7vw;
-        }
-
-        .form-wrapper {
             flex-direction: column;
             align-items: center;
             width: 100%;
-            height: 60%;
-            transition: transform 0.5s ease-in-out;
+            gap: 7vw;
+
         }
-          
+
         .signup-text {
             width: 100%;
             justify-content: center;
@@ -66,15 +70,30 @@
 }
 
 .LoginForm-Component {
-    padding-top: 15%;
-    flex-direction: column;             
-    width: 100%;
+    flex-direction: column;   
+    width: 100vw;
+    height: 100%;
+    background-color: $purple;
+    padding: 5vw 7vw;
+    gap: 2vw;
+
+    .submit-container {
+        justify-content: space-between;
+        height: 12vw;
+        gap: 5vw;
+    }
 }
 
 .SignupForm-Component {
-    position: relative;
-    margin-top: -85%;
-    flex-direction: column;             
-    width: 100%;
+    flex-direction: column;
+    width: 100vw;
+    height: 100%;
+    background-color: $purple;
+    padding: 5vw 7vw;
+    gap: 5vw;
+
+    .form {
+        flex-direction: column;
+    }
 
 }

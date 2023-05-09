@@ -18,7 +18,7 @@ export const useMuiTheme = () => {
                 main: colors.purple,
             },
             secondary: {
-                main: "#fff",
+                main: colors.blue,
             },
             text: {
                 primary: colors.purple,

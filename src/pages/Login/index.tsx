@@ -5,37 +5,38 @@ import { ReactComponent as BackgroundElement } from "../../images/background_ele
 import { LoginForm } from "./LoginForm"
 import { SignupForm } from "./SignupForm"
 import { useColors } from "../../hooks/useColors"
+import SlideRoutes from "react-slide-routes"
+import { Route, useLocation } from "react-router-dom"
 
 interface LoginProps {}
 
 export const Login: React.FC<LoginProps> = ({}) => {
-    const [loginView, setLoginView] = useState(true)
-    const [isSignUp, setIsSignUp] = useState(false)
-
     const colors = useColors()
-
-    const toggleForms = () => {
-        setIsSignUp(!isSignUp)
-    }
+    const location = useLocation()
 
     return (
         <div className="Login-Page">
-            <BackgroundElement
+            {/* <BackgroundElement
                 className={`background-element ${isSignUp ? "bigger" : ""}`}
                 style={{
                     position: "absolute",
                     width: "100vw",
-                    bottom: "-5vw",
+                    top: "30vh",
                 }}
-            />
+            /> */}
             <div className="form-container">
-                <div className={`form-wrapper ${isSignUp ? "slide-up" : ""}`}>
-                    <Logo style={{ width: "60vw", flexShrink: 0 }} />
-                    <LoginForm onSwitch={toggleForms} />
-                </div>
-                <div className={`form-wrapper ${isSignUp ? "" : "slide-down"}`}>
-                    <SignupForm onSwitch={toggleForms} />
-                </div>
+                <SlideRoutes duration={1000} animation="vertical-slide">
+                    <Route
+                        index
+                        element={
+                            <div style={{ flexDirection: "column", alignItems: "center", height: "100%" }}>
+                                <Logo style={{ width: "60vw", flexShrink: 0 }} />
+                                <LoginForm />
+                            </div>
+                        }
+                    />
+                    <Route path="/signup" element={<SignupForm />} />
+                </SlideRoutes>
             </div>
         </div>
     )
