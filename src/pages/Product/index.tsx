@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { Product as ProductType } from "../../definitions/product"
 import { useProducts } from "../../hooks/useProducts"
 import "./style.scss"
@@ -18,6 +18,7 @@ export const Product: React.FC<ProductProps> = ({}) => {
 
     const { products } = useProducts()
     const colors = useColors()
+    const navigate = useNavigate()
 
     const [product, setProduct] = useState(products.filter((item) => item.id == id)[0])
     const [expanded, setExpanded] = useState(false)
@@ -38,7 +39,7 @@ export const Product: React.FC<ProductProps> = ({}) => {
                             }}
                         />
                     </IconButton>
-                    <IconButton sx={{ marginLeft: "auto" }}>
+                    <IconButton sx={{ marginLeft: "auto" }} onClick={() => navigate(-1)}>
                         <CancelIcon sx={{ color: colors.red, width: "8vw", height: "auto" }} />
                     </IconButton>
                 </div>
