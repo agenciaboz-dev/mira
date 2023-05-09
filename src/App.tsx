@@ -9,6 +9,7 @@ import { useMuiTheme } from "./hooks/useMuiTheme"
 import { Camera } from "./pages/Camera"
 import { Cart } from "./pages/Cart"
 import { Login } from "./pages/Login"
+import { Product } from "./pages/Product"
 import "./sass/_all.scss"
 
 function App() {
@@ -25,6 +26,8 @@ function App() {
                                 <Route path="/login/*" element={<Login />} />
                                 <Route path="/cart" element={<Cart />} />
                                 <Route path="/scan" element={<Camera />} />
+                                <Route path="/product/:id" element={<Product />} />
+                                <Route path="/product/:id/:buying" element={<Product />} />
                             </Routes>
                         </BrowserRouter>
                     </CartProvider>

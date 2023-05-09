@@ -43,8 +43,10 @@ export const Camera: React.FC<CameraProps> = ({}) => {
         console.log(result)
         if (result) {
             if (validateCode(result)) {
+                const id = result.split("/")[1]
                 setError(false)
-                setProduct(products.filter((item) => item.id == Number(result.split("/")[1]))[0])
+                navigate(`/product/${id}/buying`)
+                // setProduct(products.filter((item) => item.id == Number(result.split("/")[1]))[0])
             } else {
                 setError(true)
             }

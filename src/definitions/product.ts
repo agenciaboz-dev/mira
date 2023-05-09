@@ -5,4 +5,5 @@ export interface Product {
     available: number
     story: string
     price: number
+    image: string
 }
