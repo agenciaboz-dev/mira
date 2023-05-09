@@ -8,6 +8,7 @@ import { ReactComponent as TrashIcon } from "../../images/trash.svg"
 import { ReactComponent as QuestionIcon } from "../../images/question.svg"
 import { useColors } from "../../hooks/useColors"
 import { Cart } from "../../definitions/cart"
+import { ProductStory } from "../../components/ProductStory"
 
 interface ProductProps {
     product: Cart
@@ -16,6 +17,7 @@ interface ProductProps {
 export const Product: React.FC<ProductProps> = ({ product }) => {
     const [quantity, setQuantity] = useState(product.quantity)
     const [lastQuantity, setLastQuantity] = useState(product.quantity)
+    const [story, setStory] = useState(false)
 
     const { cart, setCart } = useCart()
     const numberMask = useNumberMask()
@@ -45,7 +47,7 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
         <div className="Product-Component">
             <Badge
                 badgeContent={
-                    <IconButton>
+                    <IconButton onClick={() => setStory(true)}>
                         <QuestionIcon style={{ width: "5.5vw", height: "auto" }} />
                     </IconButton>
                 }
@@ -76,6 +78,7 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
             <IconButton onClick={removeProduct} sx={{ marginLeft: "auto" }}>
                 <TrashIcon />
             </IconButton>
+            <ProductStory product={product} open={story} setOpen={setStory} />
         </div>
     )
 }
