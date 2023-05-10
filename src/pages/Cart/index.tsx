@@ -72,10 +72,19 @@ export const Cart: React.FC<CartProps> = ({}) => {
                     "aria-labelledby": "basic-button",
                 }}
             >
+                <MenuItem
+                    onClick={() => {
+                        storage.set("has_accessed", false)
+                        setTutorial(true)
+                        handleClose()
+                    }}
+                >
+                    Resetar tutorial
+                </MenuItem>
+                <MenuItem onClick={handleClose}></MenuItem>
                 <MenuItem onClick={handleClose}>Perfil</MenuItem>
                 <MenuItem onClick={logout}>Sair</MenuItem>
             </Menu>
-
         </div>
     )
 }
