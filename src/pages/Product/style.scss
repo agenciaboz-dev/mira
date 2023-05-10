@@ -3,7 +3,7 @@
 .Product-Page {
     position: relative;
     width: 100%;
-    height: 100%;
+    height: min-content;
     flex-direction: column;
     background-color: white;
     padding: 6vw;
@@ -15,7 +15,7 @@
     
     .main-container {
         overflow-y: auto;
-        height: 100%;
+        // height: 100%;
         width: 100%;
         gap: 3vw;
         flex-direction: column;
