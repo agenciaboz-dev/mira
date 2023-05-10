@@ -14,6 +14,7 @@ import { ReactComponent as MinusIcon } from "../../images/product/minus.svg"
 import { ReactComponent as PlusIcon } from "../../images/product/plus.svg"
 import { Button } from "../../components/Button"
 import TextField from "@mui/material/TextField"
+import { useCart } from "../../hooks/useCart"
 
 interface ProductProps {}
 
@@ -23,6 +24,7 @@ export const Product: React.FC<ProductProps> = ({}) => {
     const buying = params.buying
 
     const { products } = useProducts()
+    const { add } = useCart()
     const colors = useColors()
     const navigate = useNavigate()
 
@@ -33,6 +35,11 @@ export const Product: React.FC<ProductProps> = ({}) => {
         if (quantity == 1 && value == -1) return
 
         setQuantity(quantity + value)
+    }
+
+    const addToCart = () => {
+        add(product, quantity)
+        navigate(-1)
     }
 
     return (
@@ -87,7 +94,9 @@ export const Product: React.FC<ProductProps> = ({}) => {
                 <IconButton onClick={() => changeQuantity(1)}>
                     <PlusIcon style={styles.cart_icon} />
                 </IconButton>
-                <Button style={{ fontSize: "2vw", width: "45%", padding: "2vw 7vw" }}>Adicionar ao carrinho</Button>
+                <Button style={{ fontSize: "2vw", width: "45%", padding: "2vw 7vw" }} onClick={() => addToCart()}>
+                    Adicionar ao carrinho
+                </Button>
             </div>
         </div>
     )
