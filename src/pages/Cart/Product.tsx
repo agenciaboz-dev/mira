@@ -15,7 +15,7 @@ interface ProductProps {
 }
 
 export const Product: React.FC<ProductProps> = ({ product }) => {
-    const [quantity, setQuantity] = useState(product.quantity)
+    const [quantity, setQuantity] = useState(product.quantity.toString())
     const [lastQuantity, setLastQuantity] = useState(product.quantity)
     const [story, setStory] = useState(false)
 
@@ -28,16 +28,16 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
     }
 
     const onQuantityChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
-        setQuantity(Number(event.target.value))
+        setQuantity(event.target.value)
     }
 
     const onQuantityBlur: React.FocusEventHandler<HTMLInputElement> = (event) => {
         if (quantity) {
-            setLastQuantity(quantity)
+            setLastQuantity(Number(quantity))
             const products = cart.filter((item) => item.id != product.id)
-            setCart([...products, { ...product, quantity: quantity }])
+            setCart([...products, { ...product, quantity: Number(quantity) }])
         } else {
-            setQuantity(lastQuantity)
+            setQuantity(lastQuantity.toString())
         }
     }
 
@@ -72,7 +72,7 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
                     />
                 </p>
                 <p>
-                    Preço: <CurrencyText value={product.price * quantity} />
+                    Preço: <CurrencyText value={product.price * Number(quantity)} />
                 </p>
             </div>
             <IconButton onClick={removeProduct} sx={{ marginLeft: "auto" }}>
