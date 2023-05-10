@@ -28,8 +28,8 @@ export const Camera: React.FC<CameraProps> = ({}) => {
     const colors = useColors()
     const validateCode = useValidadeCode()
     const { products } = useProducts()
-    const productRef = useRef<HTMLDivElement>(null)
-    const [ref, { height }] = useMeasure()
+    const [productRef, productView] = useMeasure()
+    const [cameraRef, cameraView] = useMeasure()
 
     const handleResult = (result: string) => {
         console.log(result)
@@ -72,11 +72,18 @@ export const Camera: React.FC<CameraProps> = ({}) => {
     }, [error])
 
     useEffect(() => {
-        if (height) setTimeout(() => setProductPosition(`translateY(-${height}px)`), 500)
-    }, [height])
+        if (productView.height)
+            setTimeout(
+                () =>
+                    setProductPosition(
+                        `translateY(-${productView.height <= cameraView.height ? productView.height : cameraView.height}px)`
+                    ),
+                500
+            )
+    }, [productView.height])
 
     return (
-        <div className="Camera-Page">
+        <div className="Camera-Page" ref={cameraRef}>
             <Scanner scanning={scanning} handleResult={handleResult} />
             <div className="button-wrapper">
                 <div className="button-container">
@@ -118,7 +125,7 @@ export const Camera: React.FC<CameraProps> = ({}) => {
                         transition: "1s",
                         transform: productPosition || "",
                     }}
-                    innerRef={ref}
+                    innerRef={productRef}
                     onClose={closeProduct}
                 />
             )}

@@ -61,36 +61,37 @@ export const Product: React.FC<ProductProps> = ({ product_id, style, innerRef, o
 
     return (
         <div className="Product-Page" style={style} ref={innerRef}>
-            <img className="image" src={product.image} alt={product.name} />
+            <div className="main-container">
+                <img className="image" src={product.image} alt={product.name} />
 
-            <IconButton
-                sx={{ marginLeft: "auto", position: "absolute", top: "5vw", right: "5vw" }}
-                onClick={() => handleClose()}
-            >
-                <CancelIcon sx={styles.cancel_icon} />
-            </IconButton>
+                <IconButton
+                    sx={{ marginLeft: "auto", position: "absolute", top: "5vw", right: "5vw" }}
+                    onClick={() => handleClose()}
+                >
+                    <CancelIcon sx={styles.cancel_icon} />
+                </IconButton>
 
-            <div className="title-container">
-                <h1>{product.name}</h1>
-                <CurrencyText value={product.price} style={{ fontSize: "7vw" }} />
+                <div className="title-container">
+                    <h1>{product.name}</h1>
+                    <CurrencyText value={product.price} style={{ fontSize: "7vw" }} />
+                </div>
+                <p>{product.description}</p>
+
+                <div className="specs-container">
+                    <Paper sx={styles.paper}>
+                        <h3>Dimensões</h3>
+                        <p>18 X 27</p>
+                    </Paper>
+                    <Paper sx={styles.paper}>
+                        <h3>Tipo</h3>
+                        <p>Chata / Lisa</p>
+                    </Paper>
+                    <Paper sx={styles.paper}>
+                        <h3>Peso</h3>
+                        <p>1 Kg</p>
+                    </Paper>
+                </div>
             </div>
-            <p>{product.description}</p>
-
-            <div className="specs-container">
-                <Paper sx={styles.paper}>
-                    <h3>Dimensões</h3>
-                    <p>18 X 27</p>
-                </Paper>
-                <Paper sx={styles.paper}>
-                    <h3>Tipo</h3>
-                    <p>Chata / Lisa</p>
-                </Paper>
-                <Paper sx={styles.paper}>
-                    <h3>Peso</h3>
-                    <p>1 Kg</p>
-                </Paper>
-            </div>
-
             <div className="cart-container">
                 <IconButton onClick={() => changeQuantity(-1)}>
                     <MinusIcon style={styles.cart_icon} />

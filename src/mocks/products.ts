@@ -15,7 +15,7 @@ export const products: Product[] = [
         id: 2,
         name: "Prego",
         description:
-            "O prego com cabeça possui corpo liso, cabeça cônica e axadrezada, e ponta tipo diamante. É utilizado em diversos tipos de fixação: construções de todos os tipos, desde uso doméstico a construções pesadas, confecção de estruturas temporárias, marcenaria, embalagens, caixarias, aplicações rurais como pontes, mata-burros e porteiras.",
+            "O prego com cabeça possui corpo liso, cabeça cônica e axadrezada, e ponta tipo diamante. É utilizado em diversos tipos de fixação: construções de todos os tipos, desde uso doméstico a construções pesadas, confecção de estruturas temporárias, marcenaria, embalagens, caixarias, aplicações rurais como pontes, mata-burros e porteiras. O prego com cabeça possui corpo liso, cabeça cônica e axadrezada, e ponta tipo diamante. É utilizado em diversos tipos de fixação: construções de todos os tipos, desde uso doméstico a construções pesadas, confecção de estruturas temporárias, marcenaria, embalagens, caixarias, aplicações rurais como pontes, mata-burros e porteiras.",
         available: 500,
         story: "O prego é uma das ferramentas mais antigas da humanidade e sua origem remonta a cerca de 5.000 anos atrás. Inicialmente, era feito de materiais como cobre e bronze, mas com a descoberta do ferro, passou a ser produzido com esse material. A partir da Idade Média, a produção de pregos se tornou uma indústria importante, com a fabricação em larga escala feita em forjas. Hoje, existem diversos tipos de pregos, desde os mais simples até os mais complexos, utilizados em diferentes áreas, como a construção civil e a indústria naval.",
         price: 1.99,
