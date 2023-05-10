@@ -19,7 +19,7 @@ interface CameraProps {}
 export const Camera: React.FC<CameraProps> = ({}) => {
     const [scanning, setScanning] = useState(true)
     const [result, setResult] = useState("")
-    const [product, setProduct] = useState<Product>()
+    const [id, setId] = useState(0)
     const [error, setError] = useState(false)
     const [loading, setLoading] = useState(false)
     const [productPosition, setProductPosition] = useState("")
@@ -41,17 +41,22 @@ export const Camera: React.FC<CameraProps> = ({}) => {
         setError(false)
         setScanning(true)
         setLoading(false)
+        setId(0)
         setResult("")
+    }
+
+    const closeProduct = () => {
+        setProductPosition("")
+        setTimeout(() => retry(), 1000)
     }
 
     useEffect(() => {
         console.log(result)
         if (result) {
             if (validateCode(result)) {
-                const id = result.split("/")[1]
                 setError(false)
                 // navigate(`/product/${id}/buying`)
-                setProduct(products.filter((item) => item.id == Number(result.split("/")[1]))[0])
+                setId(Number(result.split("/")[1]))
             } else {
                 setError(true)
             }
@@ -102,9 +107,9 @@ export const Camera: React.FC<CameraProps> = ({}) => {
                     )}
                 </div>
             </div>
-            {product && (
+            {!!id && (
                 <ProductPage
-                    product_id={product?.id}
+                    product_id={id}
                     style={{
                         zIndex: 10,
                         position: "absolute",
@@ -114,6 +119,7 @@ export const Camera: React.FC<CameraProps> = ({}) => {
                         transform: productPosition || "",
                     }}
                     innerRef={ref}
+                    onClose={closeProduct}
                 />
             )}
         </div>

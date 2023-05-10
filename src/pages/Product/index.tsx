@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { Product as ProductType } from "../../definitions/product"
 import { Paper } from "@mui/material"
@@ -20,11 +20,12 @@ interface ProductProps {
     product_id?: number
     style?: React.CSSProperties
     innerRef?: any
+    onClose?: () => void
 }
 
-export const Product: React.FC<ProductProps> = ({ product_id, style, innerRef }) => {
+export const Product: React.FC<ProductProps> = ({ product_id, style, innerRef, onClose }) => {
     const params = useParams()
-    const id = Number(params.id)
+    const id = Number(params.id) || product_id
     const buying = params.buying
 
     const { products } = useProducts()
@@ -32,7 +33,7 @@ export const Product: React.FC<ProductProps> = ({ product_id, style, innerRef })
     const colors = useColors()
     const navigate = useNavigate()
 
-    const [product, setProduct] = useState(products.filter((item) => item.id == id || product_id)[0])
+    const [product, setProduct] = useState(products.filter((item) => item.id == id)[0])
     const [quantity, setQuantity] = useState(1)
 
     const changeQuantity = (value: number) => {
@@ -46,13 +47,25 @@ export const Product: React.FC<ProductProps> = ({ product_id, style, innerRef })
         navigate(-1)
     }
 
+    const handleClose = () => {
+        if (onClose) {
+            onClose()
+        } else {
+            navigate(-1)
+        }
+    }
+
+    useEffect(() => {
+        console.log(id || product_id)
+    }, [product])
+
     return (
         <div className="Product-Page" style={style} ref={innerRef}>
             <img className="image" src={product.image} alt={product.name} />
 
             <IconButton
                 sx={{ marginLeft: "auto", position: "absolute", top: "5vw", right: "5vw" }}
-                onClick={() => navigate(-1)}
+                onClick={() => handleClose()}
             >
                 <CancelIcon sx={styles.cancel_icon} />
             </IconButton>
