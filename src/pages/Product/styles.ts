@@ -8,4 +8,6 @@ export const styles = {
         borderRadius: "5vw",
         gap: "2vw",
     },
+
+    cancel_icon: { color: "red", width: "8vw", height: "auto" },
 }
