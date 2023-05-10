@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import { useNavigate } from "react-router-dom"
 import { Button } from "../../components/Button"
 import { ProductModal } from "../../components/ProductModal"
@@ -10,24 +10,29 @@ import { useValidadeCode } from "../../hooks/useValidateCode"
 import { Product } from "../../definitions/product"
 import { useProducts } from "../../hooks/useProducts"
 import CircularProgress from "@mui/material/CircularProgress"
+import { Product as ProductPage } from "../Product"
+import { styles } from "./styles"
+import useMeasure from "react-use-measure"
 
 interface CameraProps {}
 
 export const Camera: React.FC<CameraProps> = ({}) => {
     const [scanning, setScanning] = useState(true)
     const [result, setResult] = useState("")
-    const [product, setProduct] = useState<Product>()
+    const [id, setId] = useState(0)
     const [error, setError] = useState(false)
     const [loading, setLoading] = useState(false)
+    const [productPosition, setProductPosition] = useState("")
 
     const navigate = useNavigate()
     const colors = useColors()
     const validateCode = useValidadeCode()
     const { products } = useProducts()
+    const productRef = useRef<HTMLDivElement>(null)
+    const [ref, { height }] = useMeasure()
 
     const handleResult = (result: string) => {
         console.log(result)
-        setLoading(true)
         setResult(result)
         setScanning(false)
     }
@@ -36,17 +41,22 @@ export const Camera: React.FC<CameraProps> = ({}) => {
         setError(false)
         setScanning(true)
         setLoading(false)
+        setId(0)
         setResult("")
+    }
+
+    const closeProduct = () => {
+        setProductPosition("")
+        setTimeout(() => retry(), 1000)
     }
 
     useEffect(() => {
         console.log(result)
         if (result) {
             if (validateCode(result)) {
-                const id = result.split("/")[1]
                 setError(false)
-                navigate(`/product/${id}/buying`)
-                // setProduct(products.filter((item) => item.id == Number(result.split("/")[1]))[0])
+                // navigate(`/product/${id}/buying`)
+                setId(Number(result.split("/")[1]))
             } else {
                 setError(true)
             }
@@ -60,6 +70,10 @@ export const Camera: React.FC<CameraProps> = ({}) => {
                 setResult("")
             }, 1000)
     }, [error])
+
+    useEffect(() => {
+        if (height) setTimeout(() => setProductPosition(`translateY(-${height}px)`), 500)
+    }, [height])
 
     return (
         <div className="Camera-Page">
@@ -93,6 +107,21 @@ export const Camera: React.FC<CameraProps> = ({}) => {
                     )}
                 </div>
             </div>
+            {!!id && (
+                <ProductPage
+                    product_id={id}
+                    style={{
+                        zIndex: 10,
+                        position: "absolute",
+                        top: "100vh",
+                        left: 0,
+                        transition: "1s",
+                        transform: productPosition || "",
+                    }}
+                    innerRef={ref}
+                    onClose={closeProduct}
+                />
+            )}
         </div>
     )
 }
