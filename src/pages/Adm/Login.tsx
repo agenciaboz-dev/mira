@@ -3,6 +3,8 @@ import React, { useState } from "react"
 import { TextField, Button, CircularProgress } from "@mui/material"
 import { useApi } from "../../hooks/useApi"
 import { User } from "../../definitions/user"
+import { useUser } from "../../hooks/useUser"
+import { useNavigate } from "react-router-dom"
 
 interface LoginProps {}
 
@@ -15,6 +17,8 @@ export const Login: React.FC<LoginProps> = ({}) => {
     const initialValues: FormValues = { user: "", password: "" }
 
     const api = useApi()
+    const { setUser } = useUser()
+    const navigate = useNavigate()
 
     const [error, setError] = useState("")
     const [loading, setLoading] = useState(false)
@@ -29,6 +33,8 @@ export const Login: React.FC<LoginProps> = ({}) => {
             callback: (response: { data: User }) => {
                 const user = response.data
                 if (user) {
+                    setUser(user)
+                    navigate("dashboard")
                 } else {
                     setError("Usuário ou senha inválidos")
                 }
