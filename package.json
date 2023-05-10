@@ -27,6 +27,7 @@
     "react-scripts": "5.0.1",
     "react-slide-routes": "^3.0.3",
     "react-text-mask": "^5.5.0",
+    "react-use-measure": "^2.1.1",
     "sass": "^1.62.1",
     "styled-components": "^5.3.10",
     "text-mask-addons": "^3.8.0",

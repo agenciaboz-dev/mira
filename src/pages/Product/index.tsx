@@ -16,9 +16,13 @@ import { Button } from "../../components/Button"
 import TextField from "@mui/material/TextField"
 import { useCart } from "../../hooks/useCart"
 
-interface ProductProps {}
+interface ProductProps {
+    product_id?: number
+    style?: React.CSSProperties
+    innerRef?: any
+}
 
-export const Product: React.FC<ProductProps> = ({}) => {
+export const Product: React.FC<ProductProps> = ({ product_id, style, innerRef }) => {
     const params = useParams()
     const id = Number(params.id)
     const buying = params.buying
@@ -28,7 +32,7 @@ export const Product: React.FC<ProductProps> = ({}) => {
     const colors = useColors()
     const navigate = useNavigate()
 
-    const [product, setProduct] = useState(products.filter((item) => item.id == id)[0])
+    const [product, setProduct] = useState(products.filter((item) => item.id == id || product_id)[0])
     const [quantity, setQuantity] = useState(1)
 
     const changeQuantity = (value: number) => {
@@ -43,7 +47,7 @@ export const Product: React.FC<ProductProps> = ({}) => {
     }
 
     return (
-        <div className="Product-Page">
+        <div className="Product-Page" style={style} ref={innerRef}>
             <img className="image" src={product.image} alt={product.name} />
 
             <IconButton
