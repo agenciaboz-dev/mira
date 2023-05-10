@@ -105,7 +105,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({}) => {
                                         checked={remember}
                                     />
                                 }
-                                label="Matenha-me conectado"
+                                label="Mantenha-me conectado"
                             />
                             <Button type="submit" variant="contained" style={{ width: "30vw" }}>
                                 {loading ? (
