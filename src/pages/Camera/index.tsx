@@ -13,6 +13,7 @@ import CircularProgress from "@mui/material/CircularProgress"
 import { Product as ProductPage } from "../Product"
 import { styles } from "./styles"
 import useMeasure from "react-use-measure"
+import { useCart } from "../../hooks/useCart"
 
 interface CameraProps {}
 
@@ -20,7 +21,7 @@ export const Camera: React.FC<CameraProps> = ({}) => {
     const [scanning, setScanning] = useState(true)
     const [result, setResult] = useState("")
     const [id, setId] = useState(0)
-    const [error, setError] = useState(false)
+    const [error, setError] = useState("")
     const [loading, setLoading] = useState(false)
     const [productPosition, setProductPosition] = useState("")
 
@@ -28,6 +29,7 @@ export const Camera: React.FC<CameraProps> = ({}) => {
     const colors = useColors()
     const validateCode = useValidadeCode()
     const { products } = useProducts()
+    const { cart } = useCart()
     const [productRef, productView] = useMeasure()
     const [cameraRef, cameraView] = useMeasure()
 
@@ -35,15 +37,26 @@ export const Camera: React.FC<CameraProps> = ({}) => {
         console.log(result)
         setResult(result)
         setScanning(false)
-        setLoading(true)
     }
 
     const retry = () => {
-        setError(false)
+        setError("")
         setScanning(true)
         setLoading(false)
         setId(0)
         setResult("")
+    }
+
+    const productInCart = (id: number) => {
+        let exists = false
+        cart.map((item) => {
+            if (item.id == id) {
+                exists = true
+                return
+            }
+        })
+
+        return exists
     }
 
     const closeProduct = () => {
@@ -53,11 +66,16 @@ export const Camera: React.FC<CameraProps> = ({}) => {
 
     useEffect(() => {
         console.log(result)
-        if (result) {
+        if (result && !error) {
+            setLoading(true)
             if (validateCode(result)) {
-                setId(Number(result.split("/")[1]))
+                if (productInCart(Number(result.split("/")[1]))) {
+                    setError("Produto já está no carrinho")
+                } else {
+                    setId(Number(result.split("/")[1]))
+                }
             } else {
-                setError(true)
+                setError("QR Code não identificado")
             }
         }
     }, [result])
@@ -90,7 +108,7 @@ export const Camera: React.FC<CameraProps> = ({}) => {
                         <CircularProgress style={{ width: "30vw", height: "auto" }} sx={{ color: colors.blue }} />
                     ) : (
                         <>
-                            {error && <h2>QR Code não identificado</h2>}
+                            <h2>{error}</h2>
                             <Button
                                 disabled={!error}
                                 onClick={retry}
