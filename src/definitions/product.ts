@@ -6,4 +6,5 @@ export interface Product {
     story: string
     price: number
     image: string
+    video: string
 }

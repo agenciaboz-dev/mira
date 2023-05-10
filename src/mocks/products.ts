@@ -10,6 +10,7 @@ export const products: Product[] = [
         story: "O martelo é uma das ferramentas mais antigas e amplamente utilizadas desde a pré-história. Originalmente, era feito de pedra ou osso e usado para quebrar ossos de animais e abrir frutas. Com o tempo, a ferramenta evoluiu para incluir um cabo de madeira e uma cabeça de metal para uso em trabalhos de carpintaria e construção. Hoje em dia, existem muitos tipos diferentes de martelos para várias aplicações, desde trabalhos de acabamento fino até trabalhos pesados de construção.",
         price: 39.99,
         image: "https://cdn.awsli.com.br/800x800/10/10790/produto/4180771/7d92678f6f.jpg",
+        video: "",
     },
     {
         id: 2,
@@ -20,5 +21,6 @@ export const products: Product[] = [
         story: "O prego é uma das ferramentas mais antigas da humanidade e sua origem remonta a cerca de 5.000 anos atrás. Inicialmente, era feito de materiais como cobre e bronze, mas com a descoberta do ferro, passou a ser produzido com esse material. A partir da Idade Média, a produção de pregos se tornou uma indústria importante, com a fabricação em larga escala feita em forjas. Hoje, existem diversos tipos de pregos, desde os mais simples até os mais complexos, utilizados em diferentes áreas, como a construção civil e a indústria naval.",
         price: 1.99,
         image: "https://upload.wikimedia.org/wikipedia/commons/0/0c/Clou_127.jpg",
+        video: "",
     },
 ]

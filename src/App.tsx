@@ -6,6 +6,7 @@ import { CartProvider } from "./contexts/cartContext"
 import { ProductsProvider } from "./contexts/productsContext"
 import { UserProvider } from "./contexts/userContext"
 import { useMuiTheme } from "./hooks/useMuiTheme"
+import { Adm } from "./pages/Adm"
 import { Camera } from "./pages/Camera"
 import { Cart } from "./pages/Cart"
 import { Login } from "./pages/Login"
@@ -24,6 +25,7 @@ function App() {
                                 <Route index element={<Login />} />
                                 <Route path="/*" element={<Login />} />
                                 <Route path="/login/*" element={<Login />} />
+                                <Route path="/adm/*" element={<Adm />} />
                                 <Route path="/cart" element={<Cart />} />
                                 <Route path="/scan" element={<Camera />} />
                                 <Route path="/product/:id" element={<Product />} />
