@@ -58,11 +58,22 @@
     background-color: $purple;
     padding: 5vw 7vw;
     gap: 2vw;
+    margin-top: 18vw;
+    
+    * {
+        z-index: 1;
+    }
 
     .submit-container {
         justify-content: space-between;
         height: 12vw;
-        gap: 5vw;
+        width: 90vw;
+        
+        label {
+            span {
+                font-size: 3.5vw;
+            }
+        }
     }
 }
 
