@@ -12,8 +12,8 @@ import { CurrencyText } from "../../components/CurrencyText"
 import { styles } from "./styles"
 import { ReactComponent as MinusIcon } from "../../images/product/minus.svg"
 import { ReactComponent as PlusIcon } from "../../images/product/plus.svg"
-import { TextField } from "../../components/TextField"
 import { Button } from "../../components/Button"
+import TextField from "@mui/material/TextField"
 
 interface ProductProps {}
 
@@ -28,6 +28,12 @@ export const Product: React.FC<ProductProps> = ({}) => {
 
     const [product, setProduct] = useState(products.filter((item) => item.id == id)[0])
     const [quantity, setQuantity] = useState(1)
+
+    const changeQuantity = (value: number) => {
+        if (quantity == 1 && value == -1) return
+
+        setQuantity(quantity + value)
+    }
 
     return (
         <div className="Product-Page">
@@ -62,10 +68,26 @@ export const Product: React.FC<ProductProps> = ({}) => {
             </div>
 
             <div className="cart-container">
-                <MinusIcon />
-                <TextField value={quantity} onChange={(event) => setQuantity(Number(event.target.value))} />
-                <PlusIcon />
-                <Button>Adicionar ao carrinho</Button>
+                <IconButton onClick={() => changeQuantity(-1)}>
+                    <MinusIcon style={styles.cart_icon} />
+                </IconButton>
+                <TextField
+                    value={quantity}
+                    onChange={(event) => setQuantity(Number(event.target.value))}
+                    sx={{ width: "25vw" }}
+                    InputProps={{
+                        sx: {
+                            backgroundColor: colors.light_grey,
+                            borderRadius: "7vw",
+                            height: "8vw",
+                        },
+                    }}
+                    inputProps={{ sx: { textAlign: "center" }, inputMode: "numeric" }}
+                />
+                <IconButton onClick={() => changeQuantity(1)}>
+                    <PlusIcon style={styles.cart_icon} />
+                </IconButton>
+                <Button style={{ fontSize: "2vw", width: "45%", padding: "2vw 7vw" }}>Adicionar ao carrinho</Button>
             </div>
         </div>
     )

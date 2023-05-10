@@ -10,4 +10,5 @@ export const styles = {
     },
 
     cancel_icon: { color: "red", width: "8vw", height: "auto" },
+    cart_icon: { width: "8vw", height: "auto" },
 }
