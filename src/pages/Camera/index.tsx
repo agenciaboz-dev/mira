@@ -35,6 +35,7 @@ export const Camera: React.FC<CameraProps> = ({}) => {
         console.log(result)
         setResult(result)
         setScanning(false)
+        setLoading(true)
     }
 
     const retry = () => {
@@ -54,8 +55,6 @@ export const Camera: React.FC<CameraProps> = ({}) => {
         console.log(result)
         if (result) {
             if (validateCode(result)) {
-                setError(false)
-                // navigate(`/product/${id}/buying`)
                 setId(Number(result.split("/")[1]))
             } else {
                 setError(true)
