@@ -8,22 +8,24 @@ export const styles = {
     title: {
         display: "flex",
         width: "100%",
-        fontSize: "7vw",
+        fontSize: "2vw",
         textAlign: "center",
-        alignItemz: "center",
-        justifyContent: "space-between",
+        alignItems: "center",
+        gap: "2vw",
+        padding: "1vw",
     },
 
     content_container: {
-        gap: "3vw",
         display: "flex",
         flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
+        form: {
+            flexDirection: "column",
+            gap: "2vw",
+        },
     },
 
     close_icon: {
-        width: "7vw",
+        width: "2vw",
         height: "auto",
     },
 

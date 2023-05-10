@@ -13,6 +13,13 @@
         flex-direction: column;
         width: 50vw;
         outline: 2px solid $purple;
+        gap: 1vw;
     }
 
+    
+    .Product-Component {
+        align-items: center;
+        justify-content: space-between;
+        padding: 1vw;
+    }
 }
