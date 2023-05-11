@@ -1,11 +1,13 @@
 import { createContext, useState } from "react"
-import React from "react"
+import React, { useEffect } from "react"
 import { Product } from "../definitions/product"
 import { products as mocked } from "../mocks/products"
+import { useApi } from "../hooks/useApi"
 
 interface ProductsContextValue {
     value: Product[]
     setValue: (value: Product[]) => void
+    refresh: () => void
 }
 
 interface ProductsProviderProps {
@@ -17,7 +19,16 @@ const ProductsContext = createContext<ProductsContextValue>({} as ProductsContex
 export default ProductsContext
 
 export const ProductsProvider: React.FC<ProductsProviderProps> = ({ children }) => {
-    const [value, setValue] = useState<Product[]>([...mocked])
+    const api = useApi()
+    const [value, setValue] = useState<Product[]>([])
 
-    return <ProductsContext.Provider value={{ value, setValue }}>{children}</ProductsContext.Provider>
+    const refresh = () => {
+        api.products.get({ callback: (response: { data: Product[] }) => setValue(response.data) })
+    }
+
+    useEffect(() => {
+        refresh()
+    }, [])
+
+    return <ProductsContext.Provider value={{ value, setValue, refresh }}>{children}</ProductsContext.Provider>
 }
