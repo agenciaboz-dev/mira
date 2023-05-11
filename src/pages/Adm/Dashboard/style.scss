@@ -21,5 +21,10 @@
         align-items: center;
         justify-content: space-between;
         padding: 1vw;
+
+        .info-container {
+            gap: 1vw;
+            align-items: center;
+        }
     }
 }
