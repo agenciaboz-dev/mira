@@ -28,8 +28,6 @@ function App() {
                                 <Route path="/adm/*" element={<Adm />} />
                                 <Route path="/cart" element={<Cart />} />
                                 <Route path="/scan" element={<Camera />} />
-                                <Route path="/product/:id" element={<Product />} />
-                                <Route path="/product/:id/:buying" element={<Product />} />
                             </Routes>
                         </BrowserRouter>
                     </CartProvider>

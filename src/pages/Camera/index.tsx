@@ -14,13 +14,14 @@ import { Product as ProductPage } from "../Product"
 import { styles } from "./styles"
 import useMeasure from "react-use-measure"
 import { useCart } from "../../hooks/useCart"
+import { useApi } from "../../hooks/useApi"
 
 interface CameraProps {}
 
 export const Camera: React.FC<CameraProps> = ({}) => {
     const [scanning, setScanning] = useState(true)
     const [result, setResult] = useState("")
-    const [id, setId] = useState(0)
+    const [product, setProduct] = useState<Product>()
     const [error, setError] = useState("")
     const [loading, setLoading] = useState(false)
     const [productPosition, setProductPosition] = useState("")
@@ -30,6 +31,7 @@ export const Camera: React.FC<CameraProps> = ({}) => {
     const validateCode = useValidadeCode()
     const { products } = useProducts()
     const { cart } = useCart()
+    const api = useApi()
     const [productRef, productView] = useMeasure()
     const [cameraRef, cameraView] = useMeasure()
 
@@ -43,7 +45,7 @@ export const Camera: React.FC<CameraProps> = ({}) => {
         setError("")
         setScanning(true)
         setLoading(false)
-        setId(0)
+        setProduct(undefined)
         setResult("")
     }
 
@@ -72,7 +74,12 @@ export const Camera: React.FC<CameraProps> = ({}) => {
                 if (productInCart(Number(result.split("/")[1]))) {
                     setError("Produto já está no carrinho")
                 } else {
-                    setId(Number(result.split("/")[1]))
+                    api.products.id({
+                        data: { id: Number(result.split("/")[1]) },
+                        callback: (response: { data: Product }) => {
+                            setProduct(response.data)
+                        },
+                    })
                 }
             } else {
                 setError("QR Code não identificado")
@@ -131,9 +138,9 @@ export const Camera: React.FC<CameraProps> = ({}) => {
                     )}
                 </div>
             </div>
-            {!!id && (
+            {product && (
                 <ProductPage
-                    product_id={id}
+                    product={product}
                     style={{
                         zIndex: 10,
                         position: "absolute",

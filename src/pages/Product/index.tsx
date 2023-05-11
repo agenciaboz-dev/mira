@@ -17,15 +17,14 @@ import TextField from "@mui/material/TextField"
 import { useCart } from "../../hooks/useCart"
 
 interface ProductProps {
-    product_id?: number
+    product: ProductType
     style?: React.CSSProperties
     innerRef?: any
     onClose?: () => void
 }
 
-export const Product: React.FC<ProductProps> = ({ product_id, style, innerRef, onClose }) => {
+export const Product: React.FC<ProductProps> = ({ product, style, innerRef, onClose }) => {
     const params = useParams()
-    const id = Number(params.id) || product_id
     const buying = params.buying
 
     const { products } = useProducts()
@@ -33,7 +32,6 @@ export const Product: React.FC<ProductProps> = ({ product_id, style, innerRef, o
     const colors = useColors()
     const navigate = useNavigate()
 
-    const [product, setProduct] = useState(products.filter((item) => item.id == id)[0])
     const [quantity, setQuantity] = useState(1)
 
     const changeQuantity = (value: number) => {
@@ -54,10 +52,6 @@ export const Product: React.FC<ProductProps> = ({ product_id, style, innerRef, o
             navigate(-1)
         }
     }
-
-    useEffect(() => {
-        console.log(id || product_id)
-    }, [product])
 
     return (
         <div className="Product-Page" style={style} ref={innerRef}>
