@@ -95,7 +95,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, produ
                                 mask={currencyMask}
                                 guide={false}
                                 name="price"
-                                value={values.price}
+                                value={values.price.toString().replace(".", ",")}
                                 onChange={handleChange}
                                 render={(ref, props) => <TextField inputRef={ref} {...props} label="Preço" />}
                             />
