@@ -13,10 +13,12 @@ export const styles = {
         alignItems: "center",
         gap: "2vw",
         padding: "1vw",
+        justifyContent: "center",
     },
 
     content_container: {
         display: "flex",
+        width: "40vw",
         flexDirection: "column",
         form: {
             flexDirection: "column",
@@ -30,14 +32,4 @@ export const styles = {
     },
 
     text: { textAlign: "justify", fontSize: "7vw" },
-
-    price_container: {
-        width: "100%",
-        alignItems: "center",
-        justifyContent: "space-between",
-    },
-
-    price: {
-        fontSize: "7vw",
-    },
 }

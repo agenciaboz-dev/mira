@@ -23,6 +23,10 @@ import { useNavigate } from "react-router-dom"
 import { ProductStory } from "../ProductStory"
 import { Form, Formik } from "formik"
 import TextField from "@mui/material/TextField/TextField"
+import MaskedInput from "react-text-mask"
+import { useCurrencyMask } from "../../hooks/useCurrencyMask"
+import { useNumberMask } from "../../hooks/useNumberMask"
+import { useApi } from "../../hooks/useApi"
 
 interface ProductModalProps {
     open: boolean
@@ -35,6 +39,10 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, produ
     const [loading, setLoading] = useState(true)
 
     const colors = useColors()
+    const currencyMask = useCurrencyMask()
+    const numberMask = useNumberMask()
+    const api = useApi()
+    const { refresh } = useProducts()
 
     const initialValues: Product = product || {
         name: "",
@@ -49,6 +57,13 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, produ
 
     const handleSubmit = (values: Product) => {
         console.log(values)
+        api.products.add({
+            data: values,
+            callback: (response: { data: Product }) => {
+                setOpen(false)
+                refresh()
+            },
+        })
     }
 
     const handleClose = (event: {}, reason: "backdropClick" | "escapeKeyDown") => {
@@ -59,7 +74,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, produ
     return (
         <Dialog open={open} onClose={handleClose} sx={styles.dialog}>
             <DialogTitle sx={styles.title}>
-                <IconButton onClick={() => setOpen(false)}>
+                <IconButton onClick={() => setOpen(false)} sx={{ position: "absolute", left: "1vw" }}>
                     <CancelPresentationIcon color="error" sx={styles.close_icon} />
                 </IconButton>
                 {product?.name || "Novo produto"}
@@ -76,8 +91,22 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, produ
                                 value={values.description}
                                 onChange={handleChange}
                             />
-                            <TextField label="Preço" name="price" value={values.price} onChange={handleChange} />
-                            <TextField label="Quantidade" name="stock" value={values.stock} onChange={handleChange} />
+                            <MaskedInput
+                                mask={currencyMask}
+                                guide={false}
+                                name="price"
+                                value={values.price}
+                                onChange={handleChange}
+                                render={(ref, props) => <TextField inputRef={ref} {...props} label="Preço" />}
+                            />
+                            <MaskedInput
+                                mask={numberMask}
+                                guide={false}
+                                name="stock"
+                                value={values.stock}
+                                onChange={handleChange}
+                                render={(ref, props) => <TextField inputRef={ref} {...props} label="Quantidade" />}
+                            />
                             <TextField label="História" name="story" value={values.story} onChange={handleChange} />
                             <TextField label="Link de imagem" name="image" value={values.image} onChange={handleChange} />
                             <TextField label="Link de vídeo" name="video" value={values.video} onChange={handleChange} />
