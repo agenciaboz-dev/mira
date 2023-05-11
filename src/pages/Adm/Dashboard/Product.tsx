@@ -1,10 +1,11 @@
-import React from "react"
+import React, { useState } from "react"
 import { Product as ProductType } from "../../../definitions/product"
 import EditIcon from "@mui/icons-material/Edit"
 import { IconButton, Paper } from "@mui/material"
 import { CurrencyText } from "../../../components/CurrencyText"
 import QrCodeScannerIcon from "@mui/icons-material/QrCodeScanner"
 import CurrencyFormat from "react-currency-format"
+import { QrCodeModal } from "../../../components/QrcodeModal"
 
 interface ProductProps {
     product: ProductType
@@ -12,6 +13,8 @@ interface ProductProps {
 }
 
 export const Product: React.FC<ProductProps> = ({ product, setProduct }) => {
+    const [showCode, setShowCode] = useState(false)
+
     return (
         <Paper className="Product-Component">
             <div className="info-container">
@@ -29,13 +32,14 @@ export const Product: React.FC<ProductProps> = ({ product, setProduct }) => {
                 />
             </div>
             <div className="actions-container">
-                <IconButton onClick={() => setProduct(product)}>
+                <IconButton onClick={() => setShowCode(true)}>
                     <QrCodeScannerIcon color="primary" />
                 </IconButton>
                 <IconButton onClick={() => setProduct(product)}>
                     <EditIcon color="primary" />
                 </IconButton>
             </div>
+            <QrCodeModal id={product.id} open={showCode} setOpen={setShowCode} />
         </Paper>
     )
 }
