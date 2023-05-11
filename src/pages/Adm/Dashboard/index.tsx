@@ -40,7 +40,12 @@ export const Dashboard: React.FC<DashboardProps> = ({}) => {
                 Adicionar produto
             </Button>
 
-            <ProductModal open={productModal} setOpen={setProductModal} product={product} />
+            <ProductModal
+                open={productModal}
+                setOpen={setProductModal}
+                product={product}
+                clearProduct={() => setProduct(undefined)}
+            />
         </div>
     )
 }

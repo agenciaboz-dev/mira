@@ -32,9 +32,10 @@ interface ProductModalProps {
     open: boolean
     setOpen: (open: boolean) => void
     product?: Product
+    clearProduct: () => void
 }
 
-export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, product }) => {
+export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, product, clearProduct }) => {
     const [error, setError] = useState(false)
     const [loading, setLoading] = useState(true)
 
@@ -66,15 +67,15 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, produ
         })
     }
 
-    const handleClose = (event: {}, reason: "backdropClick" | "escapeKeyDown") => {
-        // if (reason) return
+    const handleClose = () => {
         setOpen(false)
+        clearProduct()
     }
 
     return (
         <Dialog open={open} onClose={handleClose} sx={styles.dialog}>
             <DialogTitle sx={styles.title}>
-                <IconButton onClick={() => setOpen(false)} sx={{ position: "absolute", left: "1vw" }}>
+                <IconButton onClick={handleClose} sx={{ position: "absolute", left: "1vw" }}>
                     <CancelPresentationIcon color="error" sx={styles.close_icon} />
                 </IconButton>
                 {product?.name || "Novo produto"}
