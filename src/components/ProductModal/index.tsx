@@ -58,13 +58,25 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, produ
 
     const handleSubmit = (values: Product) => {
         console.log(values)
-        api.products.add({
-            data: values,
-            callback: (response: { data: Product }) => {
-                setOpen(false)
-                refresh()
-            },
-        })
+
+        if (product) {
+            api.products.update({
+                data: values,
+                callback: (response: { data: Product }) => {
+                    setOpen(false)
+                    refresh()
+                },
+            })
+        } else {
+            api.products.add({
+                data: values,
+                callback: (response: { data: Product }) => {
+                    setOpen(false)
+                    refresh()
+                },
+            })
+        }
+
     }
 
     const handleClose = () => {
