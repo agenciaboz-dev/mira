@@ -17,6 +17,7 @@ export const styles = {
     },
 
     content_container: {
+        paddingTop: "1vw!important",
         display: "flex",
         width: "40vw",
         flexDirection: "column",
