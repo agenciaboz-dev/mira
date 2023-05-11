@@ -39,7 +39,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, produ
     const initialValues: Product = product || {
         name: "",
         description: "",
-        available: 0,
+        stock: 0,
         id: 0,
         image: "",
         price: 0,
@@ -77,12 +77,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, produ
                                 onChange={handleChange}
                             />
                             <TextField label="Preço" name="price" value={values.price} onChange={handleChange} />
-                            <TextField
-                                label="Quantidade"
-                                name="available"
-                                value={values.available}
-                                onChange={handleChange}
-                            />
+                            <TextField label="Quantidade" name="stock" value={values.stock} onChange={handleChange} />
                             <TextField label="História" name="story" value={values.story} onChange={handleChange} />
                             <TextField label="Link de imagem" name="image" value={values.image} onChange={handleChange} />
                             <TextField label="Link de vídeo" name="video" value={values.video} onChange={handleChange} />
