@@ -20,7 +20,7 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
     const [story, setStory] = useState(false)
 
     const { cart, setCart } = useCart()
-    const numberMask = useNumberMask()
+    const numberMask = useNumberMask(3)
     const colors = useColors()
 
     const removeProduct = () => {
