@@ -37,7 +37,7 @@ interface ProductModalProps {
 
 export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, product, clearProduct }) => {
     const [error, setError] = useState(false)
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(false)
 
     const colors = useColors()
     const currencyMask = useCurrencyMask()
@@ -58,6 +58,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, produ
 
     const handleSubmit = (values: Product) => {
         console.log(values)
+        setLoading(true)
 
         if (product) {
             api.products.update({
@@ -66,6 +67,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, produ
                     setOpen(false)
                     refresh()
                 },
+                finallyCallback: () => setLoading(false),
             })
         } else {
             api.products.add({
@@ -74,9 +76,9 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, produ
                     setOpen(false)
                     refresh()
                 },
+                finallyCallback: () => setLoading(false),
             })
         }
-
     }
 
     const handleClose = () => {
@@ -125,11 +127,25 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, produ
                             <TextField label="Link de vídeo" name="video" value={values.video} onChange={handleChange} />
                             {product ? (
                                 <Button type="submit" variant="contained" fullWidth>
-                                    Atualizar {product.name}
+                                    {loading ? (
+                                        <CircularProgress
+                                            style={{ width: "1.5rem", height: "auto" }}
+                                            sx={{ color: "white" }}
+                                        />
+                                    ) : (
+                                        `Atualizar ${product.name}`
+                                    )}
                                 </Button>
                             ) : (
                                 <Button type="submit" variant="contained" fullWidth>
-                                    Adicionar produto
+                                    {loading ? (
+                                        <CircularProgress
+                                            style={{ width: "1.5rem", height: "auto" }}
+                                            sx={{ color: "white" }}
+                                        />
+                                    ) : (
+                                        `Adicionar produto`
+                                    )}
                                 </Button>
                             )}
                         </Form>
