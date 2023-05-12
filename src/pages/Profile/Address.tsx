@@ -1,10 +1,17 @@
-import React from "react"
+import React, { useState } from "react"
 import { Address as AddressType, User } from "../../definitions/user"
 import { Form, Formik } from "formik"
 import { TextField } from "../../components/TextField"
 import { Button } from "../../components/Button"
 import MaskedInput from "react-text-mask"
 import { useNumberMask } from "../../hooks/useNumberMask"
+import { useEstadosBrasil } from "../../hooks/useEstadosBrasil"
+import { MenuItem, CircularProgress } from "@mui/material"
+import { useApi } from "../../hooks/useApi"
+import { useUser } from "../../hooks/useUser"
+import { useLocalStorage } from "../../hooks/useLocalStorage"
+import { useNavigate } from "react-router-dom"
+import { useSnackbar } from "../../hooks/useSnackbar"
 
 interface AddressProps {
     user: User
@@ -14,8 +21,18 @@ interface FormikValues extends AddressType {}
 
 export const Address: React.FC<AddressProps> = ({ user }) => {
     const numberMask = useNumberMask()
+    const estados = useEstadosBrasil()
+    const api = useApi()
+    const storage = useLocalStorage()
+    const navigate = useNavigate()
+    const { snackbar } = useSnackbar()
 
-    const initialValues: FormikValues = user.address[0] || {
+    const { setUser } = useUser()
+
+    const [remember, setRemember] = useState(!!storage.get("mira.rememberme"))
+    const [loading, setLoading] = useState(false)
+
+    const initialValues: FormikValues = user.addresses[0] || {
         receiver: "",
         phone: "",
         cep: "",
@@ -28,7 +45,33 @@ export const Address: React.FC<AddressProps> = ({ user }) => {
     }
 
     const handleSubmit = (values: FormikValues) => {
-        console.log(values)
+        if (loading) return
+
+        setLoading(true)
+        const data = {
+            ...values,
+            new_address: !user.addresses[0]?.id,
+            user_id: user.id,
+        }
+        console.log(data)
+
+        api.user.address({
+            data: data,
+            callback: (response: { data: AddressType }) => {
+                const updatedUser = { ...user, addresses: [response.data] }
+                setUser(updatedUser)
+                navigate("/cart")
+                snackbar({
+                    severity: "success",
+                    text: "Endereço salvo",
+                })
+
+                if (remember) {
+                    storage.set("mira.user", updatedUser)
+                }
+            },
+            finallyCallback: () => setLoading(false),
+        })
     }
 
     return (
@@ -89,14 +132,27 @@ export const Address: React.FC<AddressProps> = ({ user }) => {
                                 sx={{ flex: "0.8" }}
                             />
                             <TextField
-                                placeholder="UF"
-                                name="uf"
-                                className="small-input"
-                                value={values.uf}
+                                select
+                                name={"uf"}
+                                placeholder={"UF"}
                                 onChange={handleChange}
-                            />
+                                value={values.uf}
+                                className="small-input"
+                            >
+                                {estados.map((estado) => (
+                                    <MenuItem key={estado.value} value={estado.value} style={{ width: "100%" }}>
+                                        {estado.value}
+                                    </MenuItem>
+                                ))}
+                            </TextField>
                         </div>
-                        <Button type="submit">Salvar</Button>
+                        <Button type="submit">
+                            {loading ? (
+                                <CircularProgress sx={{ color: "white" }} style={{ width: "5vw", height: "auto" }} />
+                            ) : (
+                                "Salvar"
+                            )}
+                        </Button>
                     </Form>
                 )}
             </Formik>

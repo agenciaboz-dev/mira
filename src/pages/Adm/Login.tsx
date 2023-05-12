@@ -33,7 +33,7 @@ export const Login: React.FC<LoginProps> = ({}) => {
             callback: (response: { data: User }) => {
                 const user = response.data
                 if (user) {
-                    console.log(user)
+                    console.log(user)   
                     setUser(user)
                     navigate("dashboard")
                 } else {

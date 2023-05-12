@@ -6,7 +6,7 @@ export interface User {
     password: string
     adm: boolean
     phone: string
-    address: Address[]
+    addresses: Address[]
 }
 
 export interface Address {
