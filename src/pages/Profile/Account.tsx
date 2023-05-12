@@ -22,7 +22,7 @@ interface FormValues extends User {
 
 export const Account: React.FC<AccountProps> = ({ user }) => {
     const api = useApi()
-    const snackbar = useSnackbar()
+    const { snackbar } = useSnackbar()
     const { setUser } = useUser()
 
     const [loading, setLoading] = useState(false)

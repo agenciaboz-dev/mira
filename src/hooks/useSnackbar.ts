@@ -16,5 +16,5 @@ export const useSnackbar = () => {
         snackbarContext.setOpen(true)
     }
 
-    return snackbar
+    return { snackbar, ...snackbarContext }
 }

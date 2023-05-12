@@ -1,5 +1,5 @@
 import { createContext, useState } from "react"
-import React from "react"
+import React, { useEffect } from "react"
 import { AlertColor } from "@mui/material"
 
 export interface Snackbar {
@@ -23,6 +23,10 @@ export const SnackbarProvider: React.FC<SnackbarProviderProps> = ({ children }) 
     const [open, setOpen] = useState(false)
     const [text, setText] = useState("")
     const [severity, setSeverity] = useState<AlertColor>("info")
+
+    useEffect(() => {
+        console.log({ open })
+    }, [open])
 
     return (
         <SnackbarContext.Provider value={{ open, setOpen, text, setText, severity, setSeverity }}>
