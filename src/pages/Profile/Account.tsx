@@ -1,11 +1,14 @@
 import { Form, Formik } from "formik"
-import React from "react"
+import React, { useState } from "react"
 import MaskedInput from "react-text-mask"
 import { Button } from "../../components/Button"
 import { TextField } from "../../components/TextField"
 import { User } from "../../definitions/user"
+import { useApi } from "../../hooks/useApi"
 import { useColors } from "../../hooks/useColors"
+import { useUser } from "../../hooks/useUser"
 import { styles } from "./styles"
+import { CircularProgress } from "@mui/material"
 
 interface AccountProps {
     user: User
@@ -17,7 +20,12 @@ interface FormValues extends User {
 }
 
 export const Account: React.FC<AccountProps> = ({ user }) => {
-    const colors = useColors()
+    const api = useApi()
+    const { setUser } = useUser()
+
+    const [loading, setLoading] = useState(false)
+    const [currentPasswordError, setCurrentPasswordError] = useState("")
+    const [newPasswordError, setNewPasswordError] = useState("")
 
     const initialValues: FormValues = {
         ...user,
@@ -26,8 +34,36 @@ export const Account: React.FC<AccountProps> = ({ user }) => {
         confirm_password: "",
     }
 
+    const resetErrors = () => {
+        setCurrentPasswordError("")
+        setNewPasswordError("")
+    }
+
     const handleSubmit = (values: FormValues) => {
+        setLoading(true)
+        resetErrors()
         console.log(values)
+        let change_password = false
+
+        if (values.password && values.new_password && values.confirm_password) {
+            if (values.password == user.password) {
+                if (values.new_password == values.confirm_password) {
+                    change_password = true
+                } else {
+                    setNewPasswordError("Senhas não conferem")
+                }
+            } else {
+                setCurrentPasswordError("Senha atual inválida")
+            }
+        }
+
+        api.user.update({
+            data: { ...values, change_password },
+            callback: (response: { data: User }) => {
+                setUser(response.data)
+            },
+            finallyCallback: () => setLoading(false),
+        })
     }
 
     return (
@@ -75,6 +111,8 @@ export const Account: React.FC<AccountProps> = ({ user }) => {
                             onChange={handleChange}
                             InputLabelProps={{ sx: styles.textfield }}
                             type="password"
+                            error={!!currentPasswordError}
+                            helperText={currentPasswordError}
                         />
                         <TextField
                             name="new_password"
@@ -91,9 +129,17 @@ export const Account: React.FC<AccountProps> = ({ user }) => {
                             onChange={handleChange}
                             InputLabelProps={{ sx: styles.textfield }}
                             type="password"
+                            error={!!newPasswordError}
+                            helperText={newPasswordError}
                         />
 
-                        <Button type="submit">Salvar</Button>
+                        <Button type="submit">
+                            {loading ? (
+                                <CircularProgress sx={{ color: "white" }} style={{ width: "6vw", height: "auto" }} />
+                            ) : (
+                                "Salvar"
+                            )}
+                        </Button>
                     </Form>
                 )}
             </Formik>
