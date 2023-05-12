@@ -32,6 +32,7 @@ export const Menu: React.FC<MenuProps> = ({ open, anchorEl, handleClose }) => {
         >
             <MenuItem onClick={() => menuNavigate("/cart")}>Carrinho</MenuItem>
             <MenuItem onClick={() => menuNavigate("/profile/account")}>Detalhes da conta</MenuItem>
+            <MenuItem onClick={() => menuNavigate("/profile/address")}>Endereço de entrega</MenuItem>
             <MenuItem onClick={logout}>Sair</MenuItem>
         </MuiMenu>
     )

@@ -18,6 +18,7 @@
         flex-direction: column;
         gap: 5vw;
         overflow-y: auto;
+        color: white;
     }
 
     .Header-Component {
@@ -35,11 +36,28 @@
     .Account-Component {
         width: 100%;
         flex-direction: column;
-        color: white;
 
         form {
             flex-direction: column;
             gap: 4vw;
+        }
+    }
+
+    .Address-Component {
+        width: 100%;
+
+        form {
+            flex-direction: column;
+            gap: 4vw;
+
+            .two-inputs {
+                gap: 3vw;
+
+                .small-input {
+                    flex: 0.3;
+                    text-align: center;
+                }
+            }
         }
     }
 }
