@@ -31,8 +31,8 @@ export const Login: React.FC<LoginProps> = ({}) => {
                         index
                         element={
                             <div style={{ flexDirection: "column", alignItems: "center", height: "100%" }}>
-                                <Logo style={{ width: "50vw", height: "auto", flexShrink: 0 }} />
-                                <Divider style={{ position: "absolute", width: "100vw", top: "40vw" }} />
+                                <Logo style={{ width: "50vw", height: "auto", flexShrink: 0, marginTop: "3vw" }} />
+                                <Divider style={{ position: "absolute", width: "100vw", top: "45vw" }} />
                                 <LoginForm />
                             </div>
                         }

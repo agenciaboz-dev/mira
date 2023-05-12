@@ -96,7 +96,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({}) => {
                             type={"password"}
                             size="small"
                         />
-                        
+
                         <div className="submit-container">
                             <FormControlLabel
                                 sx={{ gap: "3vw", margin: "0", whiteSpace: "nowrap" }}
@@ -135,7 +135,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({}) => {
                 <p>Não tem conta?</p>
                 <p className="link" onClick={() => navigate("/login/signup")}>
                     Cadastre-se!
-                    <ArrowIcon className="signup-arrow-up"/>
+                    <ArrowIcon className="signup-arrow-down"/>
                 </p>
             </div>
         </div>
