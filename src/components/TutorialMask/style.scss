@@ -21,36 +21,38 @@
     }
 
     .balloon-container {
+        position: relative;
+        margin-top: 80vw;
+        justify-content: center;
+        align-items: center;
 
         .balloon {
             position: absolute;
             width: 85vw;
-            top: 20vw;
-            left: 7.5vw;
         }
 
         .balloon-text {
-            // background-color: white;
-            padding: 5vw;
-            border-radius: 5vw;
-            width: 90vw;
-            margin: 40vw auto -5vw;
+            position: absolute;
+            top: -29vw;
+            width: 80%;
+            height: 90%;
             text-align: center;
             z-index: 1;
+            font-size: 5vw;
         }
-}
+    }
 
     .avatar {
         position: absolute;
         width: 60vw;
         right: 4vw;
-        bottom: 10vw;
+        top: 90vw;
         z-index: 1;
     }
 
     .avatar-bg {
         position: absolute;
         width: 100vw;
-        bottom: 0;
+        top: 100vw;
     }
 }
