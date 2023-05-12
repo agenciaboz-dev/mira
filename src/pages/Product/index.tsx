@@ -42,7 +42,7 @@ export const Product: React.FC<ProductProps> = ({ product, style, innerRef, onCl
 
     const addToCart = () => {
         add(product, quantity)
-        navigate(-1)
+        navigate("/cart")
     }
 
     const handleClose = () => {
