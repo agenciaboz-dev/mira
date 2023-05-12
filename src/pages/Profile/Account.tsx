@@ -9,6 +9,7 @@ import { useColors } from "../../hooks/useColors"
 import { useUser } from "../../hooks/useUser"
 import { styles } from "./styles"
 import { CircularProgress } from "@mui/material"
+import { useSnackbar } from "../../hooks/useSnackbar"
 
 interface AccountProps {
     user: User
@@ -21,6 +22,7 @@ interface FormValues extends User {
 
 export const Account: React.FC<AccountProps> = ({ user }) => {
     const api = useApi()
+    const snackbar = useSnackbar()
     const { setUser } = useUser()
 
     const [loading, setLoading] = useState(false)
@@ -61,6 +63,10 @@ export const Account: React.FC<AccountProps> = ({ user }) => {
             data: { ...values, change_password },
             callback: (response: { data: User }) => {
                 setUser(response.data)
+                snackbar({
+                    severity: "success",
+                    text: "Usuário atualizado",
+                })
             },
             finallyCallback: () => setLoading(false),
         })
