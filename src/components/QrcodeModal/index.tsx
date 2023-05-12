@@ -6,6 +6,7 @@ import { QRCode } from "react-qrcode-logo"
 import { styles } from "./styles"
 import CancelPresentationIcon from "@mui/icons-material/CancelPresentation"
 import DialogContent from "@mui/material/DialogContent"
+import { useColors } from "../../hooks/useColors"
 
 interface QrCodeModalProps {
     id: number
@@ -15,6 +16,7 @@ interface QrCodeModalProps {
 
 export const QrCodeModal: React.FC<QrCodeModalProps> = ({ id, open, setOpen }) => {
     const vw = window.innerWidth / 100
+    const colors = useColors()
 
     const [codeValue, setCodeValue] = useState(`mirasuprimentos/${id}`)
 
@@ -32,6 +34,17 @@ export const QrCodeModal: React.FC<QrCodeModalProps> = ({ id, open, setOpen }) =
 
             <DialogContent sx={styles.content_container}>
                 <QRCode value={codeValue} size={30 * vw} />
+                {/* <QRCode
+                    value={codeValue}
+                    size={30 * vw}
+                    // bgColor={colors.purple}
+                    // fgColor={colors.purple}
+                    logoImage={"/logo.png"}
+                    logoOpacity={0.3}
+                    logoWidth={30 * vw}
+                    eyeColor={colors.purple}
+                    qrStyle={"dots"}
+                /> */}
             </DialogContent>
         </Dialog>
     )
