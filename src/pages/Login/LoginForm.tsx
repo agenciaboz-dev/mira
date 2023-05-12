@@ -78,7 +78,15 @@ export const LoginForm: React.FC<LoginFormProps> = ({}) => {
             <Formik initialValues={initialValues} onSubmit={handleSubmit}>
                 {({ values, handleChange }) => (
                     <Form>
-                        <TextField name="user" placeholder="E-mail" value={values.user} onChange={handleChange} fullWidth />
+                        <TextField
+                            name="user"
+                            placeholder="E-mail"
+                            value={values.user}
+                            onChange={handleChange}
+                            fullWidth
+                            size="small"
+                        />
+
                         <TextField
                             name="password"
                             placeholder="Senha"
@@ -86,7 +94,9 @@ export const LoginForm: React.FC<LoginFormProps> = ({}) => {
                             onChange={handleChange}
                             fullWidth
                             type={"password"}
+                            size="small"
                         />
+                        
                         <div className="submit-container">
                             <FormControlLabel
                                 sx={{ gap: "3vw", margin: "0", whiteSpace: "nowrap" }}

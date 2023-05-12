@@ -50,7 +50,7 @@ export const SignupForm: React.FC<SignupFormProps> = ({}) => {
 
     return (
         <div className="SignupForm-Component">
-            <ArrowIcon onClick={() => navigate("/login")} />
+            <ArrowIcon className="signup-arrow-down" onClick={() => navigate("/login")} />
 
             <h1>Cadastro</h1>
             <p>Por favor faça o complete os campos abaixo para completar o cadastro</p>
@@ -58,13 +58,22 @@ export const SignupForm: React.FC<SignupFormProps> = ({}) => {
             <Formik initialValues={initialValues} onSubmit={handleSubmit}>
                 {({ values, handleChange }) => (
                     <Form>
-                        <TextField name="name" placeholder="Nome" value={values.name} onChange={handleChange} fullWidth />
+                        <TextField
+                            name="name"
+                            placeholder="Nome"
+                            value={values.name}
+                            onChange={handleChange}
+                            fullWidth
+                            size="small"
+                        />
+
                         <TextField
                             name="email"
                             placeholder="E-mail"
                             value={values.email}
                             onChange={handleChange}
                             fullWidth
+                            size="small"
                         />
                         <TextField
                             name="password"
@@ -73,6 +82,7 @@ export const SignupForm: React.FC<SignupFormProps> = ({}) => {
                             onChange={handleChange}
                             fullWidth
                             type={"password"}
+                            size="small"
                         />
                         <TextField
                             name="confirm"
@@ -81,6 +91,7 @@ export const SignupForm: React.FC<SignupFormProps> = ({}) => {
                             onChange={handleChange}
                             fullWidth
                             type={"password"}
+                            size="small"
                         />
                         <MaskedInput
                             mask={["(", /\d/, /\d/, ")", " ", /\d/, /\d/, /\d/, /\d/, /\d/, "-", /\d/, /\d/, /\d/, /\d/]}
@@ -88,9 +99,9 @@ export const SignupForm: React.FC<SignupFormProps> = ({}) => {
                             name="phone"
                             value={values.phone}
                             onChange={handleChange}
-                            render={(ref, props) => <TextField inputRef={ref} {...props} placeholder="Telefone" fullWidth />}
+                            render={(ref, props) => <TextField inputRef={ref} {...props} placeholder="Telefone" fullWidth size="small" />}
                         />
-                        <Button type="submit" variant="contained" style={{ height: "15vw", fontSize: "5vw" }} fullWidth>
+                        <Button type="submit" variant="contained" style={{ fontSize: "5vw" }} fullWidth >
                             {loading ? (
                                 <CircularProgress sx={{ color: "white" }} style={{ width: "10vw", height: "auto" }} />
                             ) : (
