@@ -8,6 +8,7 @@ import { TextField } from "../../components/TextField"
 import { User } from "../../definitions/user"
 import { useApi } from "../../hooks/useApi"
 import { ReactComponent as ArrowIcon } from "../../images/down_arrow.svg"
+import { ReactComponent as Divider } from "../../images/pasta_de_dente.svg"
 
 interface SignupFormProps {}
 
@@ -50,10 +51,11 @@ export const SignupForm: React.FC<SignupFormProps> = ({}) => {
 
     return (
         <div className="SignupForm-Component">
+            {/* <Divider className="tp-signup-divider" style={{ position: "absolute", width: "100vw", left: 0, top: 0 }}/> */}
             <ArrowIcon className="signup-arrow-up" onClick={() => navigate("/login")} />
 
             <h1>Cadastro</h1>
-            <p>Por favor faça o complete os campos abaixo para completar o cadastro</p>
+            <p>Por favor, complete os campos abaixo para efetuar o cadastro</p>
 
             <Formik initialValues={initialValues} onSubmit={handleSubmit}>
                 {({ values, handleChange }) => (
