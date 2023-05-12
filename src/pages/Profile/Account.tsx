@@ -3,14 +3,14 @@ import React from "react"
 import { TextField } from "../../components/TextField"
 import { useColors } from "../../hooks/useColors"
 import { useUser } from "../../hooks/useUser"
+import { styles } from "./styles"
 
 interface AccountProps {}
 
 interface FormValues {
     name: string
-    // last_name: string
     email: string
-    // phone: string
+    phone: string
 }
 
 export const Account: React.FC<AccountProps> = ({}) => {
@@ -21,6 +21,7 @@ export const Account: React.FC<AccountProps> = ({}) => {
     const initialValues: FormValues = user || {
         name: "",
         email: "",
+        phone: "",
     }
 
     const handleSubmit = (values: FormValues) => {
@@ -38,15 +39,21 @@ export const Account: React.FC<AccountProps> = ({}) => {
                             label="Nome"
                             value={values.name}
                             onChange={handleChange}
-                            InputLabelProps={{
-                                sx: {
-                                    color: colors.purple,
-                                    backgroundColor: "white",
-                                    padding: "1vw",
-                                    borderRadius: "2vw",
-                                    paddingTop: 0,
-                                },
-                            }}
+                            InputLabelProps={{ sx: styles.textfield }}
+                        />
+                        <TextField
+                            name="email"
+                            label="E-mail"
+                            value={values.email}
+                            onChange={handleChange}
+                            InputLabelProps={{ sx: styles.textfield }}
+                        />
+                        <TextField
+                            name="phone"
+                            label="Telefone"
+                            value={values.phone}
+                            onChange={handleChange}
+                            InputLabelProps={{ sx: styles.textfield }}
                         />
                     </Form>
                 )}
