@@ -83,14 +83,16 @@ export const Account: React.FC<AccountProps> = ({ user }) => {
                         <h2>Detalhes da conta</h2>
                         <TextField
                             name="name"
-                            label="Nome"
+                            placeholder="Nome"
+                            required
                             value={values.name}
                             onChange={handleChange}
                             InputLabelProps={{ sx: styles.textfield }}
                         />
                         <TextField
                             name="email"
-                            label="E-mail"
+                            placeholder="E-mail"
+                            required
                             value={values.email}
                             onChange={handleChange}
                             InputLabelProps={{ sx: styles.textfield }}
@@ -101,11 +103,12 @@ export const Account: React.FC<AccountProps> = ({ user }) => {
                             name="phone"
                             value={values.phone}
                             onChange={handleChange}
+                            required
                             render={(ref, props) => (
                                 <TextField
                                     inputRef={ref}
                                     {...props}
-                                    label="Telefone"
+                                    placeholder="Telefone"
                                     InputLabelProps={{ sx: styles.textfield }}
                                 />
                             )}
@@ -115,7 +118,7 @@ export const Account: React.FC<AccountProps> = ({ user }) => {
                         <p>(deixa em branco para não alterar)</p>
                         <TextField
                             name="password"
-                            label="Senha atual"
+                            placeholder="Senha atual"
                             value={values.password}
                             onChange={handleChange}
                             InputLabelProps={{ sx: styles.textfield }}
@@ -125,7 +128,7 @@ export const Account: React.FC<AccountProps> = ({ user }) => {
                         />
                         <TextField
                             name="new_password"
-                            label="Nova senha"
+                            placeholder="Nova senha"
                             value={values.new_password}
                             onChange={handleChange}
                             InputLabelProps={{ sx: styles.textfield }}
@@ -133,7 +136,7 @@ export const Account: React.FC<AccountProps> = ({ user }) => {
                         />
                         <TextField
                             name="confirm_password"
-                            label="Confirmar senha"
+                            placeholder="Confirmar senha"
                             value={values.confirm_password}
                             onChange={handleChange}
                             InputLabelProps={{ sx: styles.textfield }}
