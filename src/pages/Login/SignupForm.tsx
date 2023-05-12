@@ -50,7 +50,7 @@ export const SignupForm: React.FC<SignupFormProps> = ({}) => {
 
     return (
         <div className="SignupForm-Component">
-            <ArrowIcon className="signup-arrow-down" onClick={() => navigate("/login")} />
+            <ArrowIcon className="signup-arrow-up" onClick={() => navigate("/login")} />
 
             <h1>Cadastro</h1>
             <p>Por favor faça o complete os campos abaixo para completar o cadastro</p>
@@ -86,7 +86,7 @@ export const SignupForm: React.FC<SignupFormProps> = ({}) => {
                         />
                         <TextField
                             name="confirm"
-                            placeholder="Confirme sua senha"
+                            placeholder="Confirme a senha"
                             value={values.confirm}
                             onChange={handleChange}
                             fullWidth
@@ -105,7 +105,7 @@ export const SignupForm: React.FC<SignupFormProps> = ({}) => {
                             {loading ? (
                                 <CircularProgress sx={{ color: "white" }} style={{ width: "10vw", height: "auto" }} />
                             ) : (
-                                "Concluir cadastro"
+                                "Concluir Cadastro"
                             )}
                         </Button>
                         <h3 style={{ alignSelf: "center" }}>{signupError}</h3>

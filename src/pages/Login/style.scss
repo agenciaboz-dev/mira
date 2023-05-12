@@ -45,11 +45,10 @@
                 cursor: pointer;
                 align-items: center;
 
-                .signup-arrow-up {
+                .signup-arrow-down {
                     height: 8vw;
                     width: 8vw;
                     margin: 2.5vw 2vw 2vw;
-                    transform: rotate(180deg);
                 }
             }
         
@@ -72,7 +71,7 @@
     * {
         z-index: 1;
     }
-
+    
     .submit-container {
         justify-content: space-between;
         height: 12vw;
@@ -93,10 +92,11 @@
     background-color: $purple;
     padding: 5vw 7vw;
     gap: 5vw;
-
-    .signup-arrow-down {
+    
+    .signup-arrow-up {
         height: 8vw;
         width: 8vw;
+        transform: rotate(180deg);
     }
 
     .form {
