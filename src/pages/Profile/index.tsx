@@ -19,9 +19,11 @@ export const Profile: React.FC<ProfileProps> = ({}) => {
         <div className="Profile-Page">
             <div className="main-container">
                 <Header />
-                <Routes>
-                    <Route path="/account" element={<Account />} />
-                </Routes>
+                {user && (
+                    <Routes>
+                        <Route path="/account" element={<Account user={user} />} />
+                    </Routes>
+                )}
             </div>
         </div>
     )

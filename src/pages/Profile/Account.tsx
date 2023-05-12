@@ -1,11 +1,13 @@
 import { Form, Formik } from "formik"
 import React from "react"
 import { TextField } from "../../components/TextField"
+import { User } from "../../definitions/user"
 import { useColors } from "../../hooks/useColors"
-import { useUser } from "../../hooks/useUser"
 import { styles } from "./styles"
 
-interface AccountProps {}
+interface AccountProps {
+    user: User
+}
 
 interface FormValues {
     name: string
@@ -13,16 +15,10 @@ interface FormValues {
     phone: string
 }
 
-export const Account: React.FC<AccountProps> = ({}) => {
-    const { user } = useUser()
-
+export const Account: React.FC<AccountProps> = ({ user }) => {
     const colors = useColors()
 
-    const initialValues: FormValues = user || {
-        name: "",
-        email: "",
-        phone: "",
-    }
+    const initialValues: FormValues = user
 
     const handleSubmit = (values: FormValues) => {
         console.log(values)
