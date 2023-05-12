@@ -30,6 +30,7 @@ export const Menu: React.FC<MenuProps> = ({ open, anchorEl, handleClose }) => {
                 "aria-labelledby": "basic-button",
             }}
         >
+            <MenuItem onClick={() => storage.set("has_accessed", false)}>reset tutorial</MenuItem>
             <MenuItem onClick={() => menuNavigate("/cart")}>Carrinho</MenuItem>
             <MenuItem onClick={() => menuNavigate("/profile/account")}>Detalhes da conta</MenuItem>
             <MenuItem onClick={() => menuNavigate("/profile/address")}>Endereço de entrega</MenuItem>
