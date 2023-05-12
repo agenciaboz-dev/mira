@@ -1,6 +1,7 @@
 import { Form, Formik } from "formik"
 import React from "react"
 import { TextField } from "../../components/TextField"
+import { useColors } from "../../hooks/useColors"
 import { useUser } from "../../hooks/useUser"
 
 interface AccountProps {}
@@ -14,6 +15,8 @@ interface FormValues {
 
 export const Account: React.FC<AccountProps> = ({}) => {
     const { user } = useUser()
+
+    const colors = useColors()
 
     const initialValues: FormValues = user || {
         name: "",
@@ -30,7 +33,21 @@ export const Account: React.FC<AccountProps> = ({}) => {
                 {({ values, handleChange }) => (
                     <Form>
                         <h2>Detalhes da conta</h2>
-                        <TextField name="name" value={values.name} onChange={handleChange} />
+                        <TextField
+                            name="name"
+                            label="Nome"
+                            value={values.name}
+                            onChange={handleChange}
+                            InputLabelProps={{
+                                sx: {
+                                    color: colors.purple,
+                                    backgroundColor: "white",
+                                    padding: "1vw",
+                                    borderRadius: "2vw",
+                                    paddingTop: 0,
+                                },
+                            }}
+                        />
                     </Form>
                 )}
             </Formik>
