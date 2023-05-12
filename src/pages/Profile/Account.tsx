@@ -10,6 +10,7 @@ import { useUser } from "../../hooks/useUser"
 import { styles } from "./styles"
 import { CircularProgress } from "@mui/material"
 import { useSnackbar } from "../../hooks/useSnackbar"
+import { useNavigate } from "react-router-dom"
 
 interface AccountProps {
     user: User
@@ -22,6 +23,7 @@ interface FormValues extends User {
 
 export const Account: React.FC<AccountProps> = ({ user }) => {
     const api = useApi()
+    const navigate = useNavigate()
     const { snackbar } = useSnackbar()
     const { setUser } = useUser()
 
@@ -67,6 +69,7 @@ export const Account: React.FC<AccountProps> = ({ user }) => {
                     severity: "success",
                     text: "Usuário atualizado",
                 })
+                navigate("/cart")
             },
             finallyCallback: () => setLoading(false),
         })
