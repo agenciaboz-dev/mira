@@ -2,7 +2,6 @@
 
 .Profile-Page {
     width: 100vw;
-    min-height: -webkit-fill-available;
     background-image: url("../../../public/bricks.png");
     background-position: center;
     background-repeat: no-repeat;
@@ -18,6 +17,7 @@
         padding: 5vw;
         flex-direction: column;
         gap: 5vw;
+        overflow-y: auto;
     }
 
     .Header-Component {
