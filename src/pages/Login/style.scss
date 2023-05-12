@@ -11,17 +11,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     // padding-bottom: 5vh;
-
     align-items: center;
-
-    .link {
-        color: #9AF82E;
-        cursor: pointer;
-    }
-
-    .link:hover {
-        text-decoration: underline;
-    }
 
     .form-container {
         width: 100%;
@@ -32,7 +22,6 @@
         flex-direction: column;
         align-items: center;
 
-        
         form {
             flex-direction: column;
             flex-direction: column;
@@ -43,10 +32,30 @@
         }
 
         .signup-text {
+            display: flex;
+            align-items: center;
             width: 100%;
             justify-content: center;
             gap: 2vw;
-            margin-top: auto;
+            margin-top: 25vw;
+
+            .link {
+                display: flex;
+                color: #9AF82E;
+                cursor: pointer;
+                align-items: center;
+
+                .signup-arrow-up {
+                    height: 8vw;
+                    width: 8vw;
+                    margin: 2.5vw 2vw 2vw;
+                    transform: rotate(180deg);
+                }
+            }
+        
+            .link:hover {
+                text-decoration: underline;
+            }
         }
     }
 }

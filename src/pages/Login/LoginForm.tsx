@@ -9,6 +9,7 @@ import { useApi } from "../../hooks/useApi"
 import { useColors } from "../../hooks/useColors"
 import { useLocalStorage } from "../../hooks/useLocalStorage"
 import { useUser } from "../../hooks/useUser"
+import { ReactComponent as ArrowIcon } from "../../images/down_arrow.svg"
 
 interface LoginFormProps {}
 
@@ -123,7 +124,8 @@ export const LoginForm: React.FC<LoginFormProps> = ({}) => {
             <div className="signup-text">
                 <p>Não tem conta?</p>
                 <p className="link" onClick={() => navigate("/login/signup")}>
-                    Cadastre-se
+                    Cadastre-se!
+                    <ArrowIcon className="signup-arrow-up"/>
                 </p>
             </div>
         </div>
