@@ -15,6 +15,11 @@ export const Menu: React.FC<MenuProps> = ({ open, anchorEl, handleClose }) => {
     const { logout } = useUser()
     const navigate = useNavigate()
 
+    const menuNavigate = (path: string) => {
+        handleClose()
+        navigate(path)
+    }
+
     return (
         <MuiMenu
             id="basic-menu"
@@ -25,8 +30,8 @@ export const Menu: React.FC<MenuProps> = ({ open, anchorEl, handleClose }) => {
                 "aria-labelledby": "basic-button",
             }}
         >
-            <MenuItem onClick={() => navigate("/cart")}>Carrinho</MenuItem>
-            <MenuItem onClick={() => navigate("/profile")}>Perfil</MenuItem>
+            <MenuItem onClick={() => menuNavigate("/cart")}>Carrinho</MenuItem>
+            <MenuItem onClick={() => menuNavigate("/profile/account")}>Detalhes da conta</MenuItem>
             <MenuItem onClick={logout}>Sair</MenuItem>
         </MuiMenu>
     )

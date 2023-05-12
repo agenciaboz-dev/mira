@@ -12,7 +12,7 @@ export const Profile: React.FC<ProfileProps> = ({}) => {
             <div className="main-container">
                 <Header />
                 <Routes>
-                    <Route index element={<Account />} />
+                    <Route path="/account" element={<Account />} />
                 </Routes>
             </div>
         </div>
