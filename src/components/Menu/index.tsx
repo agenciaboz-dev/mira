@@ -2,6 +2,7 @@ import React from "react"
 import { Menu as MuiMenu, MenuItem } from "@mui/material"
 import { useLocalStorage } from "../../hooks/useLocalStorage"
 import { useUser } from "../../hooks/useUser"
+import { useNavigate } from "react-router-dom"
 
 interface MenuProps {
     open: boolean
@@ -12,6 +13,7 @@ interface MenuProps {
 export const Menu: React.FC<MenuProps> = ({ open, anchorEl, handleClose }) => {
     const storage = useLocalStorage()
     const { logout } = useUser()
+    const navigate = useNavigate()
 
     return (
         <MuiMenu
@@ -23,7 +25,8 @@ export const Menu: React.FC<MenuProps> = ({ open, anchorEl, handleClose }) => {
                 "aria-labelledby": "basic-button",
             }}
         >
-            <MenuItem onClick={handleClose}>Perfil</MenuItem>
+            <MenuItem onClick={() => navigate("/cart")}>Carrinho</MenuItem>
+            <MenuItem onClick={() => navigate("/profile")}>Perfil</MenuItem>
             <MenuItem onClick={logout}>Sair</MenuItem>
         </MuiMenu>
     )

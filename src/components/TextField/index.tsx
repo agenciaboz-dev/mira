@@ -26,10 +26,11 @@ export const TextField: React.FC<TextFieldProps> = (props, {}) => {
         <StyledTextField
             {...props}
             InputProps={{
+                ...props.InputProps,
                 sx: {
                     backgroundColor: "white",
                     borderRadius: "10vw",
-                    boxShadow: "2px 5px 0px #1A7FB7",
+                    // boxShadow: "2px 5px 0px #1A7FB7",
                 },
             }}
         />
