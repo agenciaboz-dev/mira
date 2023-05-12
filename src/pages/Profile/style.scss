@@ -1,0 +1,45 @@
+@import '/src/sass/colors';
+
+.Profile-Page {
+    width: 100vw;
+    min-height: -webkit-fill-available;
+    background-image: url("../../../public/bricks.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    padding: 7vw;
+
+    .main-container {
+        background-color: $purple;
+        width: 100%;
+        height: 100%;
+        border-radius: 10vw;
+        padding: 5vw;
+        flex-direction: column;
+        gap: 5vw;
+    }
+
+    .Header-Component {
+        color: white;
+        justify-content: space-between;
+        align-items: center;
+
+        .info-container {
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+
+    .Account-Component {
+        width: 100%;
+        flex-direction: column;
+        color: white;
+
+        form {
+            flex-direction: column;
+            gap: 4vw;
+        }
+    }
+}

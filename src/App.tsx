@@ -11,6 +11,7 @@ import { Camera } from "./pages/Camera"
 import { Cart } from "./pages/Cart"
 import { Login } from "./pages/Login"
 import { Product } from "./pages/Product"
+import { Profile } from "./pages/Profile"
 import "./sass/_all.scss"
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
                                 <Route path="/adm/*" element={<Adm />} />
                                 <Route path="/cart" element={<Cart />} />
                                 <Route path="/scan" element={<Camera />} />
+                                <Route path="/profile/*" element={<Profile />} />
                             </Routes>
                         </BrowserRouter>
                     </CartProvider>

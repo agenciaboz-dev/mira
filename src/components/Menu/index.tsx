@@ -1,0 +1,38 @@
+import React from "react"
+import { Menu as MuiMenu, MenuItem } from "@mui/material"
+import { useLocalStorage } from "../../hooks/useLocalStorage"
+import { useUser } from "../../hooks/useUser"
+import { useNavigate } from "react-router-dom"
+
+interface MenuProps {
+    open: boolean
+    anchorEl: any
+    handleClose: () => void
+}
+
+export const Menu: React.FC<MenuProps> = ({ open, anchorEl, handleClose }) => {
+    const storage = useLocalStorage()
+    const { logout } = useUser()
+    const navigate = useNavigate()
+
+    const menuNavigate = (path: string) => {
+        handleClose()
+        navigate(path)
+    }
+
+    return (
+        <MuiMenu
+            id="basic-menu"
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+            MenuListProps={{
+                "aria-labelledby": "basic-button",
+            }}
+        >
+            <MenuItem onClick={() => menuNavigate("/cart")}>Carrinho</MenuItem>
+            <MenuItem onClick={() => menuNavigate("/profile/account")}>Detalhes da conta</MenuItem>
+            <MenuItem onClick={logout}>Sair</MenuItem>
+        </MuiMenu>
+    )
+}
