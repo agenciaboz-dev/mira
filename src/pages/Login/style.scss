@@ -37,7 +37,7 @@
             width: 100%;
             justify-content: center;
             gap: 2vw;
-            margin-top: 25vw;
+            margin-top: auto;
 
             .link {
                 display: flex;
@@ -90,8 +90,19 @@
     width: 100vw;
     height: 100%;
     background-color: $purple;
-    padding: 5vw 7vw;
+    padding: 7.5vw 7vw;
     gap: 5vw;
+
+    // .tp-signup-divider {
+    //     background-image: url("../../../public/bricks.png");
+    //     background-position: center;
+    //     background-repeat: no-repeat;
+    //     background-size: cover;
+    // }
+
+    // * {
+    //     z-index: 1;
+    // }
     
     .signup-arrow-up {
         height: 8vw;
