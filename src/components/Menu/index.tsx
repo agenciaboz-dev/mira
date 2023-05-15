@@ -45,8 +45,8 @@ export const Menu: React.FC<MenuProps> = ({ open, anchorEl, handleClose }) => {
         >
             <MenuItem onClick={() => storage.set("has_accessed", false)}>reset tutorial</MenuItem>
             <MenuItem onClick={() => menuNavigate("/cart")}>Carrinho</MenuItem>
-            <MenuItem onClick={() => menuNavigate("/profile/account")}>Detalhes da conta</MenuItem>
-            <MenuItem onClick={() => menuNavigate("/profile/address")}>Endereço de entrega</MenuItem>
+            <MenuItem onClick={() => menuNavigate("/profile/account")}>Detalhes da Conta</MenuItem>
+            <MenuItem onClick={() => menuNavigate("/profile/address")}>Endereço de Entrega</MenuItem>
             <MenuItem onClick={() => menuNavigate("/profile/financial")}>Financeiro</MenuItem>
             <MenuItem onClick={logout}>Sair</MenuItem>
         </MuiMenu>
