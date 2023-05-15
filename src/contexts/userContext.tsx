@@ -1,4 +1,4 @@
-import { createContext, useState } from "react"
+import { createContext, useEffect, useState } from "react"
 import React from "react"
 import { User } from "../definitions/user"
 import { useLocalStorage } from "../hooks/useLocalStorage"
@@ -19,6 +19,14 @@ export default UserContext
 export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
     const storage = useLocalStorage()
     const [value, setValue] = useState<User | null>(storage.get("mira.user"))
+
+    useEffect(() => {
+        console.log({ user: value })
+
+        if (storage.get("mira.rememberme")) {
+            storage.set("mira.user", value)
+        }
+    }, [value])
 
     return <UserContext.Provider value={{ value, setValue }}>{children}</UserContext.Provider>
 }

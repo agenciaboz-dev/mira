@@ -28,10 +28,8 @@ export const Financial: React.FC<FinancialProps> = ({ user }) => {
     const navigate = useNavigate()
     const { snackbar } = useSnackbar()
     const { setUser } = useUser()
-    const storage = useLocalStorage()
 
     const [loading, setLoading] = useState(false)
-    const [remember, setRemember] = useState(!!storage.get("mira.rememberme"))
     const [cardNumberError, setCardNumberError] = useState("")
 
     const initialValues = user.cards[0] || {
@@ -80,10 +78,6 @@ export const Financial: React.FC<FinancialProps> = ({ user }) => {
                     severity: "success",
                     text: "Cartão salvo",
                 })
-
-                if (remember) {
-                    storage.set("mira.user", updatedUser)
-                }
             },
             finallyCallback: () => setLoading(false),
         })

@@ -23,13 +23,10 @@ export const Address: React.FC<AddressProps> = ({ user }) => {
     const numberMask = useNumberMask()
     const estados = useEstadosBrasil()
     const api = useApi()
-    const storage = useLocalStorage()
     const navigate = useNavigate()
     const { snackbar } = useSnackbar()
-
     const { setUser } = useUser()
 
-    const [remember, setRemember] = useState(!!storage.get("mira.rememberme"))
     const [loading, setLoading] = useState(false)
 
     const initialValues: FormikValues = user.addresses[0] || {
@@ -65,10 +62,6 @@ export const Address: React.FC<AddressProps> = ({ user }) => {
                     severity: "success",
                     text: "Endereço salvo",
                 })
-
-                if (remember) {
-                    storage.set("mira.user", updatedUser)
-                }
             },
             finallyCallback: () => setLoading(false),
         })
