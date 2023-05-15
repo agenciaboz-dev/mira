@@ -1,6 +1,7 @@
-import { Avatar, Button, IconButton } from "@mui/material"
-import React, { useEffect, useState } from "react"
 import "./style.scss"
+import { Button, IconButton } from "@mui/material"
+import { ReactComponent as AvatarIcon } from "../../images/avatar_icon.svg"
+import React, { useEffect, useState } from "react"
 import QrCodeScannerIcon from "@mui/icons-material/QrCodeScanner"
 import { useNavigate } from "react-router-dom"
 import { useProducts } from "../../hooks/useProducts"
@@ -44,7 +45,7 @@ export const Cart: React.FC<CartProps> = ({}) => {
         <div className="Cart-Page">
             <div className="title-container">
                 <IconButton onClick={(event) => setAnchorEl(event.currentTarget)}>
-                    <Avatar sx={icon_style} />
+                    <AvatarIcon style={{ marginLeft: "-1vw", width: "10vw" }} />
                 </IconButton>
                 <h2>Carrinho</h2>
                 <IconButton onClick={() => navigate("/scan")}>

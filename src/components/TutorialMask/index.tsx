@@ -1,8 +1,8 @@
 import "./style.scss"
-import {ReactComponent as TutorialFocus} from "../../images/tutorial_focus.svg"
-import {ReactComponent as Balloon} from "../../images/balloon.svg"
-import {ReactComponent as Avatar} from "../../images/mira_avatar_2.svg"
-import {ReactComponent as AvatarBG} from "../../images/avatar_bg.svg"
+import { ReactComponent as TutorialFocus } from "../../images/tutorial_focus.svg"
+import { ReactComponent as Balloon } from "../../images/balloon.svg"
+import { ReactComponent as Avatar } from "../../images/mira_avatar_2.svg"
+import { ReactComponent as AvatarBG } from "../../images/avatar_bg.svg"
 import { useNavigate } from "react-router-dom"
 import { useLocalStorage } from "../../hooks/useLocalStorage"
 
