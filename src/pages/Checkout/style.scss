@@ -89,4 +89,26 @@
             }
         }
     }
+
+    .Address-Component {
+        overflow-y: auto;
+        width: 100%;
+        height: 100%;
+        padding-bottom: 2vw;
+
+        form {
+            flex-direction: column;
+            gap: 5vw;
+            height: 1vh;
+
+            .two-inputs {
+                gap: 3vw;
+
+                .small-input {
+                    flex: 0.4;
+                    text-align: center;
+                }
+            }
+        }
+    }
 }
