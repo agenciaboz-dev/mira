@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import CreditCardIcon from "@mui/icons-material/CreditCard"
 import PixIcon from "@mui/icons-material/Pix"
 import Collapsible from "react-collapsible"
@@ -25,10 +25,6 @@ export const Payment: React.FC<PaymentProps> = ({}) => {
 
     const [paymentType, setPaymentType] = useState<"pix" | "credit" | undefined>()
 
-    useEffect(() => {
-        console.log(paymentType)
-    }, [paymentType])
-
     return (
         <div className="Payment-Component">
             <h2>Faturamento</h2>
@@ -52,7 +48,10 @@ export const Payment: React.FC<PaymentProps> = ({}) => {
                     open={paymentType == "pix"}
                     onOpening={() => setPaymentType("pix")}
                 >
-                    <div className="pix-container">vamo pagar com pix</div>
+                    <p className="pix-children">
+                        Gere o código <span>copia e cola</span> ou page utilizando o leitor de <span>QR Code</span> de outro
+                        dispositivo.
+                    </p>
                 </Collapsible>
             </div>
         </div>
