@@ -10,6 +10,8 @@ import MaskedInput from "react-text-mask"
 import { useCardNumberMask } from "../../hooks/useCardNumberMask"
 import { useNumberMask } from "../../hooks/useNumberMask"
 import { useApi } from "../../hooks/useApi"
+import { useNavigate } from "react-router-dom"
+import { useSnackbar } from "../../hooks/useSnackbar"
 
 interface FinancialProps {
     user: User
@@ -21,6 +23,8 @@ export const Financial: React.FC<FinancialProps> = ({ user }) => {
     const numberMask = useNumberMask(2)
     const threeNumberMask = useNumberMask(3)
     const api = useApi()
+    const navigate = useNavigate()
+    const { snackbar } = useSnackbar()
 
     const [loading, setLoading] = useState(false)
 
@@ -53,7 +57,13 @@ export const Financial: React.FC<FinancialProps> = ({ user }) => {
         setLoading(true)
         api.user.card({
             data: { ...values, user_id: user.id, new_card: !user.cards[0]?.id },
-            callback: (response: { data: CardType }) => console.log(response.data),
+            callback: (response: { data: CardType }) => {
+                navigate("/cart")
+                snackbar({
+                    severity: "success",
+                    text: "Cartão atualizado",
+                })
+            },
             finallyCallback: () => setLoading(false),
         })
     }
