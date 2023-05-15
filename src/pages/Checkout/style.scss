@@ -27,5 +27,64 @@
         box-shadow: 2px 8px 0px #1A7FB7;
         border-radius: 10vw;
         border: 1px solid #555555;
+        padding: 5vw;
+    }
+
+    .Review-Component {
+        flex-direction: column;
+        gap: 5vw;
+        color: #555555;
+
+        .product-list {
+            flex-direction: column;
+            gap: 5vw;
+            height: 60%;
+            overflow-y: auto;
+
+            .product-container {
+                gap: 3vw;
+    
+                .image {
+                    width: 25%;
+                    aspect-ratio: 1/1;
+                    object-fit: cover;
+                }
+    
+                .info-container {
+                    flex-direction: column;
+                    justify-content: space-between;
+                    width: 100%;
+    
+                    .price-container {
+                        justify-content: space-between;
+                    }
+    
+                    p {
+                        font-weight: bold;
+                        font-size: 3.5vw;
+    
+                        span {
+                            font-weight: normal;
+                        }
+                    }
+    
+                }
+            }
+        }
+
+        .totals-container {
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 5vw;
+
+            p {
+                font-weight: bold;
+                font-size: 4vw;
+
+                span {
+                    font-weight: normal;
+                }
+            }
+        }
     }
 }

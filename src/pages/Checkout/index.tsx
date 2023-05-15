@@ -3,6 +3,7 @@ import "./style.scss"
 import { Button } from "../../components/Button"
 import { useColors } from "../../hooks/useColors"
 import { Route, Routes, useNavigate } from "react-router-dom"
+import { Review } from "./Review"
 
 interface CheckoutProps {}
 
@@ -23,7 +24,7 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
             </div>
             <div className="main-container">
                 <Routes>
-                    <Route index />
+                    <Route index element={<Review />} />
                 </Routes>
             </div>
         </div>

@@ -22,6 +22,7 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
 
     useEffect(() => {
         storage.set("mira.cart", value)
+        console.log({ cart: value })
     }, [value])
 
     return <CartContext.Provider value={{ value, setValue }}>{children}</CartContext.Provider>
