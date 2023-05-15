@@ -48,7 +48,7 @@ export const Review: React.FC<ReviewProps> = ({}) => {
                 <p>
                     Total do pedido (sem entrega): <CurrencyText value={total} />
                 </p>
-                <Button fullWidth style={button_style}>
+                <Button fullWidth style={button_style} onClick={() => navigate("payment")}>
                     <LocalIcon style={icon_style} />
                     Retirada no local
                 </Button>

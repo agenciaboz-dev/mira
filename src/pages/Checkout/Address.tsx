@@ -57,7 +57,7 @@ export const Address: React.FC<AddressProps> = ({}) => {
                 callback: (response: { data: AddressType }) => {
                     const updatedUser = { ...user!, addresses: [response.data] }
                     setUser(updatedUser)
-                    // navigate("/cart")
+                    navigate("/checkout/payment")
                     snackbar({
                         severity: "success",
                         text: "Endereço salvo",
@@ -67,6 +67,7 @@ export const Address: React.FC<AddressProps> = ({}) => {
             })
         } else {
             setAddress(values)
+            navigate("/checkout/payment")
         }
     }
 

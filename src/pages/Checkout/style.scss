@@ -95,6 +95,7 @@
         width: 100%;
         height: 100%;
         padding-bottom: 2vw;
+        flex-direction: column;
 
         form {
             flex-direction: column;
@@ -108,6 +109,31 @@
                     flex: 0.4;
                     text-align: center;
                 }
+            }
+        }
+    }
+
+    .Payment-Component {
+        overflow-y: auto;
+        width: 100%;
+        height: 100%;
+        padding-bottom: 2vw;
+        flex-direction: column;
+        gap: 2vw;
+
+        .choose-container {
+            margin-top: 3vw;
+            flex-direction: column;
+            gap: 10vw;
+
+            .container {
+                color: #53337D;
+                align-items: center;
+                padding: 2vw 5vw;
+                border: 1px solid #555555;;
+                border-radius: 15vw;
+                box-shadow: 2px 8px 0px #9AF82E;
+                gap: 7vw;
             }
         }
     }

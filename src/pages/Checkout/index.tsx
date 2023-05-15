@@ -5,6 +5,7 @@ import { useColors } from "../../hooks/useColors"
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom"
 import { Review } from "./Review"
 import { Address } from "./Address"
+import { Payment } from "./Payment"
 
 interface CheckoutProps {}
 
@@ -28,6 +29,7 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
                 <Routes>
                     <Route index element={<Review />} />
                     <Route path="address" element={<Address />} />
+                    <Route path="payment" element={<Payment />} />
                 </Routes>
             </div>
         </div>
