@@ -114,8 +114,10 @@ export const Account: React.FC<AccountProps> = ({ user }) => {
                             )}
                         />
 
-                        <h3>Alteração de senha</h3>
-                        <p>(deixa em branco para não alterar)</p>
+                        <div className="pwd-alter-title">
+                            <h2>Alteração de senha</h2>
+                            <p>(deixe em branco para não alterar)</p>
+                        </div>
                         <TextField
                             name="password"
                             placeholder="Senha atual"
