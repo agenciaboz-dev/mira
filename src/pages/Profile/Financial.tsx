@@ -32,6 +32,7 @@ export const Financial: React.FC<FinancialProps> = ({ user }) => {
 
     const [loading, setLoading] = useState(false)
     const [remember, setRemember] = useState(!!storage.get("mira.rememberme"))
+    const [cardNumberError, setCardNumberError] = useState("")
 
     const initialValues = user.cards[0] || {
         id: 0,
@@ -55,8 +56,17 @@ export const Financial: React.FC<FinancialProps> = ({ user }) => {
         marginRight: "2vw",
     }
 
+    const handleCardNumberBlur: React.FocusEventHandler<HTMLInputElement> = (event) => {
+        if (event.target.value.length < 19) {
+            setCardNumberError("Número de cartão inválido")
+        } else {
+            setCardNumberError("")
+        }
+    }
+
     const handleSubmit = (values: CardType) => {
         if (!values.type) return
+        if (!!cardNumberError) return
         if (loading) return
 
         setLoading(true)
@@ -122,7 +132,16 @@ export const Financial: React.FC<FinancialProps> = ({ user }) => {
                             name="number"
                             value={values.number}
                             onChange={handleChange}
-                            render={(ref, props) => <TextField inputRef={ref} {...props} placeholder="Número do cartão" />}
+                            onBlur={handleCardNumberBlur}
+                            render={(ref, props) => (
+                                <TextField
+                                    inputRef={ref}
+                                    {...props}
+                                    placeholder="Número do cartão"
+                                    error={!!cardNumberError}
+                                    helperText={cardNumberError}
+                                />
+                            )}
                         />
 
                         <h2>Data de expiração</h2>
