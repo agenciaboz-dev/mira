@@ -7,6 +7,7 @@ export interface User {
     adm: boolean
     phone: string
     addresses: Address[]
+    cards: Card[]
 }
 
 export interface Address {
@@ -23,6 +24,7 @@ export interface Address {
 }
 
 export interface Card {
+    id: number
     number: string
     name: string
     expiration_month: string

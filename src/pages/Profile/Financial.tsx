@@ -9,6 +9,7 @@ import { TextField } from "../../components/TextField"
 import MaskedInput from "react-text-mask"
 import { useCardNumberMask } from "../../hooks/useCardNumberMask"
 import { useNumberMask } from "../../hooks/useNumberMask"
+import { useApi } from "../../hooks/useApi"
 
 interface FinancialProps {
     user: User
@@ -19,8 +20,10 @@ export const Financial: React.FC<FinancialProps> = ({ user }) => {
     const cardNumberMask = useCardNumberMask()
     const numberMask = useNumberMask(2)
     const threeNumberMask = useNumberMask(3)
+    const api = useApi()
 
-    const initialValues = {
+    const initialValues = user.cards[0] || {
+        id: 0,
         number: "",
         name: "",
         expiration_month: "",
@@ -45,6 +48,10 @@ export const Financial: React.FC<FinancialProps> = ({ user }) => {
         if (!values.type) return
 
         console.log(values)
+        api.user.card({
+            data: { ...values, user_id: user.id, new_card: !user.cards[0]?.id },
+            callback: (response: { data: CardType }) => console.log(response.data),
+        })
     }
 
     return (
