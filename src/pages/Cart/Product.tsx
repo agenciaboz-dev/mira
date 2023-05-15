@@ -54,7 +54,7 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
                 color={"secondary"}
                 sx={{ color: colors.blue }}
             >
-                <Avatar sx={{ width: "15vw", height: "15vw" }} />
+                <Avatar sx={{ width: "15vw", height: "15vw" }} src={product.image} />
             </Badge>
             <div className="text-container">
                 <p>
