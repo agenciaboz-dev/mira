@@ -4,11 +4,13 @@ import { CurrencyText } from "../../components/CurrencyText"
 import { Button } from "../../components/Button"
 import { ReactComponent as LocalIcon } from "../../images/checkout/local.svg"
 import { ReactComponent as DeliveryIcon } from "../../images/checkout/delivery.svg"
+import { useNavigate } from "react-router-dom"
 
 interface ReviewProps {}
 
 export const Review: React.FC<ReviewProps> = ({}) => {
     const { cart, total } = useCart()
+    const navigate = useNavigate()
 
     const button_style = { fontSize: "5vw", justifyContent: "flex-start", padding: "1vw 5vw", gap: "10vw" }
     const icon_style = { width: "13%" }
@@ -50,7 +52,7 @@ export const Review: React.FC<ReviewProps> = ({}) => {
                     <LocalIcon style={icon_style} />
                     Retirada no local
                 </Button>
-                <Button fullWidth style={button_style}>
+                <Button fullWidth style={button_style} onClick={() => navigate("address")}>
                     <DeliveryIcon style={icon_style} />
                     Entrega
                 </Button>

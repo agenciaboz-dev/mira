@@ -2,29 +2,32 @@ import React from "react"
 import "./style.scss"
 import { Button } from "../../components/Button"
 import { useColors } from "../../hooks/useColors"
-import { Route, Routes, useNavigate } from "react-router-dom"
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom"
 import { Review } from "./Review"
+import { Address } from "./Address"
 
 interface CheckoutProps {}
 
 export const Checkout: React.FC<CheckoutProps> = ({}) => {
     const navigate = useNavigate()
     const colors = useColors()
+    const location = useLocation()
 
     return (
         <div className="Checkout-Page">
             <div className="cancel-container">
                 <h4>Finalização de compra</h4>
                 <Button
-                    onClick={() => navigate("/cart")}
+                    onClick={() => navigate(location.pathname == "/checkout" ? "/cart" : "/checkout")}
                     style={{ color: colors.purple, boxShadow: "none", background: "white" }}
                 >
-                    Cancelar
+                    {location.pathname == "/checkout" ? "Cancelar" : "Voltar"}
                 </Button>
             </div>
             <div className="main-container">
                 <Routes>
                     <Route index element={<Review />} />
+                    <Route path="address" element={<Address />} />
                 </Routes>
             </div>
         </div>
