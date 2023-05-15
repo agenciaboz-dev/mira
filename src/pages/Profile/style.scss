@@ -16,8 +16,16 @@
         border-radius: 10vw;
         padding: 5vw;
         flex-direction: column;
-        overflow-y: auto;
         color: white;
+        
+        .content-container {
+            overflow-y: auto;
+            width: 100%;
+
+            form {
+                padding-bottom: 2vw;
+            }
+        }
     }
 
     .Header-Component {
