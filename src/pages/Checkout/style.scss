@@ -1,6 +1,6 @@
 @import '/src/sass/colors';
 
-.Review-Page {
+.Checkout-Page {
     width: 100%;
     flex-direction: column;
     background-image: url("../../../public/bricks.png");
@@ -18,5 +18,14 @@
         padding: 4vw 5vw;
         align-items: center;
         color: white;
+    }
+
+    .main-container {
+        width: 100%;
+        height: 100%;
+        background-color: white;
+        box-shadow: 2px 8px 0px #1A7FB7;
+        border-radius: 10vw;
+        border: 1px solid #555555;
     }
 }

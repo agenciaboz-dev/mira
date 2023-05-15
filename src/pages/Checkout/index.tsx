@@ -2,16 +2,16 @@ import React from "react"
 import "./style.scss"
 import { Button } from "../../components/Button"
 import { useColors } from "../../hooks/useColors"
-import { useNavigate } from "react-router-dom"
+import { Route, Routes, useNavigate } from "react-router-dom"
 
-interface ReviewProps {}
+interface CheckoutProps {}
 
-export const Review: React.FC<ReviewProps> = ({}) => {
+export const Checkout: React.FC<CheckoutProps> = ({}) => {
     const navigate = useNavigate()
     const colors = useColors()
 
     return (
-        <div className="Review-Page">
+        <div className="Checkout-Page">
             <div className="cancel-container">
                 <h4>Finalização de compra</h4>
                 <Button
@@ -20,6 +20,11 @@ export const Review: React.FC<ReviewProps> = ({}) => {
                 >
                     Cancelar
                 </Button>
+            </div>
+            <div className="main-container">
+                <Routes>
+                    <Route index />
+                </Routes>
             </div>
         </div>
     )

@@ -11,7 +11,7 @@ export const FinishContainer: React.FC<FinishContainerProps> = ({}) => {
     const navigate = useNavigate()
 
     return (
-        <div className="FinishContainer-Component" onClick={() => navigate("/review")}>
+        <div className="FinishContainer-Component" onClick={() => navigate("/checkout")}>
             <p>
                 {cart.length || "Nenhum"} {cart.length > 1 ? "itens" : "item"} no carrinho
             </p>
