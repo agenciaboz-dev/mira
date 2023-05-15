@@ -3,6 +3,7 @@ import { Menu as MuiMenu, MenuItem } from "@mui/material"
 import { useLocalStorage } from "../../hooks/useLocalStorage"
 import { useUser } from "../../hooks/useUser"
 import { useNavigate } from "react-router-dom"
+import { useColors } from "../../hooks/useColors"
 
 interface MenuProps {
     open: boolean
@@ -14,6 +15,7 @@ export const Menu: React.FC<MenuProps> = ({ open, anchorEl, handleClose }) => {
     const storage = useLocalStorage()
     const { logout } = useUser()
     const navigate = useNavigate()
+    const colors = useColors()
 
     const menuNavigate = (path: string) => {
         handleClose()
@@ -28,6 +30,17 @@ export const Menu: React.FC<MenuProps> = ({ open, anchorEl, handleClose }) => {
             onClose={handleClose}
             MenuListProps={{
                 "aria-labelledby": "basic-button",
+            }}
+            
+            PaperProps={{
+                sx: {
+                    backgroundColor: colors.purple,
+                    boxShadow: "none",
+                    borderBottomLeftRadius: "8vw",
+                    borderBottomRightRadius: "8vw",
+                    color: "white",
+                    marginTop: "-4vw"
+                }
             }}
         >
             <MenuItem onClick={() => storage.set("has_accessed", false)}>reset tutorial</MenuItem>
