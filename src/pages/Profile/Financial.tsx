@@ -12,6 +12,8 @@ import { useNumberMask } from "../../hooks/useNumberMask"
 import { useApi } from "../../hooks/useApi"
 import { useNavigate } from "react-router-dom"
 import { useSnackbar } from "../../hooks/useSnackbar"
+import { useUser } from "../../hooks/useUser"
+import { useLocalStorage } from "../../hooks/useLocalStorage"
 
 interface FinancialProps {
     user: User
@@ -25,8 +27,11 @@ export const Financial: React.FC<FinancialProps> = ({ user }) => {
     const api = useApi()
     const navigate = useNavigate()
     const { snackbar } = useSnackbar()
+    const { setUser } = useUser()
+    const storage = useLocalStorage()
 
     const [loading, setLoading] = useState(false)
+    const [remember, setRemember] = useState(!!storage.get("mira.rememberme"))
 
     const initialValues = user.cards[0] || {
         id: 0,
@@ -58,11 +63,17 @@ export const Financial: React.FC<FinancialProps> = ({ user }) => {
         api.user.card({
             data: { ...values, user_id: user.id, new_card: !user.cards[0]?.id },
             callback: (response: { data: CardType }) => {
+                const updatedUser = { ...user, cards: [response.data] }
+                setUser(updatedUser)
                 navigate("/cart")
                 snackbar({
                     severity: "success",
-                    text: "Cartão atualizado",
+                    text: "Cartão salvo",
                 })
+
+                if (remember) {
+                    storage.set("mira.user", updatedUser)
+                }
             },
             finallyCallback: () => setLoading(false),
         })
