@@ -25,7 +25,8 @@ export interface Address {
 export interface Card {
     number: string
     name: string
-    expiration: string
+    expiration_month: string
+    expiration_year: string
     cvv: string
     type: string
 }

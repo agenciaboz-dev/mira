@@ -5,6 +5,10 @@ import { Card } from "../../components/Card"
 import { FormControlLabel, Radio, RadioGroup } from "@mui/material"
 import { Button } from "../../components/Button"
 import { useColors } from "../../hooks/useColors"
+import { TextField } from "../../components/TextField"
+import MaskedInput from "react-text-mask"
+import { useCardNumberMask } from "../../hooks/useCardNumberMask"
+import { useNumberMask } from "../../hooks/useNumberMask"
 
 interface FinancialProps {
     user: User
@@ -12,11 +16,15 @@ interface FinancialProps {
 
 export const Financial: React.FC<FinancialProps> = ({ user }) => {
     const colors = useColors()
+    const cardNumberMask = useCardNumberMask()
+    const numberMask = useNumberMask(2)
+    const threeNumberMask = useNumberMask(3)
 
     const initialValues = {
         number: "",
         name: "",
-        expiration: "",
+        expiration_month: "",
+        expiration_year: "",
         cvv: "",
         type: "",
     }
@@ -68,6 +76,49 @@ export const Financial: React.FC<FinancialProps> = ({ user }) => {
                                     label="Crédito"
                                 />
                             </RadioGroup>
+                        </div>
+
+                        <TextField
+                            placeholder="Nome registrado no cartão"
+                            name="name"
+                            value={values.name}
+                            onChange={handleChange}
+                        />
+                        <MaskedInput
+                            mask={cardNumberMask}
+                            guide={false}
+                            name="number"
+                            value={values.number}
+                            onChange={handleChange}
+                            render={(ref, props) => <TextField inputRef={ref} {...props} placeholder="Número do cartão" />}
+                        />
+
+                        <h2>Data de expiração</h2>
+                        <div className="expiration-container">
+                            <MaskedInput
+                                mask={numberMask}
+                                guide={false}
+                                name="expiration_month"
+                                value={values.expiration_month}
+                                onChange={handleChange}
+                                render={(ref, props) => <TextField inputRef={ref} {...props} placeholder="Mês" />}
+                            />
+                            <MaskedInput
+                                mask={numberMask}
+                                guide={false}
+                                name="expiration_year"
+                                value={values.expiration_year}
+                                onChange={handleChange}
+                                render={(ref, props) => <TextField inputRef={ref} {...props} placeholder="Ano" />}
+                            />
+                            <MaskedInput
+                                mask={threeNumberMask}
+                                guide={false}
+                                name="cvv"
+                                value={values.cvv}
+                                onChange={handleChange}
+                                render={(ref, props) => <TextField inputRef={ref} {...props} placeholder="CVV" />}
+                            />
                         </div>
 
                         <Button type="submit">Salvar</Button>

@@ -18,7 +18,7 @@ export const Card: React.FC<CardProps> = ({ card }) => {
 
             <div className="name-expiration">
                 <h3>{card.name || "Nome"}</h3>
-                <h3>{card.expiration || "00/00"}</h3>
+                <h3>{`${card.expiration_month}/${card.expiration_year}` || "00/00"}</h3>
             </div>
 
             <div className="cvv-container">
