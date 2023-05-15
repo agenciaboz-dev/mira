@@ -30,9 +30,11 @@ export const TextField: React.FC<TextFieldProps> = (props, {}) => {
                 sx: {
                     backgroundColor: "white",
                     borderRadius: "10vw",
+
                     // boxShadow: "2px 5px 0px #1A7FB7",
                 },
             }}
+            inputProps={{ sx: { padding: "3vw" } }}
         />
     )
 }
