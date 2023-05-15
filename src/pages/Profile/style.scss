@@ -60,4 +60,14 @@
             }
         }
     }
+
+    .Financial-Component {
+        flex-direction: column;
+        width: 100%;
+
+        form {
+            flex-direction: column;
+            gap: 5vw;
+        }
+    }
 }

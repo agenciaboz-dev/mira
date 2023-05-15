@@ -6,6 +6,7 @@ import { Header } from "./Header.index"
 import "./style.scss"
 import { useSnackbar } from "../../hooks/useSnackbar"
 import { Address } from "./Address"
+import { Financial } from "./Financial"
 
 interface ProfileProps {}
 
@@ -25,6 +26,7 @@ export const Profile: React.FC<ProfileProps> = ({}) => {
                     <Routes>
                         <Route path="/account" element={<Account user={user} />} />
                         <Route path="/address" element={<Address user={user} />} />
+                        <Route path="/financial" element={<Financial user={user} />} />
                     </Routes>
                 )}
             </div>
