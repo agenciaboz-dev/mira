@@ -27,4 +27,5 @@ export interface Card {
     name: string
     expiration: string
     cvv: string
+    type: string
 }

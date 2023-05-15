@@ -1,4 +1,4 @@
-import { Checkbox, FormControlLabel, CircularProgress } from "@mui/material"
+import { FormControlLabel, CircularProgress } from "@mui/material"
 import { Formik, Form } from "formik"
 import React, { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
@@ -10,6 +10,7 @@ import { useColors } from "../../hooks/useColors"
 import { useLocalStorage } from "../../hooks/useLocalStorage"
 import { useUser } from "../../hooks/useUser"
 import { ReactComponent as ArrowIcon } from "../../images/down_arrow.svg"
+import { Checkbox } from "../../components/Checkbox"
 
 interface LoginFormProps {}
 
@@ -99,26 +100,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({}) => {
                         />
 
                         <div className="submit-container">
-                            <FormControlLabel
-                                sx={{ gap: "3vw", margin: "0", whiteSpace: "nowrap" }}
-                                control={
-                                    <Checkbox
-                                        onChange={handleCheckboxChange}
-                                        sx={{
-                                            "&.Mui-checked": {
-                                                color: "#9AF82E",
-                                            },
-                                            color: "#EBEBEB",
-                                            backgroundColor: colors.purple,
-                                            padding: 0,
-                                            boxShadow: "3px 5px 0px #1A7FB7",
-                                            borderRadius: "5px",
-                                        }}
-                                        checked={remember}
-                                    />
-                                }
-                                label="Mantenha-me conectado"
-                            />
+                            <Checkbox value={remember} handleChange={handleCheckboxChange} label="Mantenha-me conectado" />
                             <Button type="submit" variant="contained" style={{ width: "30vw" }}>
                                 {loading ? (
                                     <CircularProgress sx={{ color: "white" }} style={{ width: "5vw", height: "auto" }} />
@@ -136,7 +118,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({}) => {
                 <p>Não tem conta?</p>
                 <p className="link" onClick={() => navigate("/login/signup")}>
                     Cadastre-se!
-                    <ArrowIcon className="signup-arrow-down"/>
+                    <ArrowIcon className="signup-arrow-down" />
                 </p>
             </div>
         </div>
