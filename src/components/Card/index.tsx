@@ -11,7 +11,7 @@ export const Card: React.FC<CardProps> = ({ card }) => {
     return (
         <div className="Card-Component">
             <div className="cardnumber-container">
-                <h3>{card.number || "0000 0000 0000 0000"}</h3>
+                <h4>{card.number || "0000 0000 0000 0000"}</h4>
                 <VisibilityIcon />
             </div>
             <p>Número do cartão</p>
