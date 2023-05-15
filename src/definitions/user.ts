@@ -21,3 +21,10 @@ export interface Address {
     city: string
     uf: string
 }
+
+export interface Card {
+    number: string
+    name: string
+    expiration: string
+    cvv: string
+}
