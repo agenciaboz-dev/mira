@@ -68,6 +68,10 @@
         form {
             flex-direction: column;
             gap: 5vw;
+
+            .type-container {
+                gap: 20vw;
+            }
         }
     }
 }
