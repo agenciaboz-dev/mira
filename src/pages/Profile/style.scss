@@ -16,7 +16,6 @@
         border-radius: 10vw;
         padding: 5vw;
         flex-direction: column;
-        gap: 5vw;
         overflow-y: auto;
         color: white;
     }
@@ -39,7 +38,16 @@
 
         form {
             flex-direction: column;
-            gap: 4vw;
+            gap: 5vw;
+
+            input {
+                color: #555555;
+                font-weight: 600;
+            }
+
+            .pwd-alter-title {
+                flex-direction: column;
+            }
         }
     }
 
@@ -48,7 +56,7 @@
 
         form {
             flex-direction: column;
-            gap: 4vw;
+            gap: 5vw;
 
             .two-inputs {
                 gap: 3vw;
