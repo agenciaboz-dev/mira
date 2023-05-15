@@ -22,7 +22,7 @@ interface FinancialProps {
 export const Financial: React.FC<FinancialProps> = ({ user }) => {
     const colors = useColors()
     const cardNumberMask = useCardNumberMask()
-    const numberMask = useNumberMask(2)
+    const numberMask = useNumberMask(2, true)
     const threeNumberMask = useNumberMask(3)
     const api = useApi()
     const navigate = useNavigate()

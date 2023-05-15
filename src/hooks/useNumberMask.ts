@@ -1,6 +1,6 @@
 import { createNumberMask } from "text-mask-addons"
 
-export const useNumberMask = (limit: number = 0) => {
+export const useNumberMask = (limit: number = 0, allowLeadingZeroes = false) => {
     const numberMask = createNumberMask({
         prefix: "",
         suffix: "",
@@ -10,7 +10,7 @@ export const useNumberMask = (limit: number = 0) => {
         decimalLimit: 2,
         integerLimit: limit,
         allowNegative: false,
-        allowLeadingZeroes: false,
+        allowLeadingZeroes: allowLeadingZeroes,
     })
 
     return numberMask
