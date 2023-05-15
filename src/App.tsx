@@ -15,6 +15,7 @@ import { Product } from "./pages/Product"
 import { Profile } from "./pages/Profile"
 import "./sass/_all.scss"
 import { Snackbar } from "./components/Snackbar"
+import { Review } from "./pages/Review"
 
 function App() {
     const muiTheme = useMuiTheme()
@@ -35,6 +36,7 @@ function App() {
                                     <Route path="/cart" element={<Cart />} />
                                     <Route path="/scan" element={<Camera />} />
                                     <Route path="/profile/*" element={<Profile />} />
+                                    <Route path="/review/*" element={<Review />} />
                                 </Routes>
                             </BrowserRouter>
                         </CartProvider>
