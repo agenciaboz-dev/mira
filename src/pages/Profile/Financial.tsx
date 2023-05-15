@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { Card as CardType, User } from "../../definitions/user"
 import { Form, Formik } from "formik"
 import { Card } from "../../components/Card"
-import { FormControlLabel, Radio, RadioGroup } from "@mui/material"
+import { CircularProgress, FormControlLabel, Radio, RadioGroup } from "@mui/material"
 import { Button } from "../../components/Button"
 import { useColors } from "../../hooks/useColors"
 import { TextField } from "../../components/TextField"
@@ -21,6 +21,8 @@ export const Financial: React.FC<FinancialProps> = ({ user }) => {
     const numberMask = useNumberMask(2)
     const threeNumberMask = useNumberMask(3)
     const api = useApi()
+
+    const [loading, setLoading] = useState(false)
 
     const initialValues = user.cards[0] || {
         id: 0,
@@ -46,11 +48,13 @@ export const Financial: React.FC<FinancialProps> = ({ user }) => {
 
     const handleSubmit = (values: CardType) => {
         if (!values.type) return
+        if (loading) return
 
-        console.log(values)
+        setLoading(true)
         api.user.card({
             data: { ...values, user_id: user.id, new_card: !user.cards[0]?.id },
             callback: (response: { data: CardType }) => console.log(response.data),
+            finallyCallback: () => setLoading(false),
         })
     }
 
@@ -128,7 +132,13 @@ export const Financial: React.FC<FinancialProps> = ({ user }) => {
                             />
                         </div>
 
-                        <Button type="submit">Salvar</Button>
+                        <Button type="submit">
+                            {loading ? (
+                                <CircularProgress sx={{ color: "white" }} style={{ width: "5vw", height: "auto" }} />
+                            ) : (
+                                "Salvar"
+                            )}
+                        </Button>
                     </Form>
                 )}
             </Formik>
