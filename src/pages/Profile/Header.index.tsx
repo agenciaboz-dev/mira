@@ -1,10 +1,11 @@
 import React, { useState } from "react"
 import { Menu } from "../../components/Menu"
-import { IconButton, Avatar } from "@mui/material"
+import { IconButton, } from "@mui/material"
 import { useUser } from "../../hooks/useUser"
 import { useCart } from "../../hooks/useCart"
 import { useNavigate } from "react-router-dom"
 import QrCodeScannerIcon from "@mui/icons-material/QrCodeScanner"
+import { ReactComponent as AvatarIcon } from "../../images/avatar_icon.svg"
 
 interface HeaderProps {}
 
@@ -26,7 +27,7 @@ export const Header: React.FC<HeaderProps> = ({}) => {
     return (
         <div className="Header-Component">
             <IconButton onClick={(event) => setAnchorEl(event.currentTarget)}>
-                <Avatar sx={icon_style} />
+                <AvatarIcon style={{ marginLeft: "-1vw", width: "10vw" }} />
             </IconButton>
 
             <div className="info-container">
