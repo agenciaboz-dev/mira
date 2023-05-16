@@ -136,6 +136,26 @@
                 gap: 7vw;
 
             }
+
+            .creditcard-children {
+                flex-direction: column;
+                margin-top: 5vw;
+
+                .CardForm-Component {
+                    flex-direction: column;
+                    gap: 3vw;
+
+                    .type-container {
+                        gap: 20vw;
+                        margin-bottom: 5vw;
+                    }
+        
+                    .expiration-container {
+                        gap: 2vw;
+                    }
+                }
+            }
+
             .pix-children {
                 margin-top: 5vw;
                 color: #555555;
