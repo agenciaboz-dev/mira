@@ -24,6 +24,7 @@
     .main-container {
         width: 100%;
         height: 100%;
+        overflow-y: auto;
         background-color: white;
         box-shadow: 2px 8px 0px #1A7FB7;
         border-radius: 10vw;
@@ -174,6 +175,7 @@
         width: 100%;
         flex-direction: column;
         gap: 5vw;
+        padding-bottom: 5vw;
 
         p {
             font-size: 3.5vw;
