@@ -5,6 +5,7 @@ import { useCart } from "../../hooks/useCart"
 import { ReactComponent as CopyIcon } from "../../images/copy.svg"
 import { Button } from "../../components/Button"
 import { useClipboard } from "../../hooks/useClipboard"
+import { useNavigate } from "react-router-dom"
 
 interface PixProps {}
 
@@ -13,6 +14,7 @@ export const Pix: React.FC<PixProps> = ({}) => {
 
     const { total } = useCart()
     const clipboard = useClipboard()
+    const navigate = useNavigate()
 
     const [qrCodeValue, setQrCodeValue] = useState("https://mira.agenciaboz.com.br")
     const [buttonText, setButtonText] = useState("Copiar código")
@@ -21,6 +23,7 @@ export const Pix: React.FC<PixProps> = ({}) => {
         clipboard.copy(qrCodeValue)
         setButtonText("Copiado")
         setTimeout(() => setButtonText("Copiar código"), 5000)
+        setTimeout(() => navigate("/checkout/finish"), 5000)
     }
 
     return (

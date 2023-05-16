@@ -7,6 +7,7 @@ import { Review } from "./Review"
 import { Address } from "./Address"
 import { Payment } from "./Payment"
 import { Pix } from "./Pix"
+import { Finish } from "./Finish"
 
 interface CheckoutProps {}
 
@@ -32,6 +33,7 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
                     <Route path="address" element={<Address />} />
                     <Route path="payment" element={<Payment />} />
                     <Route path="pix" element={<Pix />} />
+                    <Route path="finish" element={<Finish />} />
                 </Routes>
             </div>
         </div>

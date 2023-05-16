@@ -7,7 +7,7 @@ export const useAddress = () => {
     const addressContext = useContext(AddressContext)
 
     useEffect(() => {
-        addressContext.setValue(user!.addresses[0])
+        if (!addressContext.value) addressContext.setValue(user!.addresses[0])
     }, [])
 
     return { address: addressContext.value, setAddress: addressContext.setValue }

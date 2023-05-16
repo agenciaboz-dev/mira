@@ -192,4 +192,14 @@
             align-items: center;
         }
     }
+
+    .Finish-Component {
+        width: 100%;
+        flex-direction: column;
+        gap: 5vw;
+        color: $blue;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
 }

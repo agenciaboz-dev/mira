@@ -1,7 +1,10 @@
 import { createContext, useEffect, useState } from "react"
 import React from "react"
-import { Address } from "../definitions/user"
-import { useUser } from "../hooks/useUser"
+import { Address as AddressType } from "../definitions/user"
+
+interface Address extends AddressType {
+    delivery?: boolean
+}
 
 interface AddressContextValue {
     value: Address | undefined
