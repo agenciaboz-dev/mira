@@ -42,6 +42,8 @@ export const Payment: React.FC<PaymentProps> = ({}) => {
     const cardValues = { cardType, cardOwner, cardNumber, cardMonth, cardYear, cardCvv }
 
     const handleClick = () => {
+        // pagseguro handling
+
         if (paymentType == "credit") {
             console.log(cardValues)
             navigate("/checkout/finish")
