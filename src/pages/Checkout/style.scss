@@ -144,6 +144,9 @@
                 .CardForm-Component {
                     flex-direction: column;
                     gap: 3vw;
+                    overflow-y: auto;
+                    min-height: 25vh;
+                    height: 25vh;
 
                     .type-container {
                         gap: 20vw;
