@@ -31,7 +31,6 @@ export const Menu: React.FC<MenuProps> = ({ open, anchorEl, handleClose }) => {
             MenuListProps={{
                 "aria-labelledby": "basic-button",
             }}
-            
             PaperProps={{
                 sx: {
                     backgroundColor: colors.purple,
@@ -39,15 +38,13 @@ export const Menu: React.FC<MenuProps> = ({ open, anchorEl, handleClose }) => {
                     borderBottomLeftRadius: "8vw",
                     borderBottomRightRadius: "8vw",
                     color: "white",
-                    marginTop: "-4vw"
-                }
+                    marginTop: "-4vw",
+                },
             }}
         >
             <MenuItem onClick={() => storage.set("has_accessed", false)}>reset tutorial</MenuItem>
             <MenuItem onClick={() => menuNavigate("/cart")}>Carrinho</MenuItem>
             <MenuItem onClick={() => menuNavigate("/profile/account")}>Detalhes da Conta</MenuItem>
-            <MenuItem onClick={() => menuNavigate("/profile/address")}>Endereço de Entrega</MenuItem>
-            <MenuItem onClick={() => menuNavigate("/profile/financial")}>Financeiro</MenuItem>
             <MenuItem onClick={logout}>Sair</MenuItem>
         </MuiMenu>
     )
