@@ -90,6 +90,8 @@ export const Payment: React.FC<PaymentProps> = ({}) => {
                 </Collapsible>
             </div>
 
+            <img src="/address.mirinha.png" alt="Mirinha" />
+
             <Button
                 onClick={handleClick}
                 style={{
