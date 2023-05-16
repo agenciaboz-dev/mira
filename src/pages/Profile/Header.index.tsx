@@ -18,7 +18,7 @@ export const Header: React.FC<HeaderProps> = ({}) => {
 
     const navigate = useNavigate()
 
-    const icon_style = { color: "white", height: "10vw", width: "10vw" }
+    const icon_style = { color: "white", height: "auto", width: "5vw" }
 
     const handleCloseMenu = () => {
         setAnchorEl(null)
@@ -27,7 +27,7 @@ export const Header: React.FC<HeaderProps> = ({}) => {
     return (
         <div className="Header-Component">
             <IconButton onClick={(event) => setAnchorEl(event.currentTarget)}>
-                <AvatarIcon style={{ marginLeft: "-1vw", width: "10vw" }} />
+                <AvatarIcon style={{ marginLeft: "-1vw", width: "5vw" }} />
             </IconButton>
 
             <div className="info-container">

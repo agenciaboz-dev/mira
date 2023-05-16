@@ -13,8 +13,8 @@
         background-color: $purple;
         width: 100%;
         height: 100%;
-        border-radius: 10vw;
-        padding: 5vw;
+        border-radius: 5vw;
+        padding: 5vw 2vw;
         flex-direction: column;
         color: white;
         
@@ -32,7 +32,7 @@
         color: white;
         justify-content: space-between;
         align-items: center;
-        margin-top: -4vw;
+        margin-top: -4.5vw;
 
         .info-container {
             flex-direction: column;
@@ -56,6 +56,16 @@
 
             .pwd-alter-title {
                 flex-direction: column;
+            }
+
+            .qrcode-container {
+                gap: 5vw;
+                justify-content: space-between;
+
+                .text {
+                    flex-direction: column;
+                    gap: 1vw;
+                }
             }
         }
     }

@@ -11,17 +11,16 @@ import { styles } from "./styles"
 import { CircularProgress } from "@mui/material"
 import { useSnackbar } from "../../hooks/useSnackbar"
 import { useNavigate } from "react-router-dom"
+import { QRCode } from "react-qrcode-logo"
 
 interface AccountProps {
     user: User
 }
 
-interface FormValues extends User {
-    new_password: string
-    confirm_password: string
-}
+interface FormValues extends User {}
 
 export const Account: React.FC<AccountProps> = ({ user }) => {
+    const vw = window.innerWidth / 100
     const api = useApi()
     const navigate = useNavigate()
     const { snackbar } = useSnackbar()
@@ -31,12 +30,7 @@ export const Account: React.FC<AccountProps> = ({ user }) => {
     const [currentPasswordError, setCurrentPasswordError] = useState("")
     const [newPasswordError, setNewPasswordError] = useState("")
 
-    const initialValues: FormValues = {
-        ...user,
-        password: "",
-        new_password: "",
-        confirm_password: "",
-    }
+    const initialValues: FormValues = user
 
     const resetErrors = () => {
         setCurrentPasswordError("")
@@ -46,23 +40,9 @@ export const Account: React.FC<AccountProps> = ({ user }) => {
     const handleSubmit = (values: FormValues) => {
         setLoading(true)
         resetErrors()
-        console.log(values)
-        let change_password = false
-
-        if (values.password && values.new_password && values.confirm_password) {
-            if (values.password == user.password) {
-                if (values.new_password == values.confirm_password) {
-                    change_password = true
-                } else {
-                    setNewPasswordError("Senhas não conferem")
-                }
-            } else {
-                setCurrentPasswordError("Senha atual inválida")
-            }
-        }
 
         api.user.update({
-            data: { ...values, change_password },
+            data: { ...values, change_password: false },
             callback: (response: { data: User }) => {
                 setUser(response.data)
                 snackbar({
@@ -114,38 +94,18 @@ export const Account: React.FC<AccountProps> = ({ user }) => {
                             )}
                         />
 
-                        <div className="pwd-alter-title">
-                            <h2>Alteração de senha</h2>
-                            <p>(deixe em branco para não alterar)</p>
+                        <div className="qrcode-container">
+                            <QRCode value={"https://mira.agenciaboz.com.br"} size={20 * vw} />
+                            <div className="text">
+                                <h1>Baixe nosso aplicativo</h1>
+                                <p>
+                                    Utilize um leitor de QR Code de outro dispositivo e baixe nosso aplicativo para utilizar
+                                    no seu próprio dispositivo.
+                                </p>
+                            </div>
                         </div>
-                        <TextField
-                            name="password"
-                            placeholder="Senha atual"
-                            value={values.password}
-                            onChange={handleChange}
-                            InputLabelProps={{ sx: styles.textfield }}
-                            type="password"
-                            error={!!currentPasswordError}
-                            helperText={currentPasswordError}
-                        />
-                        <TextField
-                            name="new_password"
-                            placeholder="Nova senha"
-                            value={values.new_password}
-                            onChange={handleChange}
-                            InputLabelProps={{ sx: styles.textfield }}
-                            type="password"
-                        />
-                        <TextField
-                            name="confirm_password"
-                            placeholder="Confirmar senha"
-                            value={values.confirm_password}
-                            onChange={handleChange}
-                            InputLabelProps={{ sx: styles.textfield }}
-                            type="password"
-                            error={!!newPasswordError}
-                            helperText={newPasswordError}
-                        />
+
+                        <img src="/account_mirinha.png" alt="Mirinha Tablet" />
 
                         <Button type="submit">
                             {loading ? (
