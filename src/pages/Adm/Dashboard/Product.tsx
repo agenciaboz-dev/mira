@@ -6,6 +6,7 @@ import { CurrencyText } from "../../../components/CurrencyText"
 import QrCodeScannerIcon from "@mui/icons-material/QrCodeScanner"
 import CurrencyFormat from "react-currency-format"
 import { QrCodeModal } from "../../../components/QrcodeModal"
+import DeleteIcon from "@mui/icons-material/Delete"
 
 interface ProductProps {
     product: ProductType
@@ -37,6 +38,9 @@ export const Product: React.FC<ProductProps> = ({ product, setProduct }) => {
                 </IconButton>
                 <IconButton onClick={() => setProduct(product)}>
                     <EditIcon color="primary" />
+                </IconButton>
+                <IconButton onClick={() => setProduct(product)}>
+                    <DeleteIcon color="error" />
                 </IconButton>
             </div>
             <QrCodeModal id={product.id} open={showCode} setOpen={setShowCode} />
