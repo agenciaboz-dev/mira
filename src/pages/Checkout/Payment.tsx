@@ -44,6 +44,7 @@ export const Payment: React.FC<PaymentProps> = ({}) => {
     const handleClick = () => {
         if (paymentType == "credit") {
             console.log(cardValues)
+            navigate("/checkout/finish")
         } else {
             navigate("/checkout/pix")
         }

@@ -5,12 +5,14 @@ import { Button } from "../../components/Button"
 import { ReactComponent as LocalIcon } from "../../images/checkout/local.svg"
 import { ReactComponent as DeliveryIcon } from "../../images/checkout/delivery.svg"
 import { useNavigate } from "react-router-dom"
+import { useAddress } from "../../hooks/useAddress"
 
 interface ReviewProps {}
 
 export const Review: React.FC<ReviewProps> = ({}) => {
     const { cart, total } = useCart()
     const navigate = useNavigate()
+    const { address, setAddress } = useAddress()
 
     const button_style = { fontSize: "5vw", justifyContent: "flex-start", padding: "1vw 5vw", gap: "10vw" }
     const icon_style = { width: "13%" }
@@ -48,7 +50,14 @@ export const Review: React.FC<ReviewProps> = ({}) => {
                 <p>
                     Total do pedido (sem entrega): <CurrencyText value={total} />
                 </p>
-                <Button fullWidth style={button_style} onClick={() => navigate("payment")}>
+                <Button
+                    fullWidth
+                    style={button_style}
+                    onClick={() => {
+                        navigate("payment")
+                        if (address) setAddress({ ...address, delivery: false })
+                    }}
+                >
                     <LocalIcon style={icon_style} />
                     Retirada no local
                 </Button>
