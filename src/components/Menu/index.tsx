@@ -35,10 +35,9 @@ export const Menu: React.FC<MenuProps> = ({ open, anchorEl, handleClose }) => {
                 sx: {
                     backgroundColor: colors.purple,
                     boxShadow: "none",
-                    borderBottomLeftRadius: "8vw",
-                    borderBottomRightRadius: "8vw",
+                    borderBottomLeftRadius: "2vw",
+                    borderBottomRightRadius: "2vw",
                     color: "white",
-                    marginTop: "-4vw",
                 },
             }}
         >

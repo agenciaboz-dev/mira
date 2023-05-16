@@ -25,7 +25,7 @@ export const Cart: React.FC<CartProps> = ({}) => {
     const storage = useLocalStorage()
     const [tutorial, setTutorial] = useState(false)
 
-    const icon_style = { color: "white", height: "10vw", width: "10vw" }
+    const icon_style = { color: "white", height: "auto", width: "5vw" }
 
     const handleCloseMenu = () => {
         setAnchorEl(null)
@@ -45,7 +45,7 @@ export const Cart: React.FC<CartProps> = ({}) => {
         <div className="Cart-Page">
             <div className="title-container">
                 <IconButton onClick={(event) => setAnchorEl(event.currentTarget)}>
-                    <AvatarIcon style={{ marginLeft: "-1vw", width: "10vw" }} />
+                    <AvatarIcon style={{ marginLeft: "-1vw", width: "5vw" }} />
                 </IconButton>
                 <h2>Carrinho</h2>
                 <IconButton onClick={() => navigate("/scan")}>
