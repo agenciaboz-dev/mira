@@ -32,7 +32,7 @@ export const Header: React.FC<HeaderProps> = ({}) => {
 
             <div className="info-container">
                 <h3>{user?.name}</h3>
-                <p>{!!cart.length && (cart.length > 1 ? "itens no carrinho" : "item no carrinho")}</p>
+                <p>{!!cart.length && (cart.length > 1 ? `${cart.length} itens no carrinho` : "1 item no carrinho")}</p>
             </div>
 
             <IconButton onClick={() => navigate("/scan")}>
