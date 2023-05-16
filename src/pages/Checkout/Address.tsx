@@ -144,13 +144,7 @@ export const Address: React.FC<AddressProps> = ({}) => {
                             </TextField>
                         </div>
 
-                        <Checkbox
-                            label="Salve esse endereço para compras futuras"
-                            value={saveAddress}
-                            labelStyle={{ flexDirection: "row-reverse", whiteSpace: "break-spaces" }}
-                            checkboxStyle={{ backgroundColor: "transparent" }}
-                            handleChange={(_, checked) => setSaveAddress(checked)}
-                        />
+                        <img src="/address.mirinha.png" alt="Mirinha Endereço" />
 
                         <Button type="submit">
                             {loading ? (
