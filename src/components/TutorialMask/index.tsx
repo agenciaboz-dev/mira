@@ -1,10 +1,10 @@
 import "./style.scss"
 import { ReactComponent as TutorialFocus } from "../../images/tutorial_focus.svg"
 import { ReactComponent as Balloon } from "../../images/balloon.svg"
-import { ReactComponent as Avatar } from "../../images/mira_avatar_2.svg"
 import { ReactComponent as AvatarBG } from "../../images/avatar_bg.svg"
 import { useNavigate } from "react-router-dom"
 import { useLocalStorage } from "../../hooks/useLocalStorage"
+import avatarWebp from "../../../src/images/mirinha_avatar.webp"
 
 export const TutorialMask = ({ }) => {
 
@@ -18,7 +18,6 @@ export const TutorialMask = ({ }) => {
 
     return (
         <div className="tutorial-mask">
-            <div></div>
                 <TutorialFocus className="focus" onClick={ completeTutorial } />
             <div className="balloon-container">
                 <Balloon className="balloon" />
@@ -26,7 +25,7 @@ export const TutorialMask = ({ }) => {
                     <p>Olá! Me chamo Mirinha.<br />Caso queira adicionar um produto ao seu carrinho, basta clicar no botão indicado e mirar a sua câmera em um QR Code de nossos produtos!</p>
                 </div>
             </div>
-            <Avatar className="avatar"/>
+            <img className="avatar" src={avatarWebp} alt="" />
             <AvatarBG className="avatar-bg" />
         </div>
     )

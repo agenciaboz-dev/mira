@@ -1,3 +1,5 @@
+@import '/src/sass/colors';
+
 .tutorial-mask {
     flex-direction: column;
     background-color: transparentize(#D9D9D9, 0.3);
@@ -9,6 +11,7 @@
     -webkit-mask-image: radial-gradient(circle 13vw at (80.5vw 17vw), transparent 100%, black 100%);
     mask-image: radial-gradient(circle 13vw at (80.5vw 17vw), transparent 100%, black 100%);
     z-index: 9;
+    overflow-y: hidden;
 
     .focus {
         position: absolute;
@@ -22,7 +25,7 @@
 
     .balloon-container {
         position: relative;
-        margin-top: 80vw;
+        margin-top: 70vw;
         justify-content: center;
         align-items: center;
 
@@ -45,14 +48,15 @@
     .avatar {
         position: absolute;
         width: 60vw;
-        right: 4vw;
-        top: 90vw;
+        right: 3vw;
+        top: 100vw;
         z-index: 1;
     }
 
     .avatar-bg {
         position: absolute;
+        height: -webkit-fill-available;
         width: 100vw;
-        top: 100vw;
+        top: 80vw;
     }
 }
