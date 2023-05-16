@@ -6,8 +6,8 @@
     left: 0;
     height: 100vh;
     width: 100%;
-    -webkit-mask-image: radial-gradient(circle 13vw at (80.5vw 15.5vw), transparent 100%, black 100%);
-    mask-image: radial-gradient(circle 13vw at (80.5vw 15.5vw), transparent 100%, black 100%);
+    -webkit-mask-image: radial-gradient(circle 13vw at (80.5vw 17vw), transparent 100%, black 100%);
+    mask-image: radial-gradient(circle 13vw at (80.5vw 17vw), transparent 100%, black 100%);
     z-index: 9;
 
     .focus {
@@ -15,7 +15,7 @@
         width: 30vw;
         height: 30vw;
         border-radius: 50%;
-        top: 0.5vw;
+        top: 2vw;
         right: 4.5vw;
         z-index: 10;
     }
