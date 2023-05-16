@@ -7,6 +7,7 @@ import { Button } from "../../components/Button"
 import { Financial } from "../Profile/Financial"
 import { CardForm } from "../../components/CardForm"
 import { useUser } from "../../hooks/useUser"
+import { useNavigate } from "react-router-dom"
 
 interface PaymentProps {}
 
@@ -26,6 +27,7 @@ export const Payment: React.FC<PaymentProps> = ({}) => {
     )
 
     const colors = useColors()
+    const navigate = useNavigate()
     const { user } = useUser()
 
     const [paymentType, setPaymentType] = useState<"pix" | "credit" | undefined>()
@@ -43,7 +45,7 @@ export const Payment: React.FC<PaymentProps> = ({}) => {
         if (paymentType == "credit") {
             console.log(cardValues)
         } else {
-            console.log("pix")
+            navigate("/checkout/pix")
         }
     }
 

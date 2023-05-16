@@ -10,6 +10,7 @@
 
     padding: 7vw;
     gap: 5vw;
+    color: #555555;
 
     .cancel-container {
         justify-content: space-between;
@@ -33,7 +34,6 @@
     .Review-Component {
         flex-direction: column;
         gap: 5vw;
-        color: #555555;
 
         .product-list {
             flex-direction: column;
@@ -161,13 +161,33 @@
 
             .pix-children {
                 margin-top: 5vw;
-                color: #555555;
                 font-weight: bold;
 
                 span {
                     color: #6E40AA;
                 }
             }
+        }
+    }
+
+    .Pix-Component {
+        width: 100%;
+        flex-direction: column;
+        gap: 5vw;
+
+        p {
+            font-size: 3.5vw;
+            font-weight: 600;
+        }
+
+        .code-wrapper {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .totals-container {
+            flex-direction: column;
+            align-items: center;
         }
     }
 }
