@@ -16,12 +16,12 @@ export const Finish: React.FC<FinishProps> = ({}) => {
     const deadline = DateTime.local().plus({ hours: 6, minutes: 30 }).toJSDate()
     const timer = useTimer({ expiryTimestamp: deadline })
 
-    const button_style = { padding: "2vw 12vw", gap: "10vw", justifyContent: "flex-start" }
+    const button_style = { padding: "3vw", gap: "5vw", justifyContent: "center", width: "100%" }
     const icon_style = { width: "7vw", height: "auto" }
 
     return (
         <div className="Finish-Component">
-            <CheckCircleIcon sx={{ color: colors.blue, width: "15vw", height: "auto" }} />
+            <CheckCircleIcon sx={{ color: colors.blue, width: "15vw", height: "auto", marginBottom: "-4vw" }} />
             <h1>Pagamento Confirmado!</h1>
 
             {address?.delivery ? (
