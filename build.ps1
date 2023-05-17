@@ -1,4 +1,8 @@
+$user = "agenciaboz"
+$domain = "tablet.mira.agenciaboz.com.br"
+$path = "/home/$user/$domain"
+
 yarn build
 Write-Output 'Uploading build to server'
-scp -r -P 22022 build/* agenciaboz:/home/agenciaboz/mira.agenciaboz.com.br
-ssh -p 22022 agenciaboz "chown -R agenciaboz:agenciaboz /home/agenciaboz/mira.agenciaboz.com.br/*"
+scp -r -P 22022 build/* agenciaboz:$path
+ssh -p 22022 agenciaboz "chown -R $user`:$user $path/*"
