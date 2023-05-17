@@ -106,8 +106,8 @@ export const Product: React.FC<ProductProps> = ({ product, style, innerRef, onCl
                 <IconButton onClick={() => changeQuantity(1)}>
                     <PlusIcon style={styles.cart_icon} />
                 </IconButton>
-                <Button style={{ fontSize: "2vw", width: "45%", padding: "2vw 7vw" }} onClick={() => addToCart()}>
-                    Adicionar ao carrinho
+                <Button style={{ fontSize: "3.75vw", width: "45%", padding: "0.5vw 7vw", lineHeight: "1.25" }} onClick={() => addToCart()}>
+                    Adicionar ao Carrinho
                 </Button>
             </div>
         </div>
