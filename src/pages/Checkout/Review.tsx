@@ -14,7 +14,7 @@ export const Review: React.FC<ReviewProps> = ({}) => {
     const navigate = useNavigate()
     const { address, setAddress } = useAddress()
 
-    const button_style = { fontSize: "5vw", justifyContent: "flex-start", padding: "1vw 5vw", gap: "10vw" }
+    const button_style = { fontSize: "2.5vw", justifyContent: "flex-start", padding: "1vw 4vw", gap: "5vw" }
     const icon_style = { width: "13%" }
 
     return (
@@ -50,21 +50,23 @@ export const Review: React.FC<ReviewProps> = ({}) => {
                 <p>
                     Total do pedido (sem entrega): <CurrencyText value={total} />
                 </p>
-                <Button
-                    fullWidth
-                    style={button_style}
-                    onClick={() => {
-                        navigate("payment")
-                        if (address) setAddress({ ...address, delivery: false })
-                    }}
-                >
-                    <LocalIcon style={icon_style} />
-                    Retirada no local
-                </Button>
-                <Button fullWidth style={button_style} onClick={() => navigate("address")}>
-                    <DeliveryIcon style={icon_style} />
-                    Entrega
-                </Button>
+                <div className="buttons-container">
+                    <Button
+                        fullWidth
+                        style={button_style}
+                        onClick={() => {
+                            navigate("payment")
+                            if (address) setAddress({ ...address, delivery: false })
+                        }}
+                    >
+                        <LocalIcon style={icon_style} />
+                        Retirada no local
+                    </Button>
+                    <Button fullWidth style={button_style} onClick={() => navigate("address")}>
+                        <DeliveryIcon style={icon_style} />
+                        Entrega
+                    </Button>
+                </div>
             </div>
         </div>
     )
