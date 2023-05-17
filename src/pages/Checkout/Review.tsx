@@ -19,9 +19,9 @@ export const Review: React.FC<ReviewProps> = ({}) => {
 
     return (
         <div className="Review-Component">
-            <h2 style={{ fontWeight: "normal" }}>
+            <h1 style={{ fontWeight: "normal" }}>
                 {cart.length || "Nenhum"} {cart.length > 1 ? "itens" : "item"} no carrinho
-            </h2>
+            </h1>
             <div className="product-list">
                 {cart.map((product) => (
                     <div className="product-container" key={product.id}>

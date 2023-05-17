@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
 import "./style.scss"
-import { Button } from "../../components/Button"
+import { IconButton } from "@mui/material"
 import { useColors } from "../../hooks/useColors"
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom"
 import { Review } from "./Review"
@@ -9,6 +9,7 @@ import { Payment } from "./Payment"
 import { Pix } from "./Pix"
 import { Finish } from "./Finish"
 import { useUser } from "../../hooks/useUser"
+import CancelPresentationIcon from "@mui/icons-material/CancelPresentation"
 
 interface CheckoutProps {}
 
@@ -19,22 +20,11 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
 
     return (
         <div className="Checkout-Page">
-            <div className="cancel-container">
-                <h4>Finalização de compra</h4>
-                <Button
-                    onClick={() => navigate(location.pathname == "/checkout" ? "/cart" : "/checkout")}
-                    style={{
-                        color: colors.purple,
-                        boxShadow: "none",
-                        background: "white",
-                        padding: "0.5vw 2vw",
-                        fontSize: "2.5vw",
-                    }}
-                >
-                    {location.pathname == "/checkout" ? "Cancelar" : "Voltar"}
-                </Button>
-            </div>
+            <img src="/promotions.png" alt="Promoções" />
             <div className="main-container">
+                <IconButton onClick={() => navigate("/cart")} sx={{ position: "absolute", right: "1vw", top: "1vw" }}>
+                    <CancelPresentationIcon color="error" sx={{ width: "5vw" }} />
+                </IconButton>
                 <Routes>
                     <Route index element={<Review />} />
                     <Route path="address" element={<Address />} />
