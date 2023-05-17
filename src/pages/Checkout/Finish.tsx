@@ -16,7 +16,7 @@ export const Finish: React.FC<FinishProps> = ({}) => {
     const deadline = DateTime.local().plus({ hours: 6, minutes: 30 }).toJSDate()
     const timer = useTimer({ expiryTimestamp: deadline })
 
-    const button_style = { padding: "2vw 12vw", gap: "10vw", justifyContent: "flex-start" }
+    const button_style = { padding: "1vw 7vw", gap: "5vw", justifyContent: "flex-start", fontSize: "4vw" }
     const icon_style = { width: "7vw", height: "auto" }
 
     return (
