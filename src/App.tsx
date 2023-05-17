@@ -17,6 +17,7 @@ import "./sass/_all.scss"
 import { Snackbar } from "./components/Snackbar"
 import { Checkout } from "./pages/Checkout"
 import { AddressProvider } from "./contexts/addressContext"
+import { SplashScreen } from "./pages/SplashScreen"
 
 function App() {
     const muiTheme = useMuiTheme()
@@ -31,7 +32,7 @@ function App() {
                                 <BrowserRouter>
                                     <Snackbar />
                                     <Routes>
-                                        <Route index element={<Login />} />
+                                        <Route index element={<SplashScreen />} />
                                         <Route path="/*" element={<Login />} />
                                         <Route path="/login/*" element={<Login />} />
                                         <Route path="/adm/*" element={<Adm />} />

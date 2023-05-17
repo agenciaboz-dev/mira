@@ -1,0 +1,12 @@
+@import '/src/sass/colors';
+
+.SplashScreen-Page {
+    width: 100vw;
+    height: -webkit-fill-available;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
