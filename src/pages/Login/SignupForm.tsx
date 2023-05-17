@@ -8,7 +8,7 @@ import { TextField } from "../../components/TextField"
 import { User } from "../../definitions/user"
 import { useApi } from "../../hooks/useApi"
 import { ReactComponent as ArrowIcon } from "../../images/down_arrow.svg"
-import { ReactComponent as Divider } from "../../images/pasta_de_dente.svg"
+import { ReactComponent as Divider } from "../../images/pasta_de_dente_2.svg"
 
 interface SignupFormProps {}
 
@@ -103,7 +103,7 @@ export const SignupForm: React.FC<SignupFormProps> = ({}) => {
                             onChange={handleChange}
                             render={(ref, props) => <TextField inputRef={ref} {...props} placeholder="Telefone" fullWidth size="small" />}
                         />
-                        <Button type="submit" variant="contained" style={{ fontSize: "5vw" }} fullWidth >
+                        <Button type="submit" variant="contained" style={{ fontSize: "3vw" }} fullWidth >
                             {loading ? (
                                 <CircularProgress sx={{ color: "white" }} style={{ width: "10vw", height: "auto" }} />
                             ) : (
