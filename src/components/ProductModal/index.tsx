@@ -1,12 +1,4 @@
-import {
-    Dialog,
-    CircularProgress,
-    DialogContent,
-    DialogContentText,
-    DialogTitle,
-    DialogActions,
-    Button,
-} from "@mui/material"
+import { Dialog, CircularProgress, DialogContent, DialogContentText, DialogTitle, DialogActions } from "@mui/material"
 import React, { useRef, useState, useEffect } from "react"
 import { Product } from "../../definitions/product"
 import { useProducts } from "../../hooks/useProducts"
@@ -27,23 +19,27 @@ import MaskedInput from "react-text-mask"
 import { useCurrencyMask } from "../../hooks/useCurrencyMask"
 import { useNumberMask } from "../../hooks/useNumberMask"
 import { useApi } from "../../hooks/useApi"
+import { ReactComponent as MinusIcon } from "../../images/product/minus.svg"
+import { ReactComponent as PlusIcon } from "../../images/product/plus.svg"
+import { Button } from "../Button"
 
 interface ProductModalProps {
     open: boolean
     setOpen: (open: boolean) => void
-    product?: Product
-    clearProduct: () => void
+    product: Product
 }
 
-export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, product, clearProduct }) => {
+export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, product }) => {
     const [error, setError] = useState(false)
     const [loading, setLoading] = useState(false)
+    const [quantity, setQuantity] = useState(1)
 
     const colors = useColors()
     const currencyMask = useCurrencyMask()
     const numberMask = useNumberMask()
     const api = useApi()
     const { refresh } = useProducts()
+    const { add } = useCart()
 
     const initialValues: Product = product || {
         name: "",
@@ -81,76 +77,64 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, produ
         }
     }
 
+    const changeQuantity = (value: number) => {
+        if (quantity == 1 && value == -1) return
+
+        setQuantity(quantity + value)
+    }
+
+    const addToCart = () => {
+        add(product, quantity)
+        setOpen(false)
+    }
+
     const handleClose = () => {
         setOpen(false)
-        clearProduct()
     }
 
     return (
         <Dialog open={open} onClose={handleClose} sx={styles.dialog}>
-            <DialogTitle sx={styles.title}>
-                <IconButton onClick={handleClose} sx={{ position: "absolute", left: "1vw" }}>
-                    <CancelPresentationIcon color="error" sx={styles.close_icon} />
-                </IconButton>
-                {product?.name || "Novo produto"}
-            </DialogTitle>
+            <IconButton onClick={handleClose} sx={{ position: "absolute", right: "1vw" }}>
+                <CancelPresentationIcon color="error" sx={styles.close_icon} />
+            </IconButton>
 
             <DialogContent sx={styles.content_container}>
-                <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-                    {({ values, handleChange }) => (
-                        <Form>
-                            <TextField label="Nome" name="name" value={values.name} onChange={handleChange} />
-                            <TextField
-                                label="Descrição"
-                                name="description"
-                                value={values.description}
-                                onChange={handleChange}
-                            />
-                            <MaskedInput
-                                mask={currencyMask}
-                                guide={false}
-                                name="price"
-                                value={values.price.toString().replace(".", ",")}
-                                onChange={handleChange}
-                                render={(ref, props) => <TextField inputRef={ref} {...props} label="Preço" />}
-                            />
-                            <MaskedInput
-                                mask={numberMask}
-                                guide={false}
-                                name="stock"
-                                value={values.stock}
-                                onChange={handleChange}
-                                render={(ref, props) => <TextField inputRef={ref} {...props} label="Quantidade" />}
-                            />
-                            <TextField label="História" name="story" value={values.story} onChange={handleChange} />
-                            <TextField label="Link de imagem" name="image" value={values.image} onChange={handleChange} />
-                            <TextField label="Link de vídeo" name="video" value={values.video} onChange={handleChange} />
-                            {product ? (
-                                <Button type="submit" variant="contained" fullWidth>
-                                    {loading ? (
-                                        <CircularProgress
-                                            style={{ width: "1.5rem", height: "auto" }}
-                                            sx={{ color: "white" }}
-                                        />
-                                    ) : (
-                                        `Atualizar ${product.name}`
-                                    )}
-                                </Button>
-                            ) : (
-                                <Button type="submit" variant="contained" fullWidth>
-                                    {loading ? (
-                                        <CircularProgress
-                                            style={{ width: "1.5rem", height: "auto" }}
-                                            sx={{ color: "white" }}
-                                        />
-                                    ) : (
-                                        `Adicionar produto`
-                                    )}
-                                </Button>
-                            )}
-                        </Form>
-                    )}
-                </Formik>
+                <div className="info-container">
+                    <img src={product.image} alt={product.name} />
+                    <div className="text-container">
+                        <h1 style={{ alignItems: "center", display: "flex" }}>
+                            {product.name}
+                            <CurrencyText value={product.price} style={{ fontSize: "2vw", marginLeft: "auto" }} />
+                        </h1>
+                        <p>{product.description}</p>
+                    </div>
+                </div>
+                <div className="specs-container"></div>
+                <div className="story-container"></div>
+                <div className="cart-container">
+                    <IconButton onClick={() => changeQuantity(-1)}>
+                        <MinusIcon style={styles.cart_icon} />
+                    </IconButton>
+                    <TextField
+                        value={quantity}
+                        onChange={(event) => setQuantity(Number(event.target.value))}
+                        sx={{ width: "12vw" }}
+                        InputProps={{
+                            sx: {
+                                backgroundColor: colors.light_grey,
+                                borderRadius: "7vw",
+                                height: "5vw",
+                            },
+                        }}
+                        inputProps={{ sx: { textAlign: "center" }, inputMode: "numeric" }}
+                    />
+                    <IconButton onClick={() => changeQuantity(1)}>
+                        <PlusIcon style={styles.cart_icon} />
+                    </IconButton>
+                    <Button style={{ fontSize: "2vw", width: "45%", marginLeft: "auto" }} onClick={() => addToCart()}>
+                        Adicionar ao carrinho
+                    </Button>
+                </div>
             </DialogContent>
         </Dialog>
     )
