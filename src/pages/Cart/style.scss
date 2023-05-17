@@ -19,6 +19,10 @@
         align-items: center;
         justify-content: space-between;
         color: white;
+
+        h2 {
+            font-size: 6vw;
+        }
     }
 
     .product-list {
@@ -31,12 +35,13 @@
         
         .Product-Component {
             width: 99%;
-            border-radius: 15vw;
+            border-radius: 10vw;
             padding: 5vw 5vw;
             background-color: white;
             align-items: center;
             box-shadow: 2px 8px 0px $blue;
             gap: 5vw;
+            border: 1px solid $light_grey;
 
             .MuiBadge-badge {
                 top: 2vw;
@@ -54,13 +59,12 @@
                 font-size: 4vw;
 
                 .quantity-input {
-                    width: 13vw;
-                    border-radius: 3vw;
+                    width: 10vw;
+                    border-radius: 1vw;
                     border: none;
                     font-size: 4vw;
-                    padding: 3vw;
-                    outline-color: $light_grey;
-                    outline: 1px solid $dark_grey;
+                    padding: 1vw;
+                    outline: 1px solid $light_grey;
                 }
 
                 .quantity-input:focus {
@@ -80,18 +84,19 @@
     width: 100%;
     flex-direction: column;
     box-shadow: 2px 8px 0px $blue;
-    border-radius: 15vw;
+    border-radius: 10vw;
     background-color: white;
     padding: 7vw;
     color: $dark_grey;
     gap: 2vw;
+    border: 1px solid $light_grey;
 
     p {
-        font-size: 6vw;
+        font-size: 5vw;
     }
 
     h3 {
-        font-size: 7vw;
+        font-size: 6vw;
     }
 
     .total-container {

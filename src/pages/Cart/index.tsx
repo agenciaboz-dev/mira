@@ -26,6 +26,7 @@ export const Cart: React.FC<CartProps> = ({}) => {
     const [tutorial, setTutorial] = useState(false)
 
     const icon_style = { color: "white", height: "10vw", width: "10vw" }
+    const button_style = { padding: "0" }
 
     const handleCloseMenu = () => {
         setAnchorEl(null)
@@ -44,11 +45,11 @@ export const Cart: React.FC<CartProps> = ({}) => {
     return (
         <div className="Cart-Page">
             <div className="title-container">
-                <IconButton onClick={(event) => setAnchorEl(event.currentTarget)}>
+                <IconButton onClick={(event) => setAnchorEl(event.currentTarget)} style={button_style} >
                     <AvatarIcon style={{ marginLeft: "-1vw", width: "10vw" }} />
                 </IconButton>
                 <h2>Carrinho</h2>
-                <IconButton onClick={() => navigate("/scan")}>
+                <IconButton onClick={() => navigate("/scan")} style={button_style} >
                     <QrCodeScannerIcon sx={icon_style} />
                 </IconButton>
             </div>
