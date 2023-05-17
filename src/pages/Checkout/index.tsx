@@ -22,7 +22,7 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
                 <h4>Finalização de compra</h4>
                 <Button
                     onClick={() => navigate(location.pathname == "/checkout" ? "/cart" : "/checkout")}
-                    style={{ color: colors.purple, boxShadow: "none", background: "white" }}
+                    style={{ color: colors.purple, boxShadow: "none", background: "white", padding: "0.5vw 2vw" }}
                 >
                     {location.pathname == "/checkout" ? "Cancelar" : "Voltar"}
                 </Button>

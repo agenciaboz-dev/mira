@@ -16,9 +16,15 @@
         justify-content: space-between;
         background-color: $purple;
         border-radius: 15vw;
-        padding: 4vw 5vw;
+        padding: 4vw;
         align-items: center;
         color: white;
+        
+        h4 {
+            font-size: 5vw;
+            text-align: center;
+            font-weight: 600;
+        }
     }
 
     .main-container {
