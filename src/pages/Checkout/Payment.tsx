@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import CreditCardIcon from "@mui/icons-material/CreditCard"
 import PixIcon from "@mui/icons-material/Pix"
 import Collapsible from "react-collapsible"
@@ -31,6 +31,7 @@ export const Payment: React.FC<PaymentProps> = ({}) => {
     const { user } = useUser()
 
     const [paymentType, setPaymentType] = useState<"pix" | "credit" | undefined>()
+    const [disabled, setDisabled] = useState(false)
 
     const [cardType, setCardType] = useState<string>("debit")
     const [cardOwner, setCardOwner] = useState<string>("")
@@ -38,6 +39,7 @@ export const Payment: React.FC<PaymentProps> = ({}) => {
     const [cardMonth, setCardMonth] = useState<string>("")
     const [cardYear, setCardYear] = useState<string>("")
     const [cardCvv, setCardCvv] = useState<string>("")
+    const [cardError, setCardError] = useState(false)
 
     const cardValues = { cardType, cardOwner, cardNumber, cardMonth, cardYear, cardCvv }
 
@@ -46,11 +48,25 @@ export const Payment: React.FC<PaymentProps> = ({}) => {
 
         if (paymentType == "credit") {
             console.log(cardValues)
+            if (cardError) return
+
             navigate("/checkout/finish")
         } else {
             navigate("/checkout/pix")
         }
     }
+
+    useEffect(() => {
+        console.log({ cardError })
+        if (paymentType == "credit" && cardError) {
+            setDisabled(true)
+        } else setDisabled(false)
+    }, [cardError])
+
+    useEffect(() => {
+        setDisabled(!paymentType)
+        if (paymentType == "credit" && cardError) setDisabled(true)
+    }, [paymentType])
 
     return (
         <div className="Payment-Component">
@@ -70,7 +86,15 @@ export const Payment: React.FC<PaymentProps> = ({}) => {
                         <CardForm
                             user={user!}
                             values={cardValues}
-                            setValues={{ setCardType, setCardOwner, setCardNumber, setCardMonth, setCardYear, setCardCvv }}
+                            setValues={{
+                                setCardType,
+                                setCardOwner,
+                                setCardNumber,
+                                setCardMonth,
+                                setCardYear,
+                                setCardCvv,
+                                setCardError,
+                            }}
                         />
                     </div>
                 </Collapsible>
@@ -94,12 +118,12 @@ export const Payment: React.FC<PaymentProps> = ({}) => {
                 onClick={handleClick}
                 style={{
                     marginTop: "auto",
-                    // background: !paymentType ? "linear-gradient(90deg, #9F9F9F 0%, #565656 91.94%)" : "",
-                    // boxShadow: !paymentType ? "none" : "",
+                    background: disabled ? "linear-gradient(90deg, #9F9F9F 0%, #565656 91.94%)" : "",
+                    boxShadow: disabled ? "none" : "",
                 }}
-                // disabled={!paymentType}
+                disabled={disabled}
             >
-                Finalizar compra
+                {paymentType == "credit" && cardError ? "Cartão inválido" : "Finalizar compra"}
             </Button>
         </div>
     )

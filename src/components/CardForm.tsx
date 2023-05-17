@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { Card, User } from "../definitions/user"
 import { useColors } from "../hooks/useColors"
 import { useApi } from "../hooks/useApi"
@@ -29,11 +29,14 @@ interface CardFormProps {
         setCardMonth: (value: string) => void
         setCardYear: (value: string) => void
         setCardCvv: (value: string) => void
+        setCardError: (value: boolean) => void
     }
 }
 
 export const CardForm: React.FC<CardFormProps> = ({ user, values, setValues }) => {
     const [cardNumberError, setCardNumberError] = useState("")
+    const [cardCvvError, setCardCvvError] = useState("")
+    const [cardMonthError, setCardMonthError] = useState("")
 
     const colors = useColors()
     const api = useApi()
@@ -66,6 +69,41 @@ export const CardForm: React.FC<CardFormProps> = ({ user, values, setValues }) =
             setCardNumberError("")
         }
     }
+
+    const handleCardCvvBlur: React.FocusEventHandler<HTMLInputElement> = (event) => {
+        if (event.target.value.length < 3) {
+            setCardCvvError("CVV inválido")
+        } else {
+            setCardCvvError("")
+        }
+    }
+
+    const handleCardMonthBlur: React.FocusEventHandler<HTMLInputElement> = (event) => {
+        if (Number(event.target.value) > 12) {
+            setCardMonthError("Mês inválido")
+        } else {
+            setCardMonthError("")
+        }
+    }
+
+    useEffect(() => {
+        if (!(values.cardCvv && values.cardMonth && values.cardNumber && values.cardOwner && values.cardYear)) {
+            setValues.setCardError(true)
+        } else {
+            if (values.cardCvv.length != 3) {
+                setValues.setCardError(true)
+            } else {
+                if (Number(values.cardMonth) > 12 || Number(values.cardNumber) < 1) {
+                    console.log(Number(values.cardMonth))
+                    setValues.setCardError(true)
+                } else {
+                    if (values.cardNumber.length != 19) {
+                        setValues.setCardError(true)
+                    } else setValues.setCardError(false)
+                }
+            }
+        }
+    }, [values])
 
     return (
         <div className="CardForm-Component">
@@ -125,8 +163,16 @@ export const CardForm: React.FC<CardFormProps> = ({ user, values, setValues }) =
                     name="expiration_month"
                     value={values.cardMonth}
                     onChange={(event) => setValues.setCardMonth(event.target.value)}
+                    onBlur={handleCardMonthBlur}
                     render={(ref, props) => (
-                        <TextField inputRef={ref} {...props} placeholder="Mês" InputProps={{ style: input_style }} />
+                        <TextField
+                            inputRef={ref}
+                            {...props}
+                            placeholder="Mês"
+                            InputProps={{ style: input_style }}
+                            error={!!cardMonthError}
+                            helperText={cardMonthError}
+                        />
                     )}
                 />
                 <MaskedInput
@@ -145,8 +191,16 @@ export const CardForm: React.FC<CardFormProps> = ({ user, values, setValues }) =
                     name="cvv"
                     value={values.cardCvv}
                     onChange={(event) => setValues.setCardCvv(event.target.value)}
+                    onBlur={handleCardCvvBlur}
                     render={(ref, props) => (
-                        <TextField inputRef={ref} {...props} placeholder="CVV" InputProps={{ style: input_style }} />
+                        <TextField
+                            inputRef={ref}
+                            {...props}
+                            placeholder="CVV"
+                            InputProps={{ style: input_style }}
+                            error={!!cardCvvError}
+                            helperText={cardCvvError}
+                        />
                     )}
                 />
             </div>
