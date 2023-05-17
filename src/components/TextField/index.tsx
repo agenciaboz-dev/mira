@@ -34,7 +34,7 @@ export const TextField: React.FC<TextFieldProps> = (props, {}) => {
                     // boxShadow: "2px 5px 0px #1A7FB7",
                 },
             }}
-            inputProps={{ sx: { padding: "3vw" } }}
+            inputProps={{ sx: { padding: "1.5vw 2vw" } }}
         />
     )
 }
