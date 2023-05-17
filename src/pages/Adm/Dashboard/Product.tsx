@@ -7,6 +7,9 @@ import QrCodeScannerIcon from "@mui/icons-material/QrCodeScanner"
 import CurrencyFormat from "react-currency-format"
 import { QrCodeModal } from "../../../components/QrcodeModal"
 import DeleteIcon from "@mui/icons-material/Delete"
+import { useApi } from "../../../hooks/useApi"
+import { useProducts } from "../../../hooks/useProducts"
+import { useSnackbar } from "../../../hooks/useSnackbar"
 
 interface ProductProps {
     product: ProductType
@@ -15,6 +18,23 @@ interface ProductProps {
 
 export const Product: React.FC<ProductProps> = ({ product, setProduct }) => {
     const [showCode, setShowCode] = useState(false)
+
+    const api = useApi()
+    const products = useProducts()
+    const { snackbar } = useSnackbar()
+
+    const handleDeleteClick = () => {
+        api.products.delete({
+            data: product,
+            callback: (response: { data: ProductType }) => {
+                products.refresh()
+                snackbar({
+                    severity: "warning",
+                    text: "Produto deletado",
+                })
+            },
+        })
+    }
 
     return (
         <Paper className="Product-Component">
@@ -39,7 +59,7 @@ export const Product: React.FC<ProductProps> = ({ product, setProduct }) => {
                 <IconButton onClick={() => setProduct(product)}>
                     <EditIcon color="primary" />
                 </IconButton>
-                <IconButton onClick={() => setProduct(product)}>
+                <IconButton onClick={handleDeleteClick}>
                     <DeleteIcon color="error" />
                 </IconButton>
             </div>
