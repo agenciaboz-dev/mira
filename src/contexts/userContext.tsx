@@ -18,15 +18,7 @@ export default UserContext
 
 export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
     const storage = useLocalStorage()
-    const [value, setValue] = useState<User | null>(storage.get("mira.user"))
-
-    useEffect(() => {
-        console.log({ user: value })
-
-        if (storage.get("mira.rememberme")) {
-            storage.set("mira.user", value)
-        }
-    }, [value])
+    const [value, setValue] = useState<User | null>(null)
 
     return <UserContext.Provider value={{ value, setValue }}>{children}</UserContext.Provider>
 }

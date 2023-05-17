@@ -18,12 +18,7 @@ export default CartContext
 
 export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
     const storage = useLocalStorage()
-    const [value, setValue] = useState<Cart[]>(storage.get("mira.cart") || [])
-
-    useEffect(() => {
-        storage.set("mira.cart", value)
-        console.log({ cart: value })
-    }, [value])
+    const [value, setValue] = useState<Cart[]>([])
 
     return <CartContext.Provider value={{ value, setValue }}>{children}</CartContext.Provider>
 }

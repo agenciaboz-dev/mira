@@ -3,30 +3,78 @@
 .Cart-Page {
     width: 100vw;
     min-height: -webkit-fill-available;
+    overflow-x: hidden;
     flex-direction: column;
     background-image: url("../../../public/bricks_webp.webp");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    color: #555555;
 
     gap: 3vw;
-    padding: 2vw 4vw;
+    padding: 2vw;
 
     .title-container {
-        background-color: $purple;
-        border-radius: 15vw;
-        padding: 1vw 5vw;
-        align-items: center;
-        justify-content: space-between;
-        color: white;
+        img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
     }
 
-    .product-list {
+    .catalog-container {
+        justify-content: space-between;
+        height: 50vh;
+        flex-shrink: 0;
+
+        .categories-list {
+            background-color: white;
+            flex: 0.2;
+            border-radius: 3vw;
+            border: 1px solid #555555;
+            box-shadow: 2px 8px 0px #1A7FB7;;
+        }
+        
+        .product-list-container {
+            background-color: white;
+            flex: 0.78;
+            border: 1px solid #555555;
+            border-radius: 3vw;
+            box-shadow: 2px 8px 0px #1A7FB7;
+            flex-direction: column;
+            padding: 3vw;
+            gap: 5vw;
+
+            .product-list {
+                flex-wrap: wrap;
+                justify-content: space-between;
+
+                .product-container {
+                    width: 30%;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 1vw;
+
+                    img {
+                        width: 100%;
+                        aspect-ratio: 1/1;
+                        object-fit: cover;
+                    }
+                }
+            }
+        }
+    }
+
+    .cart-list {
         flex-direction: row;
         overflow-y: auto;
         // overflow-x: hidden;
+        background-color: white;
+        border: 1px solid #555555;
+        border-radius: 3vw;
+        box-shadow: 2px 8px 0px #1A7FB7;
         width: 100%;
-        max-height: 70vh;
+        height: 100%;
         gap: 2vw;
         padding-bottom: 2vw;
         flex-wrap: wrap;
@@ -83,7 +131,7 @@
     width: 100%;
     flex-direction: column;
     box-shadow: 2px 8px 0px $blue;
-    border-radius: 3.5vw;
+    border-radius: 3vw;
     background-color: white;
     padding: 3vw;
     color: $dark_grey;
