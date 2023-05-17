@@ -30,7 +30,7 @@ export const Payment: React.FC<PaymentProps> = ({}) => {
     const navigate = useNavigate()
     const { user } = useUser()
 
-    const [paymentType, setPaymentType] = useState<"pix" | "credit" | undefined>()
+    const [paymentType, setPaymentType] = useState<"pix" | "credit" | undefined>("pix")
     const [disabled, setDisabled] = useState(false)
 
     const [cardType, setCardType] = useState<string>("debit")
@@ -119,7 +119,7 @@ export const Payment: React.FC<PaymentProps> = ({}) => {
             <Button
                 onClick={handleClick}
                 style={{
-                    // marginTop: "auto",
+                    fontSize: "3vw",
                     background: disabled ? "linear-gradient(90deg, #9F9F9F 0%, #565656 91.94%)" : "",
                     boxShadow: disabled ? "none" : "",
                 }}
