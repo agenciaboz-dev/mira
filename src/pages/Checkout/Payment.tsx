@@ -90,15 +90,17 @@ export const Payment: React.FC<PaymentProps> = ({}) => {
                 </Collapsible>
             </div>
 
-            <img src="/address.mirinha.png" alt="Mirinha" />
+            <img style={{ marginTop: "auto" }} src="/address.mirinha.png" alt="Mirinha" />
 
             <Button
                 onClick={handleClick}
-                style={{
-                    marginTop: "auto",
-                    // background: !paymentType ? "linear-gradient(90deg, #9F9F9F 0%, #565656 91.94%)" : "",
-                    // boxShadow: !paymentType ? "none" : "",
-                }}
+                style={
+                    {
+                        // marginTop: "auto",
+                        // background: !paymentType ? "linear-gradient(90deg, #9F9F9F 0%, #565656 91.94%)" : "",
+                        // boxShadow: !paymentType ? "none" : "",
+                    }
+                }
                 // disabled={!paymentType}
             >
                 Finalizar compra
