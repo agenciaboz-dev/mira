@@ -46,13 +46,14 @@ export const CardForm: React.FC<CardFormProps> = ({ user, values, setValues }) =
 
     const radio_style = {
         "&.Mui-checked": {
+            backgroundColor: colors.purple,
             color: "#9AF82E",
         },
         color: "#EBEBEB",
-        backgroundColor: colors.purple,
+        backgroundColor: colors.dark_grey,
         padding: 0,
         boxShadow: "2px 3px 0px #1A7FB7",
-        borderRadius: "5px",
+        borderRadius: "50%",
         marginRight: "2vw",
     }
 
