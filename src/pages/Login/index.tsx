@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import "./style.scss"
 import { ReactComponent as Logo } from "../../images/logo.svg"
-import { ReactComponent as Divider } from "../../images/pasta_de_dente.svg"
+import { ReactComponent as Divider } from "../../images/pasta_de_dente_2.svg"
 import { ReactComponent as BackgroundElement } from "../../images/background_element.svg"
 import { LoginForm } from "./LoginForm"
 import { SignupForm } from "./SignupForm"
