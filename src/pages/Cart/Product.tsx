@@ -54,7 +54,7 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
                 color={"secondary"}
                 sx={{ color: colors.blue }}
             >
-                <img style={{ width: "9vw", height: "9vw" }} src={product.image} />
+                <img style={{ width: "6vw", height: "auto" }} src={product.image} />
             </Badge>
             <div className="text-container">
                 <p>
@@ -76,7 +76,7 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
                 </p>
             </div>
             <IconButton onClick={removeProduct} sx={{ marginLeft: "auto" }}>
-                <TrashIcon style={{ width: "3vw" }} />
+                <TrashIcon style={{ width: "2vw" }} />
             </IconButton>
             <ProductStory product={product} open={story} setOpen={setStory} />
         </div>
