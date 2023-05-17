@@ -126,21 +126,23 @@
         height: 100%;
         padding-bottom: 2vw;
         flex-direction: column;
-        gap: 2vw;
+        gap: 1vw;
 
         .choose-container {
-            margin-top: 3vw;
+            margin-top: 1vw;
             flex-direction: column;
-            gap: 10vw;
+            gap: 3vw;
 
             .container {
                 color: #53337D;
                 align-items: center;
-                padding: 2vw 5vw;
+                padding: 1vw 2vw;
                 border: 1px solid #555555;;
                 border-radius: 15vw;
                 box-shadow: 2px 8px 0px #9AF82E;
-                gap: 7vw;
+                gap: 3vw;
+
+                font-size: 3vw;
 
             }
 

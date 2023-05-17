@@ -14,14 +14,14 @@ interface PaymentProps {}
 export const Payment: React.FC<PaymentProps> = ({}) => {
     const CreditCardContainer: React.FC<{ open?: boolean }> = ({ open }) => (
         <div className="container" style={{ backgroundColor: open ? colors.purple : "white" }}>
-            <CreditCardIcon sx={{ color: open ? "white" : colors.purple }} />
+            <CreditCardIcon sx={{ color: open ? "white" : colors.purple, width: "5vw", height: "auto" }} />
             <h3 style={{ color: open ? "white" : colors.purple }}>Cartão</h3>
         </div>
     )
 
     const PixContainer: React.FC<{ open?: boolean }> = ({ open }) => (
         <div className="container" style={{ backgroundColor: open ? colors.purple : "white" }}>
-            <PixIcon sx={{ color: open ? "white" : colors.purple }} />
+            <PixIcon sx={{ color: open ? "white" : colors.purple, width: "5vw", height: "auto" }} />
             <h3 style={{ color: open ? "white" : colors.purple }}>PIX</h3>
         </div>
     )
