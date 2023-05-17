@@ -180,17 +180,22 @@
     .Pix-Component {
         width: 100%;
         flex-direction: column;
-        gap: 5vw;
+        gap: 2vw;
         padding-bottom: 5vw;
 
+        h4 {
+            font-size: 3vw;
+        }
+
         p {
-            font-size: 3.5vw;
+            font-size: 2.5vw;
             font-weight: 600;
         }
 
         .code-wrapper {
             width: 100%;
             justify-content: center;
+            margin-top: 10vw;
         }
 
         .totals-container {
