@@ -11,15 +11,15 @@
         flex-direction: column;
         justify-content: flex-end;
         height: 100vh;
-        padding: 5vw;
+        padding: 3vw;
         
         .button-container {
             z-index: 1;
             background-color: white;
             flex-direction: column;
             box-shadow: 2px 8px 0px $blue;
-            border-radius: 10vw;
-            padding: 5vw;
+            border-radius: 4vw;
+            padding: 3vw;
             gap: 3vw;
             align-items: center;
 
@@ -27,7 +27,7 @@
                 justify-content: center;
                 align-items: center;
                 gap: 2vw;
-                font-size: 5vw;
+                font-size: 3vw;
             }
         }
     }

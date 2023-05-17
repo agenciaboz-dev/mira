@@ -112,7 +112,7 @@ export const Camera: React.FC<CameraProps> = ({}) => {
             <div className="button-wrapper">
                 <div className="button-container">
                     {loading ? (
-                        <CircularProgress style={{ width: "30vw", height: "auto" }} sx={{ color: colors.blue }} />
+                        <CircularProgress style={{ width: "17vw", height: "auto" }} sx={{ color: colors.blue }} />
                     ) : (
                         <>
                             <h2>{error}</h2>
@@ -122,7 +122,7 @@ export const Camera: React.FC<CameraProps> = ({}) => {
                                 fullWidth
                                 variant="contained"
                                 style={{
-                                    fontSize: "3.5vw",
+                                    fontSize: "2.5vw",
                                     padding: "2vw",
                                     color: "white",
                                     background: !error ? "linear-gradient(90deg, #9F9F9F 0%, #565656 91.94%)" : "",
@@ -131,7 +131,7 @@ export const Camera: React.FC<CameraProps> = ({}) => {
                                 {error ? "Tentar novamente" : "Aponte a camera para um QR Code"}
                             </Button>
                             <div className="cancel-button" onClick={() => navigate(-1)}>
-                                <CancelIcon sx={{ color: colors.red, width: "8vw", height: "auto" }} />
+                                <CancelIcon sx={{ color: colors.red, width: "5vw", height: "auto" }} />
                                 Cancelar leitura
                             </div>
                         </>
