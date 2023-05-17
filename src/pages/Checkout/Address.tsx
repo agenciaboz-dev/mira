@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom"
 import { useApi } from "../../hooks/useApi"
 import { useSnackbar } from "../../hooks/useSnackbar"
 import { useAddress } from "../../hooks/useAddress"
+import { useColors } from "../../hooks/useColors"
 
 interface AddressProps {}
 
@@ -24,6 +25,7 @@ export const Address: React.FC<AddressProps> = ({}) => {
     const api = useApi()
     const { snackbar } = useSnackbar()
     const { address, setAddress } = useAddress()
+    const colors = useColors()
 
     const [loading, setLoading] = useState(false)
     const [saveAddress, setSaveAddress] = useState(false)
@@ -39,6 +41,8 @@ export const Address: React.FC<AddressProps> = ({}) => {
         city: "",
         uf: "",
     }
+
+    const input_style = { border: `2px solid ${colors.blue}` }
 
     const handleSubmit = (values: AddressType) => {
         if (loading) return
@@ -82,6 +86,7 @@ export const Address: React.FC<AddressProps> = ({}) => {
                             name="receiver"
                             value={values.receiver}
                             onChange={handleChange}
+                            InputProps={{ style: input_style }}
                         />
                         <MaskedInput
                             mask={["(", /\d/, /\d/, ")", " ", /\d/, /\d/, /\d/, /\d/, /\d/, "-", /\d/, /\d/, /\d/, /\d/]}
@@ -89,7 +94,14 @@ export const Address: React.FC<AddressProps> = ({}) => {
                             name="phone"
                             value={values.phone}
                             onChange={handleChange}
-                            render={(ref, props) => <TextField inputRef={ref} {...props} placeholder="Telefone" />}
+                            render={(ref, props) => (
+                                <TextField
+                                    inputRef={ref}
+                                    {...props}
+                                    placeholder="Telefone"
+                                    InputProps={{ style: input_style }}
+                                />
+                            )}
                         />
                         <MaskedInput
                             mask={[/\d/, /\d/, ".", /\d/, /\d/, /\d/, "-", /\d/, /\d/, /\d/]}
@@ -97,9 +109,17 @@ export const Address: React.FC<AddressProps> = ({}) => {
                             name="cep"
                             value={values.cep}
                             onChange={handleChange}
-                            render={(ref, props) => <TextField inputRef={ref} {...props} placeholder="CEP" />}
+                            render={(ref, props) => (
+                                <TextField inputRef={ref} {...props} placeholder="CEP" InputProps={{ style: input_style }} />
+                            )}
                         />
-                        <TextField placeholder="Endereço" name="address" value={values.address} onChange={handleChange} />
+                        <TextField
+                            placeholder="Endereço"
+                            name="address"
+                            value={values.address}
+                            onChange={handleChange}
+                            InputProps={{ style: input_style }}
+                        />
                         <div className="two-inputs">
                             <MaskedInput
                                 mask={numberMask}
@@ -108,7 +128,13 @@ export const Address: React.FC<AddressProps> = ({}) => {
                                 value={values.number.toString()}
                                 onChange={handleChange}
                                 render={(ref, props) => (
-                                    <TextField inputRef={ref} {...props} className="small-input" placeholder="Número" />
+                                    <TextField
+                                        inputRef={ref}
+                                        {...props}
+                                        className="small-input"
+                                        placeholder="Número"
+                                        InputProps={{ style: input_style }}
+                                    />
                                 )}
                             />
                             <TextField
@@ -117,9 +143,16 @@ export const Address: React.FC<AddressProps> = ({}) => {
                                 value={values.complement}
                                 onChange={handleChange}
                                 sx={{ flex: "0.8" }}
+                                InputProps={{ style: input_style }}
                             />
                         </div>
-                        <TextField placeholder="Bairro" name="district" value={values.district} onChange={handleChange} />
+                        <TextField
+                            placeholder="Bairro"
+                            name="district"
+                            value={values.district}
+                            onChange={handleChange}
+                            InputProps={{ style: input_style }}
+                        />
                         <div className="two-inputs">
                             <TextField
                                 placeholder="Cidade"
@@ -127,6 +160,7 @@ export const Address: React.FC<AddressProps> = ({}) => {
                                 value={values.city}
                                 onChange={handleChange}
                                 sx={{ flex: "0.8" }}
+                                InputProps={{ style: input_style }}
                             />
                             <TextField
                                 select
@@ -135,6 +169,7 @@ export const Address: React.FC<AddressProps> = ({}) => {
                                 onChange={handleChange}
                                 value={values.uf}
                                 className="small-input"
+                                InputProps={{ style: input_style }}
                             >
                                 {estados.map((estado) => (
                                     <MenuItem key={estado.value} value={estado.value} style={{ width: "100%" }}>
