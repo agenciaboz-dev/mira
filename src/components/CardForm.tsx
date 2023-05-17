@@ -57,6 +57,8 @@ export const CardForm: React.FC<CardFormProps> = ({ user, values, setValues }) =
         marginRight: "2vw",
     }
 
+    const input_style = { border: `2px solid ${colors.blue}` }
+
     const handleCardNumberBlur: React.FocusEventHandler<HTMLInputElement> = (event) => {
         if (event.target.value.length < 19) {
             setCardNumberError("Número de cartão inválido")
@@ -94,6 +96,7 @@ export const CardForm: React.FC<CardFormProps> = ({ user, values, setValues }) =
                 name="name"
                 value={values.cardOwner}
                 onChange={(event) => setValues.setCardOwner(event.target.value)}
+                InputProps={{ style: input_style }}
             />
             <MaskedInput
                 mask={cardNumberMask}
@@ -109,6 +112,7 @@ export const CardForm: React.FC<CardFormProps> = ({ user, values, setValues }) =
                         placeholder="Número do cartão"
                         error={!!cardNumberError}
                         helperText={cardNumberError}
+                        InputProps={{ style: input_style }}
                     />
                 )}
             />
@@ -121,7 +125,9 @@ export const CardForm: React.FC<CardFormProps> = ({ user, values, setValues }) =
                     name="expiration_month"
                     value={values.cardMonth}
                     onChange={(event) => setValues.setCardMonth(event.target.value)}
-                    render={(ref, props) => <TextField inputRef={ref} {...props} placeholder="Mês" />}
+                    render={(ref, props) => (
+                        <TextField inputRef={ref} {...props} placeholder="Mês" InputProps={{ style: input_style }} />
+                    )}
                 />
                 <MaskedInput
                     mask={numberMask}
@@ -129,7 +135,9 @@ export const CardForm: React.FC<CardFormProps> = ({ user, values, setValues }) =
                     name="expiration_year"
                     value={values.cardYear}
                     onChange={(event) => setValues.setCardYear(event.target.value)}
-                    render={(ref, props) => <TextField inputRef={ref} {...props} placeholder="Ano" />}
+                    render={(ref, props) => (
+                        <TextField inputRef={ref} {...props} placeholder="Ano" InputProps={{ style: input_style }} />
+                    )}
                 />
                 <MaskedInput
                     mask={threeNumberMask}
@@ -137,7 +145,9 @@ export const CardForm: React.FC<CardFormProps> = ({ user, values, setValues }) =
                     name="cvv"
                     value={values.cardCvv}
                     onChange={(event) => setValues.setCardCvv(event.target.value)}
-                    render={(ref, props) => <TextField inputRef={ref} {...props} placeholder="CVV" />}
+                    render={(ref, props) => (
+                        <TextField inputRef={ref} {...props} placeholder="CVV" InputProps={{ style: input_style }} />
+                    )}
                 />
             </div>
         </div>
