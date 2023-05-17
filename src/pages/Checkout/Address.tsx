@@ -18,17 +18,13 @@ import { useColors } from "../../hooks/useColors"
 interface AddressProps {}
 
 export const Address: React.FC<AddressProps> = ({}) => {
-    const { user, setUser } = useUser()
     const numberMask = useNumberMask()
     const estados = useEstadosBrasil()
     const navigate = useNavigate()
-    const api = useApi()
-    const { snackbar } = useSnackbar()
     const { address, setAddress } = useAddress()
     const colors = useColors()
 
     const [loading, setLoading] = useState(false)
-    const [saveAddress, setSaveAddress] = useState(false)
 
     const initialValues: AddressType = address! || {
         receiver: "",
@@ -47,32 +43,8 @@ export const Address: React.FC<AddressProps> = ({}) => {
     const handleSubmit = (values: AddressType) => {
         if (loading) return
 
-        if (saveAddress) {
-            setLoading(true)
-            const data = {
-                ...values,
-                new_address: !user!.addresses[0]?.id,
-                user_id: user!.id,
-            }
-            console.log(data)
-
-            api.user.address({
-                data: data,
-                callback: (response: { data: AddressType }) => {
-                    const updatedUser = { ...user!, addresses: [response.data] }
-                    setUser(updatedUser)
-                    navigate("/checkout/payment")
-                    snackbar({
-                        severity: "success",
-                        text: "Endereço salvo",
-                    })
-                },
-                finallyCallback: () => setLoading(false),
-            })
-        } else {
-            setAddress({ ...values, delivery: true })
-            navigate("/checkout/payment")
-        }
+        setAddress({ ...values, delivery: true })
+        navigate("/checkout/payment")
     }
 
     return (
