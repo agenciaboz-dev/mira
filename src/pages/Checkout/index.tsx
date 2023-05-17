@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import "./style.scss"
 import { Button } from "../../components/Button"
 import { useColors } from "../../hooks/useColors"
@@ -8,6 +8,7 @@ import { Address } from "./Address"
 import { Payment } from "./Payment"
 import { Pix } from "./Pix"
 import { Finish } from "./Finish"
+import { useUser } from "../../hooks/useUser"
 
 interface CheckoutProps {}
 
@@ -15,27 +16,36 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
     const navigate = useNavigate()
     const colors = useColors()
     const location = useLocation()
+    const { user } = useUser()
+
+    useEffect(() => {
+        if (!user) navigate("/login")
+    }, [])
 
     return (
         <div className="Checkout-Page">
-            <div className="cancel-container">
-                <h4>Finalização de compra</h4>
-                <Button
-                    onClick={() => navigate(location.pathname == "/checkout" ? "/cart" : "/checkout")}
-                    style={{ color: colors.purple, boxShadow: "none", background: "white" }}
-                >
-                    {location.pathname == "/checkout" ? "Cancelar" : "Voltar"}
-                </Button>
-            </div>
-            <div className="main-container">
-                <Routes>
-                    <Route index element={<Review />} />
-                    <Route path="address" element={<Address />} />
-                    <Route path="payment" element={<Payment />} />
-                    <Route path="pix" element={<Pix />} />
-                    <Route path="finish" element={<Finish />} />
-                </Routes>
-            </div>
+            {!!user && (
+                <>
+                    <div className="cancel-container">
+                        <h4>Finalização de compra</h4>
+                        <Button
+                            onClick={() => navigate(location.pathname == "/checkout" ? "/cart" : "/checkout")}
+                            style={{ color: colors.purple, boxShadow: "none", background: "white", padding: "0.5vw 2vw" }}
+                        >
+                            {location.pathname == "/checkout" ? "Cancelar" : "Voltar"}
+                        </Button>
+                    </div>
+                    <div className="main-container">
+                        <Routes>
+                            <Route index element={<Review />} />
+                            <Route path="address" element={<Address />} />
+                            <Route path="payment" element={<Payment />} />
+                            <Route path="pix" element={<Pix />} />
+                            <Route path="finish" element={<Finish />} />
+                        </Routes>
+                    </div>
+                </>
+            )}
         </div>
     )
 }
