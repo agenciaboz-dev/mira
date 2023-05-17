@@ -48,13 +48,13 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
             <Badge
                 badgeContent={
                     <IconButton onClick={() => setStory(true)}>
-                        <QuestionIcon style={{ width: "5.5vw", height: "auto" }} />
+                        <QuestionIcon style={{ width: "3.5vw", height: "auto" }} />
                     </IconButton>
                 }
                 color={"secondary"}
                 sx={{ color: colors.blue }}
             >
-                <Avatar sx={{ width: "15vw", height: "15vw" }} src={product.image} />
+                <img style={{ width: "9vw", height: "9vw" }} src={product.image} />
             </Badge>
             <div className="text-container">
                 <p>
@@ -76,7 +76,7 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
                 </p>
             </div>
             <IconButton onClick={removeProduct} sx={{ marginLeft: "auto" }}>
-                <TrashIcon />
+                <TrashIcon style={{ width: "3vw" }} />
             </IconButton>
             <ProductStory product={product} open={story} setOpen={setStory} />
         </div>
