@@ -8,8 +8,8 @@
     left: 0;
     height: 100vh;
     width: 100%;
-    -webkit-mask-image: radial-gradient(circle 6vw at (87.5vw 7vw), transparent 100%, black 100%);
-    mask-image: radial-gradient(circle 6vw at (87.5vw 7vw), transparent 100%, black 100%);
+    -webkit-mask-image: radial-gradient(circle 6vw at (90.5vw 7vw), transparent 100%, black 100%);
+    mask-image: radial-gradient(circle 6vw at (90.5vw 7vw), transparent 100%, black 100%);
     z-index: 9;
     overflow-y: hidden;
 
@@ -19,37 +19,37 @@
         height: 14vw;
         border-radius: 50%;
         top: 0;
-        right: 5.5vw;
+        right: 2.5vw;
         z-index: 10;
     }
 
     .balloon-container {
         position: relative;
-        margin-top: 70vw;
+        margin-top: 50vw;
         justify-content: center;
         align-items: center;
 
         .balloon {
             position: absolute;
-            transform: scale(1.25)
+            // transform: scale(1.25)
         }
 
         .balloon-text {
             position: absolute;
-            top: -21vw;
-            width: 70%;
+            top: -18vw;
+            width: 60%;
             height: 90%;
             text-align: center;
             z-index: 1;
-            font-size: 4vw;
+            font-size: 3.5vw;
         }
     }
 
     .avatar {
         position: absolute;
-        width: 60vw;
+        width: 50vw;
         right: 3vw;
-        top: 100vw;
+        top: 70vw;
         z-index: 1;
     }
 
@@ -57,6 +57,6 @@
         position: absolute;
         height: -webkit-fill-available;
         width: 100vw;
-        top: 80vw;
+        top: 50vw;
     }
 }
