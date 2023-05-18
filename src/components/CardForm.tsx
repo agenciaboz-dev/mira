@@ -53,7 +53,7 @@ export const CardForm: React.FC<CardFormProps> = ({ user, values, setValues }) =
             color: "#9AF82E",
         },
         color: "#EBEBEB",
-        backgroundColor: colors.dark_grey,
+        backgroundColor: colors.light_grey,
         padding: 0,
         boxShadow: "2px 3px 0px #1A7FB7",
         borderRadius: "50%",
@@ -112,7 +112,7 @@ export const CardForm: React.FC<CardFormProps> = ({ user, values, setValues }) =
                     value={values.cardType}
                     name="type"
                     onChange={(_, value) => setValues.setCardType(value)}
-                    sx={{ flexDirection: "row", gap: "15vw" }}
+                    sx={{ flexDirection: "row" }}
                 >
                     <FormControlLabel
                         value="debit"
@@ -122,7 +122,7 @@ export const CardForm: React.FC<CardFormProps> = ({ user, values, setValues }) =
                     />
                     <FormControlLabel
                         value="credit"
-                        sx={{ marginLeft: "0" }}
+                        sx={{ marginLeft: "25vw" }}
                         control={<Radio sx={radio_style} />}
                         label="Crédito"
                     />
