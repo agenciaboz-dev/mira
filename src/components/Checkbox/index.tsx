@@ -23,10 +23,11 @@ export const Checkbox: React.FC<CheckboxProps> = ({ value, handleChange, label, 
                     onChange={handleChange}
                     sx={{
                         "&.Mui-checked": {
+                            backgroundColor: colors.purple,
                             color: "#9AF82E",
                         },
+                        backgroundColor: "white",
                         color: "#EBEBEB",
-                        backgroundColor: colors.purple,
                         padding: 0,
                         boxShadow: "3px 5px 0px #1A7FB7",
                         borderRadius: "5px",

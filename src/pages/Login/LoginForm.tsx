@@ -100,7 +100,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({}) => {
                         />
 
                         <div className="submit-container">
-                            <Checkbox checkboxStyle={{ backgroundColor: "white" }} value={remember} handleChange={handleCheckboxChange} label="Mantenha-me conectado" />
+                            <Checkbox checkboxStyle={{}} value={remember} handleChange={handleCheckboxChange} label="Mantenha-me conectado" />
                             <Button type="submit" variant="contained" style={{ width: "30vw", height: "7vw" , fontSize: "3.5vw" }}>
                                 {loading ? (
                                     <CircularProgress sx={{ color: "white" }} style={{ width: "5vw", height: "auto" }} />
