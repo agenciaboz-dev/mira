@@ -22,7 +22,7 @@ export const TutorialMask = ({ }) => {
             <div className="balloon-container">
                 <Balloon className="balloon" />
                 <div className="balloon-text">
-                    <p>Olá! Me chamo Mirinha.<br />Caso queira adicionar um produto ao seu carrinho, basta clicar no botão indicado e mirar a sua câmera em um QR Code de nossos produtos!</p>
+                    <p>Olá! Me chamo Mira.<br />Caso queira adicionar um produto ao seu carrinho, basta clicar no botão indicado e mirar a sua câmera em um QR Code de nossos produtos!</p>
                 </div>
             </div>
             <img className="avatar" src={avatarWebp} alt="" />

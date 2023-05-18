@@ -31,17 +31,17 @@
 
         .balloon {
             position: absolute;
-            width: 95vw;
+            transform: scale(1.25)
         }
 
         .balloon-text {
             position: absolute;
-            top: -20vw;
-            width: 60%;
+            top: -21vw;
+            width: 70%;
             height: 90%;
             text-align: center;
             z-index: 1;
-            font-size: 3.5vw;
+            font-size: 4vw;
         }
     }
 
