@@ -101,16 +101,15 @@
         overflow-y: auto;
         width: 100%;
         height: 100%;
-        padding-bottom: 2vw;
         flex-direction: column;
-
+        
         form {
             flex-direction: column;
-            gap: 5vw;
-            height: 1vh;
+            gap: 2vw;
+            margin-bottom: 1vw;
 
             .two-inputs {
-                gap: 3vw;
+                gap: 2vw;
 
                 .small-input {
                     flex: 0.2;
