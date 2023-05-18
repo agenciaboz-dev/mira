@@ -100,8 +100,21 @@
     width: 100vw;
     height: 100%;
     background-color: $purple;
-    padding: 7.5vw 7vw;
-    gap: 5vw;
+    padding: 7vw;
+    gap: 2vw;
+
+    h1 {
+        font-size: 6vw;
+    }
+
+    p {
+        font-size: 3vw;
+    }
+
+    input {
+        font-size: 2.5vw;
+    }
+    
 
     // .tp-signup-divider {
     //     background-image: url("../../../public/bricks_webp.webp");

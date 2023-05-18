@@ -103,7 +103,7 @@ export const SignupForm: React.FC<SignupFormProps> = ({}) => {
                             onChange={handleChange}
                             render={(ref, props) => <TextField inputRef={ref} {...props} placeholder="Telefone" fullWidth size="small" />}
                         />
-                        <Button type="submit" variant="contained" style={{ fontSize: "3vw" }} fullWidth >
+                        <Button type="submit" variant="contained" style={{ fontSize: "3.5vw" }} fullWidth >
                             {loading ? (
                                 <CircularProgress sx={{ color: "white" }} style={{ width: "10vw", height: "auto" }} />
                             ) : (
