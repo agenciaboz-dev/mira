@@ -6,6 +6,8 @@ import { useCart } from "../../hooks/useCart"
 import { useNavigate } from "react-router-dom"
 import QrCodeScannerIcon from "@mui/icons-material/QrCodeScanner"
 import { ReactComponent as AvatarIcon } from "../../images/avatar_icon.svg"
+import { ReactComponent as LittleArrowDown } from "../../images/little_arrow_down.svg"
+import { ReactComponent as LittlePlusIcon } from "../../images/little_plus_icon.svg"
 
 interface HeaderProps {}
 
@@ -28,6 +30,7 @@ export const Header: React.FC<HeaderProps> = ({}) => {
         <div className="Header-Component">
             <IconButton onClick={(event) => setAnchorEl(event.currentTarget)}>
                 <AvatarIcon style={{ marginLeft: "-1vw", width: "5vw" }} />
+                <LittleArrowDown style={{ marginLeft: "-1vw", alignSelf: "flex-end" }} />
             </IconButton>
 
             <div className="info-container">
@@ -37,6 +40,7 @@ export const Header: React.FC<HeaderProps> = ({}) => {
 
             <IconButton onClick={() => navigate("/scan")}>
                 <QrCodeScannerIcon sx={icon_style} />
+                <LittlePlusIcon style={{ marginRight: "-1vw" }} />
             </IconButton>
             <Menu open={openMenu} anchorEl={anchorEl} handleClose={handleCloseMenu} />
         </div>

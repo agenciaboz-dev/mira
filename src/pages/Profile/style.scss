@@ -47,11 +47,16 @@
 
         form {
             flex-direction: column;
-            gap: 5vw;
+            gap: 4vw;
 
             input {
                 color: #555555;
                 font-weight: 600;
+            }
+
+            .account-details-upper-container {
+                flex-direction: column;
+                gap: 2vw;
             }
 
             .pwd-alter-title {

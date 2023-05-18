@@ -60,39 +60,41 @@ export const Account: React.FC<AccountProps> = ({ user }) => {
             <Formik initialValues={initialValues} onSubmit={handleSubmit}>
                 {({ values, handleChange }) => (
                     <Form>
-                        <h2>Detalhes da conta</h2>
-                        <TextField
-                            name="name"
-                            placeholder="Nome"
-                            required
-                            value={values.name}
-                            onChange={handleChange}
-                            InputLabelProps={{ sx: styles.textfield }}
-                        />
-                        <TextField
-                            name="email"
-                            placeholder="E-mail"
-                            required
-                            value={values.email}
-                            onChange={handleChange}
-                            InputLabelProps={{ sx: styles.textfield }}
-                        />
-                        <MaskedInput
-                            mask={["(", /\d/, /\d/, ")", " ", /\d/, /\d/, /\d/, /\d/, /\d/, "-", /\d/, /\d/, /\d/, /\d/]}
-                            guide={false}
-                            name="phone"
-                            value={values.phone}
-                            onChange={handleChange}
-                            required
-                            render={(ref, props) => (
-                                <TextField
-                                    inputRef={ref}
-                                    {...props}
-                                    placeholder="Telefone"
-                                    InputLabelProps={{ sx: styles.textfield }}
-                                />
-                            )}
-                        />
+                        <div className="account-details-upper-container">
+                            <h2>Detalhes da conta</h2>
+                            <TextField
+                                name="name"
+                                placeholder="Nome"
+                                required
+                                value={values.name}
+                                onChange={handleChange}
+                                InputLabelProps={{ sx: styles.textfield }}
+                            />
+                            <TextField
+                                name="email"
+                                placeholder="E-mail"
+                                required
+                                value={values.email}
+                                onChange={handleChange}
+                                InputLabelProps={{ sx: styles.textfield }}
+                            />
+                            <MaskedInput
+                                mask={["(", /\d/, /\d/, ")", " ", /\d/, /\d/, /\d/, /\d/, /\d/, "-", /\d/, /\d/, /\d/, /\d/]}
+                                guide={false}
+                                name="phone"
+                                value={values.phone}
+                                onChange={handleChange}
+                                required
+                                render={(ref, props) => (
+                                    <TextField
+                                        inputRef={ref}
+                                        {...props}
+                                        placeholder="Telefone"
+                                        InputLabelProps={{ sx: styles.textfield }}
+                                    />
+                                )}
+                            />
+                        </div>
 
                         <div className="qrcode-container">
                             <QRCode value={"https://mira.agenciaboz.com.br"} size={20 * vw} />
