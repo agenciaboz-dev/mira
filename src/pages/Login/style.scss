@@ -24,11 +24,9 @@
 
         form {
             flex-direction: column;
-            flex-direction: column;
             align-items: center;
             width: 100%;
-            gap: 7vw;
-
+            gap: 4vw;
         }
 
         .signup-text {
@@ -64,22 +62,34 @@
     width: 100vw;
     height: 100%;
     background-color: $purple;
-    padding: 5vw 7vw;
+    padding: 0 7vw;
     gap: 2vw;
-    margin-top: 19.5vw;
+    margin-top: 16vw;
     
     * {
         z-index: 1;
     }
+
+    h1 {
+        font-size: 6vw;
+    }
+
+    p {
+        font-size: 3vw;
+    }
+
+    input {
+        font-size: 2.5vw;
+    }
     
     .submit-container {
+        align-items: center;
         justify-content: space-between;
-        height: 12vw;
         width: 100%;
         
         label {
             span {
-                font-size: 3.5vw;
+                font-size: 3vw;
             }
         }
     }
