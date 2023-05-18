@@ -2,9 +2,9 @@ import "./style.scss"
 import { Button, IconButton } from "@mui/material"
 import { ReactComponent as AvatarIcon } from "../../images/avatar_icon.svg"
 import { ReactComponent as LittleArrowDown } from "../../images/little_arrow_down.svg"
-import { ReactComponent as LittlePlusIcon } from "../../images/little_plus_icon.svg"
 import React, { useEffect, useState } from "react"
-import QrCodeScannerIcon from "@mui/icons-material/QrCodeScanner"
+// import QrCodeScannerIcon from "@mui/icons-material/QrCodeScanner"
+import { ReactComponent as QrCodePlusIcon } from "../../images/qrcode_plus.svg"
 import { useNavigate } from "react-router-dom"
 import { useProducts } from "../../hooks/useProducts"
 import { Product } from "./Product"
@@ -27,7 +27,7 @@ export const Cart: React.FC<CartProps> = ({}) => {
     const storage = useLocalStorage()
     const [tutorial, setTutorial] = useState(false)
 
-    const icon_style = { color: "white", height: "auto", width: "5vw" }
+    const icon_style = { color: "white", height: "5vw", width: "5vw" }
 
     const handleCloseMenu = () => {
         setAnchorEl(null)
@@ -47,13 +47,12 @@ export const Cart: React.FC<CartProps> = ({}) => {
         <div className="Cart-Page">
             <div className="title-container">
                 <IconButton onClick={(event) => setAnchorEl(event.currentTarget)}>
-                    <AvatarIcon style={{ marginLeft: "-4vw" }} />
+                    <AvatarIcon />
                     <LittleArrowDown style={{ marginLeft: "-1vw", alignSelf: "flex-end" }} />
                 </IconButton>
                 <h2>Carrinho</h2>
                 <IconButton onClick={() => navigate("/scan")}>
-                    <QrCodeScannerIcon sx={icon_style} style={{ marginRight: "-1vw" }} />
-                    <LittlePlusIcon style={{ marginRight: "-4vw" }} />
+                    <QrCodePlusIcon style={{ height: "6vw" }} />
                 </IconButton>
             </div>
 
