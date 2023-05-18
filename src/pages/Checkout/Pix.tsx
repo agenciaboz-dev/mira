@@ -6,6 +6,7 @@ import { ReactComponent as CopyIcon } from "../../images/copy.svg"
 import { Button } from "../../components/Button"
 import { useClipboard } from "../../hooks/useClipboard"
 import { useNavigate } from "react-router-dom"
+import "./style.scss"
 
 interface PixProps {}
 
@@ -28,12 +29,14 @@ export const Pix: React.FC<PixProps> = ({}) => {
 
     return (
         <div className="Pix-Component">
-            <h4>Como você gostaria de efetuar o pagamento do PIX?</h4>
-            <p>Mostre o QR code na sua tela para efetuar o pagamento.</p>
-            <p>Esse código é válido por 1 hora.</p>
+            <div className="pix-texts-wrapper">
+                <h4>Como você gostaria de efetuar o pagamento do PIX?</h4>
+                <p>Mostre o QR code na sua tela para efetuar o pagamento.</p>
+                <p>Esse código é válido por 1 hora.</p>
+            </div>
 
             <div className="code-wrapper">
-                <QRCode value={qrCodeValue} size={60 * vw} />
+                <QRCode value={qrCodeValue} size={40 * vw} />
             </div>
 
             <div className="totals-container">
