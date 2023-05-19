@@ -48,7 +48,7 @@ export const Cart: React.FC<CartProps> = ({}) => {
             <div className="title-container">
                 <IconButton onClick={(event) => setAnchorEl(event.currentTarget)} style={button_style} >
                     <AvatarIcon style={{ marginLeft: "-1vw", width: "10vw" }} />
-                    <LittleArrowDown style={{ position: "absolute", bottom: "1vw", right: "0.5vw",  width: "4vw" }} />
+                    <LittleArrowDown style={{ width: "4vw", marginLeft: "-4vw", marginBottom: "1vw", alignSelf: "flex-end" }} />
                 </IconButton>
                 <h2>Carrinho</h2>
                 <IconButton onClick={() => navigate("/scan")} style={button_style} >
