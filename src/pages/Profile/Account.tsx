@@ -107,7 +107,7 @@ export const Account: React.FC<AccountProps> = ({ user }) => {
                             </div>
                         </div>
 
-                        <img src="/account_mirinha.png" alt="Mirinha Tablet" />
+                        <img src="/mira_text_totem.png" alt="Mira" />
 
                         <Button type="submit">
                             {loading ? (
