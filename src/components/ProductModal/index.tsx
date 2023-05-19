@@ -22,6 +22,8 @@ import { useApi } from "../../hooks/useApi"
 import { ReactComponent as MinusIcon } from "../../images/product/minus.svg"
 import { ReactComponent as PlusIcon } from "../../images/product/plus.svg"
 import { Button } from "../Button"
+import { Specs1 } from "./Specs1"
+import { Specs2 } from "./Specs2"
 
 interface ProductModalProps {
     open: boolean
@@ -93,7 +95,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, produ
     }
 
     return (
-        <Dialog open={open} onClose={handleClose} sx={styles.dialog}>
+        <Dialog open={open} onClose={handleClose} sx={styles.dialog} PaperProps={{ sx: { borderRadius: "3vw" } }}>
             <IconButton onClick={handleClose} sx={{ position: "absolute", right: "1vw" }}>
                 <CancelIcon color="error" sx={styles.close_icon} />
             </IconButton>
@@ -107,10 +109,19 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, produ
                             <CurrencyText value={product.price} style={{ fontSize: "2vw", marginLeft: "auto" }} />
                         </h1>
                         <p>{product.description}</p>
+                        <div className="specs1-container" style={{ width: "100%", justifyContent: "space-between" }}>
+                            <Specs1 title="Quantidade" value="18 X 27" />
+                            <Specs1 title="Tipo" value="Chata / Lisa" />
+                            <Specs1 title="Peso" value="1Kg" />
+                        </div>
                     </div>
                 </div>
-                <div className="specs-container"></div>
-                <div className="story-container"></div>
+                <div className="specs-container">
+                    <Specs2 title="Fabricante" value="ArcelorMittal" colors={["#EBEBEB", "#F5F5F5"]} />
+                    <Specs2 title="Tipo de cabeça do prego" value="Chata" colors={["#F5F5F5", "#FFFFFF"]} />
+                    <Specs2 title="Tipo de corpo do prego" value="Quantidade" colors={["#EBEBEB", "#F5F5F5"]} />
+                </div>
+                <div className="story-container">{product.story}</div>
                 <div className="cart-container">
                     <IconButton onClick={() => changeQuantity(-1)}>
                         <MinusIcon style={styles.cart_icon} />
