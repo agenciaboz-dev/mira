@@ -23,7 +23,7 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
             <img src="/promotions.png" alt="Promoções" />
             <div className="main-container">
                 <IconButton onClick={() => navigate("/cart")} sx={{ position: "absolute", right: "1vw", top: "1vw" }}>
-                    <CancelIcon color="error" sx={{ width: "5vw" }} />
+                    <CancelIcon color="error" sx={{ width: "5vw", height: "auto" }} />
                 </IconButton>
                 <Routes>
                     <Route index element={<Review />} />
