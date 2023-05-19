@@ -25,6 +25,7 @@ export const styles = {
                 flexDirection: "column",
                 fontSize: "2vw",
                 gap: "2vw",
+                color: "#555555"
             },
         },
         ".cart-container": {
