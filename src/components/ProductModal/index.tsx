@@ -22,6 +22,7 @@ import { useApi } from "../../hooks/useApi"
 import { ReactComponent as MinusIcon } from "../../images/product/minus.svg"
 import { ReactComponent as PlusIcon } from "../../images/product/plus.svg"
 import { Button } from "../Button"
+import { Specs1 } from "./Specs1"
 
 interface ProductModalProps {
     open: boolean
@@ -107,6 +108,11 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, produ
                             <CurrencyText value={product.price} style={{ fontSize: "2vw", marginLeft: "auto" }} />
                         </h1>
                         <p>{product.description}</p>
+                        <div className="specs1-container" style={{ width: "100%", justifyContent: "space-between" }}>
+                            <Specs1 title="Quantidade" value="18 X 27" />
+                            <Specs1 title="Tipo" value="Chata / Lisa" />
+                            <Specs1 title="Peso" value="1Kg" />
+                        </div>
                     </div>
                 </div>
                 <div className="specs-container"></div>
