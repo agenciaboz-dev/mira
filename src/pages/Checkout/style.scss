@@ -130,9 +130,10 @@
                     position: absolute;
                     color: black;
                     font-size: 2vw;
-                    top: 6vw;
-                    left: 15vw;
+                    top: 6.5vw;
+                    left: 14vw;
                     width: 33vw;
+                    line-height: 1.2;
                 }
             }
         }
@@ -149,18 +150,19 @@
         .avatar-security-container {
             position: relative;
             margin-top: auto;
-
+            
             img {
                 width: 100%;
             }
-
+            
             .avatar-security-text {
                 position: absolute;
                 color: black;
                 font-size: 2vw;
-                top: 6vw;
-                left: 15vw;
+                top: 6.5vw;
+                left: 14vw;
                 width: 33vw;
+                line-height: 1.2;
             }
         }
 
