@@ -23,6 +23,7 @@ import { ReactComponent as MinusIcon } from "../../images/product/minus.svg"
 import { ReactComponent as PlusIcon } from "../../images/product/plus.svg"
 import { Button } from "../Button"
 import { Specs1 } from "./Specs1"
+import { Specs2 } from "./Specs2"
 
 interface ProductModalProps {
     open: boolean
@@ -94,7 +95,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, produ
     }
 
     return (
-        <Dialog open={open} onClose={handleClose} sx={styles.dialog}>
+        <Dialog open={open} onClose={handleClose} sx={styles.dialog} PaperProps={{ sx: { borderRadius: "3vw" } }}>
             <IconButton onClick={handleClose} sx={{ position: "absolute", right: "1vw" }}>
                 <CancelIcon color="error" sx={styles.close_icon} />
             </IconButton>
@@ -115,8 +116,12 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, produ
                         </div>
                     </div>
                 </div>
-                <div className="specs-container"></div>
-                <div className="story-container"></div>
+                <div className="specs-container">
+                    <Specs2 title="Fabricante" value="ArcelorMittal" colors={["#EBEBEB", "#F5F5F5"]} />
+                    <Specs2 title="Tipo de cabeça do prego" value="Chata" colors={["#F5F5F5", "#FFFFFF"]} />
+                    <Specs2 title="Tipo de corpo do prego" value="Quantidade" colors={["#EBEBEB", "#F5F5F5"]} />
+                </div>
+                <div className="story-container">{product.story}</div>
                 <div className="cart-container">
                     <IconButton onClick={() => changeQuantity(-1)}>
                         <MinusIcon style={styles.cart_icon} />
