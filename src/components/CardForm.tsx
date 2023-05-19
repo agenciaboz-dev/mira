@@ -53,7 +53,7 @@ export const CardForm: React.FC<CardFormProps> = ({ user, values, setValues }) =
             color: "#9AF82E",
         },
         color: "#EBEBEB",
-        backgroundColor: colors.dark_grey,
+        backgroundColor: colors.light_grey,
         padding: 0,
         boxShadow: "2px 3px 0px #1A7FB7",
         borderRadius: "50%",

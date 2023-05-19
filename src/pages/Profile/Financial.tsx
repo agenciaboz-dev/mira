@@ -45,12 +45,13 @@ export const Financial: React.FC<FinancialProps> = ({ user }) => {
     const radio_style = {
         "&.Mui-checked": {
             color: "#9AF82E",
+            backgroundColor: colors.purple,
         },
         color: "#EBEBEB",
         backgroundColor: colors.purple,
         padding: 0,
         boxShadow: "2px 3px 0px #1A7FB7",
-        borderRadius: "5px",
+        borderRadius: "50%",
         marginRight: "2vw",
     }
 
