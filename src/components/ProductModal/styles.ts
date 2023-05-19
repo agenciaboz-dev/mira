@@ -5,12 +5,13 @@ export const styles = {
         justifyContent: "center",
         padding: "2vw!important",
     },
-
+    
     content_container: {
         display: "flex",
         width: "75vw",
         flexDirection: "column",
         gap: "2vw",
+        padding: "4vw",
 
         ".info-container": {
             gap: "2vw",
@@ -32,8 +33,11 @@ export const styles = {
     },
 
     close_icon: {
-        width: "2vw",
+        position: "absolute",
+        width: "5vw",
         height: "auto",
+        top: "0.5vw",
+        right: "-0.5vw"
     },
     cart_icon: { width: "4vw", height: "auto" },
 

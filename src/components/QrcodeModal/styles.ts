@@ -18,8 +18,11 @@ export const styles = {
     },
 
     close_icon: {
-        width: "2vw",
+        position: "absolute",
+        width: "5vw",
         height: "auto",
+        top: "0.5vw",
+        right: "-0.5vw"
     },
 
     text: { textAlign: "justify", fontSize: "7vw" },
