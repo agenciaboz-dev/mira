@@ -45,17 +45,7 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
 
     return (
         <div className="Product-Component">
-            <Badge
-                badgeContent={
-                    <IconButton onClick={() => setStory(true)}>
-                        <QuestionIcon style={{ width: "3.5vw", height: "auto" }} />
-                    </IconButton>
-                }
-                color={"secondary"}
-                sx={{ color: colors.blue }}
-            >
-                <img style={{ width: "6vw", height: "auto" }} src={product.image} />
-            </Badge>
+            <img style={{ width: "6vw", height: "auto" }} src={product.image} />
             <div className="text-container">
                 <p>
                     Produto: <span>{product.name}</span>
