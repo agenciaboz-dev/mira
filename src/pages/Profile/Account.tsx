@@ -107,7 +107,10 @@ export const Account: React.FC<AccountProps> = ({ user }) => {
                             </div>
                         </div>
 
-                        <img src="/account_mirinha.png" alt="Mirinha Tablet" />
+                        <div className="avatar-security-container">
+                            <img src="/mira_text_tablet.png" alt="Mira" />
+                            <p className="avatar-security-text">Olá! Mira aqui.<br />Essa área é dedicada a edição de detalhes da conta, como esse dispositivo é de uso comum, essas funções estão boqueadas. Mas você pode baixar nosso aplicativo no seu próprio dispositivo utilizando o QR code acima.</p>
+                        </div>
 
                         <Button type="submit">
                             {loading ? (

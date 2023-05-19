@@ -4,7 +4,7 @@ import { ReactComponent as Balloon } from "../../images/balloon.svg"
 import { ReactComponent as AvatarBG } from "../../images/avatar_bg.svg"
 import { useNavigate } from "react-router-dom"
 import { useLocalStorage } from "../../hooks/useLocalStorage"
-import avatarWebp from "../../../src/images/mirinha_avatar.webp"
+import avatarWebp from "../../../src/images/mira_avatar.webp"
 
 export const TutorialMask = ({ }) => {
 

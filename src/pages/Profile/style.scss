@@ -71,6 +71,24 @@
                     gap: 1vw;
                 }
             }
+
+            .avatar-security-container {
+                position: relative;
+                margin-top: auto;
+    
+                img {
+                    width: 100%;
+                }
+    
+                .avatar-security-text {
+                    position: absolute;
+                    color: black;
+                    font-size: 2vw;
+                    top: 4.5vw;
+                    left: 10vw;
+                    width: 36vw;
+                }
+            }
         }
     }
 

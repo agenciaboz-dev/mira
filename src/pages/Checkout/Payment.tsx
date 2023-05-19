@@ -114,7 +114,10 @@ export const Payment: React.FC<PaymentProps> = ({}) => {
                 </Collapsible>
             </div>
 
-            <img style={{ marginTop: "auto" }} src="/address.mirinha.png" alt="Mirinha" />
+            <div className="avatar-security-container">
+                <img src="/mira_text_tablet.png" alt="Mira" />
+                <p className="avatar-security-text">Olá novamente! Mira aqui.<br />Levamos muito a sério a sua segurança, então, como sabemos que esse dispositivo é de uso comum, nenhuma das informações inseridas aqui será salva, fique tranquilo!</p>
+            </div>
 
             <Button
                 onClick={handleClick}
