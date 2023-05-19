@@ -4,7 +4,7 @@ import IconButton from "@mui/material/IconButton"
 import React, { useState } from "react"
 import { QRCode } from "react-qrcode-logo"
 import { styles } from "./styles"
-import CancelPresentationIcon from "@mui/icons-material/CancelPresentation"
+import CancelIcon from '@mui/icons-material/Cancel';
 import DialogContent from "@mui/material/DialogContent"
 import { useColors } from "../../hooks/useColors"
 
@@ -28,7 +28,7 @@ export const QrCodeModal: React.FC<QrCodeModalProps> = ({ id, open, setOpen }) =
         <Dialog open={open} onClose={handleClose} sx={styles.dialog}>
             <DialogTitle sx={styles.title}>
                 <IconButton onClick={handleClose}>
-                    <CancelPresentationIcon color="error" sx={styles.close_icon} />
+                    <CancelIcon color="error" sx={styles.close_icon} />
                 </IconButton>
             </DialogTitle>
 

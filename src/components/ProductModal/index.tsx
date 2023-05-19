@@ -3,7 +3,7 @@ import React, { useRef, useState, useEffect } from "react"
 import { Product } from "../../definitions/product"
 import { useProducts } from "../../hooks/useProducts"
 import CloseIcon from "@mui/icons-material/Close"
-import CancelPresentationIcon from "@mui/icons-material/CancelPresentation"
+import CancelIcon from '@mui/icons-material/Cancel';
 import IconButton from "@mui/material/IconButton"
 import HelpIcon from "@mui/icons-material/Help"
 import { useColors } from "../../hooks/useColors"
@@ -95,7 +95,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, produ
     return (
         <Dialog open={open} onClose={handleClose} sx={styles.dialog}>
             <IconButton onClick={handleClose} sx={{ position: "absolute", right: "1vw" }}>
-                <CancelPresentationIcon color="error" sx={styles.close_icon} />
+                <CancelIcon color="error" sx={styles.close_icon} />
             </IconButton>
 
             <DialogContent sx={styles.content_container}>

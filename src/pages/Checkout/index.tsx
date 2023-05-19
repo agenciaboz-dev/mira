@@ -9,7 +9,7 @@ import { Payment } from "./Payment"
 import { Pix } from "./Pix"
 import { Finish } from "./Finish"
 import { useUser } from "../../hooks/useUser"
-import CancelPresentationIcon from "@mui/icons-material/CancelPresentation"
+import CancelIcon from '@mui/icons-material/Cancel';
 
 interface CheckoutProps {}
 
@@ -23,7 +23,7 @@ export const Checkout: React.FC<CheckoutProps> = ({}) => {
             <img src="/promotions.png" alt="Promoções" />
             <div className="main-container">
                 <IconButton onClick={() => navigate("/cart")} sx={{ position: "absolute", right: "1vw", top: "1vw" }}>
-                    <CancelPresentationIcon color="error" sx={{ width: "5vw" }} />
+                    <CancelIcon color="error" sx={{ width: "5vw" }} />
                 </IconButton>
                 <Routes>
                     <Route index element={<Review />} />
