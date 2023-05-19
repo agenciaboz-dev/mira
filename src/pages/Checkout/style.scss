@@ -110,6 +110,7 @@
             flex-direction: column;
             gap: 5vw;
             height: 1vh;
+            position: relative;
 
             .two-inputs {
                 gap: 3vw;
@@ -119,9 +120,27 @@
                     text-align: center;
                 }
             }
+
+            .avatar-security-container {
+                position: relative;
+                margin-top: auto;
+    
+                img {
+                    width: 100%;
+                }
+    
+                .avatar-security-text {
+                    position: absolute;
+                    color: black;
+                    font-size: 2vw;
+                    top: 6vw;
+                    left: 15vw;
+                    width: 33vw;
+                }
+            }
         }
     }
-
+    
     .Payment-Component {
         overflow-y: auto;
         width: 100%;
@@ -129,6 +148,24 @@
         padding-bottom: 2vw;
         flex-direction: column;
         gap: 1vw;
+        
+        .avatar-security-container {
+            position: relative;
+            margin-top: auto;
+
+            img {
+                width: 100%;
+            }
+
+            .avatar-security-text {
+                position: absolute;
+                color: black;
+                font-size: 2vw;
+                top: 6vw;
+                left: 15vw;
+                width: 33vw;
+            }
+        }
 
         .choose-container {
             margin-top: 1vw;
