@@ -14,8 +14,9 @@ export const Review: React.FC<ReviewProps> = ({}) => {
     const navigate = useNavigate()
     const { address, setAddress } = useAddress()
 
-    const button_style = { fontSize: "2.5vw", justifyContent: "flex-start", padding: "1vw 4vw", gap: "5vw" }
+    const button_style = { fontSize: "2.5vw", justifyContent: "flex-start", padding: "1vw 4vw" }
     const icon_style = { width: "13%" }
+    const button_p_style = { margin: "0 auto" }
 
     return (
         <div className="Review-Component">
@@ -53,7 +54,7 @@ export const Review: React.FC<ReviewProps> = ({}) => {
                 <div className="buttons-container">
                     <Button fullWidth style={button_style} onClick={() => navigate("address")}>
                         <DeliveryIcon style={icon_style} />
-                        Entrega
+                        <p style={button_p_style}>Entrega</p>
                     </Button>
                     <Button
                         fullWidth
@@ -64,7 +65,7 @@ export const Review: React.FC<ReviewProps> = ({}) => {
                         }}
                     >
                         <LocalIcon style={icon_style} />
-                        Retirada no local
+                        <p style={button_p_style}>Retirada no local</p>
                     </Button>
                 </div>
             </div>
