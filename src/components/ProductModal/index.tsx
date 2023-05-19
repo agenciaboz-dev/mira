@@ -39,7 +39,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, produ
     const numberMask = useNumberMask()
     const api = useApi()
     const { refresh } = useProducts()
-    const { add } = useCart()
+    const { add, isInCart } = useCart()
 
     const initialValues: Product = product || {
         name: "",
@@ -131,8 +131,18 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, produ
                     <IconButton onClick={() => changeQuantity(1)}>
                         <PlusIcon style={styles.cart_icon} />
                     </IconButton>
-                    <Button style={{ fontSize: "2vw", width: "45%", marginLeft: "auto" }} onClick={() => addToCart()}>
-                        Adicionar ao carrinho
+                    <Button
+                        style={{
+                            fontSize: "2vw",
+                            width: "45%",
+                            marginLeft: "auto",
+                            background: isInCart(product) ? "linear-gradient(90deg, #9F9F9F 0%, #565656 91.94%)" : "",
+                            boxShadow: isInCart(product) ? "none" : "",
+                        }}
+                        onClick={() => addToCart()}
+                        disabled={isInCart(product)}
+                    >
+                        {isInCart(product) ? "Produto no carrinho" : "Adicionar ao carrinho"}
                     </Button>
                 </div>
             </DialogContent>
