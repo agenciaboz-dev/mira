@@ -17,5 +17,13 @@ export const useCart = () => {
         setCart([...cart, { ...product, quantity }])
     }
 
-    return { cart, setCart, total, add }
+    const isInCart = (product: Product) => {
+        const products = cart.filter((item) => item.id == product.id)
+
+        if (products.length > 0) {
+            return true
+        }
+    }
+
+    return { cart, setCart, total, add, isInCart }
 }
