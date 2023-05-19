@@ -180,7 +180,7 @@ export const Address: React.FC<AddressProps> = ({}) => {
                         </div>
 
                         <div className="avatar-security-container">
-                            <img src="/mira_text_totem.png" alt="Mira" />
+                            <img src="/mira_text_tablet.png" alt="Mira" />
                             <p className="avatar-security-text">Olá novamente! Mira aqui.<br />Levamos muito a sério a sua segurança, então, como sabemos que esse dispositivo é de uso comum, nenhuma das informações inseridas aqui será salva, fique tranquilo!</p>
                         </div>
 
