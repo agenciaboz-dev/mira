@@ -1,8 +1,9 @@
 import "./style.scss"
 import { Button, IconButton } from "@mui/material"
 import { ReactComponent as AvatarIcon } from "../../images/avatar_icon.svg"
+import { ReactComponent as LittleArrowDown } from "../../images/little_arrow_down.svg"
+import { ReactComponent as QrCodePlusIcon } from "../../images/qrcode_plus_icon.svg"
 import React, { useEffect, useState } from "react"
-import QrCodeScannerIcon from "@mui/icons-material/QrCodeScanner"
 import { useNavigate } from "react-router-dom"
 import { useProducts } from "../../hooks/useProducts"
 import { Product } from "./Product"
@@ -47,10 +48,11 @@ export const Cart: React.FC<CartProps> = ({}) => {
             <div className="title-container">
                 <IconButton onClick={(event) => setAnchorEl(event.currentTarget)} style={button_style} >
                     <AvatarIcon style={{ marginLeft: "-1vw", width: "10vw" }} />
+                    <LittleArrowDown style={{ position: "absolute", bottom: "1vw", right: "0.5vw",  width: "4vw" }} />
                 </IconButton>
                 <h2>Carrinho</h2>
                 <IconButton onClick={() => navigate("/scan")} style={button_style} >
-                    <QrCodeScannerIcon sx={icon_style} />
+                    <QrCodePlusIcon style={icon_style} />
                 </IconButton>
             </div>
 
