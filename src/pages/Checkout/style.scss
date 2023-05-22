@@ -187,12 +187,20 @@
             .creditcard-children {
                 flex-direction: column;
                 margin-top: 2vw;
+                border: 1px solid $dark-grey;
+                border-radius: 4vw;
+                padding: 2vw;
 
                 .CardForm-Component {
                     flex-direction: column;
                     gap: 2vw;
-                    min-height: 30vh;
-                    height: 30vh;
+                    overflow-y: auto;
+                    min-height: 25vh;
+
+                    .type-container {
+                        gap: 20vw;
+                        margin-bottom: 1vw;
+                    }
         
                     .expiration-container {
                         gap: 2vw;
@@ -201,7 +209,7 @@
             }
 
             .pix-children {
-                margin-top: 5vw;
+                margin-top: 2vw;
                 font-weight: bold;
 
                 span {
