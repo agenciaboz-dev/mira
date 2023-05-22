@@ -20,8 +20,10 @@ export const Payment: React.FC<PaymentProps> = ({}) => {
     )
 
     const PixContainer: React.FC<{ open?: boolean }> = ({ open }) => (
-        <div className="container" style={{ backgroundColor: open ? colors.purple : "white" }}>
-            <PixIcon sx={{ color: open ? "white" : colors.purple }} />
+        // <div className="container" style={{ backgroundColor: open ? colors.purple : "white" }}>
+        //     <PixIcon sx={{ color: open ? "white" : colors.purple }} />
+        <div className="container" style={{ backgroundColor: open ? colors.purple : "white", marginBottom: "2vw" }}>
+            <PixIcon sx={{ color: open ? "white" : colors.purple, width: "5vw", height: "auto" }} />
             <h3 style={{ color: open ? "white" : colors.purple }}>PIX</h3>
         </div>
     )
