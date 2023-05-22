@@ -10,6 +10,7 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({}) => {
     return (
         <div className="SplashScreen-Page" onClick={() => navigate("/cart")}>
             <img src="/splashscreen.png" alt="SplashScreen" />
+            <p className="splashscreen-balloon-text">Olá, sou a Mira!<br />Toque na tela para começar.</p>
         </div>
     )
 }
