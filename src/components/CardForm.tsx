@@ -112,7 +112,7 @@ export const CardForm: React.FC<CardFormProps> = ({ user, values, setValues }) =
                     value={values.cardType}
                     name="type"
                     onChange={(_, value) => setValues.setCardType(value)}
-                    sx={{ flexDirection: "row", gap: "15vw" }}
+                    sx={{ flexDirection: "row", gap: "10vw" }}
                 >
                     <FormControlLabel
                         value="debit"
