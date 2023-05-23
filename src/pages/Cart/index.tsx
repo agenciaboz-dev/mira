@@ -13,6 +13,7 @@ import { useLocalStorage } from "../../hooks/useLocalStorage"
 import { TutorialMask } from "../../components/TutorialMask"
 import { FinishContainer } from "./FinishContainer"
 import { Menu } from "../../components/Menu"
+import useMeasure from "react-use-measure"
 
 interface CartProps {}
 
@@ -22,6 +23,7 @@ export const Cart: React.FC<CartProps> = ({}) => {
 
     const navigate = useNavigate()
     const { cart } = useCart()
+    const [qrCodeRef, qrCodePositions] = useMeasure()
 
     const storage = useLocalStorage()
     const [tutorial, setTutorial] = useState(false)
@@ -46,17 +48,19 @@ export const Cart: React.FC<CartProps> = ({}) => {
     return (
         <div className="Cart-Page">
             <div className="title-container">
-                <IconButton onClick={(event) => setAnchorEl(event.currentTarget)} style={button_style} >
+                <IconButton onClick={(event) => setAnchorEl(event.currentTarget)} style={button_style}>
                     <AvatarIcon style={{ marginLeft: "-1vw", width: "10vw" }} />
-                    <LittleArrowDown style={{ width: "4vw", marginLeft: "-4vw", marginBottom: "1vw", alignSelf: "flex-end" }} />
+                    <LittleArrowDown
+                        style={{ width: "4vw", marginLeft: "-4vw", marginBottom: "1vw", alignSelf: "flex-end" }}
+                    />
                 </IconButton>
                 <h2>Carrinho</h2>
-                <IconButton onClick={() => navigate("/scan")} style={button_style} >
-                    <QrCodePlusIcon style={icon_style} />
+                <IconButton onClick={() => navigate("/scan")} style={button_style}>
+                    <QrCodePlusIcon ref={qrCodeRef} style={icon_style} />
                 </IconButton>
             </div>
 
-            {tutorial && <TutorialMask />}
+            {tutorial && <TutorialMask iconPositions={qrCodePositions} />}
 
             <div className="product-list">
                 {cart.map((product) => (
