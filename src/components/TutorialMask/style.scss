@@ -2,14 +2,14 @@
 
 .tutorial-mask {
     flex-direction: column;
-    background-color: transparentize(#D9D9D9, 0.2);
+    // background-color: transparentize(#D9D9D9, 0.3);
     position: absolute;
     top: 0;
     left: 0;
     height: 100vh;
     width: 100%;
-    -webkit-mask-image: radial-gradient(circle 5vw at (89.5vw 6vw), transparent 100%, black 100%);
-    mask-image: radial-gradient(circle 5vw at (89.5vw 6vw), transparent 100%, black 100%);
+    // -webkit-mask-image: radial-gradient(circle 13vw at (83vw 15vw), transparent 100%, black 100%);
+    // mask-image: radial-gradient(circle 13vw at (83vw 15vw), transparent 100%, black 100%);
     z-index: 9;
     overflow-y: hidden;
 
@@ -18,9 +18,10 @@
         width: 12vw;
         height: 12vw;
         border-radius: 50%;
-        top: 0;
-        right: 4.5vw;
+        // top: 0;
+        // right: 2vw;
         z-index: 10;
+        box-shadow: 0px 0px 100vh rgba(255, 255, 255, 1);
     }
 
     .balloon-container {
