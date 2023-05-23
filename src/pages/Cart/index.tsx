@@ -56,7 +56,7 @@ export const Cart: React.FC<CartProps> = ({}) => {
                 </IconButton>
                 <h2>Carrinho</h2>
                 <IconButton onClick={() => navigate("/scan")} style={button_style}>
-                    <QrCodePlusIcon ref={qrCodeRef} style={icon_style} />
+                    <QrCodePlusIcon ref={ qrCodeRef } style={icon_style} />
                 </IconButton>
             </div>
 
