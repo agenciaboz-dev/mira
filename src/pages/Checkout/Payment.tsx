@@ -8,6 +8,7 @@ import { Financial } from "../Profile/Financial"
 import { CardForm } from "../../components/CardForm"
 import { useUser } from "../../hooks/useUser"
 import { useNavigate } from "react-router-dom"
+import useMeasure from "react-use-measure"
 
 interface PaymentProps {}
 
@@ -29,6 +30,8 @@ export const Payment: React.FC<PaymentProps> = ({}) => {
     const colors = useColors()
     const navigate = useNavigate()
     const { user } = useUser()
+    const [chooseRef, chooseAttributes] = useMeasure();
+    const [paymentRef, paymentAttributes] = useMeasure();
 
     const [paymentType, setPaymentType] = useState<"pix" | "credit" | undefined>()
     const [disabled, setDisabled] = useState(false)
@@ -69,11 +72,11 @@ export const Payment: React.FC<PaymentProps> = ({}) => {
     }, [paymentType])
 
     return (
-        <div className="Payment-Component">
+        <div className="Payment-Component" ref={paymentRef}>
             <h2>Faturamento</h2>
             <p>Selecione uma das opções abaixo</p>
 
-            <div className="choose-container">
+            <div className="choose-container" ref={chooseRef}>
                 <Collapsible
                     trigger={<CreditCardContainer />}
                     triggerWhenOpen={<CreditCardContainer open />}
@@ -86,6 +89,8 @@ export const Payment: React.FC<PaymentProps> = ({}) => {
                         <CardForm
                             user={user!}
                             values={cardValues}
+                            chooseAttributes={chooseAttributes}
+                            paymentAttributes={paymentAttributes}
                             setValues={{
                                 setCardType,
                                 setCardOwner,

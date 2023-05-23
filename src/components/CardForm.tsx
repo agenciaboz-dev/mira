@@ -11,6 +11,7 @@ import { TextField } from "./TextField"
 import MaskedInput from "react-text-mask"
 import { useCardNumberMask } from "../hooks/useCardNumberMask"
 import { useNumberMask } from "../hooks/useNumberMask"
+import useMeasure, { RectReadOnly } from "react-use-measure"
 
 interface CardFormProps {
     user: User
@@ -30,13 +31,22 @@ interface CardFormProps {
         setCardYear: (value: string) => void
         setCardCvv: (value: string) => void
         setCardError: (value: boolean) => void
-    }
+    },
+    chooseAttributes: RectReadOnly
+    paymentAttributes: RectReadOnly
 }
 
-export const CardForm: React.FC<CardFormProps> = ({ user, values, setValues }) => {
+export const CardForm: React.FC<CardFormProps> = ({ user, values, setValues, chooseAttributes, paymentAttributes }) => {
     const [cardNumberError, setCardNumberError] = useState("")
     const [cardCvvError, setCardCvvError] = useState("")
     const [cardMonthError, setCardMonthError] = useState("")
+
+    const [cardRef, {height}] = useMeasure()
+
+    // console.log(paymentAttributes)
+    // console.log(chooseAttributes)
+
+    const available_height = (paymentAttributes.height) - (chooseAttributes.height)
 
     const colors = useColors()
     const api = useApi()
@@ -106,7 +116,7 @@ export const CardForm: React.FC<CardFormProps> = ({ user, values, setValues }) =
     }, [values])
 
     return (
-        <div className="CardForm-Component">
+        <div className="CardForm-Component" ref={cardRef} style={{ height: available_height > height ? available_height : height }}>
             <div className="type-container">
                 <RadioGroup
                     value={values.cardType}

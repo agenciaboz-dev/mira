@@ -169,7 +169,7 @@
         .choose-container {
             margin-top: 1vw;
             flex-direction: column;
-            gap: 3vw;
+            gap: 6vw;
 
             .container {
                 color: #53337D;
@@ -186,10 +186,10 @@
 
             .creditcard-children {
                 flex-direction: column;
-                margin-top: 2vw;
-                border: 1px solid $dark-grey;
-                border-radius: 4vw;
-                padding: 2vw;
+                margin-top: 4vw;
+                // border: 1px solid $dark-grey;
+                // border-radius: 4vw;
+                // padding: 2vw;
 
                 .CardForm-Component {
                     flex-direction: column;
