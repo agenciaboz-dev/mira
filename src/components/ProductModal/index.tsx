@@ -129,12 +129,13 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, produ
                     <TextField
                         value={quantity}
                         onChange={(event) => setQuantity(Number(event.target.value))}
-                        sx={{ width: "12vw" }}
+                        sx={{ width: "10vw !important" }}
                         InputProps={{
                             sx: {
                                 backgroundColor: colors.light_grey,
                                 borderRadius: "7vw",
                                 height: "5vw",
+                                width: "10vw"
                             },
                         }}
                         inputProps={{ sx: { textAlign: "center" }, inputMode: "numeric" }}
