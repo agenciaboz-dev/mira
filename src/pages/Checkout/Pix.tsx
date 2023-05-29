@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { QRCode } from "react-qrcode-logo"
 import { CurrencyText } from "../../components/CurrencyText"
 import { useCart } from "../../hooks/useCart"
@@ -6,6 +6,8 @@ import { ReactComponent as CopyIcon } from "../../images/copy.svg"
 import { Button } from "../../components/Button"
 import { useClipboard } from "../../hooks/useClipboard"
 import { useNavigate } from "react-router-dom"
+import { useWebsocket } from "../../hooks/useWebsocket"
+import { useUser } from "../../hooks/useUser"
 
 interface PixProps {}
 
@@ -15,6 +17,8 @@ export const Pix: React.FC<PixProps> = ({}) => {
     const { total } = useCart()
     const clipboard = useClipboard()
     const navigate = useNavigate()
+    const ws = useWebsocket()
+    const { user } = useUser()
 
     const [qrCodeValue, setQrCodeValue] = useState("https://mira.agenciaboz.com.br")
     const [buttonText, setButtonText] = useState("Copiar código")
@@ -25,6 +29,10 @@ export const Pix: React.FC<PixProps> = ({}) => {
         setTimeout(() => setButtonText("Copiar código"), 5000)
         setTimeout(() => navigate("/checkout/finish"), 5000)
     }
+
+    useEffect(() => {
+        ws.sendMessage({ user })
+    }, [])
 
     return (
         <div className="Pix-Component">
