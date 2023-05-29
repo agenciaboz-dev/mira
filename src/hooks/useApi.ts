@@ -90,6 +90,14 @@ export const useApi = () => {
                     .finally(() => defaultFinally(options.finallyCallback))
             },
         },
+        order: {
+            new: (options: ApiOptions) => {
+                api.post("/orders/new", options.data)
+                    .then((response) => options.callback(response))
+                    .catch((error) => defaultError(error, options.errorCallback))
+                    .finally(() => defaultFinally(options.finallyCallback))
+            },
+        },
     }
 
     return methods

@@ -17,12 +17,15 @@ import { Snackbar } from "./components/Snackbar"
 import { Checkout } from "./pages/Checkout"
 import { AddressProvider } from "./contexts/addressContext"
 import { SplashScreen } from "./pages/SplashScreen"
+import { OrdersProvider } from "./contexts/ordersContext"
 
 function App() {
     const muiTheme = useMuiTheme()
 
     return (
         <ThemeProvider theme={muiTheme}>
+            <OrdersProvider>
+
             <SnackbarProvider>
                 <UserProvider>
                     <ProductsProvider>
@@ -45,6 +48,7 @@ function App() {
                     </ProductsProvider>
                 </UserProvider>
             </SnackbarProvider>
+            </OrdersProvider>
         </ThemeProvider>
     )
 }
