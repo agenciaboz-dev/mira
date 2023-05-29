@@ -17,6 +17,7 @@ import "./sass/_all.scss"
 import { Snackbar } from "./components/Snackbar"
 import { Checkout } from "./pages/Checkout"
 import { AddressProvider } from "./contexts/addressContext"
+import { OrdersProvider } from "./contexts/ordersContext"
 
 function App() {
     const muiTheme = useMuiTheme()
@@ -24,27 +25,29 @@ function App() {
     return (
         <ThemeProvider theme={muiTheme}>
             <SnackbarProvider>
-                <UserProvider>
-                    <ProductsProvider>
-                        <CartProvider>
-                            <AddressProvider>
-                                <BrowserRouter>
-                                    <Snackbar />
-                                    <Routes>
-                                        <Route index element={<Login />} />
-                                        <Route path="/*" element={<Login />} />
-                                        <Route path="/login/*" element={<Login />} />
-                                        <Route path="/adm/*" element={<Adm />} />
-                                        <Route path="/cart" element={<Cart />} />
-                                        <Route path="/scan" element={<Camera />} />
-                                        <Route path="/profile/*" element={<Profile />} />
-                                        <Route path="/checkout/*" element={<Checkout />} />
-                                    </Routes>
-                                </BrowserRouter>
-                            </AddressProvider>
-                        </CartProvider>
-                    </ProductsProvider>
-                </UserProvider>
+                <OrdersProvider>
+                    <UserProvider>
+                        <ProductsProvider>
+                            <CartProvider>
+                                <AddressProvider>
+                                    <BrowserRouter>
+                                        <Snackbar />
+                                        <Routes>
+                                            <Route index element={<Login />} />
+                                            <Route path="/*" element={<Login />} />
+                                            <Route path="/login/*" element={<Login />} />
+                                            <Route path="/adm/*" element={<Adm />} />
+                                            <Route path="/cart" element={<Cart />} />
+                                            <Route path="/scan" element={<Camera />} />
+                                            <Route path="/profile/*" element={<Profile />} />
+                                            <Route path="/checkout/*" element={<Checkout />} />
+                                        </Routes>
+                                    </BrowserRouter>
+                                </AddressProvider>
+                            </CartProvider>
+                        </ProductsProvider>
+                    </UserProvider>
+                </OrdersProvider>
             </SnackbarProvider>
         </ThemeProvider>
     )
