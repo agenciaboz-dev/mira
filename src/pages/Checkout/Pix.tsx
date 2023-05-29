@@ -27,7 +27,8 @@ export const Pix: React.FC<PixProps> = ({}) => {
         clipboard.copy(qrCodeValue)
         setButtonText("Copiado")
         setTimeout(() => setButtonText("Copiar código"), 5000)
-        setTimeout(() => navigate("/checkout/finish"), 5000)
+        // setTimeout(() => navigate("/checkout/finish"), 5000)
+        ws.pay()
     }
 
     useEffect(() => {
