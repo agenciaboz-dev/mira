@@ -11,18 +11,18 @@ import { useAddress } from "./useAddress"
 export const useWebsocket = () => {
     const { orders, newOrder } = useOrders()
     const api = useApi()
+    const url = api.url.split("/")[2]
     const navigate = useNavigate()
-    const { cart } = useCart()
+    const { cart, total } = useCart()
     const { user } = useUser()
     const { address } = useAddress()
 
-    const { sendMessage, lastMessage, readyState } = useWebSocket("ws://localhost:4102", {
+    const { sendMessage, lastMessage, readyState } = useWebSocket(`wss://${url}`, {
         onMessage: (message) => {
             const data = JSON.parse(message.data)
             console.log(data)
 
-            if (data.paid) {
-                newOrder(data.order)
+            if (data.status == "PAID") {
                 navigate("/checkout/finish")
             }
         },
@@ -33,6 +33,7 @@ export const useWebsocket = () => {
             data: {
                 user,
                 address,
+                total,
                 products: cart,
                 method: "pix",
             },

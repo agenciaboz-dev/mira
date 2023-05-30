@@ -9,31 +9,52 @@ import { useNavigate } from "react-router-dom"
 import "./style.scss"
 import { useWebsocket } from "../../hooks/useWebsocket"
 import { useUser } from "../../hooks/useUser"
+import { useApi } from "../../hooks/useApi"
+import { useAddress } from "../../hooks/useAddress"
+import { Skeleton } from "@mui/material"
 
 interface PixProps {}
 
 export const Pix: React.FC<PixProps> = ({}) => {
     const vw = window.innerWidth / 100
 
-    const { total } = useCart()
     const clipboard = useClipboard()
     const navigate = useNavigate()
     const ws = useWebsocket()
+    const api = useApi()
+    const { address } = useAddress()
+    const { cart, total } = useCart()
     const { user } = useUser()
 
-    const [qrCodeValue, setQrCodeValue] = useState("https://mira.agenciaboz.com.br")
+    const [qrCodeValue, setQrCodeValue] = useState("")
+    const [qrCode, setQrCode] = useState<any>()
     const [buttonText, setButtonText] = useState("Copiar código")
 
     const handleClick = () => {
-        clipboard.copy(qrCodeValue)
+        clipboard.copy(qrCode?.id)
         setButtonText("Copiado")
         setTimeout(() => setButtonText("Copiar código"), 5000)
         // setTimeout(() => navigate("/checkout/finish"), 5000)
-        ws.pay()
+        // ws.pay()
     }
 
     useEffect(() => {
-        ws.sendMessage({ user })
+        api.order.new({
+            data: {
+                user,
+                address,
+                total,
+                products: cart,
+                method: "pix",
+            },
+            callback: (response: any) => {
+                const { pagseguro, order } = response.data
+                ws.sendMessage({ order })
+                console.log(pagseguro)
+                setQrCodeValue(pagseguro.qr_codes[0].text)
+                setQrCode(pagseguro.qr_codes[0])
+            },
+        })
     }, [])
 
     return (
@@ -45,7 +66,15 @@ export const Pix: React.FC<PixProps> = ({}) => {
             </div>
 
             <div className="code-wrapper">
-                <QRCode value={qrCodeValue} size={40 * vw} />
+                {qrCodeValue ? (
+                    <QRCode value={qrCodeValue} size={40 * vw} />
+                ) : (
+                    <Skeleton
+                        variant="rounded"
+                        animation="wave"
+                        sx={{ width: 40 * vw, height: 40 * vw, borderRadius: "5vw" }}
+                    />
+                )}
             </div>
 
             <div className="totals-container">

@@ -11,4 +11,5 @@ export interface Order {
     status: number
     user: User
     address: Address
+    total: number
 }
