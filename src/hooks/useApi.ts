@@ -104,6 +104,12 @@ export const useApi = () => {
                     .finally(() => defaultFinally(options.finallyCallback))
             },
         },
+        cep: (options: ApiOptions) => {
+            api.post("/cep", options.data)
+                .then((response) => options.callback(response))
+                .catch((error) => defaultError(error, options.errorCallback))
+                .finally(() => defaultFinally(options.finallyCallback))
+        },
     }
 
     return methods
