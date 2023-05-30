@@ -14,6 +14,7 @@ import { useApi } from "../../hooks/useApi"
 import { useSnackbar } from "../../hooks/useSnackbar"
 import { useAddress } from "../../hooks/useAddress"
 import { useColors } from "../../hooks/useColors"
+import { AddressField } from "../../components/AddressField"
 
 interface AddressProps {}
 
@@ -75,86 +76,7 @@ export const Address: React.FC<AddressProps> = ({}) => {
                                 />
                             )}
                         />
-                        <MaskedInput
-                            mask={[/\d/, /\d/, ".", /\d/, /\d/, /\d/, "-", /\d/, /\d/, /\d/]}
-                            guide={false}
-                            name="cep"
-                            value={values.cep}
-                            onChange={handleChange}
-                            render={(ref, props) => (
-                                <TextField inputRef={ref} {...props} placeholder="CEP" InputProps={{ style: input_style }} />
-                            )}
-                        />
-                        <TextField
-                            placeholder="Endereço"
-                            name="address"
-                            value={values.address}
-                            onChange={handleChange}
-                            InputProps={{ style: input_style }}
-                        />
-                        <div className="two-inputs">
-                            <MaskedInput
-                                mask={numberMask}
-                                guide={false}
-                                name="number"
-                                value={values.number.toString()}
-                                onChange={handleChange}
-                                render={(ref, props) => (
-                                    <TextField
-                                        inputRef={ref}
-                                        {...props}
-                                        className="small-input"
-                                        placeholder="Número"
-                                        InputProps={{ style: input_style }}
-                                    />
-                                )}
-                            />
-                            <TextField
-                                placeholder="Complemento"
-                                name="complement"
-                                value={values.complement}
-                                onChange={handleChange}
-                                sx={{ flex: "0.8" }}
-                                InputProps={{ style: input_style }}
-                            />
-                        </div>
-                        <TextField
-                            placeholder="Bairro"
-                            name="district"
-                            value={values.district}
-                            onChange={handleChange}
-                            InputProps={{ style: input_style }}
-                        />
-                        <div className="two-inputs">
-                            <TextField
-                                placeholder="Cidade"
-                                name="city"
-                                value={values.city}
-                                onChange={handleChange}
-                                sx={{ flex: "0.8" }}
-                                InputProps={{ style: input_style }}
-                            />
-                            <TextField
-                                select
-                                name={"uf"}
-                                placeholder={"UF"}
-                                onChange={handleChange}
-                                value={values.uf}
-                                className="small-input"
-                                InputProps={{ style: input_style }}
-                            >
-                                {estados.map((estado) => (
-                                    <MenuItem key={estado.value} value={estado.value} style={{ width: "100%" }}>
-                                        {estado.value}
-                                    </MenuItem>
-                                ))}
-                            </TextField>
-                        </div>
-
-                        <div className="avatar-security-container">
-                            <img src="/mira_text_totem.png" alt="Mira" />
-                            <p className="avatar-security-text">Olá novamente! Mira aqui.<br />Levamos muito a sério a sua segurança, então, como sabemos que esse dispositivo é de uso comum, nenhuma das informações inseridas aqui será salva, fique tranquilo!</p>
-                        </div>
+                        <AddressField values={values} handleChange={handleChange} />
 
                         <Button type="submit">
                             {loading ? (
