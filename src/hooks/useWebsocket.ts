@@ -6,6 +6,7 @@ import { User } from "../definitions/user"
 import { useApi } from "./useApi"
 import { useCart } from "./useCart"
 import { useUser } from "./useUser"
+import { useAddress } from "./useAddress"
 
 export const useWebsocket = () => {
     const { orders, newOrder } = useOrders()
@@ -13,6 +14,7 @@ export const useWebsocket = () => {
     const navigate = useNavigate()
     const { cart } = useCart()
     const { user } = useUser()
+    const { address } = useAddress()
 
     const { sendMessage, lastMessage, readyState } = useWebSocket("ws://localhost:4102", {
         onMessage: (message) => {
@@ -29,8 +31,9 @@ export const useWebsocket = () => {
     const pay = () => {
         api.order.new({
             data: {
-                products: cart,
                 user,
+                address,
+                products: cart,
                 method: "pix",
             },
             callback: (response: any) => console.log(response.data),
