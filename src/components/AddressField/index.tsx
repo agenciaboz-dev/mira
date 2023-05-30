@@ -34,15 +34,16 @@ export const AddressField: React.FC<AddressFieldProps> = ({ values, handleChange
                 callback: (response: any) => {
                     const address = response.data
                     console.log(address)
+                    
                     if (address.erro) {
                         snackbar({ severity: "error", text: "Cep não encontrado" })
                         return
                     }
-                    console.log(address)
+
                     setFieldValue("address", address.logradouro)
                     setFieldValue("district", address.bairro)
                     setFieldValue("city", address.localidade)
-                    setFieldValue("state", address.uf)
+                    setFieldValue("uf", address.uf)
                     numberRef?.current?.inputElement.focus()
                 },
                 finallyCallback: () => setLoading(false),
