@@ -1,5 +1,5 @@
 import { Product } from "./product"
-import { User } from "./user"
+import { Address, User } from "./user"
 
 export interface Cart extends Product {
     quantity: number
@@ -10,4 +10,5 @@ export interface Order {
     products: Cart[]
     status: number
     user: User
+    address: Address
 }
