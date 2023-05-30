@@ -14,7 +14,13 @@ export const Review: React.FC<ReviewProps> = ({}) => {
     const navigate = useNavigate()
     const { address, setAddress } = useAddress()
 
-    const button_style = { fontSize: "2.5vw", justifyContent: "flex-start", padding: "0.5vw 3vw" }
+    const button_style = {
+        fontSize: "2.5vw",
+        justifyContent: "flex-start",
+        padding: "0.5vw 3vw",
+        background: !Boolean(cart.length) ? "linear-gradient(90deg, #9F9F9F 0%, #565656 91.94%)" : "",
+        boxShadow: !Boolean(cart.length) ? "none" : "",
+    }
     const icon_style = { width: "13%" }
     const button_p_style = { margin: "0 auto" }
 
@@ -52,13 +58,19 @@ export const Review: React.FC<ReviewProps> = ({}) => {
                     Total do pedido (sem entrega): <CurrencyText value={total} />
                 </p>
                 <div className="buttons-container">
-                    <Button fullWidth style={button_style} onClick={() => navigate("address")}>
+                    <Button
+                        fullWidth
+                        style={button_style}
+                        onClick={() => navigate("address")}
+                        disabled={!Boolean(cart.length)}
+                    >
                         <DeliveryIcon style={icon_style} />
                         <p style={button_p_style}>Entrega</p>
                     </Button>
                     <Button
                         fullWidth
                         style={button_style}
+                        disabled={!Boolean(cart.length)}
                         onClick={() => {
                             navigate("payment")
                             if (address) setAddress({ ...address, delivery: false })
