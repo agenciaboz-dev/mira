@@ -4,10 +4,11 @@ import PixIcon from "@mui/icons-material/Pix"
 import Collapsible from "react-collapsible"
 import { useColors } from "../../hooks/useColors"
 import { Button } from "../../components/Button"
-import { Financial } from "../Profile/Financial"
 import { CardForm } from "../../components/CardForm"
 import { useUser } from "../../hooks/useUser"
 import { useNavigate } from "react-router-dom"
+import useMeasure from "react-use-measure"
+import { useApi } from "../../hooks/useApi"
 
 interface PaymentProps {}
 
@@ -29,6 +30,9 @@ export const Payment: React.FC<PaymentProps> = ({}) => {
     const colors = useColors()
     const navigate = useNavigate()
     const { user } = useUser()
+    const [chooseRef, chooseAttributes] = useMeasure()
+    const [paymentRef, paymentAttributes] = useMeasure()
+    const api = useApi()
 
     const [paymentType, setPaymentType] = useState<"pix" | "credit" | undefined>("pix")
     const [disabled, setDisabled] = useState(false)
@@ -116,7 +120,12 @@ export const Payment: React.FC<PaymentProps> = ({}) => {
 
             <div className="avatar-security-container">
                 <img src="/mira_text_totem.png" alt="Mira" />
-                <p className="avatar-security-text">Olá novamente! Mira aqui.<br />Levamos muito a sério a sua segurança, então, como sabemos que esse dispositivo é de uso comum, nenhuma das informações inseridas aqui será salva, fique tranquilo!</p>
+                <p className="avatar-security-text">
+                    Olá novamente! Mira aqui.
+                    <br />
+                    Levamos muito a sério a sua segurança, então, como sabemos que esse dispositivo é de uso comum, nenhuma
+                    das informações inseridas aqui será salva, fique tranquilo!
+                </p>
             </div>
 
             <Button

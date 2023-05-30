@@ -18,6 +18,7 @@ export const useApi = () => {
     }
 
     const methods = {
+        url: api.getUri(),
         login: (options: ApiOptions) => {
             api.post("/login", options.data)
                 .then((response) => options.callback(response))
