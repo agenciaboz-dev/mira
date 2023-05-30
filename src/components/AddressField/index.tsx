@@ -1,10 +1,10 @@
-import React, { useEffect, useRef } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { FormikAdressValues } from "../../pages/Profile/Address"
 import MaskedInput from "react-text-mask"
 import { TextField } from "../TextField"
 import { useNumberMask } from "../../hooks/useNumberMask"
 import { useEstadosBrasil } from "../../hooks/useEstadosBrasil"
-import { MenuItem } from "@mui/material"
+import { CircularProgress, MenuItem } from "@mui/material"
 import { useSnackbar } from "../../hooks/useSnackbar"
 import { useApi } from "../../hooks/useApi"
 import { useFormikContext } from "formik"
@@ -22,8 +22,13 @@ export const AddressField: React.FC<AddressFieldProps> = ({ values, handleChange
     const api = useApi()
     const numberRef = useRef<MaskedInput>(null)
 
+    const [loading, setLoading] = useState(false)
+
     useEffect(() => {
         if (values.cep.length == 10) {
+            if (loading) return
+
+            setLoading(true)
             api.cep({
                 data: { cep: values.cep },
                 callback: (response: any) => {
@@ -40,6 +45,7 @@ export const AddressField: React.FC<AddressFieldProps> = ({ values, handleChange
                     setFieldValue("state", address.uf)
                     numberRef?.current?.inputElement.focus()
                 },
+                finallyCallback: () => setLoading(false),
             })
         }
     }, [values.cep])
@@ -52,7 +58,14 @@ export const AddressField: React.FC<AddressFieldProps> = ({ values, handleChange
                 name="cep"
                 value={values.cep}
                 onChange={handleChange}
-                render={(ref, props) => <TextField inputRef={ref} {...props} placeholder="CEP" />}
+                render={(ref, props) => (
+                    <TextField
+                        inputRef={ref}
+                        {...props}
+                        placeholder="CEP"
+                        InputProps={{ endAdornment: loading ? <CircularProgress size={"1.5rem"} color="primary" /> : <></> }}
+                    />
+                )}
             />
             <TextField placeholder="Endereço" name="address" value={values.address} onChange={handleChange} />
             <div className="two-inputs">
