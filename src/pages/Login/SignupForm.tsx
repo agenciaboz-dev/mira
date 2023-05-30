@@ -9,6 +9,7 @@ import { User } from "../../definitions/user"
 import { useApi } from "../../hooks/useApi"
 import { ReactComponent as ArrowIcon } from "../../images/down_arrow.svg"
 import { ReactComponent as Divider } from "../../images/pasta_de_dente_2.svg"
+import { useCpfMask, usePhoneMask } from "burgos-masks"
 
 interface SignupFormProps {}
 
@@ -18,16 +19,19 @@ interface FormikValues {
     password: string
     confirm: string
     phone: string
+    cpf: string
 }
 
 export const SignupForm: React.FC<SignupFormProps> = ({}) => {
     const navigate = useNavigate()
     const api = useApi()
+    const cpfMask = useCpfMask()
+    const phoneMask = usePhoneMask()
 
     const [signupError, setSignupError] = useState("")
     const [loading, setLoading] = useState(false)
 
-    const initialValues: FormikValues = { name: "", email: "", password: "", confirm: "", phone: "" }
+    const initialValues: FormikValues = { name: "", email: "", password: "", confirm: "", phone: "", cpf: "" }
 
     const handleSubmit = (values: FormikValues) => {
         console.log(values)
@@ -67,6 +71,28 @@ export const SignupForm: React.FC<SignupFormProps> = ({}) => {
                             onChange={handleChange}
                             fullWidth
                             size="small"
+                        />
+
+                        <MaskedInput
+                            mask={cpfMask}
+                            guide={false}
+                            name="cpf"
+                            value={values.cpf}
+                            onChange={handleChange}
+                            render={(ref, props) => (
+                                <TextField inputRef={ref} {...props} placeholder="CPF" fullWidth size="small" />
+                            )}
+                        />
+
+                        <MaskedInput
+                            mask={phoneMask}
+                            guide={false}
+                            name="phone"
+                            value={values.phone}
+                            onChange={handleChange}
+                            render={(ref, props) => (
+                                <TextField inputRef={ref} {...props} placeholder="Telefone" fullWidth size="small" />
+                            )}
                         />
 
                         <TextField
