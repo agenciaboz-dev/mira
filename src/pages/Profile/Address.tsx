@@ -1,6 +1,6 @@
-import React, { useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { Address as AddressType, User } from "../../definitions/user"
-import { Form, Formik } from "formik"
+import { Form, Formik, useFormikContext } from "formik"
 import { TextField } from "../../components/TextField"
 import { Button } from "../../components/Button"
 import MaskedInput from "react-text-mask"
@@ -12,24 +12,26 @@ import { useUser } from "../../hooks/useUser"
 import { useLocalStorage } from "../../hooks/useLocalStorage"
 import { useNavigate } from "react-router-dom"
 import { useSnackbar } from "../../hooks/useSnackbar"
+import { Masked } from "../../definitions/masked_input"
+import { AddressField } from "../../components/AddressField"
 
 interface AddressProps {
     user: User
 }
 
-interface FormikValues extends AddressType {}
+export interface FormikAdressValues extends AddressType {}
 
 export const Address: React.FC<AddressProps> = ({ user }) => {
-    const numberMask = useNumberMask()
-    const estados = useEstadosBrasil()
     const api = useApi()
     const navigate = useNavigate()
     const { snackbar } = useSnackbar()
     const { setUser } = useUser()
+    const cepRef = useRef<Masked>(null)
+    // const { setFieldValue } = useFormikContext()
 
     const [loading, setLoading] = useState(false)
 
-    const initialValues: FormikValues = user.addresses[0] || {
+    const initialValues: FormikAdressValues = user.addresses[0] || {
         receiver: "",
         phone: "",
         cep: "",
@@ -41,7 +43,7 @@ export const Address: React.FC<AddressProps> = ({ user }) => {
         uf: "",
     }
 
-    const handleSubmit = (values: FormikValues) => {
+    const handleSubmit = (values: FormikAdressValues) => {
         if (loading) return
 
         setLoading(true)
@@ -70,84 +72,35 @@ export const Address: React.FC<AddressProps> = ({ user }) => {
     return (
         <div className="Address-Component">
             <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-                {({ values, handleChange }) => (
-                    <Form>
-                        <h2>Endereço de entrega</h2>
-                        <TextField
-                            placeholder="Nome do destinatário"
-                            name="receiver"
-                            value={values.receiver}
-                            onChange={handleChange}
-                        />
-                        <MaskedInput
-                            mask={["(", /\d/, /\d/, ")", " ", /\d/, /\d/, /\d/, /\d/, /\d/, "-", /\d/, /\d/, /\d/, /\d/]}
-                            guide={false}
-                            name="phone"
-                            value={values.phone}
-                            onChange={handleChange}
-                            render={(ref, props) => <TextField inputRef={ref} {...props} placeholder="Telefone" />}
-                        />
-                        <MaskedInput
-                            mask={[/\d/, /\d/, ".", /\d/, /\d/, /\d/, "-", /\d/, /\d/, /\d/]}
-                            guide={false}
-                            name="cep"
-                            value={values.cep}
-                            onChange={handleChange}
-                            render={(ref, props) => <TextField inputRef={ref} {...props} placeholder="CEP" />}
-                        />
-                        <TextField placeholder="Endereço" name="address" value={values.address} onChange={handleChange} />
-                        <div className="two-inputs">
+                {({ values, handleChange }) => {
+                    return (
+                        <Form>
+                            <h2>Endereço de entrega</h2>
+                            <TextField
+                                placeholder="Nome do destinatário"
+                                name="receiver"
+                                value={values.receiver}
+                                onChange={handleChange}
+                            />
                             <MaskedInput
-                                mask={numberMask}
+                                mask={["(", /\d/, /\d/, ")", " ", /\d/, /\d/, /\d/, /\d/, /\d/, "-", /\d/, /\d/, /\d/, /\d/]}
                                 guide={false}
-                                name="number"
-                                value={values.number.toString()}
+                                name="phone"
+                                value={values.phone}
                                 onChange={handleChange}
-                                render={(ref, props) => (
-                                    <TextField inputRef={ref} {...props} className="small-input" placeholder="Número" />
+                                render={(ref, props) => <TextField inputRef={ref} {...props} placeholder="Telefone" />}
+                            />
+                            <AddressField values={values} handleChange={handleChange} />
+                            <Button type="submit">
+                                {loading ? (
+                                    <CircularProgress sx={{ color: "white" }} style={{ width: "5vw", height: "auto" }} />
+                                ) : (
+                                    "Salvar"
                                 )}
-                            />
-                            <TextField
-                                placeholder="Complemento"
-                                name="complement"
-                                value={values.complement}
-                                onChange={handleChange}
-                                sx={{ flex: "0.8" }}
-                            />
-                        </div>
-                        <TextField placeholder="Bairro" name="district" value={values.district} onChange={handleChange} />
-                        <div className="two-inputs">
-                            <TextField
-                                placeholder="Cidade"
-                                name="city"
-                                value={values.city}
-                                onChange={handleChange}
-                                sx={{ flex: "0.8" }}
-                            />
-                            <TextField
-                                select
-                                name={"uf"}
-                                placeholder={"UF"}
-                                onChange={handleChange}
-                                value={values.uf}
-                                className="small-input"
-                            >
-                                {estados.map((estado) => (
-                                    <MenuItem key={estado.value} value={estado.value} style={{ width: "100%" }}>
-                                        {estado.value}
-                                    </MenuItem>
-                                ))}
-                            </TextField>
-                        </div>
-                        <Button type="submit">
-                            {loading ? (
-                                <CircularProgress sx={{ color: "white" }} style={{ width: "5vw", height: "auto" }} />
-                            ) : (
-                                "Salvar"
-                            )}
-                        </Button>
-                    </Form>
-                )}
+                            </Button>
+                        </Form>
+                    )
+                }}
             </Formik>
         </div>
     )
