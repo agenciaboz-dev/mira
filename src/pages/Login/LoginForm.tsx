@@ -87,6 +87,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({}) => {
                             onChange={handleChange}
                             fullWidth
                             size="small"
+                            required
                         />
 
                         <TextField
@@ -97,6 +98,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({}) => {
                             fullWidth
                             type={"password"}
                             size="small"
+                            required
                         />
 
                         <div className="submit-container">
