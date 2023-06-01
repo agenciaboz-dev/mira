@@ -1,5 +1,5 @@
-$user = "agenciaboz"
-$domain = "totem.mira.agenciaboz.com.br"
+$user = "totemmira"
+$domain = "www"
 $path = "/home/$user/$domain"
 
 yarn build
