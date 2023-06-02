@@ -21,6 +21,7 @@ export const Menu: React.FC<MenuProps> = ({ menu, style }) => {
         ...styles.menu,
         backgroundColor: current ? colors.background : "",
         color: current ? colors.primary : "",
+        pointerEvents: current ? "none" : "auto",
 
         "&:hover": {
             backgroundColor: current ? colors.background : "",
