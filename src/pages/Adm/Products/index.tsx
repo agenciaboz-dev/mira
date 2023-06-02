@@ -36,7 +36,7 @@ export const Products: React.FC<ProductsProps> = ({}) => {
             name: "Nome",
             selector: (row) => row.name,
             sortable: true,
-            width: "30%",
+            width: "25%",
         },
         {
             name: "Preço",
