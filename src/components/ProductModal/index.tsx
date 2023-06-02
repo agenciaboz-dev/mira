@@ -16,8 +16,7 @@ import { ProductStory } from "../ProductStory"
 import { Form, Formik } from "formik"
 import TextField from "@mui/material/TextField/TextField"
 import MaskedInput from "react-text-mask"
-import { useCurrencyMask } from "../../hooks/useCurrencyMask"
-import { useNumberMask } from "burgos-masks"
+import { useNumberMask, useCurrencyMask } from "burgos-masks"
 import { useApi } from "../../hooks/useApi"
 import { useCurrentProduct } from "../../hooks/useCurrentProduct"
 import { useSnackbar } from "burgos-snackbar"
@@ -104,7 +103,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
                                     mask={currencyMask}
                                     guide={false}
                                     name="price"
-                                    value={values.price.toString().replace(".", ",")}
+                                    value={values.price ? values.price.toString().replace(".", ",") : ""}
                                     onChange={handleChange}
                                     render={(ref, props) => <TextField inputRef={ref} {...props} label="Preço" />}
                                 />
@@ -112,7 +111,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
                                     mask={numberMask}
                                     guide={false}
                                     name="stock"
-                                    value={values.stock}
+                                    value={values.stock || ""}
                                     onChange={handleChange}
                                     render={(ref, props) => (
                                         <TextField
@@ -129,7 +128,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
                                     mask={volumeMask}
                                     guide={false}
                                     name="weight"
-                                    value={values.weight.toString().replace(".", ",")}
+                                    value={values.weight ? values.weight.toString().replace(".", ",") : ""}
                                     onChange={handleChange}
                                     render={(ref, props) => (
                                         <TextField
@@ -144,7 +143,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
                                     mask={volumeMask}
                                     guide={false}
                                     name="width"
-                                    value={values.width.toString().replace(".", ",")}
+                                    value={values.width ? values.width.toString().replace(".", ",") : ""}
                                     onChange={handleChange}
                                     render={(ref, props) => (
                                         <TextField
@@ -159,7 +158,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
                                     mask={volumeMask}
                                     guide={false}
                                     name="height"
-                                    value={values.height.toString().replace(".", ",")}
+                                    value={values.height ? values.height.toString().replace(".", ",") : ""}
                                     onChange={handleChange}
                                     render={(ref, props) => (
                                         <TextField
@@ -174,7 +173,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
                                     mask={volumeMask}
                                     guide={false}
                                     name="length"
-                                    value={values.length.toString().replace(".", ",")}
+                                    value={values.length ? values.length.toString().replace(".", ",") : ""}
                                     onChange={handleChange}
                                     render={(ref, props) => (
                                         <TextField
