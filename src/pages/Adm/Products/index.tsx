@@ -36,6 +36,7 @@ export const Products: React.FC<ProductsProps> = ({}) => {
             name: "Nome",
             selector: (row) => row.name,
             sortable: true,
+            width: "30%",
         },
         {
             name: "Preço",
@@ -58,6 +59,22 @@ export const Products: React.FC<ProductsProps> = ({}) => {
                     prefix={""}
                 />
             ),
+        },
+        {
+            name: "Volume",
+            selector: (row) => row.id,
+            sortable: true,
+            cell: (row) => (
+                <p>
+                    {row.width} x {row.height} x {row.length} cm
+                </p>
+            ),
+        },
+        {
+            name: "Peso",
+            selector: (row) => row.id,
+            sortable: true,
+            cell: (row) => <p>{row.weight} kg</p>,
         },
         {
             name: "QR Code",
