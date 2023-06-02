@@ -1,5 +1,5 @@
 import { TextField, Box } from "@mui/material"
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Product } from "../../definitions/product"
 import SearchIcon from "@mui/icons-material/Search"
 
@@ -14,8 +14,11 @@ export const SearchField: React.FC<SearchFieldProps> = ({ onSearch, list, button
 
     const handleChange: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement> = (event) => {
         setValue(event.target.value)
-        console.log(event.target.value)
     }
+
+    useEffect(() => {
+        onSearch(list.filter((item) => item.name.includes(value)))
+    }, [value])
 
     const Button = () => button
 

@@ -95,7 +95,7 @@ export const Products: React.FC<ProductsProps> = ({}) => {
     ]
 
     const handleSearch = (result: Product[]) => {
-        console.log(result)
+        setProductList(result)
     }
 
     const handleNew = () => {
