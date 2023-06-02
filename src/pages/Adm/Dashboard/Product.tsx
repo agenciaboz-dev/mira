@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { Product as ProductType } from "../../../definitions/product"
 import EditIcon from "@mui/icons-material/Edit"
-import { IconButton, Paper } from "@mui/material"
+import { Box, IconButton, Paper } from "@mui/material"
 import { CurrencyText } from "../../../components/CurrencyText"
 import QrCodeScannerIcon from "@mui/icons-material/QrCodeScanner"
 import CurrencyFormat from "react-currency-format"
@@ -10,18 +10,26 @@ import DeleteIcon from "@mui/icons-material/Delete"
 import { useApi } from "../../../hooks/useApi"
 import { useProducts } from "../../../hooks/useProducts"
 import { useSnackbar } from "../../../hooks/useSnackbar"
+import { useCurrentProduct } from "../../../hooks/useCurrentProduct"
+import styles from "./styles"
 
 interface ProductProps {
     product: ProductType
-    setProduct: (product: ProductType) => void
 }
 
-export const Product: React.FC<ProductProps> = ({ product, setProduct }) => {
+export const Product: React.FC<ProductProps> = ({ product }) => {
+    const vw = window.innerWidth / 100
     const [showCode, setShowCode] = useState(false)
 
     const api = useApi()
     const products = useProducts()
     const { snackbar } = useSnackbar()
+    const { setCurrentProduct, setOpen } = useCurrentProduct()
+
+    const editProduct = () => {
+        setOpen(true)
+        setCurrentProduct(product)
+    }
 
     const handleDeleteClick = () => {
         api.products.delete({
@@ -37,8 +45,8 @@ export const Product: React.FC<ProductProps> = ({ product, setProduct }) => {
     }
 
     return (
-        <Paper className="Product-Component">
-            <div className="info-container">
+        <Paper sx={styles.body}>
+            <Box sx={styles.info}>
                 <h3 style={{ flex: "0.4" }}>{product.name}</h3>
                 <CurrencyText style={{ flex: "0.4" }} value={product.price} />
                 <CurrencyFormat
@@ -51,18 +59,18 @@ export const Product: React.FC<ProductProps> = ({ product, setProduct }) => {
                     prefix={""}
                     style={{ flex: "0.4" }}
                 />
-            </div>
-            <div className="actions-container">
+            </Box>
+            <Box sx={styles.actions}>
                 <IconButton onClick={() => setShowCode(true)}>
                     <QrCodeScannerIcon color="primary" />
                 </IconButton>
-                <IconButton onClick={() => setProduct(product)}>
+                <IconButton onClick={() => editProduct()}>
                     <EditIcon color="primary" />
                 </IconButton>
                 <IconButton onClick={handleDeleteClick}>
                     <DeleteIcon color="error" />
                 </IconButton>
-            </div>
+            </Box>
             <QrCodeModal id={product.id} open={showCode} setOpen={setShowCode} />
         </Paper>
     )

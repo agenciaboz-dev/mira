@@ -7,4 +7,11 @@ export interface Product {
     price: number
     image: string
     video: string
+    prep_time: number
+    usage: string
+    volume: {
+        width: number
+        height: number
+        length: number
+    }
 }

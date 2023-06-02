@@ -3,23 +3,20 @@ import { SxProps } from "@mui/material"
 
 interface Styles {
     body: SxProps
-    actions: SxProps
-    info: SxProps
+    list: SxProps
 }
 
 const styles: Styles = {
     body: {
+        flexDirection: "column",
         width: "100%",
-    },
-
-    info: {
-        width: "100%",
-        alignItems: "center",
         padding: "1vw",
+        gap: "1vw",
     },
-
-    actions: {
-        marginLeft: "auto",
+    list: {
+        padding: "1vw",
+        flexDirection: "column",
+        gap: "1vw",
     },
 }
 

@@ -7,9 +7,10 @@ import styles from "./styles"
 
 interface MenuProps {
     menu: SidebarMenu
+    style?: React.CSSProperties
 }
 
-export const Menu: React.FC<MenuProps> = ({ menu }) => {
+export const Menu: React.FC<MenuProps> = ({ menu, style }) => {
     const Icon = () => menu.icon
     const path = useLocation().pathname
     const navigate = useNavigate()
@@ -20,6 +21,7 @@ export const Menu: React.FC<MenuProps> = ({ menu }) => {
         ...styles.menu,
         backgroundColor: current ? colors.background : "",
         color: current ? colors.primary : "",
+
         "&:hover": {
             backgroundColor: current ? colors.background : "",
         },
@@ -27,7 +29,7 @@ export const Menu: React.FC<MenuProps> = ({ menu }) => {
 
     useEffect(() => {
         console.log({ path, menu: menu.location })
-        if (path.split("/")[1] == menu.location.split("/")[1]) {
+        if (path.split("/")[2] == menu.location.split("/")[2]) {
             setCurrent(true)
         } else {
             setCurrent(false)
@@ -35,7 +37,7 @@ export const Menu: React.FC<MenuProps> = ({ menu }) => {
     }, [path])
 
     return (
-        <MenuItem sx={menuStyle} onClick={() => navigate(menu.location)}>
+        <MenuItem style={style} sx={menuStyle} onClick={() => navigate(menu.location)}>
             <Icon />
             <p>{menu.title}</p>
         </MenuItem>

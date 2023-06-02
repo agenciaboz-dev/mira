@@ -6,13 +6,13 @@ export const useSidebarMenus = () => {
         {
             id: 1,
             title: "Produtos",
-            location: "/products",
+            location: "/dashboard/products",
             icon: <HandymanIcon />,
         },
         {
             id: 2,
             title: "Categorias",
-            location: "/categories",
+            location: "/dashboard/categories",
             icon: <CategoryIcon />,
         },
     ]

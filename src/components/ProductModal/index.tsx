@@ -27,25 +27,21 @@ import MaskedInput from "react-text-mask"
 import { useCurrencyMask } from "../../hooks/useCurrencyMask"
 import { useNumberMask } from "../../hooks/useNumberMask"
 import { useApi } from "../../hooks/useApi"
+import { useCurrentProduct } from "../../hooks/useCurrentProduct"
 
-interface ProductModalProps {
-    open: boolean
-    setOpen: (open: boolean) => void
-    product?: Product
-    clearProduct: () => void
-}
+interface ProductModalProps {}
 
-export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, product, clearProduct }) => {
+export const ProductModal: React.FC<ProductModalProps> = ({}) => {
     const [error, setError] = useState(false)
     const [loading, setLoading] = useState(false)
+    const { currentProduct, setCurrentProduct, open, setOpen } = useCurrentProduct()
 
-    const colors = useColors()
     const currencyMask = useCurrencyMask()
     const numberMask = useNumberMask()
     const api = useApi()
     const { refresh } = useProducts()
 
-    const initialValues: Product = product || {
+    const initialValues: Product = currentProduct || {
         name: "",
         description: "",
         stock: 0,
@@ -54,12 +50,19 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, produ
         price: 0,
         story: "",
         video: "",
+        prep_time: 0,
+        usage: "",
+        volume: {
+            height: 0,
+            length: 0,
+            width: 0,
+        },
     }
 
     const handleSubmit = (values: Product) => {
         setLoading(true)
 
-        if (product) {
+        if (currentProduct) {
             api.products.update({
                 data: values,
                 callback: (response: { data: Product }) => {
@@ -83,7 +86,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, produ
 
     const handleClose = () => {
         setOpen(false)
-        clearProduct()
+        setCurrentProduct(null)
     }
 
     return (
@@ -92,7 +95,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, produ
                 <IconButton onClick={handleClose} sx={{ position: "absolute", left: "1vw" }}>
                     <CancelPresentationIcon color="error" sx={styles.close_icon} />
                 </IconButton>
-                {product?.name || "Novo produto"}
+                {currentProduct?.name || "Novo produto"}
             </DialogTitle>
 
             <DialogContent sx={styles.content_container}>
@@ -125,7 +128,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, produ
                             <TextField label="História" name="story" value={values.story} onChange={handleChange} />
                             <TextField label="Link de imagem" name="image" value={values.image} onChange={handleChange} />
                             <TextField label="Link de vídeo" name="video" value={values.video} onChange={handleChange} />
-                            {product ? (
+                            {currentProduct ? (
                                 <Button type="submit" variant="contained" fullWidth>
                                     {loading ? (
                                         <CircularProgress
@@ -133,7 +136,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, produ
                                             sx={{ color: "white" }}
                                         />
                                     ) : (
-                                        `Atualizar ${product.name}`
+                                        `Atualizar ${currentProduct.name}`
                                     )}
                                 </Button>
                             ) : (

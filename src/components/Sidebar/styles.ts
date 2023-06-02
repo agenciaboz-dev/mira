@@ -15,6 +15,7 @@ const styles: Styles = {
         padding: "1vw 0",
         width: "20vw",
         alignItems: "center",
+        flexShrink: 0,
     },
 
     logo: {

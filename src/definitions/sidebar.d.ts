@@ -1,5 +1,5 @@
 declare interface SidebarMenu {
-    id: number
+    id?: number
     title: string
     location: string
     icon: React.ReactElement
