@@ -8,6 +8,8 @@ import { useProducts } from "../../../hooks/useProducts"
 import { useUser } from "../../../hooks/useUser"
 import { Product } from "./Product"
 import "./style.scss"
+import { Box } from "@mui/material"
+import styles from "./styles"
 
 interface DashboardProps {}
 
@@ -29,23 +31,8 @@ export const Dashboard: React.FC<DashboardProps> = ({}) => {
         }
     }, [product])
     return (
-        <div className="Dashboard-Component">
-            <h2>Olá, {user?.name}</h2>
-            <Paper elevation={5} className="product-list">
-                {products.map((product) => (
-                    <Product key={product.id} product={product} setProduct={setProduct} />
-                ))}
-            </Paper>
-            <Button variant="contained" sx={{ width: "50vw" }} onClick={() => setProductModal(true)}>
-                Adicionar produto
-            </Button>
-
-            <ProductModal
-                open={productModal}
-                setOpen={setProductModal}
-                product={product}
-                clearProduct={() => setProduct(undefined)}
-            />
-        </div>
+        <>
+            <Box sx={styles.body}></Box>
+        </>
     )
 }

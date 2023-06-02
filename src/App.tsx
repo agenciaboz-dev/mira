@@ -8,16 +8,11 @@ import { SnackbarProvider } from "./contexts/snackbarContext"
 import { UserProvider } from "./contexts/userContext"
 import { useMuiTheme } from "./hooks/useMuiTheme"
 import { Adm } from "./pages/Adm"
-import { Camera } from "./pages/Camera"
-import { Cart } from "./pages/Cart"
-import { Login } from "./pages/Login"
-import { Product } from "./pages/Product"
-import { Profile } from "./pages/Profile"
 import "./sass/_all.scss"
 import { Snackbar } from "./components/Snackbar"
-import { Checkout } from "./pages/Checkout"
 import { AddressProvider } from "./contexts/addressContext"
 import { OrdersProvider } from "./contexts/ordersContext"
+import { Login } from "./pages/Adm/Login"
 
 function App() {
     const muiTheme = useMuiTheme()
@@ -35,6 +30,7 @@ function App() {
                                         <Routes>
                                             <Route index element={<Adm />} />
                                             <Route path="/*" element={<Adm />} />
+                                            <Route path="/login" element={<Login />} />
                                         </Routes>
                                     </BrowserRouter>
                                 </AddressProvider>
