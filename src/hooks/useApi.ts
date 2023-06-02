@@ -29,38 +29,6 @@ export const useApi = () => {
                 .catch((error) => defaultError(error, options.errorCallback))
                 .finally(() => defaultFinally(options.finallyCallback))
         },
-        signup: (options: ApiOptions) => {
-            api.post("/signup", options.data)
-                .then((response) => options.callback(response))
-                .catch((error) => defaultError(error, options.errorCallback))
-                .finally(() => defaultFinally(options.finallyCallback))
-        },
-        user: {
-            update: (options: ApiOptions) => {
-                api.post("/user", options.data)
-                    .then((response) => options.callback(response))
-                    .catch((error) => defaultError(error, options.errorCallback))
-                    .finally(() => defaultFinally(options.finallyCallback))
-            },
-            password: (options: ApiOptions) => {
-                api.post("/user/password", options.data)
-                    .then((response) => options.callback(response))
-                    .catch((error) => defaultError(error, options.errorCallback))
-                    .finally(() => defaultFinally(options.finallyCallback))
-            },
-            address: (options: ApiOptions) => {
-                api.post("/user/address", options.data)
-                    .then((response) => options.callback(response))
-                    .catch((error) => defaultError(error, options.errorCallback))
-                    .finally(() => defaultFinally(options.finallyCallback))
-            },
-            card: (options: ApiOptions) => {
-                api.post("/user/card", options.data)
-                    .then((response) => options.callback(response))
-                    .catch((error) => defaultError(error, options.errorCallback))
-                    .finally(() => defaultFinally(options.finallyCallback))
-            },
-        },
         adm: {
             login: (options: ApiOptions) => {
                 api.post("/login/adm", options.data)
@@ -101,9 +69,27 @@ export const useApi = () => {
                     .finally(() => defaultFinally(options.finallyCallback))
             },
         },
-        order: {
-            new: (options: ApiOptions) => {
-                api.post("/orders/new", options.data)
+        categories: {
+            get: (options: ApiOptions) => {
+                api.get("/categories", options.data)
+                    .then((response) => options.callback(response))
+                    .catch((error) => defaultError(error, options.errorCallback))
+                    .finally(() => defaultFinally(options.finallyCallback))
+            },
+            add: (options: ApiOptions) => {
+                api.post("/categories/add", options.data)
+                    .then((response) => options.callback(response))
+                    .catch((error) => defaultError(error, options.errorCallback))
+                    .finally(() => defaultFinally(options.finallyCallback))
+            },
+            update: (options: ApiOptions) => {
+                api.post("/categories/update", options.data)
+                    .then((response) => options.callback(response))
+                    .catch((error) => defaultError(error, options.errorCallback))
+                    .finally(() => defaultFinally(options.finallyCallback))
+            },
+            delete: (options: ApiOptions) => {
+                api.post("/categories/delete", options.data)
                     .then((response) => options.callback(response))
                     .catch((error) => defaultError(error, options.errorCallback))
                     .finally(() => defaultFinally(options.finallyCallback))

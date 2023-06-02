@@ -1,6 +1,5 @@
 import { createContext, useState } from "react"
 import React, { useEffect } from "react"
-import { Product } from "../definitions/product"
 import { useApi } from "../hooks/useApi"
 
 interface ProductsContextValue {

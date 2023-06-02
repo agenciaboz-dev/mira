@@ -1,6 +1,5 @@
 import { Dialog, CircularProgress, DialogContent, DialogTitle, Button, Box } from "@mui/material"
 import React, { useRef, useState, useEffect } from "react"
-import { Product } from "../../definitions/product"
 import { useProducts } from "../../hooks/useProducts"
 import CancelPresentationIcon from "@mui/icons-material/CancelPresentation"
 import IconButton from "@mui/material/IconButton"

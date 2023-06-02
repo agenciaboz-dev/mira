@@ -1,6 +1,5 @@
 import { createContext, useState } from "react"
 import React from "react"
-import { Product } from "../definitions/product"
 
 interface CurrentProductContextValue {
     value: Product | null

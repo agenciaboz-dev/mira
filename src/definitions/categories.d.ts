@@ -1,1 +1,5 @@
-declare interface Category {}
+declare interface Category {
+    id: number
+    name: string
+    products?: Product[]
+}

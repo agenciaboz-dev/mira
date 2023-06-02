@@ -11,6 +11,8 @@ import { Snackbar, SnackbarProvider } from "burgos-snackbar"
 import { ConfirmDialogProvider, ConfirmDialog } from "burgos-confirm"
 import { Login } from "./pages/Adm/Login"
 import { CurrentProductProvider } from "./contexts/currentProductContext"
+import { CategoriesProvider } from "./contexts/categoriesContext"
+import { CurrentCategoryProvider } from "./contexts/currentCategoryContext"
 
 function App() {
     const muiTheme = useMuiTheme()
@@ -20,19 +22,23 @@ function App() {
             <ConfirmDialogProvider>
                 <SnackbarProvider>
                     <UserProvider>
-                        <CurrentProductProvider>
-                            <ProductsProvider>
-                                <BrowserRouter>
-                                    <Snackbar />
-                                    <ConfirmDialog />
-                                    <Routes>
-                                        <Route index element={<Login />} />
-                                        <Route path="/dashboard/*" element={<Adm />} />
-                                        <Route path="/login" element={<Login />} />
-                                    </Routes>
-                                </BrowserRouter>
-                            </ProductsProvider>
-                        </CurrentProductProvider>
+                        <CurrentCategoryProvider>
+                            <CurrentProductProvider>
+                                <CategoriesProvider>
+                                    <ProductsProvider>
+                                        <BrowserRouter>
+                                            <Snackbar />
+                                            <ConfirmDialog />
+                                            <Routes>
+                                                <Route index element={<Login />} />
+                                                <Route path="/dashboard/*" element={<Adm />} />
+                                                <Route path="/login" element={<Login />} />
+                                            </Routes>
+                                        </BrowserRouter>
+                                    </ProductsProvider>
+                                </CategoriesProvider>
+                            </CurrentProductProvider>
+                        </CurrentCategoryProvider>
                     </UserProvider>
                 </SnackbarProvider>
             </ConfirmDialogProvider>

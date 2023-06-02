@@ -3,10 +3,8 @@ import Paper from "@mui/material/Paper"
 import React, { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { ProductModal } from "../../../components/ProductModal"
-import { Product as ProductType } from "../../../definitions/product"
 import { useProducts } from "../../../hooks/useProducts"
 import { useUser } from "../../../hooks/useUser"
-import { Product } from "./Product"
 import "./style.scss"
 import { Box } from "@mui/material"
 import styles from "./styles"
@@ -19,7 +17,7 @@ export const Dashboard: React.FC<DashboardProps> = ({}) => {
     const { products } = useProducts()
 
     const [productModal, setProductModal] = useState(false)
-    const [product, setProduct] = useState<ProductType>()
+    const [product, setProduct] = useState<Product>()
 
     useEffect(() => {
         if (!user) navigate("/adm")

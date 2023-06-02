@@ -1,15 +1,22 @@
 import { TextField, Box } from "@mui/material"
 import React, { useEffect, useState } from "react"
-import { Product } from "../../definitions/product"
 import SearchIcon from "@mui/icons-material/Search"
 
 interface SearchFieldProps {
-    onSearch: (values: Product[]) => void
-    list: Product[]
+    setProductsResult?: (values: Product[]) => void
+    setCategoriesResult?: (values: Category[]) => void
+    productList?: Product[]
+    categoryList?: Category[]
     button?: React.ReactElement
 }
 
-export const SearchField: React.FC<SearchFieldProps> = ({ onSearch, list, button = <></> }) => {
+export const SearchField: React.FC<SearchFieldProps> = ({
+    setProductsResult: setProductResult,
+    setCategoriesResult: setCategoryResult,
+    productList,
+    categoryList,
+    button = <></>,
+}) => {
     const [value, setValue] = useState("")
 
     const handleChange: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement> = (event) => {
@@ -17,7 +24,8 @@ export const SearchField: React.FC<SearchFieldProps> = ({ onSearch, list, button
     }
 
     useEffect(() => {
-        onSearch(list.filter((item) => item.name.includes(value)))
+        if (productList && setProductResult) setProductResult(productList.filter((item) => item.name.includes(value)))
+        if (categoryList && setCategoryResult) setCategoryResult(categoryList.filter((item) => item.name.includes(value)))
     }, [value])
 
     const Button = () => button

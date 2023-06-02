@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react"
 import styles from "./styles"
 import { SearchField } from "../../../components/SearchField"
 import { useProducts } from "../../../hooks/useProducts"
-import { Product } from "../../../definitions/product"
 import DataTable, { TableColumn } from "react-data-table-component"
 import { CurrencyText } from "../../../components/CurrencyText"
 import CurrencyFormat from "react-currency-format"
@@ -119,14 +118,14 @@ export const Products: React.FC<ProductsProps> = ({}) => {
         setOpen(true)
     }
 
-    const handleEdit = (product: Product) => {
-        setCurrentProduct(product)
-        setOpen(true)
-    }
-
     const handleQrCode = (product: Product) => {
         setCurrentProduct(product)
         setOpenQrModal(true)
+    }
+
+    const handleEdit = (product: Product) => {
+        setCurrentProduct(product)
+        setOpen(true)
     }
 
     const handleDelete = (product: Product) => {
@@ -158,8 +157,8 @@ export const Products: React.FC<ProductsProps> = ({}) => {
     return (
         <Box sx={styles.body}>
             <SearchField
-                list={products}
-                onSearch={handleSearch}
+                productList={products}
+                setProductsResult={handleSearch}
                 button={
                     <Button variant="contained" onClick={handleNew}>
                         <AddIcon />

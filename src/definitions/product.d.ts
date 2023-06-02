@@ -1,4 +1,4 @@
-export interface Product {
+declare interface Product {
     id: number
     name: string
     description: string
@@ -13,4 +13,5 @@ export interface Product {
     width: number | string
     height: number | string
     length: number | string
+    categories?: Category[]
 }
