@@ -2,15 +2,15 @@ export interface Product {
     id: number
     name: string
     description: string
-    stock: number
+    stock: number | string
     story: string
-    price: number
+    price: number | string
     image: string
     video: string
     prep_time: number
     usage: string
-    weight: number
-    width: number
-    height: number
-    length: number
+    weight: number | string
+    width: number | string
+    height: number | string
+    length: number | string
 }

@@ -2,17 +2,9 @@ import { Dialog, CircularProgress, DialogContent, DialogTitle, Button, Box } fro
 import React, { useRef, useState, useEffect } from "react"
 import { Product } from "../../definitions/product"
 import { useProducts } from "../../hooks/useProducts"
-import CloseIcon from "@mui/icons-material/Close"
 import CancelPresentationIcon from "@mui/icons-material/CancelPresentation"
 import IconButton from "@mui/material/IconButton"
-import HelpIcon from "@mui/icons-material/Help"
-import { useColors } from "../../hooks/useColors"
 import { styles } from "./styles"
-import { CurrencyText } from "../CurrencyText"
-import { useValidadeCode } from "../../hooks/useValidateCode"
-import { useCart } from "../../hooks/useCart"
-import { useNavigate } from "react-router-dom"
-import { ProductStory } from "../ProductStory"
 import { Form, Formik } from "formik"
 import TextField from "@mui/material/TextField/TextField"
 import MaskedInput from "react-text-mask"
@@ -35,22 +27,29 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
     const { currentProduct, setCurrentProduct, open, setOpen } = useCurrentProduct()
     const { snackbar } = useSnackbar()
 
-    const initialValues: Product = currentProduct || {
-        name: "",
-        description: "",
-        stock: 0,
-        id: 0,
-        image: "",
-        price: 0,
-        story: "",
-        video: "",
-        prep_time: 0,
-        usage: "",
-        weight: 0,
-        height: 0,
-        length: 0,
-        width: 0,
-    }
+    alert(currentProduct?.price)
+
+    const initialValues: Product = currentProduct
+        ? {
+              ...currentProduct,
+              price: currentProduct?.price.toString().replace(".", ","),
+          }
+        : {
+              name: "",
+              description: "",
+              stock: 0,
+              id: 0,
+              image: "",
+              price: 0,
+              story: "",
+              video: "",
+              prep_time: 0,
+              usage: "",
+              weight: 0,
+              height: 0,
+              length: 0,
+              width: 0,
+          }
 
     const handleSubmit = (values: Product) => {
         setLoading(true)
@@ -103,7 +102,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
                                     mask={currencyMask}
                                     guide={false}
                                     name="price"
-                                    value={values.price ? values.price.toString().replace(".", ",") : ""}
+                                    value={values.price}
                                     onChange={handleChange}
                                     render={(ref, props) => <TextField inputRef={ref} {...props} label="Preço" />}
                                 />

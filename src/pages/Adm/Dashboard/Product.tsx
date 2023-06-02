@@ -9,7 +9,7 @@ import { QrCodeModal } from "../../../components/QrcodeModal"
 import DeleteIcon from "@mui/icons-material/Delete"
 import { useApi } from "../../../hooks/useApi"
 import { useProducts } from "../../../hooks/useProducts"
-import { useSnackbar } from "../../../hooks/useSnackbar"
+import { useSnackbar } from "burgos-snackbar"
 import { useCurrentProduct } from "../../../hooks/useCurrentProduct"
 import styles from "./styles"
 
