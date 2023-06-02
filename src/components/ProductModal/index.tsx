@@ -27,12 +27,14 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
     const { currentProduct, setCurrentProduct, open, setOpen } = useCurrentProduct()
     const { snackbar } = useSnackbar()
 
-    alert(currentProduct?.price)
-
     const initialValues: Product = currentProduct
         ? {
               ...currentProduct,
               price: currentProduct?.price.toString().replace(".", ","),
+              weight: currentProduct?.weight.toString().replace(".", ","),
+              height: currentProduct?.height.toString().replace(".", ","),
+              width: currentProduct?.width.toString().replace(".", ","),
+              length: currentProduct?.length.toString().replace(".", ","),
           }
         : {
               name: "",
@@ -102,7 +104,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
                                     mask={currencyMask}
                                     guide={false}
                                     name="price"
-                                    value={values.price}
+                                    value={values.price || ""}
                                     onChange={handleChange}
                                     render={(ref, props) => <TextField inputRef={ref} {...props} label="Preço" />}
                                 />
@@ -127,7 +129,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
                                     mask={volumeMask}
                                     guide={false}
                                     name="weight"
-                                    value={values.weight ? values.weight.toString().replace(".", ",") : ""}
+                                    value={values.weight || ""}
                                     onChange={handleChange}
                                     render={(ref, props) => (
                                         <TextField
@@ -142,7 +144,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
                                     mask={volumeMask}
                                     guide={false}
                                     name="width"
-                                    value={values.width ? values.width.toString().replace(".", ",") : ""}
+                                    value={values.width || ""}
                                     onChange={handleChange}
                                     render={(ref, props) => (
                                         <TextField
@@ -157,7 +159,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
                                     mask={volumeMask}
                                     guide={false}
                                     name="height"
-                                    value={values.height ? values.height.toString().replace(".", ",") : ""}
+                                    value={values.height || ""}
                                     onChange={handleChange}
                                     render={(ref, props) => (
                                         <TextField
@@ -172,7 +174,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
                                     mask={volumeMask}
                                     guide={false}
                                     name="length"
-                                    value={values.length ? values.length.toString().replace(".", ",") : ""}
+                                    value={values.length || ""}
                                     onChange={handleChange}
                                     render={(ref, props) => (
                                         <TextField
