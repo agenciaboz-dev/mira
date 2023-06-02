@@ -1,4 +1,4 @@
-import { Dialog, CircularProgress, DialogContent, DialogTitle, Button, Box } from "@mui/material"
+import { Dialog, CircularProgress, DialogContent, DialogTitle, Button, Box, MenuItem } from "@mui/material"
 import React, { useRef, useState, useEffect } from "react"
 import { useProducts } from "../../hooks/useProducts"
 import CancelPresentationIcon from "@mui/icons-material/CancelPresentation"
@@ -11,8 +11,13 @@ import { useNumberMask, useCurrencyMask } from "burgos-masks"
 import { useApi } from "../../hooks/useApi"
 import { useCurrentProduct } from "../../hooks/useCurrentProduct"
 import { useSnackbar } from "burgos-snackbar"
+import { useCategories } from "../../hooks/useCategories"
 
 interface ProductModalProps {}
+
+interface FormValues extends Product {
+    categories_ids: number[]
+}
 
 export const ProductModal: React.FC<ProductModalProps> = ({}) => {
     const [error, setError] = useState(false)
@@ -25,8 +30,9 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
     const { refresh } = useProducts()
     const { currentProduct, setCurrentProduct, open, setOpen } = useCurrentProduct()
     const { snackbar } = useSnackbar()
+    const { categories } = useCategories()
 
-    const initialValues: Product = currentProduct
+    const initialValues: FormValues = currentProduct
         ? {
               ...currentProduct,
               price: currentProduct?.price.toString().replace(".", ","),
@@ -34,6 +40,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
               height: currentProduct?.height.toString().replace(".", ","),
               width: currentProduct?.width.toString().replace(".", ","),
               length: currentProduct?.length.toString().replace(".", ","),
+              categories_ids: currentProduct.categories?.map((category) => category.id) || [],
           }
         : {
               name: "",
@@ -50,14 +57,20 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
               height: 0,
               length: 0,
               width: 0,
+              categories_ids: [],
           }
 
-    const handleSubmit = (values: Product) => {
+    const handleSubmit = (values: FormValues) => {
         setLoading(true)
+
+        const data = {
+            ...values,
+            categories: values.categories_ids?.map((category) => ({ id: category })),
+        }
 
         if (currentProduct) {
             api.products.update({
-                data: values,
+                data,
                 callback: (response: { data: Product }) => {
                     console.log(response.data)
                     setOpen(false)
@@ -68,7 +81,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
             })
         } else {
             api.products.add({
-                data: values,
+                data,
                 callback: (response: { data: Product }) => {
                     setOpen(false)
                     refresh()
@@ -185,7 +198,25 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
                                     )}
                                 />
                             </Box>
+
+                            <TextField
+                                label="Categorias"
+                                select
+                                name="categories_ids"
+                                value={values.categories_ids!}
+                                onChange={handleChange}
+                                SelectProps={{ multiple: true }}
+                            >
+                                <MenuItem value={0} style={{ display: "none" }} disabled></MenuItem>
+                                {categories.map((category) => (
+                                    <MenuItem key={category.id} value={category.id} style={{ width: "100%" }}>
+                                        {category.name}
+                                    </MenuItem>
+                                ))}
+                            </TextField>
+
                             <TextField label="Link de imagem" name="image" value={values.image} onChange={handleChange} />
+
                             <TextField label="Link de vídeo" name="video" value={values.video} onChange={handleChange} />
                             <TextField
                                 label="Descrição"
