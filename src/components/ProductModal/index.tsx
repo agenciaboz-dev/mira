@@ -20,19 +20,21 @@ import { useCurrencyMask } from "../../hooks/useCurrencyMask"
 import { useNumberMask } from "burgos-masks"
 import { useApi } from "../../hooks/useApi"
 import { useCurrentProduct } from "../../hooks/useCurrentProduct"
+import { useSnackbar } from "burgos-snackbar"
 
 interface ProductModalProps {}
 
 export const ProductModal: React.FC<ProductModalProps> = ({}) => {
     const [error, setError] = useState(false)
     const [loading, setLoading] = useState(false)
-    const { currentProduct, setCurrentProduct, open, setOpen } = useCurrentProduct()
 
     const currencyMask = useCurrencyMask()
     const numberMask = useNumberMask({})
     const volumeMask = useNumberMask({ allowDecimal: true })
     const api = useApi()
     const { refresh } = useProducts()
+    const { currentProduct, setCurrentProduct, open, setOpen } = useCurrentProduct()
+    const { snackbar } = useSnackbar()
 
     const initialValues: Product = currentProduct || {
         name: "",
@@ -61,6 +63,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
                     console.log(response.data)
                     setOpen(false)
                     refresh()
+                    snackbar({ severity: "success", text: "Produto atualizado" })
                 },
                 finallyCallback: () => setLoading(false),
             })
@@ -70,6 +73,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
                 callback: (response: { data: Product }) => {
                     setOpen(false)
                     refresh()
+                    snackbar({ severity: "success", text: "Produto adicionado" })
                 },
                 finallyCallback: () => setLoading(false),
             })
