@@ -85,7 +85,7 @@ export const Categories: React.FC<CategoriesProps> = ({}) => {
     }
 
     const handleSearch = (result: Category[]) => {
-        console.log(result)
+        setCategoriesList(result)
     }
 
     const handleNew = () => {
