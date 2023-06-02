@@ -1,4 +1,4 @@
-$user = "appmira"
+$user = "painelmira"
 $domain = "www"
 $path = "/home/$user/$domain"
 
