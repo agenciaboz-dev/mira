@@ -23,7 +23,7 @@ export const styles = {
         flexDirection: "column",
         form: {
             flexDirection: "column",
-            gap: "2vw",
+            gap: "1vw",
         },
     },
 

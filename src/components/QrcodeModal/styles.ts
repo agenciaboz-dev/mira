@@ -1,3 +1,5 @@
+import colors from "../../colors"
+
 export const styles = {
     dialog: {
         display: "flex",
@@ -14,6 +16,7 @@ export const styles = {
     content_container: {
         display: "flex",
         flexDirection: "column",
+        border: `5px solid ${colors.primary}`,
         padding: 0,
     },
 

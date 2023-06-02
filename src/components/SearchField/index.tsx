@@ -25,7 +25,7 @@ export const SearchField: React.FC<SearchFieldProps> = ({ onSearch, list, button
                 label="Buscar"
                 value={value}
                 onChange={handleChange}
-                InputProps={{ startAdornment: <SearchIcon /> }}
+                InputProps={{ startAdornment: <SearchIcon color="primary" /> }}
                 placeholder="Digite para filtrar"
                 inputProps={{ style: { paddingLeft: "0.5vw" } }}
             />

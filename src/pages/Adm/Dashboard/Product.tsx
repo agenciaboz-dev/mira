@@ -71,7 +71,7 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
                     <DeleteIcon color="error" />
                 </IconButton>
             </Box>
-            <QrCodeModal id={product.id} open={showCode} setOpen={setShowCode} />
+            <QrCodeModal open={showCode} setOpen={setShowCode} />
         </Paper>
     )
 }

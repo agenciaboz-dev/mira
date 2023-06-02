@@ -1,12 +1,4 @@
-import {
-    Dialog,
-    CircularProgress,
-    DialogContent,
-    DialogContentText,
-    DialogTitle,
-    DialogActions,
-    Button,
-} from "@mui/material"
+import { Dialog, CircularProgress, DialogContent, DialogTitle, Button, Box } from "@mui/material"
 import React, { useRef, useState, useEffect } from "react"
 import { Product } from "../../definitions/product"
 import { useProducts } from "../../hooks/useProducts"
@@ -25,7 +17,7 @@ import { Form, Formik } from "formik"
 import TextField from "@mui/material/TextField/TextField"
 import MaskedInput from "react-text-mask"
 import { useCurrencyMask } from "../../hooks/useCurrencyMask"
-import { useNumberMask } from "../../hooks/useNumberMask"
+import { useNumberMask } from "burgos-masks"
 import { useApi } from "../../hooks/useApi"
 import { useCurrentProduct } from "../../hooks/useCurrentProduct"
 
@@ -37,7 +29,8 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
     const { currentProduct, setCurrentProduct, open, setOpen } = useCurrentProduct()
 
     const currencyMask = useCurrencyMask()
-    const numberMask = useNumberMask()
+    const numberMask = useNumberMask({})
+    const volumeMask = useNumberMask({ allowDecimal: true })
     const api = useApi()
     const { refresh } = useProducts()
 
@@ -52,11 +45,10 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
         video: "",
         prep_time: 0,
         usage: "",
-        volume: {
-            height: 0,
-            length: 0,
-            width: 0,
-        },
+        weight: 0,
+        height: 0,
+        length: 0,
+        width: 0,
     }
 
     const handleSubmit = (values: Product) => {
@@ -103,31 +95,119 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
                     {({ values, handleChange }) => (
                         <Form>
                             <TextField label="Nome" name="name" value={values.name} onChange={handleChange} />
+                            <Box sx={{ gap: "1vw" }}>
+                                <MaskedInput
+                                    mask={currencyMask}
+                                    guide={false}
+                                    name="price"
+                                    value={values.price.toString().replace(".", ",")}
+                                    onChange={handleChange}
+                                    render={(ref, props) => <TextField inputRef={ref} {...props} label="Preço" />}
+                                />
+                                <MaskedInput
+                                    mask={numberMask}
+                                    guide={false}
+                                    name="stock"
+                                    value={values.stock}
+                                    onChange={handleChange}
+                                    render={(ref, props) => (
+                                        <TextField
+                                            inputRef={ref}
+                                            {...props}
+                                            label="Quantidade"
+                                            InputProps={{ endAdornment: <p>unidades</p> }}
+                                        />
+                                    )}
+                                />
+                            </Box>
+                            <Box sx={{ gap: "1vw" }}>
+                                <MaskedInput
+                                    mask={volumeMask}
+                                    guide={false}
+                                    name="weight"
+                                    value={values.weight.toString().replace(".", ",")}
+                                    onChange={handleChange}
+                                    render={(ref, props) => (
+                                        <TextField
+                                            inputRef={ref}
+                                            {...props}
+                                            label="Peso"
+                                            InputProps={{ endAdornment: <p>kg</p> }}
+                                        />
+                                    )}
+                                />
+                                <MaskedInput
+                                    mask={volumeMask}
+                                    guide={false}
+                                    name="width"
+                                    value={values.width.toString().replace(".", ",")}
+                                    onChange={handleChange}
+                                    render={(ref, props) => (
+                                        <TextField
+                                            inputRef={ref}
+                                            {...props}
+                                            label="Largura"
+                                            InputProps={{ endAdornment: <p>cm</p> }}
+                                        />
+                                    )}
+                                />
+                                <MaskedInput
+                                    mask={volumeMask}
+                                    guide={false}
+                                    name="height"
+                                    value={values.height.toString().replace(".", ",")}
+                                    onChange={handleChange}
+                                    render={(ref, props) => (
+                                        <TextField
+                                            inputRef={ref}
+                                            {...props}
+                                            label="Altura"
+                                            InputProps={{ endAdornment: <p>cm</p> }}
+                                        />
+                                    )}
+                                />
+                                <MaskedInput
+                                    mask={volumeMask}
+                                    guide={false}
+                                    name="length"
+                                    value={values.length.toString().replace(".", ",")}
+                                    onChange={handleChange}
+                                    render={(ref, props) => (
+                                        <TextField
+                                            inputRef={ref}
+                                            {...props}
+                                            label="Comprimento"
+                                            InputProps={{ endAdornment: <p>cm</p> }}
+                                        />
+                                    )}
+                                />
+                            </Box>
+                            <TextField label="Link de imagem" name="image" value={values.image} onChange={handleChange} />
+                            <TextField label="Link de vídeo" name="video" value={values.video} onChange={handleChange} />
                             <TextField
                                 label="Descrição"
                                 name="description"
                                 value={values.description}
                                 onChange={handleChange}
+                                multiline
+                                minRows={5}
                             />
-                            <MaskedInput
-                                mask={currencyMask}
-                                guide={false}
-                                name="price"
-                                value={values.price.toString().replace(".", ",")}
+                            <TextField
+                                label="Como usar"
+                                name="usage"
+                                value={values.usage}
                                 onChange={handleChange}
-                                render={(ref, props) => <TextField inputRef={ref} {...props} label="Preço" />}
+                                multiline
+                                minRows={5}
                             />
-                            <MaskedInput
-                                mask={numberMask}
-                                guide={false}
-                                name="stock"
-                                value={values.stock}
+                            <TextField
+                                label="História"
+                                name="story"
+                                value={values.story}
                                 onChange={handleChange}
-                                render={(ref, props) => <TextField inputRef={ref} {...props} label="Quantidade" />}
+                                multiline
+                                minRows={5}
                             />
-                            <TextField label="História" name="story" value={values.story} onChange={handleChange} />
-                            <TextField label="Link de imagem" name="image" value={values.image} onChange={handleChange} />
-                            <TextField label="Link de vídeo" name="video" value={values.video} onChange={handleChange} />
                             {currentProduct ? (
                                 <Button type="submit" variant="contained" fullWidth>
                                     {loading ? (

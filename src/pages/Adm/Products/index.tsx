@@ -14,6 +14,8 @@ import AddIcon from "@mui/icons-material/Add"
 import { useApi } from "../../../hooks/useApi"
 import { useSnackbar } from "burgos-snackbar"
 import { useConfirmDialog } from "burgos-confirm"
+import QrCodeScannerIcon from "@mui/icons-material/QrCodeScanner"
+import { QrCodeModal } from "../../../components/QrcodeModal"
 
 interface ProductsProps {}
 
@@ -27,6 +29,7 @@ export const Products: React.FC<ProductsProps> = ({}) => {
 
     const [productList, setProductList] = useState(products)
     const [deleting, setDeleting] = useState(0)
+    const [openQrModal, setOpenQrModal] = useState(false)
 
     const columns: TableColumn<Product>[] = [
         {
@@ -57,9 +60,18 @@ export const Products: React.FC<ProductsProps> = ({}) => {
             ),
         },
         {
+            name: "QR Code",
+            selector: (row) => row.id,
+            button: true,
+            cell: (row) => (
+                <IconButton onClick={() => handleQrCode(row)}>
+                    <QrCodeScannerIcon color="primary" />
+                </IconButton>
+            ),
+        },
+        {
             name: "Editar",
             selector: (row) => row.id,
-            sortable: true,
             button: true,
             cell: (row) => (
                 <IconButton onClick={() => handleEdit(row)}>
@@ -70,7 +82,6 @@ export const Products: React.FC<ProductsProps> = ({}) => {
         {
             name: "Deletar",
             selector: (row) => row.id,
-            sortable: true,
             button: true,
             cell: (row) =>
                 deleting == row.id ? (
@@ -96,6 +107,11 @@ export const Products: React.FC<ProductsProps> = ({}) => {
         setOpen(true)
     }
 
+    const handleQrCode = (product: Product) => {
+        setCurrentProduct(product)
+        setOpenQrModal(true)
+    }
+
     const handleDelete = (product: Product) => {
         confirm({
             content: "Deseja remover esse produto?",
@@ -118,6 +134,7 @@ export const Products: React.FC<ProductsProps> = ({}) => {
     }
 
     useEffect(() => {
+        console.log(products)
         setProductList(products)
     }, [products])
 
@@ -132,6 +149,7 @@ export const Products: React.FC<ProductsProps> = ({}) => {
                     </Button>
                 }
             />
+            <QrCodeModal open={openQrModal} setOpen={setOpenQrModal} />
             <Paper sx={styles.list} elevation={5}>
                 {products.length > 0 ? (
                     <DataTable
