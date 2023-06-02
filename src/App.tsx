@@ -33,14 +33,8 @@ function App() {
                                     <BrowserRouter>
                                         <Snackbar />
                                         <Routes>
-                                            <Route index element={<Login />} />
-                                            <Route path="/*" element={<Login />} />
-                                            <Route path="/login/*" element={<Login />} />
-                                            <Route path="/adm/*" element={<Adm />} />
-                                            <Route path="/cart" element={<Cart />} />
-                                            <Route path="/scan" element={<Camera />} />
-                                            <Route path="/profile/*" element={<Profile />} />
-                                            <Route path="/checkout/*" element={<Checkout />} />
+                                            <Route index element={<Adm />} />
+                                            <Route path="/*" element={<Adm />} />
                                         </Routes>
                                     </BrowserRouter>
                                 </AddressProvider>

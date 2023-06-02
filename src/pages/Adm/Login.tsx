@@ -45,7 +45,7 @@ export const Login: React.FC<LoginProps> = ({}) => {
     }
     return (
         <div className="Login-Component">
-            <h1>Controle de estoque</h1>
+            <h1>Mira Suprimentos - Painel</h1>
             <Formik initialValues={initialValues} onSubmit={handleSubmit}>
                 {({ values, handleChange }) => (
                     <Form>
