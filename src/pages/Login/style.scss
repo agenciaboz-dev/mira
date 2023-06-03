@@ -36,10 +36,11 @@
             justify-content: center;
             gap: 2vw;
             margin-top: auto;
+            font-weight: 700;
 
             .link {
                 display: flex;
-                color: #9AF82E;
+                color: $green2;
                 cursor: pointer;
                 align-items: center;
 
