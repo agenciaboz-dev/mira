@@ -5,6 +5,12 @@
     src: url(../fonts/Inter/static/Inter-Regular.ttf);
   }
 
+@font-face {
+    font-family: Inter;
+    font-weight: bold;
+    src: url(../fonts/Inter/static/Inter-Bold.ttf);
+  }
+
 .MuiList-root {
     width: 100%;
 }

@@ -119,7 +119,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({}) => {
             </Formik>
 
             <div className="signup-text">
-                <p>Não tem conta?</p>
+                <p>Não tem uma conta?</p>
                 <p className="link" onClick={() => navigate("/login/signup")}>
                     Cadastre-se!
                     <ArrowIcon className="signup-arrow-down" />
