@@ -36,12 +36,13 @@
         }
 
         .balloon-text {
+            font-weight: 600;
             position: absolute;
-            top: -29vw;
+            top: -26vw;
             width: 80%;
             height: 90%;
-            text-align: center;
-            font-size: 5vw;
+            text-align: justify;
+            font-size: 4.75vw;
         }
     }
 
