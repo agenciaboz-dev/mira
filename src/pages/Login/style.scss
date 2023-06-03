@@ -10,7 +10,6 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    // padding-bottom: 5vh;
     align-items: center;
 
     .form-container {
@@ -26,7 +25,7 @@
             flex-direction: column;
             align-items: center;
             width: 100%;
-            gap: 1vh;
+            gap: 5vw;
         }
 
         .signup-text {
@@ -63,17 +62,19 @@
     height: 100%;
     background-color: $purple;
     padding: 5vw 7vw;
-    gap: 2vw;
-    margin-top: 19.5vw;
+    gap: 3vw;
+    margin-top: 17vw;
     
     * {
         z-index: 1;
     }
     
     .submit-container {
+        align-items: center;
         justify-content: space-between;
         height: 12vw;
         width: 100%;
+        margin-top: 2vw;
         
         label {
             span {
@@ -87,11 +88,22 @@
     }
 
     p {
-        font-size: 5vw;
+        font-size: 4vw;
     }
 
     input {
-        font-size: 4vw;
+        font-size: 3.5vw;
+        padding: 3vw;
+    }
+
+    .forgot-password {
+        position: absolute;
+        color: $blue2;
+        font-size: 3.5vw;
+        font-weight: 700;
+        top: 115.25vw;
+        right: 5.5vw;
+        padding: 4.5vw;
     }
 
 }

@@ -101,9 +101,11 @@ export const LoginForm: React.FC<LoginFormProps> = ({}) => {
                             required
                         />
 
+                        <div className="forgot-password">Esqueceu a senha?</div>
+
                         <div className="submit-container">
                             <Checkbox value={remember} handleChange={handleCheckboxChange} label="Mantenha-me conectado" />
-                            <Button type="submit" variant="contained" style={{ width: "30vw" }}>
+                            <Button type="submit" variant="contained" style={{ height: "10vw", width: "30vw" }}>
                                 {loading ? (
                                     <CircularProgress sx={{ color: "white" }} style={{ width: "5vw", height: "auto" }} />
                                 ) : (
