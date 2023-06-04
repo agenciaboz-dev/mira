@@ -17,6 +17,7 @@
         padding: 5vw 6vw;
         flex-direction: column;
         color: white;
+        gap: 5vw;
         
         .content-container {
             overflow-y: auto;
@@ -50,13 +51,25 @@
             flex-direction: column;
             gap: 5vw;
 
+            h2 {
+                font-size: 5vw;
+            }
+
+            p {
+                font-size: 3.5vw;
+            }
+
             input {
                 color: #555555;
+                font-size: 3.5vw;
                 font-weight: 600;
+                padding: 1.5vw 4vw;
+                height: fit-content;
             }
 
             .pwd-alter-title {
                 flex-direction: column;
+                gap: 1vw;
             }
         }
     }

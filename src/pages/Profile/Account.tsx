@@ -147,7 +147,7 @@ export const Account: React.FC<AccountProps> = ({ user }) => {
                             helperText={newPasswordError}
                         />
 
-                        <Button type="submit">
+                        <Button type="submit" style={{height: "10vw"}}>
                             {loading ? (
                                 <CircularProgress sx={{ color: "white" }} style={{ width: "6vw", height: "auto" }} />
                             ) : (
