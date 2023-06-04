@@ -77,7 +77,7 @@
                 padding: 1.5vw 4vw;
                 height: fit-content;
             }
-
+            
             .pwd-alter-title {
                 flex-direction: column;
                 gap: 1vw;
@@ -91,10 +91,22 @@
 
     .Address-Component {
         width: 100%;
-
+        
         form {
             flex-direction: column;
             gap: 5vw;
+    
+            h2 {
+                font-size: 5vw;
+            }
+
+            input {
+                color: #555555;
+                font-size: 3.5vw;
+                font-weight: 600;
+                padding: 1.5vw 4vw;
+                height: fit-content;
+            }
 
             .two-inputs {
                 gap: 3vw;
@@ -103,6 +115,10 @@
                     flex: 0.4;
                     text-align: center;
                 }
+            }
+
+            .buttons-container {
+                justify-content: space-between;
             }
         }
     }

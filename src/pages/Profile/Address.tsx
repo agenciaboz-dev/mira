@@ -91,13 +91,19 @@ export const Address: React.FC<AddressProps> = ({ user }) => {
                                 render={(ref, props) => <TextField inputRef={ref} {...props} placeholder="Telefone" />}
                             />
                             <AddressField values={values} handleChange={handleChange} />
-                            <Button type="submit">
+
+                        <div className="buttons-container">
+                            <Button onClick={() => navigate("/cart")} style={{ height: "10vw", width: "35vw", background: "grey" }} >
+                                Cancelar
+                            </Button>
+                            <Button type="submit" style={{ height: "10vw", width: "35vw", marginRight: "1vw" }}>
                                 {loading ? (
-                                    <CircularProgress sx={{ color: "white" }} style={{ width: "5vw", height: "auto" }} />
+                                    <CircularProgress sx={{ color: "white" }} style={{ width: "6vw", height: "auto" }} />
                                 ) : (
                                     "Salvar"
                                 )}
                             </Button>
+                        </div>
                         </Form>
                     )
                 }}
