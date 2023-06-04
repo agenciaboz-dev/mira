@@ -29,7 +29,7 @@ export const Cart: React.FC<CartProps> = ({}) => {
     const storage = useLocalStorage()
     const [tutorial, setTutorial] = useState(false)
 
-    const icon_style = { color: "white", height: "5vw", width: "5vw" }
+    const icon_style = { color: "white", height: "6vw", width: "6vw" }
 
     const handleCloseMenu = () => {
         setAnchorEl(null)
