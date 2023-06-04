@@ -82,6 +82,10 @@
                 flex-direction: column;
                 gap: 1vw;
             }
+
+            .buttons-container {
+                justify-content: space-between;
+            }
         }
     }
 
