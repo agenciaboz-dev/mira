@@ -96,7 +96,7 @@
     box-shadow: 2px 8px 0px $blue;
     border-radius: 3.5vw;
     background-color: white;
-    padding: 3vw;
+    padding: 2vw;
     color: $dark_grey;
     gap: 1vw;
     border: 1px solid $dark-grey;
@@ -104,13 +104,18 @@
     p {
         font-size: 3vw;
     }
-
-    h3 {
-        font-size: 4vw;
-    }
-
+    
     .total-container {
         justify-content: space-between;
         align-items: center;
+        margin-top: 1vw;
+        
+        h3 {
+            font-size: 3.5vw;
+        }
+
+        span {
+            font-size: 3.5vw;
+        }
     }
 }
