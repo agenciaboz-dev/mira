@@ -31,7 +31,6 @@
 
     .Header-Component {
         color: white;
-        justify-content: space-between;
         align-items: center;
         margin-top: -4vw;
         border-radius: 15vw;
@@ -39,7 +38,19 @@
         .info-container {
             flex-direction: column;
             justify-content: space-between;
-            align-items: center;
+            margin-left: 2vw;
+
+            h3 {
+                font-size: 4vw;
+            }
+
+            p {
+                font-size: 3.5vw;
+            }
+        }
+
+        .camera-button {
+            margin-left: auto;
         }
     }
 

@@ -38,7 +38,7 @@ export const Header: React.FC<HeaderProps> = ({}) => {
                 <p>{!!cart.length && (cart.length > 1 ? `${cart.length} itens no carrinho` : "1 item no carrinho")}</p>
             </div>
 
-            <IconButton onClick={() => navigate("/scan")} style={button_style}>
+            <IconButton className="camera-button" onClick={() => navigate("/scan")} style={button_style}>
                 <QrCodePlusIcon style={icon_style} />
             </IconButton>
             <Menu open={openMenu} anchorEl={anchorEl} handleClose={handleCloseMenu} />
