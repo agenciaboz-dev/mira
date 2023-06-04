@@ -129,14 +129,32 @@
 
         form {
             flex-direction: column;
-            gap: 4vw;
+            gap: 5vw;
+
+            h2 {
+                font-size: 5vw;
+            }
+
+            input {
+                color: #555555;
+                font-size: 3.5vw;
+                font-weight: 600;
+                padding: 1.5vw 4vw;
+                height: fit-content;
+            }
 
             .type-container {
-                gap: 20vw;
+                div {
+                    gap: 5vw;
+                }
             }
 
             .expiration-container {
                 gap: 2vw;
+            }
+    
+            .buttons-container {
+                justify-content: space-between;
             }
         }
     }

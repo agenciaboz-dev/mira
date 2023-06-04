@@ -48,7 +48,7 @@ export const Financial: React.FC<FinancialProps> = ({ user }) => {
             backgroundColor: colors.purple,
         },
         color: "#EBEBEB",
-        backgroundColor: colors.purple,
+        backgroundColor: "white",
         padding: 0,
         boxShadow: "2px 3px 0px #1A7FB7",
         borderRadius: "50%",
@@ -167,13 +167,18 @@ export const Financial: React.FC<FinancialProps> = ({ user }) => {
                             />
                         </div>
 
-                        <Button type="submit">
-                            {loading ? (
-                                <CircularProgress sx={{ color: "white" }} style={{ width: "5vw", height: "auto" }} />
-                            ) : (
-                                "Salvar"
-                            )}
-                        </Button>
+                        <div className="buttons-container">
+                            <Button onClick={() => navigate("/cart")} style={{ height: "10vw", width: "35vw", background: "grey" }} >
+                                Cancelar
+                            </Button>
+                            <Button type="submit" style={{ height: "10vw", width: "35vw", marginRight: "1vw" }}>
+                                {loading ? (
+                                    <CircularProgress sx={{ color: "white" }} style={{ width: "5vw", height: "auto" }} />
+                                ) : (
+                                    "Salvar"
+                                )}
+                            </Button>
+                        </div>
                     </Form>
                 )}
             </Formik>
