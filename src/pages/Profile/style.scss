@@ -7,10 +7,11 @@
     background-repeat: no-repeat;
     background-size: cover;
     padding: 2vw;
+    justify-content: center;
 
     .main-container {
         background-color: $purple;
-        width: 100%;
+        width: 95%;
         height: 100%;
         border-radius: 5vw;
         padding: 5vw 2vw;
