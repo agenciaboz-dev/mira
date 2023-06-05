@@ -14,7 +14,7 @@ export const Review: React.FC<ReviewProps> = ({}) => {
     const navigate = useNavigate()
     const { address, setAddress } = useAddress()
 
-    const button_style = { fontSize: "5vw", justifyContent: "flex-start", padding: "0 5vw", gap: "10vw" }
+    const button_style = { fontSize: "4vw", justifyContent: "flex-start", padding: "0 5vw", gap: "10vw" }
     const icon_style = { width: "13%" }
 
     return (

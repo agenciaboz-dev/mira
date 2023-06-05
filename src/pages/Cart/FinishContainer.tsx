@@ -20,7 +20,7 @@ export const FinishContainer: React.FC<FinishContainerProps> = ({}) => {
                 <h3>Total:</h3>
                 <CurrencyText value={total} />
             </div>
-            <Button style={{ fontSize: "4vw", fontWeight: "bold", padding: "1vw 3vw" }}>Finalizar Compra</Button>
+            <Button style={{ fontSize: "4vw", fontWeight: "bold", padding: "2vw 3vw" }}>Finalizar Compra</Button>
         </div>
     )
 }
