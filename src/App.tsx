@@ -1,5 +1,4 @@
-import { Alert, ThemeProvider } from "@mui/material"
-import React, { useContext, useEffect } from "react"
+import { ThemeProvider } from "@mui/material"
 import { Route, Routes } from "react-router"
 import { BrowserRouter } from "react-router-dom"
 import { ProductsProvider } from "./contexts/productsContext"
