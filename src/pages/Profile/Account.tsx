@@ -112,13 +112,18 @@ export const Account: React.FC<AccountProps> = ({ user }) => {
                             <p className="avatar-security-text"><b>Olá! Mira aqui.</b><br />Essa área é dedicada a edição de detalhes da conta, como esse dispositivo é de uso comum, essas funções estão boqueadas. Mas você pode baixar nosso aplicativo no seu próprio dispositivo utilizando o QR code acima.</p>
                         </div>
 
-                        <Button type="submit">
-                            {loading ? (
-                                <CircularProgress sx={{ color: "white" }} style={{ width: "6vw", height: "auto" }} />
-                            ) : (
-                                "Salvar"
-                            )}
-                        </Button>
+                        <div className="buttons-container">
+                            <Button onClick={() => navigate("/cart")} style={{ fontSize: "2.5vw", height: "6vw", width: "40vw", background: "grey" }} >
+                                Cancelar
+                            </Button>
+                            <Button type="submit" style={{ fontSize: "2.5vw", height: "6vw", width: "40vw" }} >
+                                {loading ? (
+                                    <CircularProgress sx={{ color: "white" }} style={{ width: "6vw", height: "auto" }} />
+                                ) : (
+                                    "Salvar"
+                                )}
+                            </Button>
+                        </div>
                     </Form>
                 )}
             </Formik>

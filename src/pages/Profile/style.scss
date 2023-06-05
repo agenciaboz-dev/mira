@@ -10,16 +10,17 @@
     padding: 2vw 4vw;
     
     .main-container {
-        background-color: $purple;
+        background-image: linear-gradient($purple, $purple2);
         height: 100%;
         border-radius: 5vw;
         padding: 1.5vw 2vw;
         flex-direction: column;
         color: white;
-        gap: 4vw;
+        gap: 3vw;
         
         .content-container {
             overflow-y: auto;
+            height: 100%;
             width: 100%;
 
             form {
@@ -45,11 +46,13 @@
     }
 
     .Account-Component {
+        height: 100%;
         width: 100%;
         flex-direction: column;
 
         form {
             flex-direction: column;
+            height: 100%;
 
             input {
                 color: #555555;
@@ -59,10 +62,6 @@
             .account-details-upper-container {
                 flex-direction: column;
                 gap: 2vw;
-
-                h2 {
-                    margin-bottom: 1vw;
-                }
             }
 
             .pwd-alter-title {
@@ -72,7 +71,7 @@
             .qrcode-container {
                 justify-content: space-around;
                 align-items: center;
-                margin: 10vw 0;
+                margin: 5vw 0;
 
                 .text {
                     flex-direction: column;
@@ -97,8 +96,13 @@
                     left: 10vw;
                     width: 36vw;
                 }
-
             }
+
+                .buttons-container {
+                    justify-content: space-around;
+                    margin-top: auto;
+                    padding-bottom: 1vw;
+                }
         }
     }
 
