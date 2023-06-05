@@ -35,7 +35,7 @@
 
     .Review-Component {
         flex-direction: column;
-        gap: 5vw;
+        gap: 3vw;
 
         .product-list {
             flex-direction: column;
@@ -106,16 +106,24 @@
         
         form {
             flex-direction: column;
-            gap: 5vw;
+            gap: 2vw;
             height: 1vh;
             position: relative;
 
+            // input {
+            //     border: 1px solid $blue2;
+            // }
+
             .two-inputs {
                 gap: 2vw;
-
+                
                 .small-input {
                     flex: 0.2;
                     text-align: center;
+                    
+                    // div {
+                    //     border: 1px solid $blue2;
+                    // }
                 }
             }
 
