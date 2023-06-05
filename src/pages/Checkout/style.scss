@@ -80,6 +80,7 @@
             gap: 2vw;
             border-top: 1px solid #555555;
             padding-top: 2vw;
+            margin-top: auto;
 
             p {
                 font-weight: bold;
@@ -107,7 +108,7 @@
         form {
             flex-direction: column;
             gap: 4vw;
-            height: 1vh;
+            height: 100%;
             position: relative;
 
             input {
@@ -146,6 +147,10 @@
                     text-align: justify;
                 }
             }
+
+            button {
+                margin-bottom: 1vw;
+            }
         }
     }
     
@@ -180,7 +185,7 @@
         .choose-container {
             margin-top: 1vw;
             flex-direction: column;
-            gap: 6vw;
+            gap: 3vw;
 
             .container {
                 color: #53337D;

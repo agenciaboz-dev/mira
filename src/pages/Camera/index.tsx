@@ -128,7 +128,7 @@ export const Camera: React.FC<CameraProps> = ({}) => {
                                     background: !error ? "linear-gradient(90deg, #9F9F9F 0%, #565656 91.94%)" : "",
                                 }}
                             >
-                                {error ? "Tentar novamente" : "Aponte a camera para um QR Code"}
+                                {error ? "Tentar novamente" : "Aponte a câmera para um QR Code"}
                             </Button>
                             <div className="cancel-button" onClick={() => navigate(-1)}>
                                 <CancelIcon sx={{ color: colors.red, width: "5vw", height: "auto" }} />
