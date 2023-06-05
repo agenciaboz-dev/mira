@@ -93,7 +93,7 @@ export const Address: React.FC<AddressProps> = ({ user }) => {
                             <AddressField values={values} handleChange={handleChange} />
 
                         <div className="buttons-container">
-                            <Button onClick={() => navigate("/cart")} style={{ height: "10vw", width: "35vw", background: "grey" }} >
+                            <Button onClick={() => navigate("/cart")} style={{ height: "10vw", width: "35vw", background: "linear-gradient(90deg, #9F9F9F 0%, #565656 91.94%)" }} >
                                 Cancelar
                             </Button>
                             <Button type="submit" style={{ height: "10vw", width: "35vw", marginRight: "1vw" }}>
