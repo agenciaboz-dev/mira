@@ -57,6 +57,7 @@
             input {
                 color: #555555;
                 font-weight: 600;
+                background-color: transparentize($purple2, 0.5);
             }
 
             .account-details-upper-container {
