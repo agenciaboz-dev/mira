@@ -1,4 +1,4 @@
-import { Box, Dialog, Skeleton } from "@mui/material"
+import { Box, Dialog, MenuItem, Skeleton, SxProps } from "@mui/material"
 import DialogTitle from "@mui/material/DialogTitle"
 import { IconButton, Paper } from "@mui/material"
 import React, { forwardRef, useEffect, useRef, useState } from "react"
@@ -9,6 +9,7 @@ import DialogContent from "@mui/material/DialogContent"
 import { useColors } from "../../hooks/useColors"
 import { useCurrentProduct } from "../../hooks/useCurrentProduct"
 import { saveAs } from "file-saver"
+import SaveIcon from "@mui/icons-material/Save"
 
 interface QrCodeModalProps {
     open: boolean
@@ -28,7 +29,31 @@ export const QrCodeModal: React.FC<QrCodeModalProps> = ({ open, setOpen }) => {
     const { currentProduct, setCurrentProduct } = useCurrentProduct()
 
     const [loading, setLoading] = useState(true)
+    const [hover, setHover] = useState(false)
     const [codeValue, setCodeValue] = useState(`mirasuprimentos/${currentProduct?.id}`)
+
+    const downloadMenuItemStyle: SxProps = {
+        position: "absolute",
+        width: "99%",
+        height: "99%",
+        justifyContent: "center",
+        alignItems: "center",
+        color: "white",
+        // opacity: "0.85",
+
+        "&:hover": {
+            background: "none",
+        },
+    }
+
+    const downloadIconStyle: SxProps = {
+        transition: "0.1s",
+        width: "0.1vw",
+        height: "auto",
+        backgroundColor: colors.purple,
+        borderRadius: "20%",
+        transform: hover ? "scale(150)" : "",
+    }
 
     const handleClose = () => {
         setOpen(false)
@@ -67,7 +92,10 @@ export const QrCodeModal: React.FC<QrCodeModalProps> = ({ open, setOpen }) => {
                 {loading ? (
                     <Skeleton variant="rounded" animation="wave" sx={{ width: 30 * vw, height: 30 * vw }} />
                 ) : (
-                    <div onClick={downloadImage}>
+                    <div onClick={downloadImage} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
+                        <MenuItem sx={downloadMenuItemStyle}>
+                            <SaveIcon sx={downloadIconStyle} />
+                        </MenuItem>
                         <MyQRCode value={codeValue} size={30 * vw} ref={ref} />
                     </div>
                 )}
