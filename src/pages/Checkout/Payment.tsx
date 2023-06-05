@@ -131,6 +131,7 @@ export const Payment: React.FC<PaymentProps> = ({}) => {
                     // marginTop: "auto",
                     background: disabled ? "linear-gradient(90deg, #9F9F9F 0%, #565656 91.94%)" : "",
                     boxShadow: disabled ? "none" : "",
+                    fontSize: "2.5vw"
                 }}
                 disabled={disabled}
             >
