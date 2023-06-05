@@ -37,6 +37,7 @@ export const CardForm: React.FC<CardFormProps> = ({ user, values, setValues }) =
     const [cardNumberError, setCardNumberError] = useState("")
     const [cardCvvError, setCardCvvError] = useState("")
     const [cardMonthError, setCardMonthError] = useState("")
+    const [cardYearError, setCardYearError] = useState("")
 
     const colors = useColors()
     const api = useApi()
@@ -46,6 +47,7 @@ export const CardForm: React.FC<CardFormProps> = ({ user, values, setValues }) =
     const cardNumberMask = useCardNumberMask()
     const numberMask = useNumberMask(2, true)
     const threeNumberMask = useNumberMask(3)
+    const fourNumberMask = useNumberMask(4, false, "")
 
     const radio_style = {
         "&.Mui-checked": {
@@ -78,6 +80,14 @@ export const CardForm: React.FC<CardFormProps> = ({ user, values, setValues }) =
         }
     }
 
+    const handleCardYearBlur: React.FocusEventHandler<HTMLInputElement> = (event) => {
+        if (event.target.value.length < 4) {
+            setCardYearError("Ano inválido")
+        } else {
+            setCardYearError("")
+        }
+    }
+
     const handleCardMonthBlur: React.FocusEventHandler<HTMLInputElement> = (event) => {
         if (Number(event.target.value) > 12) {
             setCardMonthError("Mês inválido")
@@ -91,6 +101,8 @@ export const CardForm: React.FC<CardFormProps> = ({ user, values, setValues }) =
             setValues.setCardError(true)
         } else {
             if (values.cardCvv.length != 3) {
+                setValues.setCardError(true)
+            } else if (values.cardYear.length != 4) {
                 setValues.setCardError(true)
             } else {
                 if (Number(values.cardMonth) > 12 || Number(values.cardNumber) < 1) {
@@ -176,13 +188,21 @@ export const CardForm: React.FC<CardFormProps> = ({ user, values, setValues }) =
                     )}
                 />
                 <MaskedInput
-                    mask={numberMask}
+                    mask={fourNumberMask}
                     guide={false}
                     name="expiration_year"
                     value={values.cardYear}
+                    onBlur={handleCardYearBlur}
                     onChange={(event) => setValues.setCardYear(event.target.value)}
                     render={(ref, props) => (
-                        <TextField inputRef={ref} {...props} placeholder="Ano" InputProps={{ style: input_style }} />
+                        <TextField
+                            inputRef={ref}
+                            {...props}
+                            placeholder="Ano"
+                            InputProps={{ style: input_style }}
+                            error={!!cardYearError}
+                            helperText={cardYearError}
+                        />
                     )}
                 />
                 <MaskedInput
