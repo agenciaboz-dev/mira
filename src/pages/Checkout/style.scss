@@ -107,7 +107,27 @@
         form {
             flex-direction: column;
             gap: 5vw;
-            height: 1vh;
+            height: 100%;
+
+            h2 {
+                font-size: 5vw;
+            }
+
+            input {
+                font-size: 4vw;
+            }
+
+            label {
+                span {
+                    font-size: 4vw;
+                    font-weight: 600;
+                    text-align: end;
+
+                    input {
+                        border: 1px solid grey;
+                    }
+                }
+            }
 
             .two-inputs {
                 gap: 3vw;
