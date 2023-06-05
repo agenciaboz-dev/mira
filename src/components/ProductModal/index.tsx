@@ -98,9 +98,9 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
     }
 
     return (
-        <Dialog open={open} onClose={handleClose} sx={styles.dialog}>
+        <Dialog open={open} onClose={handleClose} sx={styles.dialog} PaperProps={{ sx: styles.paper }}>
             <DialogTitle sx={styles.title}>
-                <IconButton onClick={handleClose} sx={{ position: "absolute", left: "1vw" }}>
+                <IconButton onClick={handleClose} sx={{ position: "absolute", right: "1vw" }}>
                     <CancelPresentationIcon color="error" sx={styles.close_icon} />
                 </IconButton>
                 {currentProduct?.name || "Novo produto"}
@@ -243,7 +243,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
                                 minRows={5}
                             />
                             {currentProduct ? (
-                                <Button type="submit" variant="contained" fullWidth>
+                                <Button type="submit" variant="contained" fullWidth sx={styles.button}>
                                     {loading ? (
                                         <CircularProgress
                                             style={{ width: "1.5rem", height: "auto" }}
@@ -254,7 +254,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
                                     )}
                                 </Button>
                             ) : (
-                                <Button type="submit" variant="contained" fullWidth>
+                                <Button type="submit" variant="contained" fullWidth sx={styles.button}>
                                     {loading ? (
                                         <CircularProgress
                                             style={{ width: "1.5rem", height: "auto" }}

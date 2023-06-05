@@ -5,6 +5,11 @@ export const styles = {
         justifyContent: "center",
     },
 
+    paper: {
+        width: "40vw",
+        maxWidth: "none",
+    },
+
     title: {
         display: "flex",
         width: "100%",
@@ -17,11 +22,12 @@ export const styles = {
     },
 
     content_container: {
+        width: "100%",
         paddingTop: "1vw!important",
         display: "flex",
-        width: "40vw",
         flexDirection: "column",
         form: {
+            position: "relative",
             flexDirection: "column",
             gap: "1vw",
         },
@@ -33,4 +39,9 @@ export const styles = {
     },
 
     text: { textAlign: "justify", fontSize: "7vw" },
+
+    button: {
+        position: "sticky",
+        bottom: 0,
+    },
 }
