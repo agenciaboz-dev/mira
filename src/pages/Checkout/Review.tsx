@@ -14,7 +14,7 @@ export const Review: React.FC<ReviewProps> = ({}) => {
     const navigate = useNavigate()
     const { address, setAddress } = useAddress()
 
-    const button_style = { fontSize: "5vw", justifyContent: "flex-start", padding: "1vw 5vw", gap: "10vw" }
+    const button_style = { fontSize: "5vw", justifyContent: "flex-start", padding: "0 5vw", gap: "10vw" }
     const icon_style = { width: "13%" }
 
     return (
@@ -48,7 +48,7 @@ export const Review: React.FC<ReviewProps> = ({}) => {
             </div>
             <div className="totals-container">
                 <p>
-                    Total do pedido (sem entrega): <CurrencyText value={total} />
+                    Subtotal de itens: <CurrencyText value={total} />
                 </p>
                 <Button
                     fullWidth

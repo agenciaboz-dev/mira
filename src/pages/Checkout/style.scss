@@ -21,8 +21,7 @@
         color: white;
         
         h4 {
-            font-size: 5vw;
-            text-align: center;
+            font-size: 4vw;
             font-weight: 600;
         }
     }
@@ -85,10 +84,11 @@
             gap: 5vw;
             border-top: 1px solid #555555;
             padding-top: 2vw;
+            margin-top: auto;
 
             p {
                 font-weight: bold;
-                font-size: 4vw;
+                font-size: 3.5vw;
 
                 span {
                     font-weight: normal;
