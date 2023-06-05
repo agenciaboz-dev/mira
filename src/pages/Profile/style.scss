@@ -1,29 +1,29 @@
 @import '/src/sass/colors';
 
 .Profile-Page {
-    width: 100vw;
     background-image: url("../../../public/bricks_webp.webp");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    padding: 2vw;
     justify-content: center;
-
+    width: 100vw;
+    padding: 2vw 4vw;
+    
     .main-container {
         background-color: $purple;
-        width: 95%;
         height: 100%;
         border-radius: 5vw;
-        padding: 5vw 2vw;
+        padding: 1.5vw 2vw;
         flex-direction: column;
         color: white;
+        gap: 4vw;
         
         .content-container {
             overflow-y: auto;
             width: 100%;
 
             form {
-                padding-bottom: 2vw;
+                padding-bottom: 1vw;
             }
         }
     }
@@ -32,7 +32,10 @@
         color: white;
         justify-content: space-between;
         align-items: center;
-        margin-top: -4.5vw;
+
+        button {
+            padding: 0;
+        }
 
         .info-container {
             flex-direction: column;
@@ -47,7 +50,6 @@
 
         form {
             flex-direction: column;
-            gap: 4vw;
 
             input {
                 color: #555555;
@@ -57,6 +59,10 @@
             .account-details-upper-container {
                 flex-direction: column;
                 gap: 2vw;
+
+                h2 {
+                    margin-bottom: 1vw;
+                }
             }
 
             .pwd-alter-title {
@@ -64,18 +70,20 @@
             }
 
             .qrcode-container {
-                gap: 5vw;
-                justify-content: space-between;
+                justify-content: space-around;
+                align-items: center;
+                margin: 10vw 0;
 
                 .text {
                     flex-direction: column;
+                    width: 55vw;
                     gap: 1vw;
                 }
             }
 
             .avatar-security-container {
                 position: relative;
-                margin-top: auto;
+                margin-bottom: 5vw;
     
                 img {
                     width: 100%;
@@ -85,10 +93,11 @@
                     position: absolute;
                     color: black;
                     font-size: 2vw;
-                    top: 4.5vw;
+                    top: 4vw;
                     left: 10vw;
                     width: 36vw;
                 }
+
             }
         }
     }
