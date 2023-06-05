@@ -3,7 +3,7 @@ export const useValidadeCode = () => {
         const splitted = text.split("/")
 
         if (splitted.length == 2) {
-            if (splitted[0] == "mirasuprimentos") {
+            if (splitted[0] == "mirasuprimentos" && !!Number(splitted[1])) {
                 return true
             } else {
                 return
