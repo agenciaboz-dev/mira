@@ -1,10 +1,10 @@
 import { createNumberMask } from "text-mask-addons"
 
-export const useNumberMask = (limit: number = 0, allowLeadingZeroes = false) => {
+export const useNumberMask = (limit: number = 0, allowLeadingZeroes = false, thousandsSeparatorSymbol = ".") => {
     const numberMask = createNumberMask({
         prefix: "",
         suffix: "",
-        thousandsSeparatorSymbol: ".",
+        thousandsSeparatorSymbol: thousandsSeparatorSymbol,
         decimalSymbol: ",",
         allowDecimal: false,
         decimalLimit: 2,

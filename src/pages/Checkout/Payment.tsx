@@ -9,6 +9,8 @@ import { useUser } from "../../hooks/useUser"
 import { useNavigate } from "react-router-dom"
 import useMeasure from "react-use-measure"
 import { useApi } from "../../hooks/useApi"
+import { useCart } from "../../hooks/useCart"
+import { useAddress } from "../../hooks/useAddress"
 
 interface PaymentProps {}
 
@@ -29,13 +31,16 @@ export const Payment: React.FC<PaymentProps> = ({}) => {
 
     const colors = useColors()
     const navigate = useNavigate()
-    const { user } = useUser()
     const [chooseRef, chooseAttributes] = useMeasure()
     const [paymentRef, paymentAttributes] = useMeasure()
     const api = useApi()
+    const { user, setUser } = useUser()
+    const { cart, total } = useCart()
+    const { address } = useAddress()
 
     const [paymentType, setPaymentType] = useState<"pix" | "credit" | undefined>()
     const [disabled, setDisabled] = useState(false)
+    const [loading, setLoading] = useState(false)
 
     const [cardType, setCardType] = useState<string>("debit")
     const [cardOwner, setCardOwner] = useState<string>("")
@@ -54,7 +59,51 @@ export const Payment: React.FC<PaymentProps> = ({}) => {
             console.log(cardValues)
             if (cardError) return
 
-            navigate("/checkout/finish")
+            const script = document.createElement("script")
+
+            script.src = "https://assets.pagseguro.com.br/checkout-sdk-js/rc/dist/browser/pagseguro.min.js"
+            script.async = true
+            script.onload = () => {
+                // @ts-ignore
+                const card = window.PagSeguro.encryptCard({
+                    publicKey:
+                        "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAr+ZqgD892U9/HXsa7XqBZUayPquAfh9xx4iwUbTSUAvTlmiXFQNTp0Bvt/5vK2FhMj39qSv1zi2OuBjvW38q1E374nzx6NNBL5JosV0+SDINTlCG0cmigHuBOyWzYmjgca+mtQu4WczCaApNaSuVqgb8u7Bd9GCOL4YJotvV5+81frlSwQXralhwRzGhj/A57CGPgGKiuPT+AOGmykIGEZsSD9RKkyoKIoc0OS8CPIzdBOtTQCIwrLn2FxI83Clcg55W8gkFSOS6rWNbG5qFZWMll6yl02HtunalHmUlRUL66YeGXdMDC2PuRcmZbGO5a/2tbVppW6mfSWG3NPRpgwIDAQAB",
+                    holder: cardOwner,
+                    number: cardNumber.replace(/\s/g, ""),
+                    expMonth: cardMonth,
+                    expYear: cardYear,
+                    securityCode: cardCvv,
+                })
+
+                const encrypted = card.encryptedCard
+                console.log(encrypted)
+                document.body.removeChild(script)
+
+                api.order.new({
+                    data: {
+                        user,
+                        address,
+                        total,
+                        products: cart,
+                        method: "card",
+                        card: {
+                            encrypted,
+                            holder: cardOwner,
+                            security_code: cardCvv,
+                        },
+                    },
+                    callback: (response: any) => {
+                        const { pagseguro, order } = response.data
+                        console.log(pagseguro)
+                        setUser({ ...user!, orders: [order] })
+                        setTimeout(() => navigate("/checkout/order"), 500)
+                    },
+                })
+            }
+
+            document.body.appendChild(script)
+
+            // navigate("/checkout/finish")
         } else {
             navigate("/checkout/pix")
         }
@@ -71,6 +120,8 @@ export const Payment: React.FC<PaymentProps> = ({}) => {
         setDisabled(!paymentType)
         if (paymentType == "credit" && cardError) setDisabled(true)
     }, [paymentType])
+
+    useEffect(() => {}, [])
 
     return (
         <div className="Payment-Component" ref={paymentRef}>
