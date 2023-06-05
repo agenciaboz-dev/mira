@@ -24,8 +24,10 @@ export const SearchField: React.FC<SearchFieldProps> = ({
     }
 
     useEffect(() => {
-        if (productList && setProductResult) setProductResult(productList.filter((item) => item.name.includes(value)))
-        if (categoryList && setCategoryResult) setCategoryResult(categoryList.filter((item) => item.name.includes(value)))
+        if (productList && setProductResult)
+            setProductResult(productList.filter((item) => item.name.toLowerCase().includes(value.toLowerCase())))
+        if (categoryList && setCategoryResult)
+            setCategoryResult(categoryList.filter((item) => item.name.toLowerCase().includes(value.toLowerCase())))
     }, [value])
 
     const Button = () => button
