@@ -5,6 +5,7 @@ import { useApi } from "../../hooks/useApi"
 import { User } from "../../definitions/user"
 import { useUser } from "../../hooks/useUser"
 import { useNavigate } from "react-router-dom"
+import { ReactComponent as LogoIcon } from "../../images/logo.svg"
 
 interface LoginProps {}
 
@@ -33,7 +34,7 @@ export const Login: React.FC<LoginProps> = ({}) => {
             callback: (response: { data: User }) => {
                 const user = response.data
                 if (user) {
-                    console.log(user)   
+                    console.log(user)
                     setUser(user)
                     navigate("/dashboard")
                 } else {
@@ -45,7 +46,7 @@ export const Login: React.FC<LoginProps> = ({}) => {
     }
     return (
         <div className="Login-Component">
-            <h1>Mira Suprimentos - Painel</h1>
+            <LogoIcon style={{ width: "30vw", height: "auto" }} />
             <Formik initialValues={initialValues} onSubmit={handleSubmit}>
                 {({ values, handleChange }) => (
                     <Form>
