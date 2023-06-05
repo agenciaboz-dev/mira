@@ -16,8 +16,8 @@ export const TutorialMask: React.FC<TutorialProps> = ({ iconPositions }) => {
     const storage = useLocalStorage()
 
     const focus_style: React.CSSProperties = {
-        top: iconPositions.top - iconPositions.height/1.5,
-        left: iconPositions.left - iconPositions.width/1.25,
+        top: iconPositions.top - iconPositions.height/2,
+        left: iconPositions.left - iconPositions.width/1.75,
     }
 
     const completeTutorial = () => {
