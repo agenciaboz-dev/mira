@@ -21,6 +21,7 @@
         
         .content-container {
             overflow-y: auto;
+            height: 100%;
             width: 100%;
 
             form {
@@ -57,10 +58,12 @@
     .Account-Component {
         width: 100%;
         flex-direction: column;
+        height: 100%;
 
         form {
             flex-direction: column;
             gap: 5vw;
+            height: 100%;
 
             h2 {
                 font-size: 5vw;
@@ -85,6 +88,7 @@
 
             .buttons-container {
                 justify-content: space-between;
+                margin-top: auto;
             }
         }
     }
@@ -119,6 +123,7 @@
 
             .buttons-container {
                 justify-content: space-between;
+                margin-top: auto;
             }
         }
     }
@@ -126,10 +131,12 @@
     .Financial-Component {
         flex-direction: column;
         width: 100%;
+        height: 100%;
 
         form {
             flex-direction: column;
             gap: 5vw;
+            height: 100%;
 
             h2 {
                 font-size: 5vw;
@@ -155,6 +162,7 @@
     
             .buttons-container {
                 justify-content: space-between;
+                margin-top: auto;
             }
         }
     }
