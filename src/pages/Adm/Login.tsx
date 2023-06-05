@@ -36,7 +36,7 @@ export const Login: React.FC<LoginProps> = ({}) => {
                 if (user) {
                     console.log(user)
                     setUser(user)
-                    navigate("/dashboard")
+                    navigate("/dashboard/products")
                 } else {
                     setError("Usuário ou senha inválidos")
                 }
