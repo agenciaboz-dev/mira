@@ -63,6 +63,7 @@
             .account-details-upper-container {
                 flex-direction: column;
                 gap: 2vw;
+                pointer-events: none;
             }
 
             .pwd-alter-title {
