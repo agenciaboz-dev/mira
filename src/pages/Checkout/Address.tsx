@@ -13,7 +13,6 @@ import { useNavigate } from "react-router-dom"
 import { useApi } from "../../hooks/useApi"
 import { useSnackbar } from "../../hooks/useSnackbar"
 import { useAddress } from "../../hooks/useAddress"
-import { useColors } from "../../hooks/useColors"
 import { AddressField } from "../../components/AddressField"
 
 interface AddressProps {}
@@ -26,7 +25,6 @@ export const Address: React.FC<AddressProps> = ({}) => {
     const api = useApi()
     const { snackbar } = useSnackbar()
     const { address, setAddress } = useAddress()
-    const colors = useColors()
 
     const [loading, setLoading] = useState(false)
     const [saveAddress, setSaveAddress] = useState(false)
@@ -42,8 +40,6 @@ export const Address: React.FC<AddressProps> = ({}) => {
         city: "",
         uf: "",
     }
-
-    const input_style = { border: `2px solid ${colors.blue}` }
 
     const handleSubmit = (values: AddressType) => {
         if (loading) return
@@ -87,7 +83,6 @@ export const Address: React.FC<AddressProps> = ({}) => {
                             name="receiver"
                             value={values.receiver}
                             onChange={handleChange}
-                            InputProps={{ style: input_style }}
                         />
                         <MaskedInput
                             mask={["(", /\d/, /\d/, ")", " ", /\d/, /\d/, /\d/, /\d/, /\d/, "-", /\d/, /\d/, /\d/, /\d/]}
@@ -100,7 +95,6 @@ export const Address: React.FC<AddressProps> = ({}) => {
                                     inputRef={ref}
                                     {...props}
                                     placeholder="Telefone"
-                                    InputProps={{ style: input_style }}
                                 />
                             )}
                         />

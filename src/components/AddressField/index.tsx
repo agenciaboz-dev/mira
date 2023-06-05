@@ -4,10 +4,12 @@ import MaskedInput from "react-text-mask"
 import { TextField } from "../TextField"
 import { useNumberMask } from "../../hooks/useNumberMask"
 import { useEstadosBrasil } from "../../hooks/useEstadosBrasil"
-import { CircularProgress, MenuItem } from "@mui/material"
+import { CircularProgress, MenuItem, colors } from "@mui/material"
 import { useSnackbar } from "../../hooks/useSnackbar"
 import { useApi } from "../../hooks/useApi"
 import { useFormikContext } from "formik"
+
+import { useColors } from "../../hooks/useColors"
 
 interface AddressFieldProps {
     values: FormikAdressValues
@@ -23,6 +25,9 @@ export const AddressField: React.FC<AddressFieldProps> = ({ values, handleChange
     const numberRef = useRef<MaskedInput>(null)
 
     const [loading, setLoading] = useState(false)
+
+    const colors = useColors()
+    const input_style = { border: `1px solid ${colors.blue2}` }
 
     useEffect(() => {
         if (values.cep.length == 10) {
@@ -105,6 +110,7 @@ export const AddressField: React.FC<AddressFieldProps> = ({ values, handleChange
                     onChange={handleChange}
                     value={values.uf}
                     className="small-input"
+                    InputProps={{ style: input_style }}
                 >
                     {estados.map((estado) => (
                         <MenuItem key={estado.value} value={estado.value} style={{ width: "100%" }}>
