@@ -1,7 +1,7 @@
-import { Dialog } from "@mui/material"
+import { Dialog, Skeleton } from "@mui/material"
 import DialogTitle from "@mui/material/DialogTitle"
 import { IconButton, Paper } from "@mui/material"
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { QRCode } from "react-qrcode-logo"
 import { styles } from "./styles"
 import CancelPresentationIcon from "@mui/icons-material/CancelPresentation"
@@ -18,6 +18,7 @@ export const QrCodeModal: React.FC<QrCodeModalProps> = ({ open, setOpen }) => {
     const vw = window.innerWidth / 100
     const colors = useColors()
     const { currentProduct, setCurrentProduct } = useCurrentProduct()
+    const [loading, setLoading] = useState(true)
 
     const [codeValue, setCodeValue] = useState(`mirasuprimentos/${currentProduct?.id}`)
 
@@ -25,6 +26,19 @@ export const QrCodeModal: React.FC<QrCodeModalProps> = ({ open, setOpen }) => {
         setOpen(false)
         setCurrentProduct(null)
     }
+
+    useEffect(() => {
+        if (open) {
+            setCodeValue(`mirasuprimentos/${currentProduct?.id}`)
+            console.log(codeValue)
+            setTimeout(() => {
+                setLoading(false)
+                console.log(codeValue)
+            }, 1000)
+        } else {
+            setLoading(true)
+        }
+    }, [open])
 
     return (
         <Dialog open={open} onClose={handleClose} sx={styles.dialog}>
@@ -35,7 +49,11 @@ export const QrCodeModal: React.FC<QrCodeModalProps> = ({ open, setOpen }) => {
             </DialogTitle> */}
 
             <Paper sx={styles.content_container}>
-                <QRCode value={codeValue} size={30 * vw} />
+                {loading ? (
+                    <Skeleton variant="rounded" animation="wave" sx={{ width: 30 * vw, height: 30 * vw }} />
+                ) : (
+                    <QRCode value={codeValue} size={30 * vw} />
+                )}
                 {/* <QRCode
                     value={codeValue}
                     size={30 * vw}
