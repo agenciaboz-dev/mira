@@ -50,8 +50,15 @@ export const Login: React.FC<LoginProps> = ({}) => {
             <Formik initialValues={initialValues} onSubmit={handleSubmit}>
                 {({ values, handleChange }) => (
                     <Form>
-                        <TextField label="Usuário ou e-mail" name="user" value={values.user} onChange={handleChange} />
                         <TextField
+                            variant="standard"
+                            label="Usuário ou e-mail"
+                            name="user"
+                            value={values.user}
+                            onChange={handleChange}
+                        />
+                        <TextField
+                            variant="standard"
                             label="Senha"
                             name="password"
                             value={values.password}
