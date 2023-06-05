@@ -69,7 +69,7 @@ export const AddressField: React.FC<AddressFieldProps> = ({ values, handleChange
                         inputRef={ref}
                         {...props}
                         placeholder="CEP"
-                        InputProps={{ endAdornment: loading ? <CircularProgress size={"1.5rem"} color="primary" /> : <></> }}
+                        // InputProps={{ endAdornment: loading ? <CircularProgress size={"1.5rem"} color="primary" /> : <></> }}
                     />
                 )}
             />
