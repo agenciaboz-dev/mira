@@ -20,6 +20,16 @@
         gap: 3vw;
         flex-direction: column;
 
+        p {
+            font-size: 4vw;
+        }
+
+        a {
+            color: $blue2;
+            font-size: 4vw;
+            text-align: end;
+        }
+
         .image {
             border-radius: 5vw;
             width: 100%;
@@ -31,6 +41,14 @@
             width: 100%;
             align-items: center;
             justify-content: space-between;
+
+            h1 {
+                font-size: 6vw;
+            }
+
+            span {
+                font-size: 6vw;
+            }
         }
     
         .specs-container {
@@ -43,11 +61,11 @@
             }
 
             h3 {
-                font-size: 5vw;
+                font-size: 4.5vw;
             }
 
             p {
-                font-size: 4vw;
+                font-size: 3.5vw;
             }
         }
     
@@ -56,6 +74,10 @@
         padding-top: 6vw;
         justify-content: space-between;
         align-items: center;
+
+        button {
+            padding: 0;
+        }
     }
 
 }
