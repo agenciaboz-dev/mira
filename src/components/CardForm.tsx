@@ -72,8 +72,6 @@ export const CardForm: React.FC<CardFormProps> = ({ user, values, setValues, cho
         marginRight: "2vw",
     }
 
-    const input_style = { border: `2px solid ${colors.blue}` }
-
     const handleCardNumberBlur: React.FocusEventHandler<HTMLInputElement> = (event) => {
         if (event.target.value.length < 19) {
             setCardNumberError("Número de cartão inválido")
@@ -141,16 +139,16 @@ export const CardForm: React.FC<CardFormProps> = ({ user, values, setValues, cho
                     sx={{ flexDirection: "row", gap: "10vw" }}
                 >
                     <FormControlLabel
-                        value="debit"
-                        sx={{ marginLeft: "0" }}
-                        control={<Radio sx={radio_style} />}
-                        label="Débito"
-                    />
-                    <FormControlLabel
                         value="credit"
                         sx={{ marginLeft: "0" }}
                         control={<Radio sx={radio_style} />}
                         label="Crédito"
+                    />
+                    <FormControlLabel
+                        value="debit"
+                        sx={{ marginLeft: "0" }}
+                        control={<Radio sx={radio_style} />}
+                        label="Débito"
                     />
                 </RadioGroup>
             </div>
@@ -160,7 +158,6 @@ export const CardForm: React.FC<CardFormProps> = ({ user, values, setValues, cho
                 name="name"
                 value={values.cardOwner}
                 onChange={(event) => setValues.setCardOwner(event.target.value)}
-                InputProps={{ style: input_style }}
             />
             <MaskedInput
                 mask={cardNumberMask}
@@ -176,7 +173,6 @@ export const CardForm: React.FC<CardFormProps> = ({ user, values, setValues, cho
                         placeholder="Número do cartão"
                         error={!!cardNumberError}
                         helperText={cardNumberError}
-                        InputProps={{ style: input_style }}
                     />
                 )}
             />
@@ -195,7 +191,6 @@ export const CardForm: React.FC<CardFormProps> = ({ user, values, setValues, cho
                             inputRef={ref}
                             {...props}
                             placeholder="Mês"
-                            InputProps={{ style: input_style }}
                             error={!!cardMonthError}
                             helperText={cardMonthError}
                         />
@@ -213,7 +208,6 @@ export const CardForm: React.FC<CardFormProps> = ({ user, values, setValues, cho
                             inputRef={ref}
                             {...props}
                             placeholder="Ano"
-                            InputProps={{ style: input_style }}
                             error={!!cardYearError}
                             helperText={cardYearError}
                         />
@@ -231,7 +225,6 @@ export const CardForm: React.FC<CardFormProps> = ({ user, values, setValues, cho
                             inputRef={ref}
                             {...props}
                             placeholder="CVV"
-                            InputProps={{ style: input_style }}
                             error={!!cardCvvError}
                             helperText={cardCvvError}
                         />
