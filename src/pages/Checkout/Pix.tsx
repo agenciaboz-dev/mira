@@ -42,7 +42,7 @@ export const Pix: React.FC<PixProps> = ({}) => {
         api.order.new({
             data: {
                 user,
-                address: { ...address, delivery: address?.delivery },
+                address,
                 total,
                 products: cart,
                 method: "pix",
