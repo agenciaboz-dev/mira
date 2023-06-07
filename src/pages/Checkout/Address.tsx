@@ -46,8 +46,6 @@ export const Address: React.FC<AddressProps> = ({}) => {
     const handleSubmit = (values: AddressType) => {
         if (loading) return
 
-        setOrder({ delivery: true })
-
         if (saveAddress) {
             setLoading(true)
             const data = {

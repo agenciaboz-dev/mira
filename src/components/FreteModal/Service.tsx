@@ -1,10 +1,13 @@
 import React from "react"
 import styles from "./styles"
-import { FormControlLabel, Radio, RadioGroup } from "@mui/material"
+import { Box, FormControlLabel, Radio, RadioGroup } from "@mui/material"
+import { CurrencyText } from "../CurrencyText"
 
-interface ServiceProps {}
+interface ServiceProps {
+    quotation: Quotation
+}
 
-export const Service: React.FC<ServiceProps> = ({}) => {
+export const Service: React.FC<ServiceProps> = ({ quotation }) => {
     const radio_style = {
         "&.Mui-checked": {
             backgroundColor: "purple",
@@ -23,25 +26,25 @@ export const Service: React.FC<ServiceProps> = ({}) => {
     }
 
     return (
-        <RadioGroup
-            value="{values.cardType}"
-            name="type"
-            //onChange={}
-            sx={styles.radio}
-        >
+        <Box sx={{ flexDirection: "column", gap: "2vw" }}>
             <FormControlLabel
-                value="sedex"
-                sx={{ marginLeft: "0", fontSize: "7vw" }}
+                value={quotation.id}
+                sx={{ marginLeft: "0" }}
                 control={<Radio sx={radio_style} />}
-                label=""
+                label={
+                    <Box sx={{ flexDirection: "column" }}>
+                        <div style={{ gap: "2vw" }}>
+                            <p style={{ fontSize: "4vw", fontWeight: "600", color: "#555555" }}>
+                                {quotation.shipping_carrier}:{" "}
+                            </p>
+                            <p style={{ fontSize: "4vw", color: "#555555" }}>{<CurrencyText value={quotation.price} />}</p>
+                        </div>
+                        <p style={{ fontSize: "2.8vw", color: "#555555" }}>
+                            Prazo de entrega de {quotation.delivery_time} dias úteis
+                        </p>
+                    </Box>
+                }
             />
-            <div style={{ flexDirection: "column", position: "relative", bottom: " 7vw", left: "8vw" }}>
-                <div style={{ flexDirection: "row", gap: "2vw" }}>
-                    <p style={{ fontSize: "4vw", fontWeight: "600", color: "#555555" }}>SEDEX: </p>
-                    <p style={{ fontSize: "4vw", color: "#555555" }}>R$25,75</p>
-                </div>
-                <p style={{ fontSize: "2.8vw", color: "#555555" }}>Prazo de entrega de 3 dias úteis</p>
-            </div>
-        </RadioGroup>
+        </Box>
     )
 }
