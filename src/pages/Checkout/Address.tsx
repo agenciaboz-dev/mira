@@ -67,7 +67,7 @@ export const Address: React.FC<AddressProps> = ({}) => {
                 finallyCallback: () => setLoading(false),
             })
         } else {
-            setAddress({ ...values, delivery: true })
+            setTimeout(() => setAddress({ ...values, delivery: true }), 500)
             navigate("/checkout/payment")
         }
     }
