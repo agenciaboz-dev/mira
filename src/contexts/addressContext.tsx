@@ -25,7 +25,7 @@ export const AddressProvider: React.FC<AddressProviderProps> = ({ children }) =>
     const user = useContext(UserContext).value
 
     useEffect(() => {
-        if (user!.addresses?.length > 0) {
+        if (user && user.addresses?.length > 0) {
             setValue(user!.addresses[0])
         }
     }, [user])
