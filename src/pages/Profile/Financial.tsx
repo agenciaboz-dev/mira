@@ -24,6 +24,7 @@ export const Financial: React.FC<FinancialProps> = ({ user }) => {
     const cardNumberMask = useCardNumberMask()
     const numberMask = useNumberMask(2, true)
     const threeNumberMask = useNumberMask(3)
+    const fourNumberMask = useNumberMask(4)
     const api = useApi()
     const navigate = useNavigate()
     const { snackbar } = useSnackbar()
@@ -150,7 +151,7 @@ export const Financial: React.FC<FinancialProps> = ({ user }) => {
                                 render={(ref, props) => <TextField inputRef={ref} {...props} placeholder="Mês" />}
                             />
                             <MaskedInput
-                                mask={numberMask}
+                                mask={fourNumberMask}
                                 guide={false}
                                 name="expiration_year"
                                 value={values.expiration_year}
@@ -168,7 +169,14 @@ export const Financial: React.FC<FinancialProps> = ({ user }) => {
                         </div>
 
                         <div className="buttons-container">
-                            <Button onClick={() => navigate("/cart")} style={{ height: "10vw", width: "35vw", background: "linear-gradient(90deg, #9F9F9F 0%, #565656 91.94%)" }} >
+                            <Button
+                                onClick={() => navigate("/cart")}
+                                style={{
+                                    height: "10vw",
+                                    width: "35vw",
+                                    background: "linear-gradient(90deg, #9F9F9F 0%, #565656 91.94%)",
+                                }}
+                            >
                                 Cancelar
                             </Button>
                             <Button type="submit" style={{ height: "10vw", width: "35vw", marginRight: "1vw" }}>
