@@ -1,10 +1,7 @@
 import { createContext, useEffect, useState } from "react"
 import React from "react"
-import { Address as AddressType } from "../definitions/user"
-
-interface Address extends AddressType {
-    delivery?: boolean
-}
+import { Address } from "../definitions/user"
+import UserContext from "./userContext"
 
 interface AddressContextValue {
     value: Address | undefined

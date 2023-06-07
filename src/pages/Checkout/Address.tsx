@@ -14,6 +14,8 @@ import { useApi } from "../../hooks/useApi"
 import { useSnackbar } from "../../hooks/useSnackbar"
 import { useAddress } from "../../hooks/useAddress"
 import { AddressField } from "../../components/AddressField"
+import { useOrder } from "../../hooks/useOrder"
+import { useCart } from "../../hooks/useCart"
 
 interface AddressProps {}
 
@@ -22,6 +24,7 @@ export const Address: React.FC<AddressProps> = ({}) => {
     const estados = useEstadosBrasil()
     const navigate = useNavigate()
     const { address, setAddress } = useAddress()
+    const { setOrder } = useOrder()
 
     const [loading, setLoading] = useState(false)
 
@@ -40,7 +43,7 @@ export const Address: React.FC<AddressProps> = ({}) => {
     const handleSubmit = (values: AddressType) => {
         if (loading) return
 
-        setAddress({ ...values, delivery: true })
+        setAddress({ ...values})
         navigate("/checkout/payment")
     }
 
@@ -62,13 +65,7 @@ export const Address: React.FC<AddressProps> = ({}) => {
                             name="phone"
                             value={values.phone}
                             onChange={handleChange}
-                            render={(ref, props) => (
-                                <TextField
-                                    inputRef={ref}
-                                    {...props}
-                                    placeholder="Telefone"
-                                />
-                            )}
+                            render={(ref, props) => <TextField inputRef={ref} {...props} placeholder="Telefone" />}
                         />
                         <AddressField values={values} handleChange={handleChange} />
 
