@@ -188,6 +188,12 @@
             flex-direction: column;
             gap: 3vw;
 
+            .Collapsible {
+                div {
+                    width: 100%;
+                }
+            }
+
             .container {
                 color: #53337D;
                 align-items: center;

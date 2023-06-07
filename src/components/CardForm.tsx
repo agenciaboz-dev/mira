@@ -128,7 +128,7 @@ export const CardForm: React.FC<CardFormProps> = ({ user, values, setValues, cho
     }, [values])
 
     return (
-        <div className="CardForm-Component" ref={cardRef} style={{ height: available_height > height ? available_height*0.9 : height }}>
+        <div className="CardForm-Component" ref={cardRef} style={{ height: available_height > height ? available_height*0.85 : height }}>
             <div className="type-container">
                 <RadioGroup
                     value={values.cardType}
