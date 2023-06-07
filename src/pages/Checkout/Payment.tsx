@@ -47,7 +47,7 @@ export const Payment: React.FC<PaymentProps> = ({}) => {
     const [disabled, setDisabled] = useState(false)
     const [loading, setLoading] = useState(false)
 
-    const existing_card = user!.cards.length > 0
+    const existing_card = user!.cards?.length > 0
 
     const [cardType, setCardType] = useState<string>(existing_card ? user!.cards[0].type : "debit")
     const [cardOwner, setCardOwner] = useState<string>(existing_card ? user!.cards[0].name : "")

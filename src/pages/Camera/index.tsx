@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react"
 import { useNavigate } from "react-router-dom"
 import { Button } from "../../components/Button"
-import { ProductModal } from "../../components/ProductModal"
 import { Scanner } from "../../components/Scanner"
 import "./style.scss"
 import CancelIcon from "@mui/icons-material/Cancel"

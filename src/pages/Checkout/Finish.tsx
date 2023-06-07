@@ -14,14 +14,20 @@ import { useOrder } from "../../hooks/useOrder"
 interface FinishProps {}
 
 export const Finish: React.FC<FinishProps> = ({}) => {
-    const colors = useColors()
-    const deadline = DateTime.local().plus({ hours: 6, minutes: 30 }).toJSDate()
-    const timer = useTimer({ expiryTimestamp: deadline })
-    const api = useApi()
-
     const { address } = useAddress()
     const { order } = useOrder()
     const { cart, total } = useCart()
+
+    const colors = useColors()
+    const deadline = DateTime.local()
+        .plus({
+            minutes: cart.reduce((minutes, product) => {
+                return minutes + product.preparation * product.quantity
+            }, 0),
+        })
+        .toJSDate()
+    const timer = useTimer({ expiryTimestamp: deadline })
+    const api = useApi()
 
     const button_style = { padding: "3vw", gap: "5vw", justifyContent: "center", width: "100%" }
     const icon_style = { width: "7vw", height: "auto" }

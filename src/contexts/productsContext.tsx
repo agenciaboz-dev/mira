@@ -1,7 +1,6 @@
 import { createContext, useState } from "react"
 import React, { useEffect } from "react"
 import { Product } from "../definitions/product"
-import { products as mocked } from "../mocks/products"
 import { useApi } from "../hooks/useApi"
 
 interface ProductsContextValue {
