@@ -108,7 +108,7 @@ export const Payment: React.FC<PaymentProps> = ({}) => {
                     const data = response.data
                     console.log(data.pagseguro)
                     setUser({ ...user!, orders: [data.order] })
-                    setOrder({ ...data.order, delivery: data.order.delivery || order?.delivery })
+                    setOrder({ ...data.order, quotation: order?.quotation || undefined })
                     setTimeout(() => navigate("/checkout/order"), 500)
                 },
                 finallyCallback: () => setTimeout(() => setLoading(false), 500),

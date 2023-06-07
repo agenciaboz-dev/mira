@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { useCart } from "../../hooks/useCart"
 import { CurrencyText } from "../../components/CurrencyText"
 import { Button } from "../../components/Button"
@@ -7,18 +7,23 @@ import { ReactComponent as DeliveryIcon } from "../../images/checkout/delivery.s
 import { useNavigate } from "react-router-dom"
 import { useAddress } from "../../hooks/useAddress"
 import { FreteModal } from "../../components/FreteModal"
+import { useOrder } from "../../hooks/useOrder"
 
 interface ReviewProps {}
 
 export const Review: React.FC<ReviewProps> = ({}) => {
     const { cart, total } = useCart()
     const navigate = useNavigate()
-    const { address, setAddress } = useAddress()
+    const { setOrder } = useOrder()
 
     const [openFreteModal, setOpenFreteModal] = useState(false)
 
     const button_style = { fontSize: "4vw", justifyContent: "flex-start", padding: "0 5vw", gap: "10vw" }
     const icon_style = { width: "13%" }
+
+    useEffect(() => {
+        setOrder(undefined)
+    }, [])
 
     return (
         <div className="Review-Component">
@@ -58,7 +63,6 @@ export const Review: React.FC<ReviewProps> = ({}) => {
                     style={button_style}
                     onClick={() => {
                         navigate("payment")
-                        if (address) setAddress({ ...address, delivery: false })
                     }}
                 >
                     <LocalIcon style={icon_style} />
