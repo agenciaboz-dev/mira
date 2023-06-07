@@ -26,32 +26,33 @@ export const Review: React.FC<ReviewProps> = ({}) => {
 
     return (
         <div className="Review-Component">
-            <h1 style={{ fontWeight: "normal" }}>
-                {cart.length || "Nenhum"} {cart.length > 1 ? "itens" : "item"} no carrinho
-            </h1>
-            <div className="product-list">
-                {cart.map((product) => (
-                    <div className="product-container" key={product.id}>
-                        <img className="image" src={product.image} alt={product.name} />
-
-                        <div className="info-container">
-                            <p>
-                                Produto: <span>{product.name}</span>
-                            </p>
-                            <p>
-                                Quantidade: <span>{product.quantity}</span>
-                            </p>
-                            <div className="price-container">
+            <div className="review-component-upper-container">
+                <h1 style={{ fontWeight: "normal" }}>
+                    {cart.length || "Nenhum"} {cart.length > 1 ? "itens" : "item"} no carrinho
+                </h1>
+                <div className="product-list">
+                    {cart.map((product) => (
+                        <div className="product-container" key={product.id}>
+                            <img className="image" src={product.image} alt={product.name} />
+                            <div className="info-container">
                                 <p>
-                                    Custo: <CurrencyText value={product.price} />
+                                    Produto: <span>{product.name}</span>
                                 </p>
                                 <p>
-                                    Total: <CurrencyText value={product.price * product.quantity} />
+                                    Quantidade: <span>{product.quantity}</span>
                                 </p>
+                                <div className="price-container">
+                                    <p>
+                                        Custo: <CurrencyText value={product.price} />
+                                    </p>
+                                    <p>
+                                        Total: <CurrencyText value={product.price * product.quantity} />
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                ))}
+                    ))}
+                </div>
             </div>
             <div className="totals-container">
                 <p>
