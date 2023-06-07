@@ -16,7 +16,7 @@ import "./sass/_all.scss"
 import { Snackbar } from "./components/Snackbar"
 import { Checkout } from "./pages/Checkout"
 import { AddressProvider } from "./contexts/addressContext"
-import { OrdersProvider } from "./contexts/ordersContext"
+import { OrdersProvider } from "./contexts/orderContext"
 
 function App() {
     const muiTheme = useMuiTheme()

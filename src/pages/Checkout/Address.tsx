@@ -13,6 +13,8 @@ import { useApi } from "../../hooks/useApi"
 import { useSnackbar } from "../../hooks/useSnackbar"
 import { useAddress } from "../../hooks/useAddress"
 import { AddressField } from "../../components/AddressField"
+import { useOrder } from "../../hooks/useOrder"
+import { useCart } from "../../hooks/useCart"
 
 interface AddressProps {}
 
@@ -24,6 +26,7 @@ export const Address: React.FC<AddressProps> = ({}) => {
     const api = useApi()
     const { snackbar } = useSnackbar()
     const { address, setAddress } = useAddress()
+    const { setOrder } = useOrder()
 
     const [loading, setLoading] = useState(false)
     const [saveAddress, setSaveAddress] = useState(false)
@@ -42,6 +45,8 @@ export const Address: React.FC<AddressProps> = ({}) => {
 
     const handleSubmit = (values: AddressType) => {
         if (loading) return
+
+        setOrder({ delivery: true })
 
         if (saveAddress) {
             setLoading(true)
@@ -66,7 +71,7 @@ export const Address: React.FC<AddressProps> = ({}) => {
                 finallyCallback: () => setLoading(false),
             })
         } else {
-            setAddress({ ...values, delivery: true })
+            setTimeout(() => setAddress(values), 500)
             navigate("/checkout/payment")
         }
     }
@@ -89,13 +94,7 @@ export const Address: React.FC<AddressProps> = ({}) => {
                             name="phone"
                             value={values.phone}
                             onChange={handleChange}
-                            render={(ref, props) => (
-                                <TextField
-                                    inputRef={ref}
-                                    {...props}
-                                    placeholder="Telefone"
-                                />
-                            )}
+                            render={(ref, props) => <TextField inputRef={ref} {...props} placeholder="Telefone" />}
                         />
                         <AddressField values={values} handleChange={handleChange} />
 
