@@ -51,7 +51,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
               price: 0,
               story: "",
               video: "",
-              prep_time: 0,
+              preparation: 0,
               usage: "",
               weight: 0,
               height: 0,
@@ -110,7 +110,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
                 <Formik initialValues={initialValues} onSubmit={handleSubmit}>
                     {({ values, handleChange }) => (
                         <Form>
-                            <TextField label="Nome" name="name" value={values.name} onChange={handleChange} />
+                            <TextField required label="Nome" name="name" value={values.name} onChange={handleChange} />
                             <Box sx={{ gap: "1vw" }}>
                                 <MaskedInput
                                     mask={currencyMask}
@@ -118,7 +118,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
                                     name="price"
                                     value={values.price || ""}
                                     onChange={handleChange}
-                                    render={(ref, props) => <TextField inputRef={ref} {...props} label="Preço" />}
+                                    render={(ref, props) => <TextField required inputRef={ref} {...props} label="Preço" />}
                                 />
                                 <MaskedInput
                                     mask={numberMask}
@@ -128,6 +128,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
                                     onChange={handleChange}
                                     render={(ref, props) => (
                                         <TextField
+                                            required
                                             inputRef={ref}
                                             {...props}
                                             label="Quantidade"
@@ -145,6 +146,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
                                     onChange={handleChange}
                                     render={(ref, props) => (
                                         <TextField
+                                            required
                                             inputRef={ref}
                                             {...props}
                                             label="Peso"
@@ -160,6 +162,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
                                     onChange={handleChange}
                                     render={(ref, props) => (
                                         <TextField
+                                            required
                                             inputRef={ref}
                                             {...props}
                                             label="Largura"
@@ -175,6 +178,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
                                     onChange={handleChange}
                                     render={(ref, props) => (
                                         <TextField
+                                            required
                                             inputRef={ref}
                                             {...props}
                                             label="Altura"
@@ -190,6 +194,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
                                     onChange={handleChange}
                                     render={(ref, props) => (
                                         <TextField
+                                            required
                                             inputRef={ref}
                                             {...props}
                                             label="Comprimento"
@@ -199,7 +204,25 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
                                 />
                             </Box>
 
+                            <MaskedInput
+                                mask={numberMask}
+                                guide={false}
+                                name="preparation"
+                                value={values.preparation || ""}
+                                onChange={handleChange}
+                                render={(ref, props) => (
+                                    <TextField
+                                        required
+                                        inputRef={ref}
+                                        {...props}
+                                        label="Tempo médio de preparo"
+                                        InputProps={{ endAdornment: <p>minutos</p> }}
+                                    />
+                                )}
+                            />
+
                             <TextField
+                                required
                                 label="Categorias"
                                 select
                                 name="categories_ids"
@@ -215,10 +238,23 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
                                 ))}
                             </TextField>
 
-                            <TextField label="Link de imagem" name="image" value={values.image} onChange={handleChange} />
-
-                            <TextField label="Link de vídeo" name="video" value={values.video} onChange={handleChange} />
                             <TextField
+                                required
+                                label="Link de imagem"
+                                name="image"
+                                value={values.image}
+                                onChange={handleChange}
+                            />
+
+                            <TextField
+                                required
+                                label="Link de vídeo"
+                                name="video"
+                                value={values.video}
+                                onChange={handleChange}
+                            />
+                            <TextField
+                                required
                                 label="Descrição"
                                 name="description"
                                 value={values.description}
@@ -227,6 +263,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
                                 minRows={5}
                             />
                             <TextField
+                                required
                                 label="Como usar"
                                 name="usage"
                                 value={values.usage}
@@ -235,6 +272,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
                                 minRows={5}
                             />
                             <TextField
+                                required
                                 label="História"
                                 name="story"
                                 value={values.story}
