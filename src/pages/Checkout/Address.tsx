@@ -99,13 +99,6 @@ export const Address: React.FC<AddressProps> = ({}) => {
                             )}
                         />
                         <AddressField values={values} handleChange={handleChange} />
-                        <Checkbox
-                            label="Salve esse endereço para compras futuras"
-                            value={saveAddress}
-                            labelStyle={{ flexDirection: "row", gap: "2vw", whiteSpace: "break-spaces" }}
-                            checkboxStyle={{ backgroundColor: "transparent" }}
-                            handleChange={(_, checked) => setSaveAddress(checked)}
-                        />
 
                         <div className="avatar-security-container">
                             <img src="/mira_text_tablet.png" alt="Mira" />
