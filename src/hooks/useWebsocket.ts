@@ -1,5 +1,5 @@
 import { useWebSocket } from "react-use-websocket/dist/lib/use-websocket"
-import { useOrders } from "./useOrders"
+import { useOrder } from "./useOrder"
 import { useNavigate } from "react-router-dom"
 import { Cart } from "../definitions/cart"
 import { User } from "../definitions/user"
@@ -9,7 +9,7 @@ import { useUser } from "./useUser"
 import { useAddress } from "./useAddress"
 
 export const useWebsocket = () => {
-    const { orders, newOrder } = useOrders()
+    const { order } = useOrder()
     const api = useApi()
     const url = api.url.split("/")[2]
     const navigate = useNavigate()
@@ -24,8 +24,8 @@ export const useWebsocket = () => {
 
             if (data.status == "PAID") {
                 navigate("/checkout/finish")
-            } else if (data.status == 'DECLINED') {
-                alert('pagamento recusado')
+            } else if (data.status == "DECLINED") {
+                alert("pagamento recusado")
             }
         },
     })
