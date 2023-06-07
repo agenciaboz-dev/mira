@@ -76,7 +76,7 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
                 </p>
             </div>
             <IconButton onClick={removeProduct} sx={{ marginLeft: "auto" }}>
-                <TrashIcon />
+                <TrashIcon style={{width: "5vw"}}/>
             </IconButton>
             <ProductStory product={product} open={story} setOpen={setStory} />
         </div>

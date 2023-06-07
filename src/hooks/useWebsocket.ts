@@ -24,6 +24,8 @@ export const useWebsocket = () => {
 
             if (data.status == "PAID") {
                 navigate("/checkout/finish")
+            } else if (data.status == 'DECLINED') {
+                alert('pagamento recusado')
             }
         },
     })

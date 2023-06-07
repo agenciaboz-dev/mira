@@ -21,8 +21,7 @@
         color: white;
         
         h4 {
-            font-size: 5vw;
-            text-align: center;
+            font-size: 4vw;
             font-weight: 600;
         }
     }
@@ -84,11 +83,12 @@
             align-items: flex-end;
             gap: 5vw;
             border-top: 1px solid #555555;
-            padding-top: 2vw;
+            padding: 2vw 0;
+            margin-top: auto;
 
             p {
                 font-weight: bold;
-                font-size: 4vw;
+                font-size: 3.5vw;
 
                 span {
                     font-weight: normal;
@@ -107,7 +107,27 @@
         form {
             flex-direction: column;
             gap: 5vw;
-            height: 1vh;
+            height: 100%;
+
+            h2 {
+                font-size: 5vw;
+            }
+
+            input {
+                font-size: 4vw;
+            }
+
+            label {
+                span {
+                    font-size: 4vw;
+                    font-weight: 600;
+                    text-align: end;
+
+                    input {
+                        border: 1px solid grey;
+                    }
+                }
+            }
 
             .two-inputs {
                 gap: 3vw;

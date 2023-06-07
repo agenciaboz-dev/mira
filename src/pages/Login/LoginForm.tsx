@@ -101,9 +101,11 @@ export const LoginForm: React.FC<LoginFormProps> = ({}) => {
                             required
                         />
 
+                        <div className="forgot-password">Esqueceu a senha?</div>
+
                         <div className="submit-container">
-                            <Checkbox value={remember} handleChange={handleCheckboxChange} label="Mantenha-me conectado" />
-                            <Button type="submit" variant="contained" style={{ width: "30vw" }}>
+                            <Checkbox value={remember} handleChange={handleCheckboxChange} label="Mantenha-me conectado" checkboxStyle={{backgroundColor: "white", height: "6vw", width: "6vw"}} />
+                            <Button type="submit" variant="contained" style={{ height: "10vw", width: "30vw" }}>
                                 {loading ? (
                                     <CircularProgress sx={{ color: "white" }} style={{ width: "5vw", height: "auto" }} />
                                 ) : (
@@ -117,7 +119,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({}) => {
             </Formik>
 
             <div className="signup-text">
-                <p>Não tem conta?</p>
+                <p>Não tem uma conta?</p>
                 <p className="link" onClick={() => navigate("/login/signup")}>
                     Cadastre-se!
                     <ArrowIcon className="signup-arrow-down" />

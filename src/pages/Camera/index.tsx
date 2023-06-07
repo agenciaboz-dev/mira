@@ -112,7 +112,7 @@ export const Camera: React.FC<CameraProps> = ({}) => {
             <div className="button-wrapper">
                 <div className="button-container">
                     {loading ? (
-                        <CircularProgress style={{ width: "30vw", height: "auto" }} sx={{ color: colors.blue }} />
+                        <CircularProgress style={{ width: "20vw", height: "auto" }} sx={{ color: colors.blue }} />
                     ) : (
                         <>
                             <h2>{error}</h2>

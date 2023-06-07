@@ -10,16 +10,18 @@
     padding: 7vw;
 
     .main-container {
-        background-color: $purple;
+        background-image: linear-gradient($purple, $purple2);
         width: 100%;
         height: 100%;
-        border-radius: 10vw;
-        padding: 5vw;
+        border-radius: 8vw;
+        padding: 5vw 6vw;
         flex-direction: column;
         color: white;
+        gap: 5vw;
         
         .content-container {
             overflow-y: auto;
+            height: 100%;
             width: 100%;
 
             form {
@@ -30,42 +32,85 @@
 
     .Header-Component {
         color: white;
-        justify-content: space-between;
         align-items: center;
         margin-top: -4vw;
+        border-radius: 15vw;
 
         .info-container {
             flex-direction: column;
             justify-content: space-between;
-            align-items: center;
+            margin-left: 2vw;
+
+            h3 {
+                font-size: 4vw;
+            }
+
+            p {
+                font-size: 3.5vw;
+            }
+        }
+
+        .camera-button {
+            margin-left: auto;
         }
     }
 
     .Account-Component {
         width: 100%;
         flex-direction: column;
+        height: 100%;
 
         form {
             flex-direction: column;
             gap: 5vw;
+            height: 100%;
+
+            h2 {
+                font-size: 5vw;
+            }
+
+            p {
+                font-size: 3.5vw;
+            }
 
             input {
                 color: #555555;
+                font-size: 3.5vw;
                 font-weight: 600;
+                padding: 1.5vw 4vw;
+                height: fit-content;
             }
-
+            
             .pwd-alter-title {
                 flex-direction: column;
+                gap: 1vw;
+            }
+
+            .buttons-container {
+                justify-content: space-between;
+                margin-top: auto;
             }
         }
     }
 
     .Address-Component {
         width: 100%;
-
+        
         form {
             flex-direction: column;
             gap: 5vw;
+    
+            h2 {
+                font-size: 5vw;
+            }
+
+            input {
+                color: #555555;
+                font-size: 3.5vw;
+                font-weight: 600;
+                padding: 1.5vw 4vw;
+                height: fit-content;
+            }
 
             .two-inputs {
                 gap: 3vw;
@@ -75,23 +120,49 @@
                     text-align: center;
                 }
             }
+
+            .buttons-container {
+                justify-content: space-between;
+                margin-top: auto;
+            }
         }
     }
 
     .Financial-Component {
         flex-direction: column;
         width: 100%;
+        height: 100%;
 
         form {
             flex-direction: column;
-            gap: 4vw;
+            gap: 5vw;
+            height: 100%;
+
+            h2 {
+                font-size: 5vw;
+            }
+
+            input {
+                color: #555555;
+                font-size: 3.5vw;
+                font-weight: 600;
+                padding: 1.5vw 4vw;
+                height: fit-content;
+            }
 
             .type-container {
-                gap: 20vw;
+                div {
+                    gap: 5vw;
+                }
             }
 
             .expiration-container {
                 gap: 2vw;
+            }
+    
+            .buttons-container {
+                justify-content: space-between;
+                margin-top: auto;
             }
         }
     }

@@ -1,13 +1,25 @@
 @import '/src/sass/colors';
 
 .Card-Component {
-    width: 100%;
+    width: 99%;
     background-color: #3B176A;
-    box-shadow: 2px 8px 0px #1A7FB7;
+    box-shadow: 2px 5px 0px #1A7FB7;
     border-radius: 7vw;
     flex-direction: column;
     padding: 5vw;
     gap: 1vw;
+
+    h3 {
+        font-size: 4.5vw;
+    }
+    
+    h4 {
+        font-size: 4vw;
+    }
+
+    p {
+        font-size: 4vw;
+    }
 
     .cardnumber-container {
         justify-content: space-between;

@@ -19,7 +19,8 @@ export const Header: React.FC<HeaderProps> = ({}) => {
 
     const navigate = useNavigate()
 
-    const icon_style = { color: "white", height: "10vw", width: "10vw" }
+    const icon_style = { color: "white", height: "8vw", width: "8vw" }
+    const button_style = { padding: "0" }
 
     const handleCloseMenu = () => {
         setAnchorEl(null)
@@ -27,9 +28,9 @@ export const Header: React.FC<HeaderProps> = ({}) => {
 
     return (
         <div className="Header-Component">
-            <IconButton onClick={(event) => setAnchorEl(event.currentTarget)}>
-                <AvatarIcon style={{ marginLeft: "-1vw", width: "10vw" }} />
-                <LittleArrowDown style={{ width: "4vw", marginLeft: "-4vw", marginBottom: "1vw", alignSelf: "flex-end" }} />
+            <IconButton onClick={(event) => setAnchorEl(event.currentTarget)} style={button_style}>
+                <AvatarIcon style={{ width: "8vw" }} />
+                <LittleArrowDown style={{ width: "3vw", marginLeft: "-3vw", marginBottom: "2vw", alignSelf: "flex-end" }} />
             </IconButton>
 
             <div className="info-container">
@@ -37,7 +38,7 @@ export const Header: React.FC<HeaderProps> = ({}) => {
                 <p>{!!cart.length && (cart.length > 1 ? `${cart.length} itens no carrinho` : "1 item no carrinho")}</p>
             </div>
 
-            <IconButton onClick={() => navigate("/scan")}>
+            <IconButton className="camera-button" onClick={() => navigate("/scan")} style={button_style}>
                 <QrCodePlusIcon style={icon_style} />
             </IconButton>
             <Menu open={openMenu} anchorEl={anchorEl} handleClose={handleCloseMenu} />

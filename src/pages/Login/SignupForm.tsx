@@ -122,7 +122,7 @@ export const SignupForm: React.FC<SignupFormProps> = ({}) => {
                             size="small"
                         />
 
-                        <Button type="submit" variant="contained" style={{ fontSize: "5vw" }} fullWidth>
+                        <Button type="submit" variant="contained" style={{ fontSize: "5vw", height: "12vw", marginTop: "2vw" }} fullWidth>
                             {loading ? (
                                 <CircularProgress sx={{ color: "white" }} style={{ width: "10vw", height: "auto" }} />
                             ) : (

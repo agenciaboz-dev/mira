@@ -1,3 +1,5 @@
+import { Order } from "./cart"
+
 export interface User {
     id: number
     name: string
@@ -9,6 +11,7 @@ export interface User {
     phone: string
     addresses: Address[]
     cards: Card[]
+    orders: Order[]
 }
 
 export interface Address {

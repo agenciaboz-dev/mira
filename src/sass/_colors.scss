@@ -2,11 +2,15 @@ $background-color: white;
 $background-secondary-color: #E1E1E1;
 $primary-color: #363775;
 $green: #34A853;
+$green2: #9af82e;
 $pink: #EC0F83;
 $purple: #53337d;
+$purple2: #6e40aa;
 $red: #FF0000;
 $blue: #1a80b8;
+$blue2: #1a7fb7;
 $dark_grey: #606060;
+$dark_grey2: #555555;
 $light_grey: #c2c2c2;
 
 :export {
@@ -14,10 +18,13 @@ $light_grey: #c2c2c2;
     background: $background-color;
     background_secondary: $background-secondary-color;
     green: $green;
+    green2: $green2;
     pink: $pink;
     purple: $purple;
+    purple2: $purple2;
     red: $red;
     blue: $blue;
+    blue2: $blue2;
     dark_grey: $dark_grey;
     light_grey: $light_grey;
 }

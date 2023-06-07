@@ -147,13 +147,18 @@ export const Account: React.FC<AccountProps> = ({ user }) => {
                             helperText={newPasswordError}
                         />
 
-                        <Button type="submit">
-                            {loading ? (
-                                <CircularProgress sx={{ color: "white" }} style={{ width: "6vw", height: "auto" }} />
-                            ) : (
-                                "Salvar"
-                            )}
-                        </Button>
+                        <div className="buttons-container">
+                            <Button onClick={() => navigate("/cart")} style={{ height: "10vw", width: "35vw", background: "linear-gradient(90deg, #9F9F9F 0%, #565656 91.94%)" }} >
+                                Cancelar
+                            </Button>
+                            <Button type="submit" style={{ height: "10vw", width: "35vw", marginRight: "1vw" }}>
+                                {loading ? (
+                                    <CircularProgress sx={{ color: "white" }} style={{ width: "6vw", height: "auto" }} />
+                                ) : (
+                                    "Salvar"
+                                )}
+                            </Button>
+                        </div>
                     </Form>
                 )}
             </Formik>
