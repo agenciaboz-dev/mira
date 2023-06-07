@@ -108,7 +108,7 @@ export const Payment: React.FC<PaymentProps> = ({}) => {
                     setUser({ ...user!, orders: [order] })
                     setTimeout(() => navigate("/checkout/order"), 500)
                 },
-                finallyCallback: () => setLoading(false),
+                finallyCallback: () => setTimeout(() => setLoading(false), 500),
             })
         }
 
