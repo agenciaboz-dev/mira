@@ -67,7 +67,7 @@ export const Product: React.FC<ProductProps> = ({ product, style, innerRef, onCl
 
                 <div className="title-container">
                     <h1>{product.name}</h1>
-                    <CurrencyText value={product.price} style={{ fontSize: "7vw" }} />
+                    <CurrencyText value={product.price} />
                 </div>
                 <p>{product.description}</p>
 
@@ -106,7 +106,7 @@ export const Product: React.FC<ProductProps> = ({ product, style, innerRef, onCl
                 <IconButton onClick={() => changeQuantity(1)}>
                     <PlusIcon style={styles.cart_icon} />
                 </IconButton>
-                <Button style={{ fontSize: "2vw", width: "45%", padding: "2vw 7vw" }} onClick={() => addToCart()}>
+                <Button style={{ height: "8vw", width: "45%", marginLeft: "8vw" }} onClick={() => addToCart()}>
                     Adicionar ao carrinho
                 </Button>
             </div>
