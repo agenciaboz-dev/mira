@@ -41,8 +41,8 @@ export const Pix: React.FC<PixProps> = ({}) => {
     useEffect(() => {
         api.order.new({
             data: {
-                user: { id: 1 },
-                address: { ...address, delivery: address?.delivery },
+                user,
+                address,
                 total,
                 products: cart,
                 method: "pix",
