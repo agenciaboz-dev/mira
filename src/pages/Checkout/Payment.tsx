@@ -12,6 +12,7 @@ import { useApi } from "../../hooks/useApi"
 import { useCart } from "../../hooks/useCart"
 import { useAddress } from "../../hooks/useAddress"
 import { CircularProgress, SxProps } from "@mui/material"
+import { useOrder } from "../../hooks/useOrder"
 
 interface PaymentProps {}
 
@@ -39,6 +40,7 @@ export const Payment: React.FC<PaymentProps> = ({}) => {
     const api = useApi()
     const { user, setUser } = useUser()
     const { cart, total } = useCart()
+    const { order, setOrder } = useOrder()
     const { address } = useAddress()
 
     const [paymentType, setPaymentType] = useState<"pix" | "credit" | undefined>()
@@ -103,9 +105,10 @@ export const Payment: React.FC<PaymentProps> = ({}) => {
                     },
                 },
                 callback: (response: any) => {
-                    const { pagseguro, order } = response.data
-                    console.log(pagseguro)
-                    setUser({ ...user!, orders: [order] })
+                    const data = response.data
+                    console.log(data.pagseguro)
+                    setUser({ ...user!, orders: [data.order] })
+                    setOrder({ ...data.order, delivery: data.order.delivery || order?.delivery })
                     setTimeout(() => navigate("/checkout/order"), 500)
                 },
                 finallyCallback: () => setTimeout(() => setLoading(false), 500),
