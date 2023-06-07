@@ -24,7 +24,7 @@ export const Financial: React.FC<FinancialProps> = ({ user }) => {
     const cardNumberMask = useCardNumberMask()
     const numberMask = useNumberMask(2, true)
     const threeNumberMask = useNumberMask(3)
-    const fourNumberMask = useNumberMask(4)
+    const fourNumberMask = useNumberMask(4, false, "")
     const api = useApi()
     const navigate = useNavigate()
     const { snackbar } = useSnackbar()
