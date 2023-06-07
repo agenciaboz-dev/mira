@@ -35,15 +35,14 @@ export const Finish: React.FC<FinishProps> = ({}) => {
     const icon_style = { width: "7vw", height: "auto" }
 
     useEffect(() => {
-        const data = {
-            products: cart,
-            total,
-            cep: address?.cep,
-        }
+        if (order?.quotation) {
+            const data = {
+                products: cart,
+                total,
+                cep: address?.cep,
+            }
 
-        console.log(data)
-
-        if (order?.delivery) {
+            console.log(data)
             api.delivery.quotation({
                 data,
                 callback: (response: any) => {
@@ -58,7 +57,7 @@ export const Finish: React.FC<FinishProps> = ({}) => {
             <CheckCircleIcon sx={{ color: colors.blue, width: "15vw", height: "auto" }} />
             <h1>Pagamento Confirmado!</h1>
 
-            {order?.delivery ? (
+            {order?.quotation ? (
                 <Button style={button_style}>
                     <DeliveryIcon style={icon_style} />
                     Acompanhar pedido

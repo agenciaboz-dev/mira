@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { useCart } from "../../hooks/useCart"
 import { CurrencyText } from "../../components/CurrencyText"
 import { Button } from "../../components/Button"
@@ -6,13 +6,15 @@ import { ReactComponent as LocalIcon } from "../../images/checkout/local.svg"
 import { ReactComponent as DeliveryIcon } from "../../images/checkout/delivery.svg"
 import { useNavigate } from "react-router-dom"
 import { useAddress } from "../../hooks/useAddress"
+import { FreteModal } from "../../components/FreteModal"
+import { useOrder } from "../../hooks/useOrder"
 
 interface ReviewProps {}
 
 export const Review: React.FC<ReviewProps> = ({}) => {
     const { cart, total } = useCart()
     const navigate = useNavigate()
-    const { address, setAddress } = useAddress()
+    const { setOrder } = useOrder()
 
     const button_style = {
         fontSize: "2.5vw",
@@ -23,6 +25,10 @@ export const Review: React.FC<ReviewProps> = ({}) => {
     }
     const icon_style = { width: "13%" }
     const button_p_style = { margin: "0 auto" }
+
+    useEffect(() => {
+        setOrder(undefined)
+    }, [])
 
     return (
         <div className="Review-Component">
@@ -58,29 +64,20 @@ export const Review: React.FC<ReviewProps> = ({}) => {
                 <p>
                     Total do pedido (sem entrega): <CurrencyText value={total} />
                 </p>
-                <div className="buttons-container">
-                    <Button
-                        fullWidth
-                        style={button_style}
-                        onClick={() => navigate("address")}
-                        disabled={!Boolean(cart.length)}
-                    >
-                        <DeliveryIcon style={icon_style} />
-                        <p style={button_p_style}>Entrega</p>
-                    </Button>
-                    <Button
-                        fullWidth
-                        style={button_style}
-                        disabled={!Boolean(cart.length)}
-                        onClick={() => {
-                            navigate("payment")
-                            if (address) setAddress({ ...address, delivery: false })
-                        }}
-                    >
-                        <LocalIcon style={icon_style} />
-                        <p style={button_p_style}>Retirada no local</p>
-                    </Button>
-                </div>
+                <Button
+                    fullWidth
+                    style={button_style}
+                    onClick={() => {
+                        navigate("payment")
+                    }}
+                >
+                    <LocalIcon style={icon_style} />
+                    Retirada no local
+                </Button>
+                <Button fullWidth style={button_style} onClick={() => setOpenFreteModal(true)}>
+                    <DeliveryIcon style={icon_style} />
+                    Entrega
+                </Button>
             </div>
         </div>
     )

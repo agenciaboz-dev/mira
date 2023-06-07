@@ -43,8 +43,32 @@ export const Address: React.FC<AddressProps> = ({}) => {
     const handleSubmit = (values: AddressType) => {
         if (loading) return
 
-        setAddress({ ...values})
-        navigate("/checkout/payment")
+        /*if (saveAddress) {
+            setLoading(true)
+            const data = {
+                ...values,
+                new_address: !user!.addresses[0]?.id,
+                user_id: user!.id,
+            }
+            console.log(data)
+
+            api.user.address({
+                data: data,
+                callback: (response: { data: AddressType }) => {
+                    const updatedUser = { ...user!, addresses: [response.data] }
+                    setUser(updatedUser)
+                    navigate("/checkout/payment")
+                    snackbar({
+                        severity: "success",
+                        text: "Endereço salvo",
+                    })
+                },
+                finallyCallback: () => setLoading(false),
+            })
+        } else {
+            setTimeout(() => setAddress(values), 500)
+            navigate("/checkout/payment")
+        }*/
     }
 
     return (
