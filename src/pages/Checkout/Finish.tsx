@@ -7,13 +7,21 @@ import { ReactComponent as DeliveryIcon } from "../../images/checkout/delivery.s
 import TimerIcon from "@mui/icons-material/Timer"
 import { DateTime } from "luxon"
 import { useTimer } from "react-timer-hook"
+import { useCart } from "../../hooks/useCart"
 
 interface FinishProps {}
 
 export const Finish: React.FC<FinishProps> = ({}) => {
     const colors = useColors()
     const { address } = useAddress()
-    const deadline = DateTime.local().plus({ hours: 6, minutes: 30 }).toJSDate()
+    const { cart } = useCart()
+    const deadline = DateTime.local()
+        .plus({
+            minutes: cart.reduce((minutes, product) => {
+                return minutes + product.preparation * product.quantity
+            }, 0),
+        })
+        .toJSDate()
     const timer = useTimer({ expiryTimestamp: deadline })
 
     const button_style = { padding: "1vw 7vw", gap: "5vw", justifyContent: "flex-start", fontSize: "4vw" }
