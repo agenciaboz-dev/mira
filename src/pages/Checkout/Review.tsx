@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { useCart } from "../../hooks/useCart"
 import { CurrencyText } from "../../components/CurrencyText"
 import { Button } from "../../components/Button"
@@ -6,6 +6,7 @@ import { ReactComponent as LocalIcon } from "../../images/checkout/local.svg"
 import { ReactComponent as DeliveryIcon } from "../../images/checkout/delivery.svg"
 import { useNavigate } from "react-router-dom"
 import { useAddress } from "../../hooks/useAddress"
+import { FreteModal } from "../../components/FreteModal"
 
 interface ReviewProps {}
 
@@ -13,6 +14,8 @@ export const Review: React.FC<ReviewProps> = ({}) => {
     const { cart, total } = useCart()
     const navigate = useNavigate()
     const { address, setAddress } = useAddress()
+
+    const [openFreteModal, setOpenFreteModal] = useState(false)
 
     const button_style = { fontSize: "4vw", justifyContent: "flex-start", padding: "0 5vw", gap: "10vw" }
     const icon_style = { width: "13%" }
@@ -61,11 +64,12 @@ export const Review: React.FC<ReviewProps> = ({}) => {
                     <LocalIcon style={icon_style} />
                     Retirada no local
                 </Button>
-                <Button fullWidth style={button_style} onClick={() => navigate("address")}>
+                <Button fullWidth style={button_style} onClick={() => setOpenFreteModal(true)}>
                     <DeliveryIcon style={icon_style} />
                     Entrega
                 </Button>
             </div>
+            <FreteModal open={openFreteModal} setOpen={setOpenFreteModal} />
         </div>
     )
 }
