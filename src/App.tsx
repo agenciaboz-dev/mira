@@ -17,7 +17,8 @@ import "./sass/_all.scss"
 import { Snackbar } from "./components/Snackbar"
 import { Checkout } from "./pages/Checkout"
 import { AddressProvider } from "./contexts/addressContext"
-import { OrdersProvider } from "./contexts/ordersContext"
+import { OrdersProvider } from "./contexts/orderContext"
+import { Review } from "./pages/Review"
 
 function App() {
     const muiTheme = useMuiTheme()
@@ -41,6 +42,7 @@ function App() {
                                             <Route path="/scan" element={<Camera />} />
                                             <Route path="/profile/*" element={<Profile />} />
                                             <Route path="/checkout/*" element={<Checkout />} />
+                                            <Route path="/review" element={<Review />} />
                                         </Routes>
                                     </BrowserRouter>
                                 </AddressProvider>
