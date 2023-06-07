@@ -11,6 +11,7 @@ import useMeasure from "react-use-measure"
 import { useApi } from "../../hooks/useApi"
 import { useCart } from "../../hooks/useCart"
 import { useAddress } from "../../hooks/useAddress"
+import { CircularProgress, SxProps } from "@mui/material"
 
 interface PaymentProps {}
 
@@ -44,71 +45,74 @@ export const Payment: React.FC<PaymentProps> = ({}) => {
     const [disabled, setDisabled] = useState(false)
     const [loading, setLoading] = useState(false)
 
-    const [cardType, setCardType] = useState<string>("debit")
-    const [cardOwner, setCardOwner] = useState<string>("")
-    const [cardNumber, setCardNumber] = useState<string>("")
-    const [cardMonth, setCardMonth] = useState<string>("")
-    const [cardYear, setCardYear] = useState<string>("")
-    const [cardCvv, setCardCvv] = useState<string>("")
+    const existing_card = user!.cards.length > 0
+
+    const [cardType, setCardType] = useState<string>(existing_card ? user!.cards[0].type : "debit")
+    const [cardOwner, setCardOwner] = useState<string>(existing_card ? user!.cards[0].name : "")
+    const [cardNumber, setCardNumber] = useState<string>(existing_card ? user!.cards[0].number : "")
+    const [cardMonth, setCardMonth] = useState<string>(existing_card ? user!.cards[0].expiration_month : "")
+    const [cardYear, setCardYear] = useState<string>(existing_card ? user!.cards[0].expiration_year : "")
+    const [cardCvv, setCardCvv] = useState<string>(existing_card ? user!.cards[0].cvv : "")
     const [cardError, setCardError] = useState(false)
 
     const cardValues = { cardType, cardOwner, cardNumber, cardMonth, cardYear, cardCvv }
 
-    const handleClick = () => {
-        // pagseguro handling
+    const pay_button_style: React.CSSProperties = {
+        marginTop: "auto",
+        background: disabled ? "linear-gradient(90deg, #9F9F9F 0%, #565656 91.94%)" : "",
+        boxShadow: disabled ? "none" : "",
+    }
 
-        if (paymentType == "credit") {
-            console.log(cardValues)
-            if (cardError) return
+    const handleCardPay = () => {
+        if (loading) return
+        if (cardError) return
 
-            const script = document.createElement("script")
+        setLoading(true)
 
-            script.src = "https://assets.pagseguro.com.br/checkout-sdk-js/rc/dist/browser/pagseguro.min.js"
-            script.async = true
-            script.onload = () => {
-                // @ts-ignore
-                const card = window.PagSeguro.encryptCard({
-                    publicKey:
-                        "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAr+ZqgD892U9/HXsa7XqBZUayPquAfh9xx4iwUbTSUAvTlmiXFQNTp0Bvt/5vK2FhMj39qSv1zi2OuBjvW38q1E374nzx6NNBL5JosV0+SDINTlCG0cmigHuBOyWzYmjgca+mtQu4WczCaApNaSuVqgb8u7Bd9GCOL4YJotvV5+81frlSwQXralhwRzGhj/A57CGPgGKiuPT+AOGmykIGEZsSD9RKkyoKIoc0OS8CPIzdBOtTQCIwrLn2FxI83Clcg55W8gkFSOS6rWNbG5qFZWMll6yl02HtunalHmUlRUL66YeGXdMDC2PuRcmZbGO5a/2tbVppW6mfSWG3NPRpgwIDAQAB",
-                    holder: cardOwner,
-                    number: cardNumber.replace(/\s/g, ""),
-                    expMonth: cardMonth,
-                    expYear: cardYear,
-                    securityCode: cardCvv,
-                })
+        const script = document.createElement("script")
 
-                const encrypted = card.encryptedCard
-                console.log(encrypted)
-                document.body.removeChild(script)
+        script.src = "https://assets.pagseguro.com.br/checkout-sdk-js/rc/dist/browser/pagseguro.min.js"
+        script.async = true
+        script.onload = () => {
+            // @ts-ignore
+            const card = window.PagSeguro.encryptCard({
+                publicKey:
+                    "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAr+ZqgD892U9/HXsa7XqBZUayPquAfh9xx4iwUbTSUAvTlmiXFQNTp0Bvt/5vK2FhMj39qSv1zi2OuBjvW38q1E374nzx6NNBL5JosV0+SDINTlCG0cmigHuBOyWzYmjgca+mtQu4WczCaApNaSuVqgb8u7Bd9GCOL4YJotvV5+81frlSwQXralhwRzGhj/A57CGPgGKiuPT+AOGmykIGEZsSD9RKkyoKIoc0OS8CPIzdBOtTQCIwrLn2FxI83Clcg55W8gkFSOS6rWNbG5qFZWMll6yl02HtunalHmUlRUL66YeGXdMDC2PuRcmZbGO5a/2tbVppW6mfSWG3NPRpgwIDAQAB",
+                holder: cardOwner,
+                number: cardNumber.replace(/\s/g, ""),
+                expMonth: cardMonth,
+                expYear: cardYear,
+                securityCode: cardCvv,
+            })
 
-                api.order.new({
-                    data: {
-                        user,
-                        address,
-                        total,
-                        products: cart,
-                        method: "card",
-                        card: {
-                            encrypted,
-                            holder: cardOwner,
-                            security_code: cardCvv,
-                        },
+            const encrypted = card.encryptedCard
+            console.log(encrypted)
+            document.body.removeChild(script)
+
+            api.order.new({
+                data: {
+                    user,
+                    address,
+                    total,
+                    products: cart,
+                    method: "card",
+                    card: {
+                        encrypted,
+                        holder: cardOwner,
+                        security_code: cardCvv,
                     },
-                    callback: (response: any) => {
-                        const { pagseguro, order } = response.data
-                        console.log(pagseguro)
-                        setUser({ ...user!, orders: [order] })
-                        setTimeout(() => navigate("/checkout/order"), 500)
-                    },
-                })
-            }
-
-            document.body.appendChild(script)
-
-            // navigate("/checkout/finish")
-        } else {
-            navigate("/checkout/pix")
+                },
+                callback: (response: any) => {
+                    const { pagseguro, order } = response.data
+                    console.log(pagseguro)
+                    setUser({ ...user!, orders: [order] })
+                    setTimeout(() => navigate("/checkout/order"), 500)
+                },
+                finallyCallback: () => setLoading(false),
+            })
         }
+
+        document.body.appendChild(script)
     }
 
     useEffect(() => {
@@ -173,17 +177,21 @@ export const Payment: React.FC<PaymentProps> = ({}) => {
                 </Collapsible>
             </div>
 
-            <Button
-                onClick={handleClick}
-                style={{
-                    marginTop: "auto",
-                    background: disabled ? "linear-gradient(90deg, #9F9F9F 0%, #565656 91.94%)" : "",
-                    boxShadow: disabled ? "none" : "",
-                }}
-                disabled={disabled}
-            >
-                {paymentType == "credit" && cardError ? "Cartão inválido" : "Finalizar compra"}
-            </Button>
+            {paymentType == "credit" ? (
+                <Button onClick={handleCardPay} style={pay_button_style} disabled={disabled}>
+                    {cardError ? (
+                        "Cartão inválido"
+                    ) : loading ? (
+                        <CircularProgress size="1.5rem" sx={{ color: "white" }} />
+                    ) : (
+                        "Finalizar compra"
+                    )}
+                </Button>
+            ) : (
+                <Button onClick={() => navigate("/checkout/pix")} style={pay_button_style} disabled={disabled}>
+                    Finalizar compra
+                </Button>
+            )}
         </div>
     )
 }
