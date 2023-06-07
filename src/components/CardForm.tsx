@@ -72,7 +72,7 @@ export const CardForm: React.FC<CardFormProps> = ({ user, values, setValues, cho
         marginRight: "2vw",
     }
 
-    const input_style = { border: `2px solid ${colors.blue}` }
+    const input_style = { border: `1px solid ${colors.purple2}` }
 
     const handleCardNumberBlur: React.FocusEventHandler<HTMLInputElement> = (event) => {
         if (event.target.value.length < 19) {
