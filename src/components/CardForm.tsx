@@ -62,7 +62,7 @@ export const CardForm: React.FC<CardFormProps> = ({ user, values, setValues }) =
         marginRight: "2vw",
     }
 
-    const input_style = { border: `2px solid ${colors.blue}` }
+    const input_style = { border: `1px solid ${colors.purple2}` }
 
     const handleCardNumberBlur: React.FocusEventHandler<HTMLInputElement> = (event) => {
         if (event.target.value.length < 19) {
@@ -127,16 +127,16 @@ export const CardForm: React.FC<CardFormProps> = ({ user, values, setValues }) =
                     sx={{ flexDirection: "row", gap: "15vw" }}
                 >
                     <FormControlLabel
-                        value="debit"
-                        sx={{ marginLeft: "0" }}
-                        control={<Radio sx={radio_style} />}
-                        label="Débito"
-                    />
-                    <FormControlLabel
                         value="credit"
                         sx={{ marginLeft: "0" }}
                         control={<Radio sx={radio_style} />}
                         label="Crédito"
+                    />
+                    <FormControlLabel
+                        value="debit"
+                        sx={{ marginLeft: "0" }}
+                        control={<Radio sx={radio_style} />}
+                        label="Débito"
                     />
                 </RadioGroup>
             </div>

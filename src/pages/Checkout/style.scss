@@ -204,7 +204,6 @@
             .creditcard-children {
                 flex-direction: column;
                 margin-top: 2vw;
-                border: 1px solid $dark-grey;
                 border-radius: 4vw;
                 padding: 2vw;
 
@@ -215,8 +214,11 @@
                     min-height: 25vh;
 
                     .type-container {
-                        gap: 20vw;
                         margin-bottom: 1vw;
+                        
+                        div {
+                            gap: 25vw;
+                        }
                     }
         
                     .expiration-container {
