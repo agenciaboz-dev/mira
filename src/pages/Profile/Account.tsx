@@ -113,7 +113,7 @@ export const Account: React.FC<AccountProps> = ({ user }) => {
                         </div>
 
                         <div className="buttons-container">
-                            <Button onClick={() => navigate("/cart")} style={{ fontSize: "2.5vw", height: "6vw", width: "40vw", background: "linear-gradient(90deg, #9F9F9F 0%, #565656 91.94%)" }} >
+                            <Button onClick={() => navigate("/cart")} style={{ fontSize: "2.5vw", height: "6vw", width: "50vw", background: "linear-gradient(90deg, #9F9F9F 0%, #565656 91.94%)" }} >
                                 Cancelar
                             </Button>
                         </div>
