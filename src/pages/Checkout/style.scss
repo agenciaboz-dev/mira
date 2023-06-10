@@ -41,12 +41,13 @@
         .review-component-upper-container {
             flex-direction: column;
             gap: 2vw;
+            height: 100%;
             width: 100%;
             
             .product-list {
                 flex-direction: column;
                 gap: 2vw;
-                height: 75%;
+                height: 120vw;
                 overflow-y: auto;
     
                 .product-container {
