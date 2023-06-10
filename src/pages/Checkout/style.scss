@@ -32,6 +32,10 @@
         border-radius: 4vw;
         border: 1px solid #555555;
         padding: 3vw;
+
+        button {
+            z-index: 1;
+        }
     }
 
     .Review-Component {
