@@ -36,6 +36,7 @@ export const styles = {
         ".story-container": {
             overflowY: "auto",
             height: "15vh",
+            color: "#555555",
         },
         ".cart-container": {
             alignItems: "center",
