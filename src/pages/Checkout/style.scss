@@ -119,6 +119,10 @@
             height: 1vh;
             position: relative;
 
+            input {
+                border: 1px solid $blue2;
+            }
+
             .two-inputs {
                 gap: 3vw;
 

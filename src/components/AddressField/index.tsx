@@ -8,6 +8,7 @@ import { CircularProgress, MenuItem } from "@mui/material"
 import { useSnackbar } from "../../hooks/useSnackbar"
 import { useApi } from "../../hooks/useApi"
 import { useFormikContext } from "formik"
+import { useColors } from "../../hooks/useColors"
 
 interface AddressFieldProps {
     values: FormikAdressValues
@@ -23,6 +24,9 @@ export const AddressField: React.FC<AddressFieldProps> = ({ values, handleChange
     const numberRef = useRef<MaskedInput>(null)
 
     const [loading, setLoading] = useState(false)
+
+    const colors = useColors()
+    const input_style = { border: `1px solid ${colors.blue2}` }
 
     useEffect(() => {
         if (values.cep.length == 10) {
@@ -64,7 +68,7 @@ export const AddressField: React.FC<AddressFieldProps> = ({ values, handleChange
                         inputRef={ref}
                         {...props}
                         placeholder="CEP"
-                        InputProps={{ endAdornment: loading ? <CircularProgress size={"1.5rem"} color="primary" /> : <></> }}
+                        // InputProps={{ endAdornment: loading ? <CircularProgress size={"1.5rem"} color="primary" /> : <></> }}
                     />
                 )}
             />
@@ -105,6 +109,7 @@ export const AddressField: React.FC<AddressFieldProps> = ({ values, handleChange
                     onChange={handleChange}
                     value={values.uf}
                     className="small-input"
+                    InputProps={{ style: input_style }}
                 >
                     {estados.map((estado) => (
                         <MenuItem key={estado.value} value={estado.value} style={{ width: "100%" }}>
