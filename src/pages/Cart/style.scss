@@ -78,11 +78,11 @@
         height: 100%;
         padding: 2vw;
         flex-wrap: wrap;
-        justify-content: space-between;
+        gap: 2%;
         
         .Product-Component {
             width: 32%;
-            height: fit-content;
+            height: 46%;
             border: 1px solid #555555;
             border-radius: 3.5vw;
             padding: 1vw;
