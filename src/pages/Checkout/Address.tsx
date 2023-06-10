@@ -72,6 +72,11 @@ export const Address: React.FC<AddressProps> = ({}) => {
                         />
                         <AddressField values={values} handleChange={handleChange} />
 
+                        <div className="avatar-security-container">
+                            <img src="/mira_text_totem.png" alt="Mira" />
+                            <p className="avatar-security-text">Olá novamente! Mira aqui.<br />Levamos muito a sério a sua segurança, então, como sabemos que esse dispositivo é de uso comum, nenhuma das informações inseridas aqui será salva, fique tranquilo!</p>
+                        </div>
+
                         <Button type="submit">
                             {loading ? (
                                 <CircularProgress sx={{ color: "white" }} style={{ width: "5vw", height: "auto" }} />

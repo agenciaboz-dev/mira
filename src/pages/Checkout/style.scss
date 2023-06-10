@@ -117,7 +117,7 @@
         form {
             flex-direction: column;
             gap: 5vw;
-            height: 1vh;
+            height: 100%;
             position: relative;
 
             input {
@@ -145,7 +145,7 @@
                     position: absolute;
                     color: black;
                     font-size: 2vw;
-                    top: 6vw;
+                    top: 7vw;
                     left: 15vw;
                     width: 33vw;
                 }
