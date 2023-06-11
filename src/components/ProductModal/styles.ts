@@ -5,13 +5,14 @@ export const styles = {
         justifyContent: "center",
         padding: "2vw!important",
     },
-
+    
     content_container: {
         display: "flex",
         width: "75vw",
         flexDirection: "column",
         gap: "2vw",
         padding: "4vw",
+        fontSize: "2.5vw",
 
         ".info-container": {
             gap: "2vw",
@@ -24,7 +25,6 @@ export const styles = {
             ".text-container": {
                 width: "100%",
                 flexDirection: "column",
-                fontSize: "2vw",
                 gap: "2vw",
                 color: "#555555",
             },

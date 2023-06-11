@@ -145,8 +145,8 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, produ
                     </IconButton>
                     <Button
                         style={{
-                            fontSize: "2vw",
-                            width: "45%",
+                            fontSize: "2.5vw",
+                            width: "50%",
                             marginLeft: "auto",
                             background: isInCart(product) ? "linear-gradient(90deg, #9F9F9F 0%, #565656 91.94%)" : "",
                             boxShadow: isInCart(product) ? "none" : "",
