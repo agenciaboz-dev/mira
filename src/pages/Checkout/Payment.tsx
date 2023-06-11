@@ -130,6 +130,7 @@ export const Payment: React.FC<PaymentProps> = ({}) => {
 
             <div className="choose-container">
                 <Collapsible
+                    transitionTime={500}
                     trigger={<CreditCardContainer />}
                     triggerWhenOpen={<CreditCardContainer open />}
                     containerElementProps={{ style: { flexDirection: "column" } }}
@@ -141,6 +142,8 @@ export const Payment: React.FC<PaymentProps> = ({}) => {
                         <CardForm
                             user={user!}
                             values={cardValues}
+                            chooseAttributes={chooseAttributes}
+                            paymentAttributes={paymentAttributes}
                             setValues={{
                                 setCardType,
                                 setCardOwner,
