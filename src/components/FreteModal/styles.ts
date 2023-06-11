@@ -15,12 +15,14 @@ const styles: Styles = {
         alignItems: "center",
         justifyContent: "center",
     },
-
+    
     paper: {
         flexDirection: "column",
         width: "87vw",
         height: "75%",
         borderRadius: "7vw",
+        border: "1px solid #555555",
+        boxShadow: "2px 8px 0px #1A7FB7",
     },
 
     body: {
@@ -36,7 +38,7 @@ const styles: Styles = {
         fontSize: "4.3vw",
         color: "#555555",
     },
-
+    
     input: {
         padding: "1vw",
         width: "80vw",
