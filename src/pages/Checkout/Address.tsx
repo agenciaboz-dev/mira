@@ -81,7 +81,7 @@ export const Address: React.FC<AddressProps> = ({}) => {
                             {loading ? (
                                 <CircularProgress sx={{ color: "white" }} style={{ width: "5vw", height: "auto" }} />
                             ) : (
-                                "Salvar"
+                                "Forma de Pagamento"
                             )}
                         </Button>
                     </Form>
