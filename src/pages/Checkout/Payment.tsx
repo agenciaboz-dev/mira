@@ -135,6 +135,7 @@ export const Payment: React.FC<PaymentProps> = ({}) => {
                     containerElementProps={{ style: { flexDirection: "column" } }}
                     open={paymentType == "credit"}
                     onOpening={() => setPaymentType("credit")}
+                    openedClassName="opened"
                     // onClosing={() => setPaymentType(undefined)}
                 >
                     <div className="creditcard-children">
@@ -162,6 +163,7 @@ export const Payment: React.FC<PaymentProps> = ({}) => {
                     containerElementProps={{ style: { flexDirection: "column" } }}
                     open={paymentType == "pix"}
                     onOpening={() => setPaymentType("pix")}
+                    openedClassName="opened"
                     // onClosing={() => setPaymentType(undefined)}
                 >
                     <p className="pix-children">

@@ -192,6 +192,12 @@
                 width: 100%;
             }
 
+            .opened {
+                .is-open {
+                    pointer-events: none;
+                }
+            }
+
             .container {
                 color: #53337D;
                 align-items: center;
