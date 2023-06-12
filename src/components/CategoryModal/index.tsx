@@ -66,7 +66,7 @@ export const CategoryModal: React.FC<CategoryModalProps> = ({}) => {
                 <IconButton onClick={handleClose} sx={{ position: "absolute", left: "1vw" }}>
                     <CancelPresentationIcon color="error" sx={styles.close_icon} />
                 </IconButton>
-                {currentCategory?.name || "Novo produto"}
+                {currentCategory?.name || "Nova categoria"}
             </DialogTitle>
 
             <DialogContent sx={styles.content_container}>
