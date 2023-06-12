@@ -75,6 +75,13 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
               height: 0,
               length: 0,
               width: 0,
+              supplier: {
+                  id: 0,
+                  code: "",
+                  name: "",
+                  document: "",
+                  contact: "",
+              },
               categories_ids: [],
           }
 
@@ -132,7 +139,19 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
                     {({ values, handleChange, setFieldValue }) => (
                         <Form>
                             <TextField required label="Nome" name="name" value={values.name} onChange={handleChange} />
+
+                            <Box>
+                                <TextField
+                                    required
+                                    label="Código do fornecedor"
+                                    name="supplier.code"
+                                    value={values.supplier.code}
+                                    onChange={handleChange}
+                                />
+                            </Box>
+
                             <TextField required label="Marca" name="brand" value={values.brand} onChange={handleChange} />
+
                             <Box sx={{ gap: "1vw" }}>
                                 <MaskedInput
                                     mask={currencyMask}
