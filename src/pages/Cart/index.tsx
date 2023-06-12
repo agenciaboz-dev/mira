@@ -1,5 +1,5 @@
 import "./style.scss"
-import { Box, Button, IconButton } from "@mui/material"
+import { Box, Button, IconButton, MenuItem } from "@mui/material"
 import { ReactComponent as AvatarIcon } from "../../images/avatar_icon.svg"
 import React, { useEffect, useState } from "react"
 import QrCodeScannerIcon from "@mui/icons-material/QrCodeScanner"
@@ -67,27 +67,41 @@ export const Cart: React.FC<CartProps> = ({}) => {
             <div className="catalog-container">
                 <Box
                     className="categories-list"
-                    sx={{ flexDirection: "column", width: "100%", alignItems: "center", gap: "5vw", padding: "5vw 0" }}
+                    sx={{ flexDirection: "column", width: "100%", alignItems: "center", gap: "3vw", padding: "5vw 0" }}
                 >
-                    <p onClick={() => onCategoryClick({ id: 0, name: "Todos" })}>Todos</p>
+                    <MenuItem
+                        sx={{ width: "100%", justifyContent: "center" }}
+                        onClick={() => onCategoryClick({ id: 0, name: "Todos" })}
+                    >
+                        Todos
+                    </MenuItem>
                     {categories.map((category) => (
-                        <p key={category.id} onClick={() => onCategoryClick(category)}>
+                        <MenuItem
+                            key={category.id}
+                            onClick={() => onCategoryClick(category)}
+                            sx={{ width: "100%", justifyContent: "center" }}
+                        >
                             {category.name}
-                        </p>
+                        </MenuItem>
                     ))}
                 </Box>
                 <div className="product-list-container">
                     <h1>{title}</h1>
                     <div className="product-list">
                         {productList.map((product) => (
-                            <IconButton
-                                className="product-container"
-                                key={product.id}
-                                onClick={() => onProductClick(product)}
-                            >
+                            <MenuItem className="product-container" key={product.id} onClick={() => onProductClick(product)}>
                                 <img src={product.image} alt={product.name} />
-                                <p>{product.name}</p>
-                            </IconButton>
+                                <p
+                                    style={{
+                                        whiteSpace: "nowrap",
+                                        textOverflow: "ellipsis",
+                                        overflow: "hidden",
+                                        width: "20vw",
+                                    }}
+                                >
+                                    {product.name}
+                                </p>
+                            </MenuItem>
                         ))}
                     </div>
                 </div>
