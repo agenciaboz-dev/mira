@@ -11,12 +11,13 @@
         flex-direction: column;
         justify-content: flex-end;
         height: 100vh;
-        padding: 5vw;
+        padding: 7vw;
         
         .button-container {
             z-index: 1;
             background-color: white;
             flex-direction: column;
+            border: 1px solid $dark-grey;
             box-shadow: 2px 8px 0px $blue;
             border-radius: 10vw;
             padding: 5vw;
