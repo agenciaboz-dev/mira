@@ -17,7 +17,7 @@ export const Review: React.FC<ReviewProps> = ({}) => {
     const button_style = {
         fontSize: "2.5vw",
         justifyContent: "flex-start",
-        padding: "0.5vw 3vw",
+        padding: "1vw 3vw",
         background: !Boolean(cart.length) ? "linear-gradient(90deg, #9F9F9F 0%, #565656 91.94%)" : "",
         boxShadow: !Boolean(cart.length) ? "none" : "",
     }

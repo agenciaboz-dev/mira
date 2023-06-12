@@ -13,7 +13,7 @@
         background-image: linear-gradient($purple, $purple2);
         height: 100%;
         border-radius: 4.5vw;
-        padding: 1.5vw 2vw;
+        padding: 2vw 2vw;
         flex-direction: column;
         color: white;
         gap: 3vw;
@@ -108,11 +108,10 @@
                 }
             }
 
-                .buttons-container {
-                    justify-content: space-around;
-                    margin-top: auto;
-                    padding-bottom: 1vw;
-                }
+            .buttons-container {
+                justify-content: space-around;
+                margin-top: auto;
+            }
         }
     }
 

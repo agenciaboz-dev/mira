@@ -104,7 +104,7 @@ export const Address: React.FC<AddressProps> = ({}) => {
                             <p className="avatar-security-text">Olá novamente! Mira aqui.<br />Levamos muito a sério a sua segurança, então, como sabemos que esse dispositivo é de uso comum, nenhuma das informações inseridas aqui será salva, fique tranquilo!</p>
                         </div>
 
-                        <Button type="submit" style={{ fontSize: "2.5vw", alignSelf: "center", width: "40vw" }} >
+                        <Button type="submit" style={{ fontSize: "3vw", alignSelf: "center", width: "40vw", padding: "1vw 3vw" }} >
                             {loading ? (
                                 <CircularProgress sx={{ color: "white" }} style={{ width: "5vw", height: "auto" }} />
                             ) : (

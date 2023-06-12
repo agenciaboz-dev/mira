@@ -15,7 +15,7 @@
     .title-container {
         background-color: $purple;
         border-radius: 15vw;
-        padding: 1.5vw 2vw;
+        padding: 1.75vw 2vw;
         align-items: center;
         justify-content: space-between;
         color: white;
@@ -44,7 +44,7 @@
         .Product-Component {
             width: 48%;
             height: fit-content;
-            border-radius: 3.5vw;
+            border-radius: 4vw;
             padding: 3vw;
             background-color: white;
             align-items: center;
@@ -94,9 +94,9 @@
     width: 100%;
     flex-direction: column;
     box-shadow: 2px 8px 0px $blue;
-    border-radius: 3.5vw;
+    border-radius: 4vw;
     background-color: white;
-    padding: 3vw 2vw;
+    padding: 3vw;
     color: $dark_grey;
     gap: 1vw;
     border: 1px solid $dark-grey;
