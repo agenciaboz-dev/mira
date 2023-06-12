@@ -9,7 +9,7 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    color: #555555;
+    color: $dark_grey;
 
     gap: 3vw;
     padding: 2vw;
@@ -31,14 +31,14 @@
             background-color: white;
             flex: 0.2;
             border-radius: 3vw;
-            border: 1px solid #555555;
+            border: 1px solid $dark_grey;
             box-shadow: 2px 8px 0px #1A7FB7;;
         }
         
         .product-list-container {
             background-color: white;
             flex: 0.78;
-            border: 1px solid #555555;
+            border: 1px solid $dark_grey;
             border-radius: 3vw;
             box-shadow: 2px 8px 0px #1A7FB7;
             flex-direction: column;
@@ -71,7 +71,7 @@
         overflow-y: auto;
         // overflow-x: hidden;
         background-color: white;
-        border: 1px solid #555555;
+        border: 1px solid $dark_grey;
         border-radius: 3vw;
         box-shadow: 2px 8px 0px #1A7FB7;
         width: 100%;
@@ -83,7 +83,7 @@
         .Product-Component {
             width: 32%;
             height: 15vw;
-            border: 1px solid #555555;
+            border: 1px solid $dark_grey;
             border-radius: 3.5vw;
             padding: 1vw;
             background-color: white;
@@ -140,7 +140,7 @@
     width: 100%;
     flex-direction: column;
     box-shadow: 2px 8px 0px $blue;
-    border: 1px solid #555555;
+    border: 1px solid $dark_grey;
     border-radius: 3vw;
     background-color: white;
     padding: 3vw;

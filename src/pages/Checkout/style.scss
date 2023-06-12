@@ -10,7 +10,7 @@
 
     padding: 2vw;
     gap: 3vw;
-    color: #555555;
+    color: $dark_grey;
 
     .cancel-container {
         justify-content: space-between;
@@ -30,7 +30,7 @@
         background-color: white;
         box-shadow: 2px 8px 0px #1A7FB7;
         border-radius: 3vw;
-        border: 1px solid #555555;
+        border: 1px solid $dark_grey;
         padding: 3vw;
 
         button {
@@ -91,7 +91,7 @@
             flex-direction: column;
             align-items: flex-end;
             gap: 2vw;
-            border-top: 1px solid #555555;
+            border-top: 1px solid $dark_grey;
             padding-top: 2vw;
             margin-top: auto;
 
@@ -207,7 +207,7 @@
                 color: #53337D;
                 align-items: center;
                 padding: 1vw 2vw;
-                border: 1px solid #555555;;
+                border: 1px solid $dark_grey;;
                 border-radius: 15vw;
                 box-shadow: 2px 8px 0px #9AF82E;
                 gap: 3vw;
