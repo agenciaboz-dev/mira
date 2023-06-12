@@ -28,6 +28,12 @@ export const Suppliers: React.FC<SuppliersProps> = ({}) => {
 
     const columns: TableColumn<Supplier>[] = [
         {
+            name: "Código",
+            selector: (row) => row.code,
+            sortable: true,
+            width: "25%",
+        },
+        {
             name: "Nome",
             selector: (row) => row.name,
             sortable: true,

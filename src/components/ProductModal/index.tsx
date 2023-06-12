@@ -9,6 +9,7 @@ import {
     RadioGroup,
     Radio,
     FormControlLabel,
+    Autocomplete,
 } from "@mui/material"
 import React, { useRef, useState, useEffect } from "react"
 import { useProducts } from "../../hooks/useProducts"
@@ -24,6 +25,7 @@ import { useCurrentProduct } from "../../hooks/useCurrentProduct"
 import { useSnackbar } from "burgos-snackbar"
 import { useCategories } from "../../hooks/useCategories"
 import { PreparationAddornment } from "../PreparationAddornment"
+import { useSuppliers } from "../../hooks/useSuppliers"
 
 interface ProductModalProps {}
 
@@ -44,6 +46,9 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
     const { currentProduct, setCurrentProduct, open, setOpen } = useCurrentProduct()
     const { snackbar } = useSnackbar()
     const { categories } = useCategories()
+    const { suppliers } = useSuppliers()
+
+    const [supplier, setSupplier] = useState<Supplier | undefined>(currentProduct?.supplier || suppliers[0])
 
     const initialValues: FormValues = currentProduct
         ? {
@@ -92,6 +97,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
         const data = {
             ...values,
             categories: values.categories_ids?.map((category) => ({ id: category })),
+            supplier_id: supplier!.id,
         }
 
         console.log(data)
@@ -125,6 +131,11 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
         setCurrentProduct(null)
     }
 
+    const handleSupplierName = (event: React.SyntheticEvent<Element, Event>, value: Supplier | null) => {
+        console.log(value)
+        setSupplier(value || undefined)
+    }
+
     return (
         <Dialog open={open} onClose={handleClose} sx={styles.dialog} PaperProps={{ sx: styles.paper }}>
             <DialogTitle sx={styles.title}>
@@ -140,13 +151,30 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
                         <Form>
                             <TextField required label="Nome" name="name" value={values.name} onChange={handleChange} />
 
-                            <Box>
-                                <TextField
-                                    required
-                                    label="Código do fornecedor"
-                                    name="supplier.code"
-                                    value={values.supplier.code}
-                                    onChange={handleChange}
+                            <Box sx={{ gap: "1vw" }}>
+                                <Autocomplete
+                                    disablePortal
+                                    isOptionEqualToValue={(option, value) => option.id == value.id}
+                                    disableClearable={true}
+                                    options={suppliers.map((supplier) => ({ ...supplier, label: supplier.code }))}
+                                    value={{ ...supplier!, label: supplier?.code }}
+                                    onChange={handleSupplierName}
+                                    sx={{ width: "100%" }}
+                                    renderInput={(params) => (
+                                        <TextField {...params} required label="Código do fornecedor" name="supplier.code" />
+                                    )}
+                                />
+                                <Autocomplete
+                                    disablePortal
+                                    isOptionEqualToValue={(option, value) => option.id == value.id}
+                                    disableClearable={true}
+                                    options={suppliers.map((supplier) => ({ ...supplier, label: supplier.name }))}
+                                    value={{ ...supplier!, label: supplier?.name }}
+                                    onChange={handleSupplierName}
+                                    sx={{ width: "100%" }}
+                                    renderInput={(params) => (
+                                        <TextField {...params} required label="Nome do fornecedor" name="supplier.name" />
+                                    )}
                                 />
                             </Box>
 

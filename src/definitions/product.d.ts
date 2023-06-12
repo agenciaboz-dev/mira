@@ -17,5 +17,6 @@ declare interface Product {
     length: number | string
     preparation: number
     prep_unit: number
+    supplier: Supplier
     categories?: Category[]
 }

@@ -11,6 +11,7 @@ import { useNumberMask, useCurrencyMask } from "burgos-masks"
 import { useApi } from "../../hooks/useApi"
 import { useCurrentSupplier } from "../../hooks/useCurrentSupplier"
 import { useSnackbar } from "burgos-snackbar"
+import { useProducts } from "../../hooks/useProducts"
 
 interface SupplierModalProps {}
 
@@ -23,6 +24,7 @@ export const SupplierModal: React.FC<SupplierModalProps> = ({}) => {
     const volumeMask = useNumberMask({ allowDecimal: true })
     const api = useApi()
     const { refresh } = useSuppliers()
+    const refreshProducts = useProducts().refresh
     const { currentSupplier, setCurrentSupplier, open, setOpen } = useCurrentSupplier()
     const { snackbar } = useSnackbar()
 
@@ -38,6 +40,7 @@ export const SupplierModal: React.FC<SupplierModalProps> = ({}) => {
                     console.log(response.data)
                     setOpen(false)
                     refresh()
+                    refreshProducts()
                     snackbar({ severity: "success", text: "Fornecedor atualizado" })
                 },
                 finallyCallback: () => setLoading(false),
@@ -48,6 +51,7 @@ export const SupplierModal: React.FC<SupplierModalProps> = ({}) => {
                 callback: (response: { data: Supplier }) => {
                     setOpen(false)
                     refresh()
+                    refreshProducts()
                     snackbar({ severity: "success", text: "Fornecedor adicionado" })
                 },
                 finallyCallback: () => setLoading(false),
