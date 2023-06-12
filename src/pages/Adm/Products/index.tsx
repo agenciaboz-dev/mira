@@ -35,7 +35,7 @@ export const Products: React.FC<ProductsProps> = ({}) => {
             name: "Nome",
             selector: (row) => row.name,
             sortable: true,
-            width: "25%",
+            width: "24%",
             cell: (row) => (
                 <p
                     title={row.name}
@@ -46,9 +46,16 @@ export const Products: React.FC<ProductsProps> = ({}) => {
             ),
         },
         {
-            name: "Preço",
+            name: "Preço de custo",
+            selector: (row) => row.cost,
+            sortable: true,
+            cell: (row) => <CurrencyText value={row.cost} />,
+        },
+        {
+            name: "Preço de venda",
             selector: (row) => row.price,
             sortable: true,
+            width: "11%",
             cell: (row) => <CurrencyText value={row.price} />,
         },
         {
