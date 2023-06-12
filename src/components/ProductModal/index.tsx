@@ -29,7 +29,7 @@ interface ProductModalProps {}
 
 interface FormValues extends Product {
     categories_ids: number[]
-    preparation_unit: number
+    prep_unit: number
 }
 
 export const ProductModal: React.FC<ProductModalProps> = ({}) => {
@@ -55,7 +55,6 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
               width: currentProduct?.width.toString().replace(".", ","),
               length: currentProduct?.length.toString().replace(".", ","),
               categories_ids: currentProduct.categories?.map((category) => category.id) || [],
-              preparation_unit: 1,
           }
         : {
               name: "",
@@ -74,7 +73,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
               height: 0,
               length: 0,
               width: 0,
-              preparation_unit: 1,
+              prep_unit: 1,
               categories_ids: [],
           }
 
@@ -82,17 +81,8 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
         if (loading) return
         setLoading(true)
 
-        // converter preparation
-        let minutesPreparation = values.preparation
-        if (values.preparation_unit == 1) {
-            minutesPreparation = values.preparation * 60
-        } else if (values.preparation_unit == 3) {
-            minutesPreparation = values.preparation / 60
-        }
-
         const data = {
             ...values,
-            preparation: minutesPreparation,
             categories: values.categories_ids?.map((category) => ({ id: category })),
         }
 
@@ -198,7 +188,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
                                                 endAdornment: (
                                                     <PreparationAddornment
                                                         handleChange={handleChange}
-                                                        value={values.preparation_unit}
+                                                        value={values.prep_unit}
                                                     />
                                                 ),
                                             }}

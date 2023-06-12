@@ -15,5 +15,6 @@ declare interface Product {
     height: number | string
     length: number | string
     preparation: number
+    prep_unit: number
     categories?: Category[]
 }

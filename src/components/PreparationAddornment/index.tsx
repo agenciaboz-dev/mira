@@ -26,7 +26,7 @@ export const PreparationAddornment: React.FC<PreparationAddornmentProps> = ({ ha
         <TextField
             required
             select
-            name="preparation_unit"
+            name="prep_unit"
             value={value}
             onChange={handleChange}
             variant="standard"
