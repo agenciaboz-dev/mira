@@ -96,6 +96,16 @@
             }
         }
     }
+
+    .forgot-password {
+        position: absolute;
+        color: $blue2;
+        font-size: 3.5vw;
+        font-weight: 700;
+        top: 115.25vw;
+        right: 5.5vw;
+        padding: 4.5vw;
+    }
 }
 
 .SignupForm-Component {
