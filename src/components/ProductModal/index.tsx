@@ -49,6 +49,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
         ? {
               ...currentProduct,
               price: currentProduct?.price.toString().replace(".", ","),
+              cost: currentProduct?.cost.toString().replace(".", ","),
               weight: currentProduct?.weight.toString().replace(".", ","),
               height: currentProduct?.height.toString().replace(".", ","),
               width: currentProduct?.width.toString().replace(".", ","),
@@ -63,6 +64,8 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
               id: 0,
               image: "",
               price: 0,
+              cost: 0,
+              brand: "",
               story: "",
               video: "",
               preparation: 0,
@@ -77,7 +80,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
 
     const handleSubmit = (values: FormValues) => {
         if (loading) return
-        // setLoading(true)
+        setLoading(true)
 
         // converter preparation
         let minutesPreparation = values.preparation
@@ -94,8 +97,6 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
         }
 
         console.log(data)
-
-        return
 
         if (currentProduct) {
             api.products.update({
@@ -140,7 +141,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
                     {({ values, handleChange }) => (
                         <Form>
                             <TextField required label="Nome" name="name" value={values.name} onChange={handleChange} />
-                            <TextField required label="Marca" name="brand" value={values.name} onChange={handleChange} />
+                            <TextField required label="Marca" name="brand" value={values.brand} onChange={handleChange} />
                             <Box sx={{ gap: "1vw" }}>
                                 <MaskedInput
                                     mask={currencyMask}
@@ -156,7 +157,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
                                     mask={currencyMask}
                                     guide={false}
                                     name="cost"
-                                    value={values.price || ""}
+                                    value={values.cost || ""}
                                     onChange={handleChange}
                                     render={(ref, props) => (
                                         <TextField required inputRef={ref} {...props} label="Preço de Custo" />
