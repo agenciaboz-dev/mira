@@ -1,5 +1,5 @@
 import "./style.scss"
-import { Box, Button, IconButton, MenuItem } from "@mui/material"
+import { Box, Button, IconButton, MenuItem, Avatar } from "@mui/material"
 import { ReactComponent as AvatarIcon } from "../../images/avatar_icon.svg"
 import React, { useEffect, useState } from "react"
 import QrCodeScannerIcon from "@mui/icons-material/QrCodeScanner"
@@ -15,6 +15,7 @@ import { Menu } from "../../components/Menu"
 import { ProductModal } from "../../components/ProductModal"
 import { Product as ProductType } from "../../definitions/product"
 import { useCategories } from "../../hooks/useCategories"
+import CategoryIcon from "@mui/icons-material/Category"
 
 interface CartProps {}
 
@@ -87,11 +88,16 @@ export const Cart: React.FC<CartProps> = ({}) => {
                             onClick={() => onCategoryClick(category)}
                             sx={{
                                 width: "100%",
-                                justifyContent: "center",
+                                alignItems: "center",
                                 textAlign: "center",
                                 whiteSpace: "break-spaces",
+                                flexDirection: "column",
+                                gap: "1vw",
                             }}
                         >
+                            <Avatar src={category.name} variant="rounded" sx={{ width: "10vw", height: "10vw" }}>
+                                <CategoryIcon />
+                            </Avatar>
                             {category.name}
                         </MenuItem>
                     ))}
