@@ -5,16 +5,20 @@ import SearchIcon from "@mui/icons-material/Search"
 interface SearchFieldProps {
     setProductsResult?: (values: Product[]) => void
     setCategoriesResult?: (values: Category[]) => void
+    setSuppliersResult?: (values: Supplier[]) => void
     productList?: Product[]
     categoryList?: Category[]
+    supplierList?: Supplier[]
     button?: React.ReactElement
 }
 
 export const SearchField: React.FC<SearchFieldProps> = ({
     setProductsResult: setProductResult,
     setCategoriesResult: setCategoryResult,
+    setSuppliersResult: setSupplierResult,
     productList,
     categoryList,
+    supplierList,
     button = <></>,
 }) => {
     const [value, setValue] = useState("")
@@ -28,6 +32,8 @@ export const SearchField: React.FC<SearchFieldProps> = ({
             setProductResult(productList.filter((item) => item.name.toLowerCase().includes(value.toLowerCase())))
         if (categoryList && setCategoryResult)
             setCategoryResult(categoryList.filter((item) => item.name.toLowerCase().includes(value.toLowerCase())))
+        if (supplierList && setSupplierResult)
+            setSupplierResult(supplierList.filter((item) => item.name.toLowerCase().includes(value.toLowerCase())))
     }, [value])
 
     const Button = () => button

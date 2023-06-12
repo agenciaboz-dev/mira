@@ -1,5 +1,6 @@
 import CategoryIcon from "@mui/icons-material/Category"
 import HandymanIcon from "@mui/icons-material/Handyman"
+import SellIcon from "@mui/icons-material/Sell"
 
 export const useSidebarMenus = () => {
     const menus: SidebarMenu[] = [
@@ -14,6 +15,12 @@ export const useSidebarMenus = () => {
             title: "Categorias",
             location: "/dashboard/categories",
             icon: <CategoryIcon />,
+        },
+        {
+            id: 3,
+            title: "Fornecedores",
+            location: "/dashboard/suppliers",
+            icon: <SellIcon />,
         },
     ]
 

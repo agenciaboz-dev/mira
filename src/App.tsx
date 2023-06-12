@@ -12,6 +12,8 @@ import { Login } from "./pages/Adm/Login"
 import { CurrentProductProvider } from "./contexts/currentProductContext"
 import { CategoriesProvider } from "./contexts/categoriesContext"
 import { CurrentCategoryProvider } from "./contexts/currentCategoryContext"
+import { SuppliersProvider } from "./contexts/suppliersContext"
+import { CurrentSupplierProvider } from "./contexts/currentSupplierContext"
 
 function App() {
     const muiTheme = useMuiTheme()
@@ -21,23 +23,27 @@ function App() {
             <ConfirmDialogProvider>
                 <SnackbarProvider>
                     <UserProvider>
-                        <CurrentCategoryProvider>
-                            <CurrentProductProvider>
-                                <CategoriesProvider>
-                                    <ProductsProvider>
-                                        <BrowserRouter>
-                                            <Snackbar />
-                                            <ConfirmDialog />
-                                            <Routes>
-                                                <Route index element={<Login />} />
-                                                <Route path="/dashboard/*" element={<Adm />} />
-                                                <Route path="/login" element={<Login />} />
-                                            </Routes>
-                                        </BrowserRouter>
-                                    </ProductsProvider>
-                                </CategoriesProvider>
-                            </CurrentProductProvider>
-                        </CurrentCategoryProvider>
+                        <CurrentSupplierProvider>
+                            <CurrentCategoryProvider>
+                                <CurrentProductProvider>
+                                    <SuppliersProvider>
+                                        <CategoriesProvider>
+                                            <ProductsProvider>
+                                                <BrowserRouter>
+                                                    <Snackbar />
+                                                    <ConfirmDialog />
+                                                    <Routes>
+                                                        <Route index element={<Login />} />
+                                                        <Route path="/dashboard/*" element={<Adm />} />
+                                                        <Route path="/login" element={<Login />} />
+                                                    </Routes>
+                                                </BrowserRouter>
+                                            </ProductsProvider>
+                                        </CategoriesProvider>
+                                    </SuppliersProvider>
+                                </CurrentProductProvider>
+                            </CurrentCategoryProvider>
+                        </CurrentSupplierProvider>
                     </UserProvider>
                 </SnackbarProvider>
             </ConfirmDialogProvider>
