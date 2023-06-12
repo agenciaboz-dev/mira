@@ -136,6 +136,12 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
         setSupplier(value || undefined)
     }
 
+    useEffect(() => {
+        if (open) {
+            setSupplier(currentProduct?.supplier || suppliers[0])
+        }
+    }, [open])
+
     return (
         <Dialog open={open} onClose={handleClose} sx={styles.dialog} PaperProps={{ sx: styles.paper }}>
             <DialogTitle sx={styles.title}>
