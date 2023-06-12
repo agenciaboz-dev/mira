@@ -67,7 +67,13 @@ export const Cart: React.FC<CartProps> = ({}) => {
             <div className="catalog-container">
                 <Box
                     className="categories-list"
-                    sx={{ flexDirection: "column", width: "100%", alignItems: "center", gap: "3vw", padding: "5vw 0" }}
+                    sx={{
+                        flexDirection: "column",
+                        width: "20vw",
+                        alignItems: "center",
+                        gap: "3vw",
+                        padding: "5vw 0",
+                    }}
                 >
                     <MenuItem
                         sx={{ width: "100%", justifyContent: "center" }}
@@ -79,7 +85,12 @@ export const Cart: React.FC<CartProps> = ({}) => {
                         <MenuItem
                             key={category.id}
                             onClick={() => onCategoryClick(category)}
-                            sx={{ width: "100%", justifyContent: "center" }}
+                            sx={{
+                                width: "100%",
+                                justifyContent: "center",
+                                textAlign: "center",
+                                whiteSpace: "break-spaces",
+                            }}
                         >
                             {category.name}
                         </MenuItem>

@@ -26,18 +26,19 @@
         justify-content: space-between;
         height: 50vh;
         flex-shrink: 0;
+        gap: 2vw;
 
         .categories-list {
             background-color: white;
-            flex: 0.2;
             border-radius: 3vw;
             border: 1px solid $dark_grey;
+            flex-shrink: 0;
             box-shadow: 2px 8px 0px #1A7FB7;;
+            overflow-y: auto;
         }
         
         .product-list-container {
             background-color: white;
-            flex: 0.78;
             border: 1px solid $dark_grey;
             border-radius: 3vw;
             box-shadow: 2px 8px 0px #1A7FB7;
@@ -57,7 +58,7 @@
                     gap: 1vw;
 
                     img {
-                        width: 100%;
+                        width: 15vw;
                         aspect-ratio: 1/1;
                         object-fit: cover;
                     }
