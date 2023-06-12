@@ -1,4 +1,15 @@
-import { Dialog, CircularProgress, DialogContent, DialogTitle, Button, Box, MenuItem } from "@mui/material"
+import {
+    Dialog,
+    CircularProgress,
+    DialogContent,
+    DialogTitle,
+    Button,
+    Box,
+    MenuItem,
+    RadioGroup,
+    Radio,
+    FormControlLabel,
+} from "@mui/material"
 import React, { useRef, useState, useEffect } from "react"
 import { useProducts } from "../../hooks/useProducts"
 import CancelPresentationIcon from "@mui/icons-material/CancelPresentation"
@@ -12,11 +23,13 @@ import { useApi } from "../../hooks/useApi"
 import { useCurrentProduct } from "../../hooks/useCurrentProduct"
 import { useSnackbar } from "burgos-snackbar"
 import { useCategories } from "../../hooks/useCategories"
+import { PreparationAddornment } from "../PreparationAddornment"
 
 interface ProductModalProps {}
 
 interface FormValues extends Product {
     categories_ids: number[]
+    preparation_unit: number
 }
 
 export const ProductModal: React.FC<ProductModalProps> = ({}) => {
@@ -41,6 +54,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
               width: currentProduct?.width.toString().replace(".", ","),
               length: currentProduct?.length.toString().replace(".", ","),
               categories_ids: currentProduct.categories?.map((category) => category.id) || [],
+              preparation_unit: 1,
           }
         : {
               name: "",
@@ -57,16 +71,31 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
               height: 0,
               length: 0,
               width: 0,
+              preparation_unit: 1,
               categories_ids: [],
           }
 
     const handleSubmit = (values: FormValues) => {
-        setLoading(true)
+        if (loading) return
+        // setLoading(true)
+
+        // converter preparation
+        let minutesPreparation = values.preparation
+        if (values.preparation_unit == 1) {
+            minutesPreparation = values.preparation * 60
+        } else if (values.preparation_unit == 3) {
+            minutesPreparation = values.preparation / 60
+        }
 
         const data = {
             ...values,
+            preparation: minutesPreparation,
             categories: values.categories_ids?.map((category) => ({ id: category })),
         }
+
+        console.log(data)
+
+        return
 
         if (currentProduct) {
             api.products.update({
@@ -111,6 +140,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
                     {({ values, handleChange }) => (
                         <Form>
                             <TextField required label="Nome" name="name" value={values.name} onChange={handleChange} />
+                            <TextField required label="Marca" name="brand" value={values.name} onChange={handleChange} />
                             <Box sx={{ gap: "1vw" }}>
                                 <MaskedInput
                                     mask={currencyMask}
@@ -118,8 +148,23 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
                                     name="price"
                                     value={values.price || ""}
                                     onChange={handleChange}
-                                    render={(ref, props) => <TextField required inputRef={ref} {...props} label="Preço" />}
+                                    render={(ref, props) => (
+                                        <TextField required inputRef={ref} {...props} label="Preço de Venda" />
+                                    )}
                                 />
+                                <MaskedInput
+                                    mask={currencyMask}
+                                    guide={false}
+                                    name="cost"
+                                    value={values.price || ""}
+                                    onChange={handleChange}
+                                    render={(ref, props) => (
+                                        <TextField required inputRef={ref} {...props} label="Preço de Custo" />
+                                    )}
+                                />
+                            </Box>
+
+                            <Box sx={{ gap: "1vw" }}>
                                 <MaskedInput
                                     mask={numberMask}
                                     guide={false}
@@ -136,7 +181,31 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
                                         />
                                     )}
                                 />
+                                <MaskedInput
+                                    mask={numberMask}
+                                    guide={false}
+                                    name="preparation"
+                                    value={values.preparation || ""}
+                                    onChange={handleChange}
+                                    render={(ref, props) => (
+                                        <TextField
+                                            required
+                                            inputRef={ref}
+                                            {...props}
+                                            label="Tempo de preparo"
+                                            InputProps={{
+                                                endAdornment: (
+                                                    <PreparationAddornment
+                                                        handleChange={handleChange}
+                                                        value={values.preparation_unit}
+                                                    />
+                                                ),
+                                            }}
+                                        />
+                                    )}
+                                />
                             </Box>
+
                             <Box sx={{ gap: "1vw" }}>
                                 <MaskedInput
                                     mask={volumeMask}
@@ -170,6 +239,8 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
                                         />
                                     )}
                                 />
+                            </Box>
+                            <Box sx={{ gap: "1vw" }}>
                                 <MaskedInput
                                     mask={volumeMask}
                                     guide={false}
@@ -203,23 +274,6 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
                                     )}
                                 />
                             </Box>
-
-                            <MaskedInput
-                                mask={numberMask}
-                                guide={false}
-                                name="preparation"
-                                value={values.preparation || ""}
-                                onChange={handleChange}
-                                render={(ref, props) => (
-                                    <TextField
-                                        required
-                                        inputRef={ref}
-                                        {...props}
-                                        label="Tempo médio de preparo"
-                                        InputProps={{ endAdornment: <p>minutos</p> }}
-                                    />
-                                )}
-                            />
 
                             <TextField
                                 required
