@@ -30,7 +30,7 @@ export const PreparationAddornment: React.FC<PreparationAddornmentProps> = ({ ha
             value={value}
             onChange={handleChange}
             variant="standard"
-            sx={{ width: "10vw" }}
+            sx={{ width: "12vw" }}
         >
             {units.map((unit) => (
                 <MenuItem key={unit.id} value={unit.id} style={{ width: "100%" }}>

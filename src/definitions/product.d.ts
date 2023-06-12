@@ -4,6 +4,7 @@ declare interface Product {
     description: string
     brand: string
     stock: number | string
+    stock_type: number | string
     story: string
     price: number | string
     cost: number | string

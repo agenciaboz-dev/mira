@@ -60,6 +60,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
               name: "",
               description: "",
               stock: 0,
+              stock_type: 0,
               id: 0,
               image: "",
               price: 0,
@@ -68,12 +69,12 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
               story: "",
               video: "",
               preparation: 0,
+              prep_unit: 1,
               usage: "",
               weight: 0,
               height: 0,
               length: 0,
               width: 0,
-              prep_unit: 1,
               categories_ids: [],
           }
 
@@ -128,21 +129,11 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
 
             <DialogContent sx={styles.content_container}>
                 <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-                    {({ values, handleChange }) => (
+                    {({ values, handleChange, setFieldValue }) => (
                         <Form>
                             <TextField required label="Nome" name="name" value={values.name} onChange={handleChange} />
                             <TextField required label="Marca" name="brand" value={values.brand} onChange={handleChange} />
                             <Box sx={{ gap: "1vw" }}>
-                                <MaskedInput
-                                    mask={currencyMask}
-                                    guide={false}
-                                    name="price"
-                                    value={values.price || ""}
-                                    onChange={handleChange}
-                                    render={(ref, props) => (
-                                        <TextField required inputRef={ref} {...props} label="Preço de Venda" />
-                                    )}
-                                />
                                 <MaskedInput
                                     mask={currencyMask}
                                     guide={false}
@@ -151,6 +142,16 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
                                     onChange={handleChange}
                                     render={(ref, props) => (
                                         <TextField required inputRef={ref} {...props} label="Preço de Custo" />
+                                    )}
+                                />
+                                <MaskedInput
+                                    mask={currencyMask}
+                                    guide={false}
+                                    name="price"
+                                    value={values.price || ""}
+                                    onChange={handleChange}
+                                    render={(ref, props) => (
+                                        <TextField required inputRef={ref} {...props} label="Preço de Venda" />
                                     )}
                                 />
                             </Box>
@@ -172,30 +173,47 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
                                         />
                                     )}
                                 />
-                                <MaskedInput
-                                    mask={numberMask}
-                                    guide={false}
-                                    name="preparation"
-                                    value={values.preparation || ""}
+
+                                <TextField
+                                    required
+                                    select
+                                    name="stock_type"
+                                    label="Estoque"
+                                    value={values.stock_type}
                                     onChange={handleChange}
-                                    render={(ref, props) => (
-                                        <TextField
-                                            required
-                                            inputRef={ref}
-                                            {...props}
-                                            label="Tempo de preparo"
-                                            InputProps={{
-                                                endAdornment: (
-                                                    <PreparationAddornment
-                                                        handleChange={handleChange}
-                                                        value={values.prep_unit}
-                                                    />
-                                                ),
-                                            }}
-                                        />
-                                    )}
-                                />
+                                >
+                                    <MenuItem value={0} style={{ width: "100%" }}>
+                                        Loja
+                                    </MenuItem>
+                                    <MenuItem value={1} style={{ width: "100%" }}>
+                                        Galpão
+                                    </MenuItem>
+                                </TextField>
                             </Box>
+
+                            <MaskedInput
+                                mask={numberMask}
+                                guide={false}
+                                name="preparation"
+                                value={values.preparation || ""}
+                                onChange={handleChange}
+                                render={(ref, props) => (
+                                    <TextField
+                                        required
+                                        inputRef={ref}
+                                        {...props}
+                                        label="Tempo médio de preparo"
+                                        InputProps={{
+                                            endAdornment: (
+                                                <PreparationAddornment
+                                                    handleChange={handleChange}
+                                                    value={values.prep_unit}
+                                                />
+                                            ),
+                                        }}
+                                    />
+                                )}
+                            />
 
                             <Box sx={{ gap: "1vw" }}>
                                 <MaskedInput
