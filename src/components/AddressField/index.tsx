@@ -105,6 +105,7 @@ export const AddressField: React.FC<AddressFieldProps> = ({ values, handleChange
                     onChange={handleChange}
                     value={values.uf}
                     className="small-input"
+                    sx={{ borderRadius: "10vw", color: "#555555 !important" }}
                 >
                     {estados.map((estado) => (
                         <MenuItem key={estado.value} value={estado.value} style={{ width: "100%" }}>
