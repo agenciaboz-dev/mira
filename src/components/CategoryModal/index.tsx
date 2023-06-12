@@ -38,7 +38,7 @@ export const CategoryModal: React.FC<CategoryModalProps> = ({}) => {
                     console.log(response.data)
                     setOpen(false)
                     refresh()
-                    snackbar({ severity: "success", text: "Produto atualizado" })
+                    snackbar({ severity: "success", text: "Categoria atualizada" })
                 },
                 finallyCallback: () => setLoading(false),
             })
@@ -48,7 +48,7 @@ export const CategoryModal: React.FC<CategoryModalProps> = ({}) => {
                 callback: (response: { data: Category }) => {
                     setOpen(false)
                     refresh()
-                    snackbar({ severity: "success", text: "Produto adicionado" })
+                    snackbar({ severity: "success", text: "Categoria adicionada" })
                 },
                 finallyCallback: () => setLoading(false),
             })
