@@ -33,7 +33,7 @@
         background-color: white;
         box-shadow: 2px 8px 0px #1A7FB7;
         border-radius: 10vw;
-        border: 1px solid #555555;
+        border: 1px solid $dark_grey;
         padding: 5vw;
     }
 
@@ -125,7 +125,7 @@
                     text-align: end;
 
                     input {
-                        border: 1px solid grey;
+                        border: 1px solid $dark_grey;
                     }
                 }
             }
@@ -168,7 +168,7 @@
                 color: #53337D;
                 align-items: center;
                 padding: 2vw 5vw;
-                border: 1px solid #555555;;
+                border: 1px solid $dark_grey;
                 border-radius: 15vw;
                 box-shadow: 2px 8px 0px #9AF82E;
                 gap: 7vw;

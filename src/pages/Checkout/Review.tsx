@@ -18,8 +18,8 @@ export const Review: React.FC<ReviewProps> = ({}) => {
 
     const [openFreteModal, setOpenFreteModal] = useState(false)
 
-    const button_style = { fontSize: "4vw", justifyContent: "flex-start", padding: "0 5vw", gap: "10vw" }
-    const icon_style = { width: "13%" }
+    const button_style = { fontSize: "4vw", justifyContent: "flex-start", padding: "2vw 5vw", gap: "10vw" }
+    const icon_style = { height: "100%", width: "13%" }
 
     useEffect(() => {
         setOrder(undefined)

@@ -42,7 +42,7 @@
             align-items: center;
             box-shadow: 2px 8px 0px $blue;
             gap: 5vw;
-            border: 1px solid $light_grey;
+            border: 1px solid $dark_grey;
 
             .MuiBadge-badge {
                 top: 2vw;
@@ -88,10 +88,10 @@
     box-shadow: 2px 8px 0px $blue;
     border-radius: 10vw;
     background-color: white;
-    padding: 6vw;
+    padding: 5vw;
     color: $dark_grey2;
     gap: 3vw;
-    border: 1px solid $light_grey;
+    border: 1px solid $dark_grey;
 
     p {
         font-size: 4vw;
