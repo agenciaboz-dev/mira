@@ -163,6 +163,10 @@ export const Products: React.FC<ProductsProps> = ({}) => {
         setProductList(products)
     }, [products])
 
+    useEffect(() => {
+        refresh()
+    }, [])
+
     return (
         <Box sx={styles.body}>
             <SearchField

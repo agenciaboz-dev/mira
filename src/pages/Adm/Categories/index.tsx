@@ -97,6 +97,10 @@ export const Categories: React.FC<CategoriesProps> = ({}) => {
         setCategoriesList(categories)
     }, [categories])
 
+    useEffect(() => {
+        refresh()
+    }, [])
+
     return (
         <Box sx={styles.body}>
             <CategoryModal />

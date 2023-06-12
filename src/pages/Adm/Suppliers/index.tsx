@@ -103,6 +103,10 @@ export const Suppliers: React.FC<SuppliersProps> = ({}) => {
         setSuppliersList(suppliers)
     }, [suppliers])
 
+    useEffect(() => {
+        refresh()
+    }, [])
+
     return (
         <Box sx={styles.body}>
             <SupplierModal />
