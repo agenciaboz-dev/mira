@@ -73,7 +73,7 @@ export const CategoryModal: React.FC<CategoryModalProps> = ({}) => {
                 <Formik initialValues={initialValues} onSubmit={handleSubmit}>
                     {({ values, handleChange }) => (
                         <Form>
-                            <TextField label="Nome" name="name" value={values.name} onChange={handleChange} />
+                            <TextField required label="Nome" name="name" value={values.name} onChange={handleChange} />
                             {currentCategory ? (
                                 <Button type="submit" variant="contained" fullWidth>
                                     {loading ? (
