@@ -77,10 +77,22 @@ export const SupplierModal: React.FC<SupplierModalProps> = ({}) => {
                 <Formik initialValues={initialValues} onSubmit={handleSubmit}>
                     {({ values, handleChange }) => (
                         <Form>
-                            <TextField label="Nome" name="name" value={values.name} onChange={handleChange} />
-                            <TextField label="Código" name="code" value={values.code} onChange={handleChange} />
-                            <TextField label="Documento" name="document" value={values.document} onChange={handleChange} />
-                            <TextField label="Contato" name="contact" value={values.contact} onChange={handleChange} />
+                            <TextField required label="Nome" name="name" value={values.name} onChange={handleChange} />
+                            <TextField required label="Código" name="code" value={values.code} onChange={handleChange} />
+                            <TextField
+                                required
+                                label="Documento"
+                                name="document"
+                                value={values.document}
+                                onChange={handleChange}
+                            />
+                            <TextField
+                                required
+                                label="Contato"
+                                name="contact"
+                                value={values.contact}
+                                onChange={handleChange}
+                            />
 
                             {currentSupplier ? (
                                 <Button type="submit" variant="contained" fullWidth>
