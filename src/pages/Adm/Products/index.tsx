@@ -36,6 +36,14 @@ export const Products: React.FC<ProductsProps> = ({}) => {
             selector: (row) => row.name,
             sortable: true,
             width: "25%",
+            cell: (row) => (
+                <p
+                    title={row.name}
+                    style={{ whiteSpace: "nowrap", textOverflow: "ellipsis", width: "25vw", overflow: "hidden" }}
+                >
+                    {row.name}
+                </p>
+            ),
         },
         {
             name: "Preço",
