@@ -1,5 +1,5 @@
 import "./style.scss"
-import { Button, IconButton } from "@mui/material"
+import { Box, Button, IconButton } from "@mui/material"
 import { ReactComponent as AvatarIcon } from "../../images/avatar_icon.svg"
 import React, { useEffect, useState } from "react"
 import QrCodeScannerIcon from "@mui/icons-material/QrCodeScanner"
@@ -14,6 +14,7 @@ import { FinishContainer } from "./FinishContainer"
 import { Menu } from "../../components/Menu"
 import { ProductModal } from "../../components/ProductModal"
 import { Product as ProductType } from "../../definitions/product"
+import { useCategories } from "../../hooks/useCategories"
 
 interface CartProps {}
 
@@ -24,9 +25,12 @@ export const Cart: React.FC<CartProps> = ({}) => {
     const navigate = useNavigate()
     const { cart } = useCart()
     const { products } = useProducts()
+    const { categories } = useCategories()
 
     const [openProduct, setOpenProduct] = useState(false)
     const [product, setProduct] = useState<ProductType>()
+    const [productList, setProductList] = useState(products)
+    const [title, setTitle] = useState("Todos")
 
     const icon_style = { color: "white", height: "auto", width: "5vw" }
 
@@ -39,6 +43,21 @@ export const Cart: React.FC<CartProps> = ({}) => {
         setOpenProduct(true)
     }
 
+    const onCategoryClick = (category: Category) => {
+        if (!category.id) {
+            setProductList(products)
+        } else {
+            const newList = products.filter((product) => product.categories.filter((item) => item.id == category.id)[0])
+            setProductList(newList)
+        }
+
+        setTitle(category.name)
+    }
+
+    useEffect(() => {
+        setProductList(products)
+    }, [products])
+
     return (
         <div className="Cart-Page">
             <div className="title-container">
@@ -46,11 +65,21 @@ export const Cart: React.FC<CartProps> = ({}) => {
             </div>
 
             <div className="catalog-container">
-                <div className="categories-list"></div>
+                <Box
+                    className="categories-list"
+                    sx={{ flexDirection: "column", width: "100%", alignItems: "center", gap: "5vw", padding: "5vw 0" }}
+                >
+                    <p onClick={() => onCategoryClick({ id: 0, name: "Todos" })}>Todos</p>
+                    {categories.map((category) => (
+                        <p key={category.id} onClick={() => onCategoryClick(category)}>
+                            {category.name}
+                        </p>
+                    ))}
+                </Box>
                 <div className="product-list-container">
-                    <h1>[Categoria Escolhida]</h1>
+                    <h1>{title}</h1>
                     <div className="product-list">
-                        {products.map((product) => (
+                        {productList.map((product) => (
                             <IconButton
                                 className="product-container"
                                 key={product.id}

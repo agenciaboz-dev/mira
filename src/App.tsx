@@ -18,6 +18,7 @@ import { Checkout } from "./pages/Checkout"
 import { AddressProvider } from "./contexts/addressContext"
 import { SplashScreen } from "./pages/SplashScreen"
 import { OrdersProvider } from "./contexts/ordersContext"
+import { CategoriesProvider } from "./contexts/categoriesContext"
 
 function App() {
     const muiTheme = useMuiTheme()
@@ -25,29 +26,30 @@ function App() {
     return (
         <ThemeProvider theme={muiTheme}>
             <OrdersProvider>
-
-            <SnackbarProvider>
-                <UserProvider>
-                    <ProductsProvider>
-                        <CartProvider>
-                            <AddressProvider>
-                                <BrowserRouter>
-                                    <Snackbar />
-                                    <Routes>
-                                        <Route index element={<SplashScreen />} />
-                                        <Route path="/*" element={<Login />} />
-                                        <Route path="/login/*" element={<Login />} />
-                                        <Route path="/cart" element={<Cart />} />
-                                        <Route path="/scan" element={<Camera />} />
-                                        <Route path="/profile/*" element={<Profile />} />
-                                        <Route path="/checkout/*" element={<Checkout />} />
-                                    </Routes>
-                                </BrowserRouter>
-                            </AddressProvider>
-                        </CartProvider>
-                    </ProductsProvider>
-                </UserProvider>
-            </SnackbarProvider>
+                <SnackbarProvider>
+                    <UserProvider>
+                        <CategoriesProvider>
+                            <ProductsProvider>
+                                <CartProvider>
+                                    <AddressProvider>
+                                        <BrowserRouter>
+                                            <Snackbar />
+                                            <Routes>
+                                                <Route index element={<SplashScreen />} />
+                                                <Route path="/*" element={<Login />} />
+                                                <Route path="/login/*" element={<Login />} />
+                                                <Route path="/cart" element={<Cart />} />
+                                                <Route path="/scan" element={<Camera />} />
+                                                <Route path="/profile/*" element={<Profile />} />
+                                                <Route path="/checkout/*" element={<Checkout />} />
+                                            </Routes>
+                                        </BrowserRouter>
+                                    </AddressProvider>
+                                </CartProvider>
+                            </ProductsProvider>
+                        </CategoriesProvider>
+                    </UserProvider>
+                </SnackbarProvider>
             </OrdersProvider>
         </ThemeProvider>
     )

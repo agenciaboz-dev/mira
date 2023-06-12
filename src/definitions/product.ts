@@ -8,4 +8,5 @@ export interface Product {
     image: string
     video: string
     preparation: number
+    categories: Category[]
 }
