@@ -15,7 +15,7 @@ export const Review: React.FC<ReviewProps> = ({}) => {
     const { cart, total } = useCart()
     const navigate = useNavigate()
     const { setOrder } = useOrder()
-    const [openFreteModal, setOpenFreteModal] = useState(false)
+
     const button_style = {
         fontSize: "2.5vw",
         justifyContent: "flex-start",
