@@ -2,8 +2,9 @@ import React from "react"
 import { Product } from "../../definitions/product"
 import { Dialog, DialogContent, DialogContentText, DialogTitle, IconButton } from "@mui/material"
 import { styles } from "./styles"
-import CancelPresentationIcon from "@mui/icons-material/CancelPresentation"
+import CancelIcon from "@mui/icons-material/Cancel"
 import { useColors } from "../../hooks/useColors"
+import { style } from "../Button/style"
 
 interface ProductStoryProps {
     product: Product
@@ -20,12 +21,12 @@ export const ProductStory: React.FC<ProductStoryProps> = ({ product, open, setOp
     }
 
     return (
-        <Dialog open={open} onClose={handleClose} sx={styles.dialog}>
+        <Dialog open={open} onClose={handleClose} sx={styles.dialog} PaperProps={{ sx: {border: "1px solid #555555", boxShadow: "2px 8px 0px #1a80b8", borderRadius: "10vw", width: "86vw" }}}>
             <DialogTitle sx={styles.title}>
-                <IconButton onClick={() => setOpen(false)} sx={{ position: "absolute", left: "3vw" }}>
-                    <CancelPresentationIcon color="error" sx={styles.close_icon} />
-                </IconButton>
                 {product?.name}
+                <IconButton onClick={() => setOpen(false)} sx={{ position: "absolute", top: "2vw", right: "2vw" }}>
+                    <CancelIcon color="error" sx={styles.close_icon} />
+                </IconButton>
             </DialogTitle>
 
             <DialogContent sx={styles.content_container}>
