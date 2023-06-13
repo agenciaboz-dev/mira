@@ -19,7 +19,7 @@ const styles: Styles = {
     paper: {
         width: "87vw",
         height: "75%",
-        borderRadius: "7vw",
+        borderRadius: "4vw",
         backgroundColor: "white",
         border: "1px solid $dark_grey",
         boxShadow: "2px 8px 0px #1A7FB7",
