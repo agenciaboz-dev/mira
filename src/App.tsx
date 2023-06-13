@@ -17,7 +17,7 @@ import { Snackbar } from "./components/Snackbar"
 import { Checkout } from "./pages/Checkout"
 import { AddressProvider } from "./contexts/addressContext"
 import { SplashScreen } from "./pages/SplashScreen"
-import { OrdersProvider } from "./contexts/orderContext"
+import { OrdersProvider } from "./contexts/ordersContext"
 import { CategoriesProvider } from "./contexts/categoriesContext"
 
 function App() {

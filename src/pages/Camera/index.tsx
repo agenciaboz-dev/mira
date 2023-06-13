@@ -15,7 +15,6 @@ import { styles } from "./styles"
 import useMeasure from "react-use-measure"
 import { useCart } from "../../hooks/useCart"
 import { useApi } from "../../hooks/useApi"
-import { useSnackbar } from "burgos-snackbar"
 
 interface CameraProps {}
 
@@ -32,7 +31,6 @@ export const Camera: React.FC<CameraProps> = ({}) => {
     const validateCode = useValidadeCode()
     const { products } = useProducts()
     const { cart } = useCart()
-    const { snackbar } = useSnackbar()
     const api = useApi()
     const [productRef, productView] = useMeasure()
     const [cameraRef, cameraView] = useMeasure()
@@ -80,9 +78,6 @@ export const Camera: React.FC<CameraProps> = ({}) => {
                         data: { id: Number(result.split("/")[1]) },
                         callback: (response: { data: Product }) => {
                             setProduct(response.data)
-                        },
-                        errorCallback: () => {
-                            setLoading(false)
                         },
                     })
                 }

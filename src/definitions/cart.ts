@@ -6,11 +6,10 @@ export interface Cart extends Product {
 }
 
 export interface Order {
-    id?: number
-    products?: Cart[]
-    delivery?: boolean
-    status?: number
-    user?: User
-    address?: Address
-    total?: number
+    id: number
+    products: Cart[]
+    status: number
+    user: User
+    address: Address
+    total: number
 }
