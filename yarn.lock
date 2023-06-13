@@ -1195,6 +1195,11 @@
   resolved "https://registry.yarnpkg.com/@csstools/selector-specificity/-/selector-specificity-2.2.0.tgz#2cbcf822bf3764c9658c4d2e568bd0c0cb748016"
   integrity sha512-+OJ9konv95ClSTOJCmMZqpd5+YGsB2S+x6w3E1oaM8UuR5j8nTNHYSz8c9BEPGDOCMQYIEEGlVPj/VY64iTbGw==
 
+"@dynamicss/dynamicss@^2.2.8":
+  version "2.2.8"
+  resolved "https://registry.yarnpkg.com/@dynamicss/dynamicss/-/dynamicss-2.2.8.tgz#e28c3209ed44fa768ea1ba609d0825b402ca72f7"
+  integrity sha512-e6hrGUydr8f+c9E/9fHFSG5LoSLdq/MdZXXfbzEDWIVuzKF2hcdxZE7nHNqUNF2htw1mZ17Pyoshu3A6kFEeFA==
+
 "@emotion/babel-plugin@^11.10.8":
   version "11.10.8"
   resolved "https://registry.yarnpkg.com/@emotion/babel-plugin/-/babel-plugin-11.10.8.tgz#bae325c902937665d00684038fd5294223ef9e1d"
@@ -1431,6 +1436,19 @@
   version "8.39.0"
   resolved "https://registry.yarnpkg.com/@eslint/js/-/js-8.39.0.tgz#58b536bcc843f4cd1e02a7e6171da5c040f4d44b"
   integrity sha512-kf9RB0Fg7NZfap83B3QOqOGg9QmD9yBudqQXzzOtn3i4y7ZUXe5ONeW34Gwi+TxhH4mvj72R1Zc300KUMa9Bng==
+
+"@files-ui/core@latest":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@files-ui/core/-/core-1.0.4.tgz#57298e03a3318f331a857cff152527c1fb9ce083"
+  integrity sha512-CaSyHSwjeWEkctfALoK4MwAxq3Zr7+Ozyk5AMoB3s1UBIVgh2618wvNuUIHSVhWFKeB28bOoYxCzM2PEXO4QgA==
+
+"@files-ui/react@^1.0.8":
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/@files-ui/react/-/react-1.0.8.tgz#433c4f6e5479c4ff7508d63a874d4a21138dca6c"
+  integrity sha512-yveLiDziZ0WOf1rqRwnQGH6NErvNjkkOURtnK4YyiD2jgTMYlUNhghegciqzHjHd1P5UiD86W+++QYDvtS/rnQ==
+  dependencies:
+    "@dynamicss/dynamicss" "^2.2.8"
+    "@files-ui/core" latest
 
 "@humanwhocodes/config-array@^0.11.8":
   version "0.11.8"

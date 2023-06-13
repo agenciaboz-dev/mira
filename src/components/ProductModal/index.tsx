@@ -26,6 +26,8 @@ import { useSnackbar } from "burgos-snackbar"
 import { useCategories } from "../../hooks/useCategories"
 import { PreparationAddornment } from "../PreparationAddornment"
 import { useSuppliers } from "../../hooks/useSuppliers"
+import { Avatar, ExtFile, FileCard, FileInputButton } from "@files-ui/react"
+import colors from "../../colors"
 
 interface ProductModalProps {}
 
@@ -37,6 +39,7 @@ interface FormValues extends Product {
 export const ProductModal: React.FC<ProductModalProps> = ({}) => {
     const [error, setError] = useState(false)
     const [loading, setLoading] = useState(false)
+    const [files, setFiles] = useState<ExtFile[]>([])
 
     const currencyMask = useCurrencyMask()
     const numberMask = useNumberMask({})
@@ -92,6 +95,11 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
 
     const handleSubmit = (values: FormValues) => {
         if (loading) return
+        if (files.length == 0) {
+            snackbar({ severity: "warning", text: "Envie uma imagem" })
+            return
+        }
+
         setLoading(true)
 
         const data = {
@@ -100,14 +108,17 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
             supplier_id: supplier!.id,
         }
 
-        console.log(data)
+        const formData = new FormData()
+        console.log(files)
+        formData.append("file", files[0].file!)
+        formData.append("data", JSON.stringify(data))
 
         if (currentProduct) {
             api.products.update({
-                data,
+                data: formData,
                 callback: (response: { data: Product }) => {
                     console.log(response.data)
-                    setOpen(false)
+                    handleClose()
                     refresh()
                     snackbar({ severity: "success", text: "Produto atualizado" })
                 },
@@ -115,9 +126,9 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
             })
         } else {
             api.products.add({
-                data,
+                data: formData,
                 callback: (response: { data: Product }) => {
-                    setOpen(false)
+                    handleClose()
                     refresh()
                     snackbar({ severity: "success", text: "Produto adicionado" })
                 },
@@ -129,6 +140,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
     const handleClose = () => {
         setOpen(false)
         setCurrentProduct(null)
+        setFiles([])
     }
 
     const handleSupplierName = (event: React.SyntheticEvent<Element, Event>, value: Supplier | null) => {
@@ -354,13 +366,35 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
                                 ))}
                             </TextField>
 
-                            <TextField
-                                required
-                                label="Link de imagem"
-                                name="image"
-                                value={values.image}
-                                onChange={handleChange}
-                            />
+                            <Box sx={{ gap: "1vw" }}>
+                                <TextField
+                                    required
+                                    label="Link de imagem"
+                                    name="image"
+                                    value={values.image}
+                                    onChange={handleChange}
+                                    disabled
+                                />
+                                <FileInputButton
+                                    onChange={(files) => setFiles(files)}
+                                    value={files}
+                                    behaviour="replace"
+                                    label="Enviar imagem"
+                                    accept="image/*"
+                                    color={colors.primary}
+                                    style={{ width: "12vw", padding: "0.5vw" }}
+                                />
+                            </Box>
+                            {files.map((file: ExtFile) => (
+                                <Avatar
+                                    key={file.id}
+                                    src={file.file}
+                                    readOnly
+                                    smartImgFit={"orientation"}
+                                    // style={{ width: "100%", height: "30vw" }}
+                                    style={{ alignSelf: "center" }}
+                                />
+                            ))}
 
                             <TextField
                                 required
