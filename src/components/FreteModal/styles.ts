@@ -19,13 +19,13 @@ const styles: Styles = {
 
     paper: {
         flexDirection: "column",
-        width: "87vw",
+        width: "83vw",
         height: "75%",
-        borderRadius: "7vw",
+        borderRadius: "3vw",
         backgroundColor: "white",
         border: "1px solid $dark_grey",
         boxShadow: "2px 8px 0px #1A7FB7",
-        gap: "5vw",
+        gap: "1vw",
     },
 
     body: {
@@ -40,6 +40,7 @@ const styles: Styles = {
         fontWeight: "700",
         fontSize: "4.3vw",
         color: "#555555",
+        paddingLeft: "5.5vw",
     },
 
     input: {
