@@ -6,7 +6,7 @@
     box-shadow: 2px 5px 0px #1A7FB7;
     border-radius: 7vw;
     flex-direction: column;
-    padding: 5vw;
+    padding: 4vw;
     gap: 1vw;
 
     h3 {
@@ -21,16 +21,15 @@
         font-size: 4vw;
     }
 
-    .cardnumber-container {
+    .cardtop-container {
         justify-content: space-between;
+        align-items: center;
     }
     
     .name-expiration {
         margin-top: 2vw;
-        justify-content: space-between;
-    }
-
-    .cvv-container {
+        gap: 1vw;
+        flex-direction: column;
         justify-content: space-between;
     }
 }

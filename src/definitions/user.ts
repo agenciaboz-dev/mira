@@ -33,6 +33,7 @@ export interface Card {
     name: string
     expiration_month: string
     expiration_year: string
+    expiry: string
     cvv: string
     type: string
 }

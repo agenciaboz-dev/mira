@@ -69,9 +69,18 @@ export const Financial: React.FC<FinancialProps> = ({ user }) => {
         if (!!cardNumberError) return
         if (loading) return
 
+        if ( values.expiry.length != 7 ) {
+            return
+        }
+
+        
+        const expiry = values.expiry.split('/')
+        
+        const data = { ...values, user_id: user.id, new_card: !user.cards[0]?.id, expiration_month: expiry[0], expiration_year: expiry[1] }
+
         setLoading(true)
         api.user.card({
-            data: { ...values, user_id: user.id, new_card: !user.cards[0]?.id },
+            data,
             callback: (response: { data: CardType }) => {
                 const updatedUser = { ...user, cards: [response.data] }
                 setUser(updatedUser)
@@ -102,70 +111,94 @@ export const Financial: React.FC<FinancialProps> = ({ user }) => {
                                 sx={{ flexDirection: "row", gap: "15vw" }}
                             >
                                 <FormControlLabel
-                                    value="debit"
-                                    sx={{ marginLeft: "0" }}
-                                    control={<Radio sx={radio_style} />}
-                                    label="Débito"
-                                />
-                                <FormControlLabel
                                     value="credit"
                                     sx={{ marginLeft: "0" }}
                                     control={<Radio sx={radio_style} />}
                                     label="Crédito"
                                 />
+                                <FormControlLabel
+                                    value="debit"
+                                    sx={{ marginLeft: "0" }}
+                                    control={<Radio sx={radio_style} />}
+                                    label="Débito"
+                                />
                             </RadioGroup>
                         </div>
 
-                        <TextField
-                            placeholder="Nome registrado no cartão"
-                            name="name"
-                            value={values.name}
-                            onChange={handleChange}
-                        />
-                        <MaskedInput
-                            mask={cardNumberMask}
-                            guide={false}
-                            name="number"
-                            value={values.number}
-                            onChange={handleChange}
-                            onBlur={handleCardNumberBlur}
-                            render={(ref, props) => (
-                                <TextField
-                                    inputRef={ref}
-                                    {...props}
-                                    placeholder="Número do cartão"
-                                    error={!!cardNumberError}
-                                    helperText={cardNumberError}
-                                />
-                            )}
-                        />
+                        <div className="financial-input-container">
+                            <label htmlFor="number">Número do cartão</label>
+                            <MaskedInput
+                                mask={cardNumberMask}
+                                guide={false}
+                                id="number"
+                                name="number"
+                                value={values.number}
+                                onChange={handleChange}
+                                onBlur={handleCardNumberBlur}
+                                render={(ref, props) => (
+                                    <TextField
+                                        inputRef={ref}
+                                        {...props}
+                                        placeholder="Número do cartão"
+                                        error={!!cardNumberError}
+                                        helperText={cardNumberError}
+                                    />
+                                )}
+                            />
+                        </div>
 
-                        <h2>Data de expiração</h2>
-                        <div className="expiration-container">
-                            <MaskedInput
-                                mask={numberMask}
-                                guide={false}
-                                name="expiration_month"
-                                value={values.expiration_month}
+                        <div className="financial-input-container">
+                            <label htmlFor="name">Nome registrado no cartão</label>
+                            <TextField
+                                placeholder="Nome registrado no cartão"
+                                id="name"
+                                name="name"
+                                value={values.name}
                                 onChange={handleChange}
-                                render={(ref, props) => <TextField inputRef={ref} {...props} placeholder="Mês" />}
                             />
-                            <MaskedInput
-                                mask={fourNumberMask}
-                                guide={false}
-                                name="expiration_year"
-                                value={values.expiration_year}
-                                onChange={handleChange}
-                                render={(ref, props) => <TextField inputRef={ref} {...props} placeholder="Ano" />}
-                            />
-                            <MaskedInput
-                                mask={threeNumberMask}
-                                guide={false}
-                                name="cvv"
-                                value={values.cvv}
-                                onChange={handleChange}
-                                render={(ref, props) => <TextField inputRef={ref} {...props} placeholder="CVV" />}
-                            />
+                        </div>
+
+                        <div className="financial-two-inputs-row">
+                            <div className="financial-input-container">
+                                <label htmlFor="expiry">Data de expiração</label>
+                                <MaskedInput
+                                    mask={[/\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]}
+                                    guide={false}
+                                    id="expiry"
+                                    name="expiry"
+                                    value={values.expiry}
+                                    onChange={handleChange}
+                                    render={(ref, props) => <TextField inputRef={ref} {...props} placeholder="Expiração" />}
+                                />
+                                {/* <MaskedInput
+                                    mask={numberMask}
+                                    guide={false}
+                                    name="expiration_month"
+                                    value={values.expiration_month}
+                                    onChange={handleChange}
+                                    render={(ref, props) => <TextField inputRef={ref} {...props} placeholder="Mês" />}
+                                /> */}
+                                {/* <MaskedInput
+                                    mask={fourNumberMask}
+                                    guide={false}
+                                    name="expiration_year"
+                                    value={values.expiration_year}
+                                    onChange={handleChange}
+                                    render={(ref, props) => <TextField inputRef={ref} {...props} placeholder="Ano" />}
+                                /> */}
+                            </div>
+                            <div className="financial-input-container">
+                                <label htmlFor="cvv">Código de Segurança</label>
+                                <MaskedInput
+                                    mask={threeNumberMask}
+                                    guide={false}
+                                    id="cvv"
+                                    name="cvv"
+                                    value={values.cvv}
+                                    onChange={handleChange}
+                                    render={(ref, props) => <TextField inputRef={ref} {...props} placeholder="CVV" />}
+                                />
+                            </div>
                         </div>
 
                         <div className="buttons-container">

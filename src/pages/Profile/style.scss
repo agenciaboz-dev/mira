@@ -147,6 +147,11 @@
                 font-size: 5vw;
             }
 
+            label {
+                font-size: 3.25vw;
+                font-weight: 700;
+            }
+
             input {
                 color: #555555;
                 font-size: 3.5vw;
@@ -155,14 +160,20 @@
                 height: fit-content;
             }
 
+            .financial-two-inputs-row {
+                justify-content: space-between;
+                gap: 2vw;                
+            }
+
+            .financial-input-container {
+                flex-direction: column;
+                gap: 2vw;
+            }
+
             .type-container {
                 div {
                     gap: 5vw;
                 }
-            }
-
-            .expiration-container {
-                gap: 2vw;
             }
     
             .buttons-container {
