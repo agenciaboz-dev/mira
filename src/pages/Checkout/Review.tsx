@@ -15,17 +15,11 @@ export const Review: React.FC<ReviewProps> = ({}) => {
     const { cart, total } = useCart()
     const navigate = useNavigate()
     const { setOrder } = useOrder()
+
     const [openFreteModal, setOpenFreteModal] = useState(false)
 
-    const button_style = {
-        fontSize: "2.5vw",
-        justifyContent: "flex-start",
-        padding: "1vw 4vw",
-        background: !Boolean(cart.length) ? "linear-gradient(90deg, #9F9F9F 0%, #565656 91.94%)" : "",
-        boxShadow: !Boolean(cart.length) ? "none" : "",
-    }
-    const icon_style = { width: "13%" }
-    const button_p_style = { margin: "0 auto" }
+    const button_style = { fontSize: "4vw", justifyContent: "flex-start", padding: "1.5vw 5vw", gap: "10vw" }
+    const icon_style = { height: "100%", width: "13%" }
 
     useEffect(() => {
         setOrder(undefined)
@@ -33,37 +27,36 @@ export const Review: React.FC<ReviewProps> = ({}) => {
 
     return (
         <div className="Review-Component">
-            <div className="review-component-upper-container">
-                <h1 style={{ fontWeight: "normal" }}>
-                    {cart.length || "Nenhum"} {cart.length > 1 ? "itens" : "item"} no carrinho
-                </h1>
-                <div className="product-list">
-                    {cart.map((product) => (
-                        <div className="product-container" key={product.id}>
-                            <img className="image" src={product.image} alt={product.name} />
-                            <div className="info-container">
+            <h2 style={{ fontWeight: "normal" }}>
+                {cart.length || "Nenhum"} {cart.length > 1 ? "itens" : "item"} no carrinho
+            </h2>
+            <div className="product-list">
+                {cart.map((product) => (
+                    <div className="product-container" key={product.id}>
+                        <img className="image" src={product.image} alt={product.name} />
+
+                        <div className="info-container">
+                            <p>
+                                Produto: <span>{product.name}</span>
+                            </p>
+                            <p>
+                                Quantidade: <span>{product.quantity}</span>
+                            </p>
+                            <div className="price-container">
                                 <p>
-                                    Produto: <span>{product.name}</span>
+                                    Custo: <CurrencyText value={product.price} />
                                 </p>
                                 <p>
-                                    Quantidade: <span>{product.quantity}</span>
+                                    Total: <CurrencyText value={product.price * product.quantity} />
                                 </p>
-                                <div className="price-container">
-                                    <p>
-                                        Custo: <CurrencyText value={product.price} />
-                                    </p>
-                                    <p>
-                                        Total: <CurrencyText value={product.price * product.quantity} />
-                                    </p>
-                                </div>
                             </div>
                         </div>
-                    ))}
-                </div>
+                    </div>
+                ))}
             </div>
             <div className="totals-container">
                 <p>
-                    Total do pedido (sem entrega): <CurrencyText value={total} />
+                    Subtotal de itens: <CurrencyText value={total} />
                 </p>
                 <Button
                     fullWidth
@@ -79,8 +72,8 @@ export const Review: React.FC<ReviewProps> = ({}) => {
                     <DeliveryIcon style={icon_style} />
                     Entrega
                 </Button>
-                <FreteModal open={openFreteModal} setOpen={setOpenFreteModal} />
             </div>
+            <FreteModal open={openFreteModal} setOpen={setOpenFreteModal} />
         </div>
     )
 }
