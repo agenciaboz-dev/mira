@@ -73,7 +73,7 @@ export const Review: React.FC<ReviewProps> = ({}) => {
                         disabled={!Boolean(cart.length)}
                         onClick={() => {
                             navigate("payment")
-                            if (address) setAddress({ ...address, delivery: false })
+                            if (address) setAddress({ ...address })
                         }}
                     >
                         <LocalIcon style={icon_style} />
