@@ -64,16 +64,30 @@ export const Financial: React.FC<FinancialProps> = ({ user }) => {
         }
     }
 
+    
     const handleSubmit = (values: CardType) => {
+        const currentYear = new Date().getFullYear();
+        const exp_month = parseInt(values.expiration_month)
+        const exp_year = parseInt(values.expiration_year)
+
         if (!values.type) return
         if (!!cardNumberError) return
         if (loading) return
 
-        if ( values.expiry.length != 7 ) {
+        if ( values.expiry.length == 7 ) {
+            if ( exp_month < 1 || exp_month > 12 ){
+                alert("Mês inválido")
+                return
+            }
+            else if ( exp_year < currentYear || exp_year > currentYear + 50 ){
+                alert("Ano inválido")
+                return
+            }
+        } else {
+            alert("Data inválida")
             return
         }
 
-        
         const expiry = values.expiry.split('/')
         
         const data = { ...values, user_id: user.id, new_card: !user.cards[0]?.id, expiration_month: expiry[0], expiration_year: expiry[1] }
