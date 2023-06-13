@@ -99,9 +99,9 @@ export const useApi = () => {
                     .finally(() => defaultFinally(options.finallyCallback))
             },
         },
-        delivery: {
-            quotation: (options: ApiOptions) => {
-                api.post("/delivery", options.data)
+        categories: {
+            list: (options: ApiOptions) => {
+                api.get("/categories")
                     .then((response) => options.callback(response))
                     .catch((error) => defaultError(error, options.errorCallback))
                     .finally(() => defaultFinally(options.finallyCallback))
