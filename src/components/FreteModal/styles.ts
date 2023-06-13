@@ -15,7 +15,7 @@ const styles: Styles = {
         alignItems: "center",
         justifyContent: "center",
     },
-    
+
     paper: {
         flexDirection: "column",
         width: "87vw",
@@ -37,8 +37,9 @@ const styles: Styles = {
         fontWeight: "700",
         fontSize: "4.3vw",
         color: "#555555",
+        paddingLeft: "6vw",
     },
-    
+
     input: {
         padding: "1vw",
         width: "80vw",
