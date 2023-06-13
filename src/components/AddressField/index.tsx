@@ -21,8 +21,11 @@ export const AddressField: React.FC<AddressFieldProps> = ({ values, handleChange
     const { setFieldValue } = useFormikContext()
     const api = useApi()
     const numberRef = useRef<MaskedInput>(null)
-
     const [loading, setLoading] = useState(false)
+    
+    const handleFocus = (event: React.FocusEvent<HTMLInputElement>) => {
+        event.target.style.borderRadius = "10vw";
+    };
 
     useEffect(() => {
         if (values.cep.length == 10) {
@@ -105,7 +108,19 @@ export const AddressField: React.FC<AddressFieldProps> = ({ values, handleChange
                     onChange={handleChange}
                     value={values.uf}
                     className="small-input"
-                    sx={{ borderRadius: "10vw", color: "#555555 !important" }}
+                    InputProps={{
+                        style: {
+                          borderRadius: "10vw",
+                          color: "#555555",
+                          fontSize: "3.5vw",
+                          fontWeight: "bold",
+                          flexGrow: "1",
+                          alignSelf: "stretch",
+                        },
+                        inputProps: {
+                            onFocus: handleFocus,
+                        },
+                      }}
                 >
                     {estados.map((estado) => (
                         <MenuItem key={estado.value} value={estado.value} style={{ width: "100%" }}>
