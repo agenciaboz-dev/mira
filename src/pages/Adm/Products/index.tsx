@@ -1,4 +1,4 @@
-import { Box, Paper, IconButton, Button, CircularProgress, Skeleton } from "@mui/material"
+import { Box, Paper, IconButton, Button, CircularProgress, Skeleton, Avatar } from "@mui/material"
 import React, { useEffect, useState } from "react"
 import styles from "./styles"
 import { SearchField } from "../../../components/SearchField"
@@ -15,6 +15,7 @@ import { useSnackbar } from "burgos-snackbar"
 import { useConfirmDialog } from "burgos-confirm"
 import QrCodeScannerIcon from "@mui/icons-material/QrCodeScanner"
 import { QrCodeModal } from "../../../components/QrcodeModal"
+import CancelIcon from "@mui/icons-material/Cancel"
 
 interface ProductsProps {}
 
@@ -31,6 +32,17 @@ export const Products: React.FC<ProductsProps> = ({}) => {
     const [openQrModal, setOpenQrModal] = useState(false)
 
     const columns: TableColumn<Product>[] = [
+        {
+            name: "",
+            selector: (row) => row.image,
+            sortable: true,
+            cell: (row) => (
+                <Avatar src={row.image}>
+                    <CancelIcon color="error" sx={{ width: "100%", height: "100%" }} />
+                </Avatar>
+            ),
+            width: "5%",
+        },
         {
             name: "Nome",
             selector: (row) => row.name,
