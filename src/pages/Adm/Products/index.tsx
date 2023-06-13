@@ -37,7 +37,7 @@ export const Products: React.FC<ProductsProps> = ({}) => {
             selector: (row) => row.image,
             sortable: true,
             cell: (row) => (
-                <Avatar src={row.image}>
+                <Avatar src={row.image} sx={{ bgcolor: "transparent" }}>
                     <CancelIcon color="error" sx={{ width: "100%", height: "100%" }} />
                 </Avatar>
             ),
