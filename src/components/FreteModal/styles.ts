@@ -8,6 +8,7 @@ interface Styles {
     input: SxProps
     footer: SxProps
     services: SxProps
+    box: SxProps
 }
 
 const styles: Styles = {
@@ -21,6 +22,10 @@ const styles: Styles = {
         width: "87vw",
         height: "75%",
         borderRadius: "7vw",
+        backgroundColor: "white",
+        border: "1px solid $dark_grey",
+        boxShadow: "2px 8px 0px #1A7FB7",
+        gap: "5vw",
     },
 
     body: {
@@ -52,6 +57,16 @@ const styles: Styles = {
 
     services: {
         flexDirection: "column",
+        gap: "5vw",
+    },
+
+    box: {
+        backgroundColor: "white",
+        border: "1px solid $dark_grey",
+        borderRadius: "3vw",
+        boxShadow: "2px 8px 0px #1A7FB7",
+        flexDirection: "column",
+        padding: "3vw",
         gap: "5vw",
     },
 }
