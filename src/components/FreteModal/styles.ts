@@ -20,7 +20,7 @@ const styles: Styles = {
         flexDirection: "column",
         width: "87vw",
         height: "75%",
-        borderRadius: "7vw",
+        borderRadius: "3vw",
         border: "1px solid #555555",
         boxShadow: "2px 8px 0px #1A7FB7",
     },
