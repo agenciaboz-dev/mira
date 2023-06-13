@@ -7,28 +7,28 @@ interface Styles {
     title: SxProps
     input: SxProps
     footer: SxProps
+    radio: SxProps
     services: SxProps
 }
 
 const styles: Styles = {
     dialog: {
-        alignItems: "center",
-        justifyContent: "center",
+        flexDirection: "column",
     },
 
     paper: {
         flexDirection: "column",
         width: "87vw",
-        height: "75%",
+        height: "168vw",
         borderRadius: "7vw",
+        position: "absolute",
+        bottom: "17vw",
     },
 
     body: {
         flexDirection: "column",
-        padding: "0 5vw 5vw",
-        height: "100%",
-        overflowX: "hidden",
-        gap: "5vw",
+        padding: "0 3vw 5vw 3vw ",
+        height: "2vw",
     },
 
     title: {
@@ -39,20 +39,30 @@ const styles: Styles = {
 
     input: {
         padding: "1vw",
+        position: "absolute",
+        right: "3.5vw",
         width: "80vw",
     },
 
     footer: {
         display: "flex",
         flexDirection: "column",
+        position: "absolute",
+        top: "132vw",
         gap: "4vw",
         padding: "1vw",
-        marginTop: "auto",
     },
 
+    radio: {
+        flexDirection: "column",
+        gap: "2vw",
+        position: "relative",
+        left: "1vw",
+        top: "25vw",
+    },
     services: {
         flexDirection: "column",
-        gap: "5vw",
+        padding: "1vw",
     },
 }
 

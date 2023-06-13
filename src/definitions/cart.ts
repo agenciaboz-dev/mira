@@ -13,5 +13,4 @@ export interface Order {
     user?: User
     address?: Address
     total?: number
-    quotation?: any
 }
