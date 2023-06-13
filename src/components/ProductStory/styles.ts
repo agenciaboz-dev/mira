@@ -24,7 +24,7 @@ export const styles = {
     },
 
     close_icon: {
-        width: "7vw",
+        width: "8vw",
         height: "auto",
     },
 
