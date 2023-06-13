@@ -15,6 +15,7 @@ export const Review: React.FC<ReviewProps> = ({}) => {
     const { cart, total } = useCart()
     const navigate = useNavigate()
     const { setOrder } = useOrder()
+    const [openFreteModal, setOpenFreteModal] = useState(false)
 
     const button_style = {
         fontSize: "2.5vw",
@@ -78,6 +79,7 @@ export const Review: React.FC<ReviewProps> = ({}) => {
                     <DeliveryIcon style={icon_style} />
                     Entrega
                 </Button>
+                <FreteModal open={openFreteModal} setOpen={setOpenFreteModal} />
             </div>
         </div>
     )
