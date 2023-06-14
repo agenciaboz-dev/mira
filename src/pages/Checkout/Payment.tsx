@@ -11,8 +11,11 @@ import useMeasure from "react-use-measure"
 import { useApi } from "../../hooks/useApi"
 import { useCart } from "../../hooks/useCart"
 import { useAddress } from "../../hooks/useAddress"
-import { CircularProgress, SxProps } from "@mui/material"
+import { CircularProgress, Box } from "@mui/material"
 import { useOrder } from "../../hooks/useOrder"
+import { TextField } from "../../components/TextField"
+import MaskedInput from "react-text-mask"
+import { useCpfMask } from "burgos-masks"
 
 interface PaymentProps {}
 
@@ -36,6 +39,7 @@ export const Payment: React.FC<PaymentProps> = ({}) => {
     const [chooseRef, chooseAttributes] = useMeasure()
     const [paymentRef, paymentAttributes] = useMeasure()
     const api = useApi()
+    const cpfMask = useCpfMask()
     const { user, setUser } = useUser()
     const { cart, total } = useCart()
     const { order, setOrder } = useOrder()
@@ -52,8 +56,9 @@ export const Payment: React.FC<PaymentProps> = ({}) => {
     const [cardYear, setCardYear] = useState<string>("")
     const [cardCvv, setCardCvv] = useState<string>("")
     const [cardError, setCardError] = useState(false)
+    const [cpf, setCpf] = useState("")
 
-    const cardValues = { cardType, cardOwner, cardNumber, cardMonth, cardYear, cardCvv }
+    const cardValues = { cardType, cardOwner, cardNumber, cardMonth, cardYear, cardCvv, cpf }
 
     const handleClick = () => {
         // pagseguro handling
@@ -61,6 +66,8 @@ export const Payment: React.FC<PaymentProps> = ({}) => {
         if (paymentType == "credit") {
             console.log(cardValues)
             if (cardError) return
+
+            setLoading(true)
 
             const script = document.createElement("script")
 
@@ -70,11 +77,11 @@ export const Payment: React.FC<PaymentProps> = ({}) => {
                 // @ts-ignore
                 const card = window.PagSeguro.encryptCard({
                     // sandbox
-                    // publicKey:
-                    //     "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAr+ZqgD892U9/HXsa7XqBZUayPquAfh9xx4iwUbTSUAvTlmiXFQNTp0Bvt/5vK2FhMj39qSv1zi2OuBjvW38q1E374nzx6NNBL5JosV0+SDINTlCG0cmigHuBOyWzYmjgca+mtQu4WczCaApNaSuVqgb8u7Bd9GCOL4YJotvV5+81frlSwQXralhwRzGhj/A57CGPgGKiuPT+AOGmykIGEZsSD9RKkyoKIoc0OS8CPIzdBOtTQCIwrLn2FxI83Clcg55W8gkFSOS6rWNbG5qFZWMll6yl02HtunalHmUlRUL66YeGXdMDC2PuRcmZbGO5a/2tbVppW6mfSWG3NPRpgwIDAQAB",
-                    // production
                     publicKey:
-                        "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvgwj+Bb1x8SieUMF4o1NWQhgeV4bX0nI7IAa+W+rEVGFk6aNqmKCqzSYLwbw7dwUBWr9GaKyD7aXFvcSGlNimd9/6ix0lGsOoQvzlfPYKn6at10jy8lMxmQPw3u6Z3gX57omXWh2DNHBBxhWTwimXv/nKxIH74F+avvOmjeQHYSz47z71GnEjCQbf05YHkOtbdBW8x8gchyQ6t1nUxohb0keTkmn1YYGNBVA6C6RS1bGVkMVtrzXjtQgwBBAG4JhIExw19ic+4d4YEOWe7UTcKH5EHO1zCAsZorNq9gEfpumTUUI5EX4/ioD2RUvrox0+POHQCwdpNAExGTbRPIPcQIDAQAB",
+                        "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAr+ZqgD892U9/HXsa7XqBZUayPquAfh9xx4iwUbTSUAvTlmiXFQNTp0Bvt/5vK2FhMj39qSv1zi2OuBjvW38q1E374nzx6NNBL5JosV0+SDINTlCG0cmigHuBOyWzYmjgca+mtQu4WczCaApNaSuVqgb8u7Bd9GCOL4YJotvV5+81frlSwQXralhwRzGhj/A57CGPgGKiuPT+AOGmykIGEZsSD9RKkyoKIoc0OS8CPIzdBOtTQCIwrLn2FxI83Clcg55W8gkFSOS6rWNbG5qFZWMll6yl02HtunalHmUlRUL66YeGXdMDC2PuRcmZbGO5a/2tbVppW6mfSWG3NPRpgwIDAQAB",
+                    // production
+                    // publicKey:
+                    //     "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvgwj+Bb1x8SieUMF4o1NWQhgeV4bX0nI7IAa+W+rEVGFk6aNqmKCqzSYLwbw7dwUBWr9GaKyD7aXFvcSGlNimd9/6ix0lGsOoQvzlfPYKn6at10jy8lMxmQPw3u6Z3gX57omXWh2DNHBBxhWTwimXv/nKxIH74F+avvOmjeQHYSz47z71GnEjCQbf05YHkOtbdBW8x8gchyQ6t1nUxohb0keTkmn1YYGNBVA6C6RS1bGVkMVtrzXjtQgwBBAG4JhIExw19ic+4d4YEOWe7UTcKH5EHO1zCAsZorNq9gEfpumTUUI5EX4/ioD2RUvrox0+POHQCwdpNAExGTbRPIPcQIDAQAB",
                     holder: cardOwner,
                     number: cardNumber.replace(/\s/g, ""),
                     expMonth: cardMonth,
@@ -91,6 +98,8 @@ export const Payment: React.FC<PaymentProps> = ({}) => {
                         user,
                         address,
                         total,
+                        cpf: cpf.replace(/\D/g, ""),
+                        name: cardOwner,
                         products: cart,
                         method: "card",
                         card: {
@@ -103,18 +112,18 @@ export const Payment: React.FC<PaymentProps> = ({}) => {
                         const data = response.data
                         console.log(data.pagseguro)
                         setUser({ ...user!, orders: [data.order] })
-                        setOrder({ ...data.order, delivery: data.order.delivery || order?.delivery })
+                        setOrder({ ...data.order, quotation: order?.quotation || undefined })
                         setTimeout(() => navigate("/checkout/order"), 500)
                     },
                     finallyCallback: () => setTimeout(() => setLoading(false), 500),
                 })
-                
-                document.body.appendChild(script)
             }
+
+            document.body.appendChild(script)
 
             // navigate("/checkout/finish")
         } else {
-            navigate("/checkout/pix")
+            navigate("/checkout/pix", { state: { cpf: cpf.replace(/\D/g, ""), name: cardOwner } })
         }
     }
     
@@ -162,6 +171,7 @@ export const Payment: React.FC<PaymentProps> = ({}) => {
                                 setCardYear,
                                 setCardCvv,
                                 setCardError,
+                                setCpf,
                             }}
                         />
                     </div>
@@ -176,10 +186,34 @@ export const Payment: React.FC<PaymentProps> = ({}) => {
                     openedClassName="opened"
                     // onClosing={() => setPaymentType(undefined)}
                 >
-                    <p className="pix-children">
-                        Gere o código <span>copia e cola</span> ou page utilizando o leitor de <span>QR Code</span> de outro
-                        dispositivo.
-                    </p>
+                    <Box sx={{ flexDirection: "column", width: "100%", gap: "3vw" }}>
+                        <TextField
+                            placeholder="Nome do titular"
+                            name="name"
+                            value={cardOwner}
+                            onChange={(event) => setCardOwner(event.target.value)}
+                            InputProps={{ style: { border: `1px solid ${colors.purple2}` } }}
+                        />
+                        <MaskedInput
+                            mask={cpfMask}
+                            guide={false}
+                            name="cpf"
+                            value={cpf}
+                            onChange={(event) => setCpf(event.target.value)}
+                            render={(ref, props) => (
+                                <TextField
+                                    inputRef={ref}
+                                    {...props}
+                                    placeholder="CPF do titular"
+                                    InputProps={{ style: { border: `1px solid ${colors.purple2}` } }}
+                                />
+                            )}
+                        />
+                        <p className="pix-children">
+                            Gere o código <span>copia e cola</span> ou page utilizando o leitor de <span>QR Code</span> de
+                            outro dispositivo.
+                        </p>
+                    </Box>
                 </Collapsible>
             </div>
 
@@ -199,7 +233,13 @@ export const Payment: React.FC<PaymentProps> = ({}) => {
                 }}
                 disabled={disabled}
             >
-                {paymentType == "credit" && cardError ? "Cartão inválido" : "Finalizar compra"}
+                {loading ? (
+                    <CircularProgress size={"2rem"} sx={{ color: "white" }} />
+                ) : paymentType == "credit" && cardError ? (
+                    "Cartão inválido"
+                ) : (
+                    "Finalizar compra"
+                )}
             </Button>
         </div>
     )
