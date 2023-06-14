@@ -16,6 +16,8 @@ import { ProductModal } from "../../components/ProductModal"
 import { Product as ProductType } from "../../definitions/product"
 import { useCategories } from "../../hooks/useCategories"
 import CategoryIcon from "@mui/icons-material/Category"
+import { Button as DesignedButton } from "../../components/Button"
+import { useReset } from "../../hooks/useReset"
 
 interface CartProps {}
 
@@ -24,6 +26,7 @@ export const Cart: React.FC<CartProps> = ({}) => {
     const openMenu = Boolean(anchorEl)
 
     const navigate = useNavigate()
+    const reset = useReset()
     const { cart } = useCart()
     const { products } = useProducts()
     const { categories } = useCategories()
@@ -62,6 +65,10 @@ export const Cart: React.FC<CartProps> = ({}) => {
     return (
         <div className="Cart-Page">
             <div className="title-container">
+                <DesignedButton
+                    className="cancel-purchase-button"
+                    onClick={reset}
+                >Cancelar compra</DesignedButton>
                 <img src="/promotions.png" alt="Promoções" />
             </div>
 

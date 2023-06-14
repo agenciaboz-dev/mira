@@ -42,12 +42,8 @@
         flex-direction: column;
         gap: 5vw;
         width: 100%;
+
         
-        .review-component-upper-container {
-            flex-direction: column;
-            gap: 2vw;
-            height: 100%;
-            width: 100%;
             
             .product-list {
                 flex-direction: column;
@@ -85,7 +81,7 @@
                     }
                 }
             }
-        }
+        
 
         .totals-container {
             flex-direction: column;

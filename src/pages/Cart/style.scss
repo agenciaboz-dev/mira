@@ -15,6 +15,14 @@
     padding: 2vw;
 
     .title-container {
+        position: relative;
+
+        .cancel-purchase-button {
+            position: absolute;
+            top: 2vw;
+            left: 2vw;
+        }
+
         img {
             width: 100%;
             height: auto;

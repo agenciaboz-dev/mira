@@ -14,6 +14,8 @@ import { useApi } from "../../hooks/useApi"
 import { useSnackbar } from "../../hooks/useSnackbar"
 import { useAddress } from "../../hooks/useAddress"
 import { AddressField } from "../../components/AddressField"
+import { useOrder } from "../../hooks/useOrder"
+import { useCart } from "../../hooks/useCart"
 
 interface AddressProps {}
 
@@ -22,6 +24,7 @@ export const Address: React.FC<AddressProps> = ({}) => {
     const estados = useEstadosBrasil()
     const navigate = useNavigate()
     const { address, setAddress } = useAddress()
+    const { setOrder } = useOrder()
 
     const [loading, setLoading] = useState(false)
 
@@ -40,8 +43,32 @@ export const Address: React.FC<AddressProps> = ({}) => {
     const handleSubmit = (values: AddressType) => {
         if (loading) return
 
-        setAddress({ ...values, delivery: true })
-        navigate("/checkout/payment")
+        /*if (saveAddress) {
+            setLoading(true)
+            const data = {
+                ...values,
+                new_address: !user!.addresses[0]?.id,
+                user_id: user!.id,
+            }
+            console.log(data)
+
+            api.user.address({
+                data: data,
+                callback: (response: { data: AddressType }) => {
+                    const updatedUser = { ...user!, addresses: [response.data] }
+                    setUser(updatedUser)
+                    navigate("/checkout/payment")
+                    snackbar({
+                        severity: "success",
+                        text: "Endereço salvo",
+                    })
+                },
+                finallyCallback: () => setLoading(false),
+            })
+        } else {
+            setTimeout(() => setAddress(values), 500)
+            navigate("/checkout/payment")
+        }*/
     }
 
     return (
@@ -62,13 +89,7 @@ export const Address: React.FC<AddressProps> = ({}) => {
                             name="phone"
                             value={values.phone}
                             onChange={handleChange}
-                            render={(ref, props) => (
-                                <TextField
-                                    inputRef={ref}
-                                    {...props}
-                                    placeholder="Telefone"
-                                />
-                            )}
+                            render={(ref, props) => <TextField inputRef={ref} {...props} placeholder="Telefone" />}
                         />
                         <AddressField values={values} handleChange={handleChange} />
 

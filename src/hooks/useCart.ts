@@ -25,5 +25,9 @@ export const useCart = () => {
         }
     }
 
-    return { cart, setCart, total, add, isInCart }
+    const empty = () => {
+        setCart([])
+    }
+
+    return { cart, setCart, total, add, isInCart, empty }
 }
