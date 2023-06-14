@@ -5,7 +5,7 @@ import { useCart } from "../../hooks/useCart"
 import { ReactComponent as CopyIcon } from "../../images/copy.svg"
 import { Button } from "../../components/Button"
 import { useClipboard } from "../../hooks/useClipboard"
-import { useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import "./style.scss"
 import { useWebsocket } from "../../hooks/useWebsocket"
 import { useUser } from "../../hooks/useUser"
@@ -22,6 +22,7 @@ export const Pix: React.FC<PixProps> = ({}) => {
     const navigate = useNavigate()
     const ws = useWebsocket()
     const api = useApi()
+    const location = useLocation()
     const { address } = useAddress()
     const { cart, total } = useCart()
     const { user } = useUser()
@@ -39,14 +40,19 @@ export const Pix: React.FC<PixProps> = ({}) => {
     }
 
     useEffect(() => {
+        const data = {
+            user: { id: 1 },
+            address: { ...address },
+            total,
+            cpf: location.state.cpf,
+            name: location.state.name,
+            products: cart,
+            method: "pix",
+        }
+        console.log(data)
+
         api.order.new({
-            data: {
-                user: { id: 1 },
-                address: { ...address },
-                total,
-                products: cart,
-                method: "pix",
-            },
+            data,
             callback: (response: any) => {
                 const { pagseguro, order } = response.data
                 ws.sendMessage({ order })

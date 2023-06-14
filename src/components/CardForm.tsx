@@ -12,6 +12,7 @@ import MaskedInput from "react-text-mask"
 import { useCardNumberMask } from "../hooks/useCardNumberMask"
 import { useNumberMask } from "../hooks/useNumberMask"
 import useMeasure, { RectReadOnly } from "react-use-measure"
+import { useCpfMask } from "burgos-masks"
 
 interface CardFormProps {
     user: User
@@ -22,6 +23,7 @@ interface CardFormProps {
         cardMonth: string
         cardYear: string
         cardCvv: string
+        cpf: string
     }
     setValues: {
         setCardType: (value: string) => void
@@ -30,8 +32,9 @@ interface CardFormProps {
         setCardMonth: (value: string) => void
         setCardYear: (value: string) => void
         setCardCvv: (value: string) => void
+        setCpf: (value: string) => void
         setCardError: (value: boolean) => void
-    },
+    }
     chooseAttributes: RectReadOnly
     paymentAttributes: RectReadOnly
 }
@@ -58,6 +61,7 @@ export const CardForm: React.FC<CardFormProps> = ({ user, values, setValues, cho
     const numberMask = useNumberMask(2, true)
     const threeNumberMask = useNumberMask(3)
     const fourNumberMask = useNumberMask(4, false, "")
+    const cpfMask = useCpfMask()
 
     const radio_style = {
         "&.Mui-checked": {
@@ -128,7 +132,11 @@ export const CardForm: React.FC<CardFormProps> = ({ user, values, setValues, cho
     }, [values])
 
     return (
-        <div className="CardForm-Component" ref={cardRef} style={{ height: available_height > height ? available_height*0.85 : height }}>
+        <div
+            className="CardForm-Component"
+            ref={cardRef}
+            style={{ height: available_height > height ? available_height * 0.85 : height }}
+        >
             <div className="type-container">
                 <RadioGroup
                     value={values.cardType}
@@ -152,11 +160,21 @@ export const CardForm: React.FC<CardFormProps> = ({ user, values, setValues, cho
             </div>
 
             <TextField
-                placeholder="Nome registrado no cartão"
+                placeholder="Nome do titular"
                 name="name"
                 value={values.cardOwner}
                 onChange={(event) => setValues.setCardOwner(event.target.value)}
                 InputProps={{ style: input_style }}
+            />
+            <MaskedInput
+                mask={cpfMask}
+                guide={false}
+                name="cpf"
+                value={values.cpf}
+                onChange={(event) => setValues.setCpf(event.target.value)}
+                render={(ref, props) => (
+                    <TextField inputRef={ref} {...props} placeholder="CPF do titular" InputProps={{ style: input_style }} />
+                )}
             />
             <MaskedInput
                 mask={cardNumberMask}
