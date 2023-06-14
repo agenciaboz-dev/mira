@@ -50,6 +50,11 @@
                 font-size: 6vw;
             }
         }
+
+        .product-description-container {
+            max-height: 33vw;
+            overflow-y: scroll;
+        }
     
         .specs-container {
             flex-wrap: wrap;
