@@ -96,7 +96,7 @@ export const Product: React.FC<ProductProps> = ({ product, style, innerRef, onCl
                     sx={{ width: "25vw" }}
                     InputProps={{
                         sx: {
-                            backgroundColor: colors.light_grey,
+                            backgroundColor: colors.light_grey2,
                             borderRadius: "7vw",
                             height: "8vw",
                         },
