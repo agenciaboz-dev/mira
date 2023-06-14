@@ -41,8 +41,13 @@
             }
         }
 
-        p {
-            font-size: 3vw;
+        .product-description-container {
+            max-height: 33vw;
+            overflow-y: scroll;
+            
+            p {
+                font-size: 3vw;
+            }
         }
     
         .specs-container {
