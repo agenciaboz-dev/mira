@@ -43,7 +43,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
 
     const currencyMask = useCurrencyMask()
     const numberMask = useNumberMask({})
-    const volumeMask = useNumberMask({ allowDecimal: true })
+    const volumeMask = useNumberMask({ allowDecimal: true, decimalLimit: 5 })
     const api = useApi()
     const { refresh } = useProducts()
     const { currentProduct, setCurrentProduct, open, setOpen } = useCurrentProduct()
