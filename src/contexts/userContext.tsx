@@ -1,6 +1,5 @@
 import { createContext, useEffect, useState } from "react"
 import React from "react"
-import { User } from "../definitions/user"
 import { useLocalStorage } from "../hooks/useLocalStorage"
 
 interface UserContextValue {

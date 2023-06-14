@@ -121,6 +121,13 @@ export const useApi = () => {
                     .finally(() => defaultFinally(options.finallyCallback))
             },
         },
+        orders: {
+            get: (callback: Function) => {
+                api.get("/orders")
+                    .then((response) => callback(response))
+                    .catch((error) => defaultError(error))
+            },
+        },
         cep: (options: ApiOptions) => {
             api.post("/cep", options.data)
                 .then((response) => options.callback(response))

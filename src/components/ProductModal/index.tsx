@@ -95,7 +95,8 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
 
     const handleSubmit = (values: FormValues) => {
         if (loading) return
-        if (files.length == 0) {
+        if (files.length == 0 && !values.image) {
+            console.log(values.image)
             snackbar({ severity: "warning", text: "Envie uma imagem" })
             return
         }
@@ -110,7 +111,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({}) => {
 
         const formData = new FormData()
         console.log(files)
-        formData.append("file", files[0].file!)
+        if (files.length > 0) formData.append("file", files[0].file!)
         formData.append("data", JSON.stringify(data))
 
         if (currentProduct) {

@@ -9,6 +9,7 @@ import { ProductModal } from "../../components/ProductModal"
 import { Categories } from "./Categories"
 import { useUser } from "../../hooks/useUser"
 import { Suppliers } from "./Suppliers"
+import { Orders } from "./Orders"
 
 interface AdmProps {}
 
@@ -31,6 +32,7 @@ export const Adm: React.FC<AdmProps> = ({}) => {
                 <Route path="/products" element={<Products />} />
                 <Route path="/categories" element={<Categories />} />
                 <Route path="/suppliers" element={<Suppliers />} />
+                <Route path="/orders" element={<Orders />} />
             </Routes>
         </div>
     )

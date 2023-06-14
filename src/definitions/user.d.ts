@@ -1,4 +1,4 @@
-export interface User {
+declare interface User {
     id: number
     name: string
     cpf: string
@@ -11,7 +11,7 @@ export interface User {
     cards: Card[]
 }
 
-export interface Address {
+declare interface Address {
     id: number
     receiver: string
     phone: string
@@ -24,7 +24,7 @@ export interface Address {
     uf: string
 }
 
-export interface Card {
+declare interface Card {
     id: number
     number: string
     name: string

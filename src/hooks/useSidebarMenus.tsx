@@ -22,6 +22,12 @@ export const useSidebarMenus = () => {
             location: "/dashboard/suppliers",
             icon: <SellIcon />,
         },
+        {
+            id: 4,
+            title: "Pedidos",
+            location: "/dashboard/orders",
+            icon: <SellIcon />,
+        },
     ]
 
     return menus

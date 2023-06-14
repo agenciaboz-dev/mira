@@ -6,9 +6,11 @@ interface SearchFieldProps {
     setProductsResult?: (values: Product[]) => void
     setCategoriesResult?: (values: Category[]) => void
     setSuppliersResult?: (values: Supplier[]) => void
+    setOrdersResult?: (values: Order[]) => void
     productList?: Product[]
     categoryList?: Category[]
     supplierList?: Supplier[]
+    orderList?: Order[]
     button?: React.ReactElement
 }
 
@@ -16,9 +18,11 @@ export const SearchField: React.FC<SearchFieldProps> = ({
     setProductsResult: setProductResult,
     setCategoriesResult: setCategoryResult,
     setSuppliersResult: setSupplierResult,
+    setOrdersResult: setOrderResult,
     productList,
     categoryList,
     supplierList,
+    orderList,
     button = <></>,
 }) => {
     const [value, setValue] = useState("")
@@ -34,6 +38,8 @@ export const SearchField: React.FC<SearchFieldProps> = ({
             setCategoryResult(categoryList.filter((item) => item.name.toLowerCase().includes(value.toLowerCase())))
         if (supplierList && setSupplierResult)
             setSupplierResult(supplierList.filter((item) => item.name.toLowerCase().includes(value.toLowerCase())))
+        if (orderList && setOrderResult)
+            setOrderResult(orderList.filter((item) => item.user.name.toLowerCase().includes(value.toLowerCase())))
     }, [value])
 
     const Button = () => button

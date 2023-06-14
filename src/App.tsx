@@ -14,6 +14,7 @@ import { CategoriesProvider } from "./contexts/categoriesContext"
 import { CurrentCategoryProvider } from "./contexts/currentCategoryContext"
 import { SuppliersProvider } from "./contexts/suppliersContext"
 import { CurrentSupplierProvider } from "./contexts/currentSupplierContext"
+import { OrdersProvider } from "./contexts/ordersContext"
 
 function App() {
     const muiTheme = useMuiTheme()
@@ -29,15 +30,17 @@ function App() {
                                     <SuppliersProvider>
                                         <CategoriesProvider>
                                             <ProductsProvider>
-                                                <BrowserRouter>
-                                                    <Snackbar />
-                                                    <ConfirmDialog />
-                                                    <Routes>
-                                                        <Route index element={<Login />} />
-                                                        <Route path="/dashboard/*" element={<Adm />} />
-                                                        <Route path="/login" element={<Login />} />
-                                                    </Routes>
-                                                </BrowserRouter>
+                                                <OrdersProvider>
+                                                    <BrowserRouter>
+                                                        <Snackbar />
+                                                        <ConfirmDialog />
+                                                        <Routes>
+                                                            <Route index element={<Login />} />
+                                                            <Route path="/dashboard/*" element={<Adm />} />
+                                                            <Route path="/login" element={<Login />} />
+                                                        </Routes>
+                                                    </BrowserRouter>
+                                                </OrdersProvider>
                                             </ProductsProvider>
                                         </CategoriesProvider>
                                     </SuppliersProvider>
