@@ -33,6 +33,12 @@ export const Orders: React.FC<OrdersProps> = ({}) => {
         },
         {
             name: "Nome do cliente",
+            selector: (row) => row.name,
+            sortable: true,
+            // width: "25%",
+        },
+        {
+            name: "Usuário",
             selector: (row) => row.user.name,
             sortable: true,
             // width: "25%",

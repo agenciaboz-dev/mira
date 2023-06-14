@@ -38,7 +38,8 @@ export const Order: React.FC<OrderProps> = ({}) => {
                 </IconButton>
                 <TextField label="Pedido" value={order.id} InputProps={{ readOnly: true }} />
                 <TextField label="Data" value={new Date(order.date).toLocaleString()} InputProps={{ readOnly: true }} />
-                <TextField label="Cliente" value={order.user.name} InputProps={{ readOnly: true }} />
+                <TextField label="Cliente" value={order.name} InputProps={{ readOnly: true }} />
+                <TextField label="Usuário" value={order.user.name} InputProps={{ readOnly: true }} />
             </Box>
         </Paper>
     ) : (
