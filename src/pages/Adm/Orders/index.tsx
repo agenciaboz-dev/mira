@@ -25,7 +25,13 @@ export const Orders: React.FC<OrdersProps> = ({}) => {
 
     const columns: TableColumn<Order>[] = [
         {
-            name: "Nome",
+            name: "Pedido",
+            selector: (row) => row.id,
+            sortable: true,
+            width: "8%",
+        },
+        {
+            name: "Nome do cliente",
             selector: (row) => row.user.name,
             sortable: true,
             // width: "25%",
@@ -39,19 +45,6 @@ export const Orders: React.FC<OrdersProps> = ({}) => {
                     <EditIcon color="primary" />
                 </IconButton>
             ),
-        },
-        {
-            name: "Deletar",
-            selector: (row) => row.id,
-            button: true,
-            cell: (row) =>
-                deleting == row.id ? (
-                    <CircularProgress size="1.2rem" color="error" />
-                ) : (
-                    <IconButton onClick={() => handleDelete(row)}>
-                        <DeleteIcon color="error" />
-                    </IconButton>
-                ),
         },
     ]
 
