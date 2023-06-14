@@ -1,6 +1,8 @@
 import CategoryIcon from "@mui/icons-material/Category"
 import HandymanIcon from "@mui/icons-material/Handyman"
 import SellIcon from "@mui/icons-material/Sell"
+import FactCheckIcon from "@mui/icons-material/FactCheck"
+import ContactsIcon from "@mui/icons-material/Contacts"
 
 export const useSidebarMenus = () => {
     const menus: SidebarMenu[] = [
@@ -26,7 +28,7 @@ export const useSidebarMenus = () => {
             id: 4,
             title: "Pedidos",
             location: "/dashboard/orders",
-            icon: <SellIcon />,
+            icon: <FactCheckIcon />,
         },
     ]
 
