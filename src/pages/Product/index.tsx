@@ -59,15 +59,15 @@ export const Product: React.FC<ProductProps> = ({ product, style, innerRef, onCl
                 <img className="image" src={product.image} alt={product.name} />
 
                 <IconButton
-                    sx={{ marginLeft: "auto", position: "absolute", top: "5vw", right: "5vw" }}
+                    sx={{ marginLeft: "auto", position: "absolute", top: "2vw", right: "2vw" }}
                     onClick={() => handleClose()}
                 >
                     <CancelIcon sx={styles.cancel_icon} />
                 </IconButton>
 
                 <div className="title-container">
-                    <h1>{product.name}</h1>
                     <CurrencyText value={product.price} />
+                    <h1>{product.name}</h1>
                 </div>
 
                 <div className="product-description-container">
