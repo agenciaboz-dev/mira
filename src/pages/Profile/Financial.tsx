@@ -32,7 +32,8 @@ export const Financial: React.FC<FinancialProps> = ({ user }) => {
 
     const [loading, setLoading] = useState(false)
     const [cardNumberError, setCardNumberError] = useState("")
-
+    const [expiryDateError, setExpiryDateError] = useState("")
+    
     const initialValues = user.cards[0] || {
         id: 0,
         number: "",
@@ -42,6 +43,8 @@ export const Financial: React.FC<FinancialProps> = ({ user }) => {
         cvv: "",
         type: "",
     }
+    // const [expMonth, setExpMonth] = useState(Number(initialValues.expiration_month))
+    // const [expYear, setExpYear] = useState(Number(initialValues.expiration_year))
 
     const radio_style = {
         "&.Mui-checked": {
@@ -66,27 +69,11 @@ export const Financial: React.FC<FinancialProps> = ({ user }) => {
 
     
     const handleSubmit = (values: CardType) => {
-        const currentYear = new Date().getFullYear();
-        const exp_month = parseInt(values.expiration_month)
-        const exp_year = parseInt(values.expiration_year)
 
         if (!values.type) return
         if (!!cardNumberError) return
+        if (!validateExpiry(values)) return
         if (loading) return
-
-        if ( values.expiry.length == 7 ) {
-            if ( exp_month < 1 || exp_month > 12 ){
-                alert("Mês inválido")
-                return
-            }
-            else if ( exp_year < currentYear || exp_year > currentYear + 50 ){
-                alert("Ano inválido")
-                return
-            }
-        } else {
-            alert("Data inválida")
-            return
-        }
 
         const expiry = values.expiry.split('/')
         
@@ -106,6 +93,35 @@ export const Financial: React.FC<FinancialProps> = ({ user }) => {
             },
             finallyCallback: () => setLoading(false),
         })
+    }
+
+    const validateExpiry = (values:CardType) => {
+        const currentYear = new Date().getFullYear();
+
+        const [month, year] = values.expiry.split('/')
+        
+
+        if ( values.expiry.length == 7 ) {
+            if ( Number(month) < 1 || Number(month) > 12 ){
+                alert("Mês inválido")
+                return
+            }
+            if ( Number(year) < currentYear || Number(year) > currentYear + 50 ){
+                alert("Ano inválido")
+                return
+            }
+        } else {
+            alert("Data inválida")
+            return
+        }
+
+        return true
+    }
+
+    const handleExpiryBlur = (values:CardType) => {
+        if (!validateExpiry(values)) {
+            setExpiryDateError('Data inválida')
+        }
     }
 
     return (
@@ -176,13 +192,21 @@ export const Financial: React.FC<FinancialProps> = ({ user }) => {
                             <div className="financial-input-container">
                                 <label htmlFor="expiry">Data de expiração</label>
                                 <MaskedInput
+                                    onBlur={() => handleExpiryBlur(values)}
                                     mask={[/\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]}
                                     guide={false}
                                     id="expiry"
                                     name="expiry"
                                     value={values.expiry}
                                     onChange={handleChange}
-                                    render={(ref, props) => <TextField inputRef={ref} {...props} placeholder="Expiração" />}
+                                    render={(ref, props) =>
+                                        < TextField
+                                            inputRef={ref}
+                                            {...props}
+                                            placeholder="Expiração"
+                                            error={!!expiryDateError}
+                                            helperText={expiryDateError}
+                                        />}
                                 />
                                 {/* <MaskedInput
                                     mask={numberMask}
