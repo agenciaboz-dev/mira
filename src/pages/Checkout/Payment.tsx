@@ -100,6 +100,8 @@ export const Payment: React.FC<PaymentProps> = ({}) => {
                     user,
                     address,
                     total,
+                    name: user!.name,
+                    cpf: user!.cpf,
                     products: cart,
                     method: "card",
                     card: {
