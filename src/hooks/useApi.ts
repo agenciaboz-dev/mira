@@ -1,3 +1,4 @@
+import { useSnackbar } from "burgos-snackbar"
 import { api } from "../api"
 
 interface ApiOptions {
@@ -8,9 +9,12 @@ interface ApiOptions {
 }
 
 export const useApi = () => {
+    const { snackbar } = useSnackbar()
+
     const defaultError = (error: Error, errorCallback?: Function) => {
         errorCallback && errorCallback()
         console.error(error)
+        snackbar({ severity: "error", text: "erro desconhecido" })
     }
 
     const defaultFinally = (finallyCallback?: Function) => {
