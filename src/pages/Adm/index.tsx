@@ -10,6 +10,7 @@ import { Categories } from "./Categories"
 import { useUser } from "../../hooks/useUser"
 import { Suppliers } from "./Suppliers"
 import { Orders } from "./Orders"
+import { Order } from "./Orders/Order"
 
 interface AdmProps {}
 
@@ -33,6 +34,7 @@ export const Adm: React.FC<AdmProps> = ({}) => {
                 <Route path="/categories" element={<Categories />} />
                 <Route path="/suppliers" element={<Suppliers />} />
                 <Route path="/orders" element={<Orders />} />
+                <Route path="/orders/:id" element={<Order />} />
             </Routes>
         </div>
     )

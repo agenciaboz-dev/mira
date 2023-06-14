@@ -127,6 +127,12 @@ export const useApi = () => {
                     .then((response) => callback(response))
                     .catch((error) => defaultError(error))
             },
+            id: (options: ApiOptions) => {
+                api.post("/orders", options.data)
+                    .then((response) => options.callback(response))
+                    .catch((error) => defaultError(error, options.errorCallback))
+                    .finally(() => defaultFinally(options.finallyCallback))
+            },
         },
         cep: (options: ApiOptions) => {
             api.post("/cep", options.data)

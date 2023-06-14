@@ -5,16 +5,17 @@ import { useOrders } from "../../../hooks/useOrders"
 import AddIcon from "@mui/icons-material/Add"
 import styles from "./../Products/styles"
 import DataTable, { TableColumn } from "react-data-table-component"
-import DeleteIcon from "@mui/icons-material/Delete"
-import EditIcon from "@mui/icons-material/Edit"
+import ForwardIcon from "@mui/icons-material/Forward"
 import { useSnackbar } from "burgos-snackbar"
 import { useConfirmDialog } from "burgos-confirm"
 import { useApi } from "../../../hooks/useApi"
+import { useNavigate } from "react-router-dom"
 
 interface OrdersProps {}
 
 export const Orders: React.FC<OrdersProps> = ({}) => {
     const api = useApi()
+    const navigate = useNavigate()
 
     const { orders, refresh } = useOrders()
     const { snackbar } = useSnackbar()
@@ -37,18 +38,16 @@ export const Orders: React.FC<OrdersProps> = ({}) => {
             // width: "25%",
         },
         {
-            name: "Editar",
+            name: "Visualizar",
             selector: (row) => row.id,
             button: true,
             cell: (row) => (
-                <IconButton onClick={() => handleEdit(row)}>
-                    <EditIcon color="primary" />
+                <IconButton onClick={() => navigate(`/dashboard/orders/${row.id}`)}>
+                    <ForwardIcon color="primary" />
                 </IconButton>
             ),
         },
     ]
-
-    const handleEdit = (category: Order) => {}
 
     const handleDelete = (category: Order) => {
         confirm({
@@ -90,15 +89,7 @@ export const Orders: React.FC<OrdersProps> = ({}) => {
 
     return (
         <Box sx={styles.body}>
-            <SearchField
-                orderList={orders}
-                setOrdersResult={handleSearch}
-                button={
-                    <Button variant="contained" onClick={handleNew}>
-                        <AddIcon />
-                    </Button>
-                }
-            />
+            <SearchField orderList={orders} setOrdersResult={handleSearch} />
             <Paper sx={styles.list} elevation={5}>
                 {orders.length > 0 ? (
                     <DataTable
