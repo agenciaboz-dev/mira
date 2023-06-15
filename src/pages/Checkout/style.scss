@@ -213,8 +213,7 @@
     .Pix-Component {
         width: 100%;
         flex-direction: column;
-        gap: 5vw;
-        padding-bottom: 5vw;
+        gap: 3vw;
 
         p {
             font-size: 3.5vw;
@@ -224,6 +223,7 @@
         .code-wrapper {
             width: 100%;
             justify-content: center;
+            margin: 2vw 0;
         }
 
         .totals-container {
