@@ -73,6 +73,7 @@ export const CategoryModal: React.FC<CategoryModalProps> = ({}) => {
     const handleClose = () => {
         setOpen(false)
         setCurrentCategory(null)
+        setFiles([])
     }
 
     return (
