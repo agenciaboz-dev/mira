@@ -1,4 +1,4 @@
-import { Box, Button, CircularProgress, IconButton, Paper, Skeleton } from "@mui/material"
+import { Avatar, Box, Button, CircularProgress, IconButton, Paper, Skeleton } from "@mui/material"
 import React, { useEffect, useState } from "react"
 import { SearchField } from "../../../components/SearchField"
 import { useCategories } from "../../../hooks/useCategories"
@@ -12,6 +12,7 @@ import { useConfirmDialog } from "burgos-confirm"
 import { useApi } from "../../../hooks/useApi"
 import { useCurrentCategory } from "../../../hooks/useCurrentCategory"
 import { CategoryModal } from "../../../components/CategoryModal"
+import CancelIcon from "@mui/icons-material/Cancel"
 
 interface CategoriesProps {}
 
@@ -27,6 +28,17 @@ export const Categories: React.FC<CategoriesProps> = ({}) => {
     const [deleting, setDeleting] = useState(0)
 
     const columns: TableColumn<Category>[] = [
+        {
+            name: "",
+            selector: (row) => row.image,
+            sortable: true,
+            cell: (row) => (
+                <Avatar src={row.image} sx={{ bgcolor: "transparent" }}>
+                    <CancelIcon color="error" sx={{ width: "100%", height: "100%" }} />
+                </Avatar>
+            ),
+            width: "5%",
+        },
         {
             name: "Nome",
             selector: (row) => row.name,

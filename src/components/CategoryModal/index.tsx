@@ -11,12 +11,15 @@ import { useNumberMask, useCurrencyMask } from "burgos-masks"
 import { useApi } from "../../hooks/useApi"
 import { useCurrentCategory } from "../../hooks/useCurrentCategory"
 import { useSnackbar } from "burgos-snackbar"
+import { Avatar, ExtFile, FileInputButton } from "@files-ui/react"
+import colors from "../../colors"
 
 interface CategoryModalProps {}
 
 export const CategoryModal: React.FC<CategoryModalProps> = ({}) => {
     const [error, setError] = useState(false)
     const [loading, setLoading] = useState(false)
+    const [files, setFiles] = useState<ExtFile[]>([])
 
     const currencyMask = useCurrencyMask()
     const numberMask = useNumberMask({})
@@ -26,14 +29,26 @@ export const CategoryModal: React.FC<CategoryModalProps> = ({}) => {
     const { currentCategory, setCurrentCategory, open, setOpen } = useCurrentCategory()
     const { snackbar } = useSnackbar()
 
-    const initialValues: Category = currentCategory || { id: 0, name: "" }
+    const initialValues: Category = currentCategory || { id: 0, image: "", name: "" }
 
     const handleSubmit = (values: Category) => {
+        if (loading) return
+        if (files.length == 0 && !values.image) {
+            console.log(values.image)
+            snackbar({ severity: "warning", text: "Envie uma imagem" })
+            return
+        }
+
         setLoading(true)
+
+        const formData = new FormData()
+        console.log(files)
+        if (files.length > 0) formData.append("file", files[0].file!)
+        formData.append("data", JSON.stringify(values))
 
         if (currentCategory) {
             api.categories.update({
-                data: values,
+                data: formData,
                 callback: (response: { data: Category }) => {
                     console.log(response.data)
                     setOpen(false)
@@ -44,7 +59,7 @@ export const CategoryModal: React.FC<CategoryModalProps> = ({}) => {
             })
         } else {
             api.categories.add({
-                data: values,
+                data: formData,
                 callback: (response: { data: Category }) => {
                     setOpen(false)
                     refresh()
@@ -74,6 +89,35 @@ export const CategoryModal: React.FC<CategoryModalProps> = ({}) => {
                     {({ values, handleChange }) => (
                         <Form>
                             <TextField required label="Nome" name="name" value={values.name} onChange={handleChange} />
+                            <Box sx={{ gap: "1vw" }}>
+                                <TextField
+                                    required
+                                    label="Link de imagem"
+                                    name="image"
+                                    value={values.image}
+                                    onChange={handleChange}
+                                    disabled
+                                />
+                                <FileInputButton
+                                    onChange={(files) => setFiles(files)}
+                                    value={files}
+                                    behaviour="replace"
+                                    label="Enviar imagem"
+                                    accept="image/*"
+                                    color={colors.primary}
+                                    style={{ width: "12vw", padding: "0.5vw" }}
+                                />
+                            </Box>
+                            {files.map((file: ExtFile) => (
+                                <Avatar
+                                    key={file.id}
+                                    src={file.file}
+                                    readOnly
+                                    smartImgFit={"orientation"}
+                                    // style={{ width: "100%", height: "30vw" }}
+                                    style={{ alignSelf: "center" }}
+                                />
+                            ))}
                             {currentCategory ? (
                                 <Button type="submit" variant="contained" fullWidth>
                                     {loading ? (
