@@ -49,6 +49,7 @@ export const Orders: React.FC<OrdersProps> = ({}) => {
             cell: (row) => (
                 <p
                     title={row.name}
+                    onClick={() => navigate(`/dashboard/orders/${row.id}`)}
                     style={{ whiteSpace: "nowrap", textOverflow: "ellipsis", width: "15vw", overflow: "hidden" }}
                 >
                     {row.name}
@@ -63,6 +64,7 @@ export const Orders: React.FC<OrdersProps> = ({}) => {
             cell: (row) => (
                 <p
                     title={row.user.name}
+                    onClick={() => navigate(`/dashboard/orders/${row.id}`)}
                     style={{ whiteSpace: "nowrap", textOverflow: "ellipsis", width: "15vw", overflow: "hidden" }}
                 >
                     {row.user.name}
@@ -74,7 +76,11 @@ export const Orders: React.FC<OrdersProps> = ({}) => {
             selector: (row) => row.value,
             sortable: true,
             // width: "10%",
-            cell: (row) => <CurrencyText value={row.value} />,
+            cell: (row) => (
+                <Box onClick={() => navigate(`/dashboard/orders/${row.id}`)}>
+                    <CurrencyText value={row.value} />
+                </Box>
+            ),
         },
         {
             name: "Status",
@@ -82,7 +88,7 @@ export const Orders: React.FC<OrdersProps> = ({}) => {
             sortable: true,
             // width: "15%",
             cell: (row) => (
-                <Box sx={{ gap: "0.6vw", alignItems: "center" }}>
+                <Box sx={{ gap: "0.6vw", alignItems: "center" }} onClick={() => navigate(`/dashboard/orders/${row.id}`)}>
                     {/* @ts-ignore */}
                     <CircleIcon sx={{ width: "1vw", color: statusEnum[row.status.toString()].color }} />
                     {/* @ts-ignore */}
@@ -149,7 +155,9 @@ export const Orders: React.FC<OrdersProps> = ({}) => {
                         fixedHeader
                         fixedHeaderScrollHeight={"37.1vw"}
                         onRowClicked={(row) => navigate(`/dashboard/orders/${row.id}`)}
-                        customStyles={{ rows: { style: { cursor: "pointer" } } }}
+                        customStyles={{
+                            rows: { style: { cursor: "pointer" } },
+                        }}
                     />
                 ) : (
                     <Skeleton variant="rectangular" sx={{ width: "100%", height: "20vw" }} animation="wave" />
