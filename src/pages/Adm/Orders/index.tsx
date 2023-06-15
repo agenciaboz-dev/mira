@@ -32,16 +32,44 @@ export const Orders: React.FC<OrdersProps> = ({}) => {
             width: "8%",
         },
         {
+            name: "Status",
+            selector: (row) => row.status,
+            sortable: true,
+            width: "15%",
+        },
+        {
+            name: "Data",
+            selector: (row) => new Date(row.date).toLocaleString(),
+            sortable: true,
+            width: "15%",
+        },
+        {
             name: "Nome do cliente",
             selector: (row) => row.name,
             sortable: true,
-            // width: "25%",
+            width: "15%",
+            cell: (row) => (
+                <p
+                    title={row.name}
+                    style={{ whiteSpace: "nowrap", textOverflow: "ellipsis", width: "15vw", overflow: "hidden" }}
+                >
+                    {row.name}
+                </p>
+            ),
         },
         {
             name: "Usuário",
             selector: (row) => row.user.name,
             sortable: true,
-            // width: "25%",
+            width: "15%",
+            cell: (row) => (
+                <p
+                    title={row.user.name}
+                    style={{ whiteSpace: "nowrap", textOverflow: "ellipsis", width: "15vw", overflow: "hidden" }}
+                >
+                    {row.user.name}
+                </p>
+            ),
         },
         {
             name: "Visualizar",
