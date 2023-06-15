@@ -58,6 +58,20 @@ export const Products: React.FC<ProductsProps> = ({}) => {
             ),
         },
         {
+            name: "Marca",
+            selector: (row) => row.brand,
+            sortable: true,
+            width: "10%%",
+            cell: (row) => (
+                <p
+                    title={row.brand}
+                    style={{ whiteSpace: "nowrap", textOverflow: "ellipsis", width: "10vw", overflow: "hidden" }}
+                >
+                    {row.brand}
+                </p>
+            ),
+        },
+        {
             name: "Preço",
             selector: (row) => row.price,
             sortable: true,
@@ -79,22 +93,6 @@ export const Products: React.FC<ProductsProps> = ({}) => {
                     prefix={""}
                 />
             ),
-        },
-        {
-            name: "Volume",
-            selector: (row) => row.id,
-            sortable: true,
-            cell: (row) => (
-                <p>
-                    {row.width} x {row.height} x {row.length} cm
-                </p>
-            ),
-        },
-        {
-            name: "Peso",
-            selector: (row) => row.id,
-            sortable: true,
-            cell: (row) => <p>{row.weight} kg</p>,
         },
         {
             name: "QR Code",
