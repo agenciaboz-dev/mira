@@ -65,10 +65,9 @@ export const Cart: React.FC<CartProps> = ({}) => {
     return (
         <div className="Cart-Page">
             <div className="title-container">
-                <DesignedButton
-                    className="cancel-purchase-button"
-                    onClick={reset}
-                >Cancelar compra</DesignedButton>
+                <DesignedButton className="cancel-purchase-button" onClick={reset}>
+                    Cancelar compra
+                </DesignedButton>
                 <img src="/promotions.png" alt="Promoções" />
             </div>
 
@@ -85,7 +84,7 @@ export const Cart: React.FC<CartProps> = ({}) => {
                 >
                     <MenuItem
                         sx={{ width: "100%", justifyContent: "center" }}
-                        onClick={() => onCategoryClick({ id: 0, name: "Todos" })}
+                        onClick={() => onCategoryClick({ id: 0, image: "", name: "Todos" })}
                     >
                         Todos
                     </MenuItem>
@@ -102,7 +101,7 @@ export const Cart: React.FC<CartProps> = ({}) => {
                                 gap: "1vw",
                             }}
                         >
-                            <Avatar src={category.name} variant="rounded" sx={{ width: "10vw", height: "10vw" }}>
+                            <Avatar src={category.image} variant="rounded" sx={{ width: "10vw", height: "10vw" }}>
                                 <CategoryIcon />
                             </Avatar>
                             {category.name}
