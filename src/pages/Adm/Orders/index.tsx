@@ -10,12 +10,16 @@ import { useSnackbar } from "burgos-snackbar"
 import { useConfirmDialog } from "burgos-confirm"
 import { useApi } from "../../../hooks/useApi"
 import { useNavigate } from "react-router-dom"
+import { useStatusEnum } from "../../../hooks/useStatusEnum"
+import { CurrencyText } from "../../../components/CurrencyText"
+import CircleIcon from "@mui/icons-material/Circle"
 
 interface OrdersProps {}
 
 export const Orders: React.FC<OrdersProps> = ({}) => {
     const api = useApi()
     const navigate = useNavigate()
+    const statusEnum = useStatusEnum()
 
     const { orders, refresh } = useOrders()
     const { snackbar } = useSnackbar()
@@ -32,22 +36,16 @@ export const Orders: React.FC<OrdersProps> = ({}) => {
             width: "8%",
         },
         {
-            name: "Status",
-            selector: (row) => row.status,
-            sortable: true,
-            width: "15%",
-        },
-        {
             name: "Data",
             selector: (row) => new Date(row.date).toLocaleString(),
             sortable: true,
-            width: "15%",
+            // width: "15%",
         },
         {
             name: "Nome do cliente",
             selector: (row) => row.name,
             sortable: true,
-            width: "15%",
+            // width: "15%",
             cell: (row) => (
                 <p
                     title={row.name}
@@ -61,7 +59,7 @@ export const Orders: React.FC<OrdersProps> = ({}) => {
             name: "Usuário",
             selector: (row) => row.user.name,
             sortable: true,
-            width: "15%",
+            // width: "15%",
             cell: (row) => (
                 <p
                     title={row.user.name}
@@ -72,13 +70,24 @@ export const Orders: React.FC<OrdersProps> = ({}) => {
             ),
         },
         {
-            name: "Visualizar",
-            selector: (row) => row.id,
-            button: true,
+            name: "Valor",
+            selector: (row) => row.value,
+            sortable: true,
+            // width: "10%",
+            cell: (row) => <CurrencyText value={row.value} />,
+        },
+        {
+            name: "Status",
+            selector: (row) => row.status,
+            sortable: true,
+            // width: "15%",
             cell: (row) => (
-                <IconButton onClick={() => navigate(`/dashboard/orders/${row.id}`)}>
-                    <ForwardIcon color="primary" />
-                </IconButton>
+                <Box sx={{ gap: "0.6vw", alignItems: "center" }}>
+                    {/* @ts-ignore */}
+                    <CircleIcon sx={{ width: "1vw", color: statusEnum[row.status.toString()].color }} />
+                    {/* @ts-ignore */}
+                    <p>{statusEnum[row.status.toString()].title}</p>
+                </Box>
             ),
         },
     ]
@@ -139,6 +148,8 @@ export const Orders: React.FC<OrdersProps> = ({}) => {
                         highlightOnHover
                         fixedHeader
                         fixedHeaderScrollHeight={"37.1vw"}
+                        onRowClicked={(row) => navigate(`/dashboard/orders/${row.id}`)}
+                        customStyles={{ rows: { style: { cursor: "pointer" } } }}
                     />
                 ) : (
                     <Skeleton variant="rectangular" sx={{ width: "100%", height: "20vw" }} animation="wave" />

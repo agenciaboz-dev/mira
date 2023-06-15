@@ -9,4 +9,5 @@ declare interface Order {
     date: string
     method: "card" | "pix"
     address: Address
+    value: number
 }
