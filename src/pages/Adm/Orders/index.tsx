@@ -89,10 +89,8 @@ export const Orders: React.FC<OrdersProps> = ({}) => {
             // width: "15%",
             cell: (row) => (
                 <Box sx={{ gap: "0.6vw", alignItems: "center" }} onClick={() => navigate(`/dashboard/orders/${row.id}`)}>
-                    {/* @ts-ignore */}
-                    <CircleIcon sx={{ width: "1vw", color: statusEnum[row.status.toString()].color }} />
-                    {/* @ts-ignore */}
-                    <p>{statusEnum[row.status.toString()].title}</p>
+                    <CircleIcon sx={{ width: "1vw", color: statusEnum[row.status].color }} />
+                    <p>{statusEnum[row.status].title}</p>
                 </Box>
             ),
         },
