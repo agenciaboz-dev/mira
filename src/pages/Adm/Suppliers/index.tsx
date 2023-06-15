@@ -111,7 +111,7 @@ export const Suppliers: React.FC<SuppliersProps> = ({}) => {
         <Box sx={styles.body}>
             <SupplierModal />
             <SearchField
-                categoryList={suppliers}
+                supplierList={suppliers}
                 setSuppliersResult={handleSearch}
                 button={
                     <Button variant="contained" onClick={handleNew}>
