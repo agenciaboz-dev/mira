@@ -24,7 +24,7 @@ export const ProductStory: React.FC<ProductStoryProps> = ({ product, open, setOp
         <Dialog open={open} onClose={handleClose} sx={styles.dialog} PaperProps={{ sx: {border: "1px solid #555555", boxShadow: "2px 8px 0px #1a80b8", borderRadius: "10vw", width: "86vw" }}}>
             <DialogTitle sx={styles.title}>
                 {product?.name}
-                <IconButton onClick={() => setOpen(false)} sx={{ position: "absolute", top: "2vw", right: "2vw" }}>
+                <IconButton onClick={() => setOpen(false)} sx={{ position: "absolute", top: "1vw", right: "1vw" }}>
                     <CancelIcon color="error" sx={styles.close_icon} />
                 </IconButton>
             </DialogTitle>
