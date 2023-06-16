@@ -17,5 +17,9 @@ export const useCart = () => {
         setCart([...cart, { ...product, quantity }])
     }
 
-    return { cart, setCart, total, add }
+    const empty = () => {
+        setCart([])
+    }
+
+    return { cart, setCart, total, add, empty }
 }
