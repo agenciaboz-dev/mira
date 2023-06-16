@@ -236,6 +236,7 @@ export const CardForm: React.FC<CardFormProps> = ({ user, values, setValues, cho
                 <MaskedInput
                     mask={threeNumberMask}
                     guide={false}
+                    type="password"
                     name="cvv"
                     value={values.cardCvv}
                     onChange={(event) => setValues.setCardCvv(event.target.value)}
