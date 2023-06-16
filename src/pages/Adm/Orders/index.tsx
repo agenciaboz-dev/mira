@@ -148,7 +148,7 @@ export const Orders: React.FC<OrdersProps> = ({}) => {
                             selectAllRowsItemText: "Todos",
                         }}
                         columns={columns}
-                        data={ordersList.reverse()}
+                        data={ordersList}
                         highlightOnHover
                         fixedHeader
                         fixedHeaderScrollHeight={"37.1vw"}
