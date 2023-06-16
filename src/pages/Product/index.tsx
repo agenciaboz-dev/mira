@@ -76,16 +76,16 @@ export const Product: React.FC<ProductProps> = ({ product, style, innerRef, onCl
 
                 <div className="specs-container">
                     <Paper sx={styles.paper}>
-                        <h3>Dimensões</h3>
-                        <p>18 X 27</p>
+                        <h3 style={{ fontSize: "3vw" }}>Dimensões</h3>
+                        <p style={{ fontSize: "3vw" }}>18 X 27</p>
                     </Paper>
                     <Paper sx={styles.paper}>
-                        <h3>Tipo</h3>
-                        <p>Chata / Lisa</p>
+                        <h3 style={{ fontSize: "3vw" }}>Tipo</h3>
+                        <p style={{ fontSize: "3vw" }}>Chata / Lisa</p>
                     </Paper>
                     <Paper sx={styles.paper}>
-                        <h3>Peso</h3>
-                        <p>1 Kg</p>
+                        <h3 style={{ fontSize: "3vw" }}>Peso</h3>
+                        <p style={{ fontSize: "3vw" }}>1 Kg</p>
                     </Paper>
                 </div>
             </div>
@@ -109,7 +109,10 @@ export const Product: React.FC<ProductProps> = ({ product, style, innerRef, onCl
                 <IconButton onClick={() => changeQuantity(1)}>
                     <PlusIcon style={styles.cart_icon} />
                 </IconButton>
-                <Button style={{ fontSize: "3.75vw", width: "45%", padding: "0.5vw 7vw", lineHeight: "1.25" }} onClick={() => addToCart()}>
+                <Button
+                    style={{ fontSize: "3.75vw", width: "45%", padding: "0.5vw 7vw", lineHeight: "1.25" }}
+                    onClick={() => addToCart()}
+                >
                     Adicionar ao Carrinho
                 </Button>
             </div>
