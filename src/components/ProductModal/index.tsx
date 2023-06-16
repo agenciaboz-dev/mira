@@ -134,7 +134,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, produ
                         }
                         colors={["#F5F5F5", "#FFFFFF"]}
                     />
-                    <Specs2 title="Peso" value={String(product.weight)} colors={["#EBEBEB", "#F5F5F5"]} />
+                    <Specs2 title="Peso" value={String(product.weight) + " Kg"} colors={["#EBEBEB", "#F5F5F5"]} />
                     <Specs2 title="Categorias" value={product.categories[0].name} colors={["#F5F5F5", "#FFFFFF"]} />
                 </div>
 
