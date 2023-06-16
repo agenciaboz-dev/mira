@@ -100,7 +100,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, produ
             open={open}
             onClose={handleClose}
             sx={styles.dialog}
-            PaperProps={{ sx: { borderRadius: "3vw", padding: "1vw" } }}
+            PaperProps={{ sx: { borderRadius: "3vw", padding: "1vw", maxWidth: "none" } }}
         >
             <IconButton onClick={handleClose} sx={{ position: "absolute", right: "1vw" }}>
                 <CancelIcon color="error" sx={styles.close_icon} />
