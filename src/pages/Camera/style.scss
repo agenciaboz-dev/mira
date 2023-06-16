@@ -10,7 +10,7 @@
     .button-wrapper {
         flex-direction: column;
         justify-content: flex-end;
-        height: 100vh;
+        height: -webkit-fill-available;;
         padding: 7vw;
         
         .button-container {
