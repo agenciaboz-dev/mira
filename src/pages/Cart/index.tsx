@@ -64,9 +64,9 @@ export const Cart: React.FC<CartProps> = ({}) => {
                         style={{ width: "3vw", marginLeft: "-3vw", marginBottom: "2vw", alignSelf: "flex-end" }}
                     />
                 </IconButton>
-                <h2>Carrinho</h2>
+                <h2 style={{ pointerEvents: "none" }}>Carrinho</h2>
                 <IconButton onClick={() => navigate("/scan")} style={button_style}>
-                    <QrCodePlusIcon ref={ qrCodeRef } style={icon_style} />
+                    <QrCodePlusIcon ref={qrCodeRef} style={icon_style} />
                 </IconButton>
             </div>
 
