@@ -94,6 +94,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, produ
         setOpen(false)
     }
 
+
     return (
         <Dialog
             open={open}
@@ -107,7 +108,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, produ
 
             <DialogContent sx={styles.content_container}>
                 <div className="info-container">
-                    <img src={product.image} alt={product.name} />
+                    <img style={{ padding: "1.6vw" }} src={product.image} alt={product.name} />
                     <div className="text-container">
                         <h1 style={{ fontSize: "3.2vw", paddingTop: "3vw" }}>{product.name}</h1>
                         <h1>
@@ -116,19 +117,27 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, produ
                                 style={{ fontWeight: "500", fontSize: "3.5vw", marginLeft: "auto" }}
                             />
                         </h1>
-                        <p style={{ fontSize: "2.1vw" }}>{product.description} </p>
-                        <div className="specs1-container" style={{ width: "100%", justifyContent: "space-between" }}>
-                            <Specs1 title="Quantidade" value={String(product.stock)} />
-                            <Specs1 title="Tipo" value={String(product.stock_type)} />
-                            <Specs1 title="Peso" value={String(product.weight) + " Kg"} />
-                        </div>
+                        <p style={{ fontSize: "2.1vw", paddingBottom: "2vw" }}>{product.description} </p>
                     </div>
                 </div>
                 <div className="specs-container">
                     <Specs2 title="Fabricante" value={product.brand} colors={["#EBEBEB", "#F5F5F5"]} />
-                    <Specs2 title="Tipo de cabeça do prego" value="Chata" colors={["#F5F5F5", "#FFFFFF"]} />
-                    <Specs2 title="Tipo de corpo do prego" value="Quantidade" colors={["#EBEBEB", "#F5F5F5"]} />
+                    <Specs2
+                        title="Dimensões"
+                        value={
+                            String(product.width) +
+                            "cm x " +
+                            String(product.height) +
+                            "cm x " +
+                            String(product.length) +
+                            "cm"
+                        }
+                        colors={["#F5F5F5", "#FFFFFF"]}
+                    />
+                    <Specs2 title="Peso" value={String(product.weight) + " Kg"} colors={["#EBEBEB", "#F5F5F5"]} />
+                    <Specs2 title="Categorias" value={product.categories[0].name} colors={["#F5F5F5", "#FFFFFF"]} />
                 </div>
+
                 <div className="story-container" style={{ fontSize: "2.3vw", paddingTop: "1.5vw" }}>
                     {product.story}
                 </div>
