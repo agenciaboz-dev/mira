@@ -9,8 +9,8 @@ interface Specs1Props {
 export const Specs1: React.FC<Specs1Props> = ({ title, value }) => {
     return (
         <div className="Specs1-Component">
-            <p style={{ fontWeight: "bold" }}>{title}</p>
-            <p>{value}</p>
+            <p style={{ fontWeight: "bold", fontSize: "1.4vw" }}>{title}</p>
+            <p style={{ fontSize: "1.5vw" }}>{value}</p>
         </div>
     )
 }

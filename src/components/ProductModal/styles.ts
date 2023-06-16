@@ -5,10 +5,10 @@ export const styles = {
         justifyContent: "center",
         padding: "2vw!important",
     },
-    
+
     content_container: {
         display: "flex",
-        width: "75vw",
+        width: "85vw",
         flexDirection: "column",
         gap: "2vw",
         padding: "4vw",

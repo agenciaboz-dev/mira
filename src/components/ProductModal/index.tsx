@@ -95,7 +95,12 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, produ
     }
 
     return (
-        <Dialog open={open} onClose={handleClose} sx={styles.dialog} PaperProps={{ sx: { borderRadius: "3vw" } }}>
+        <Dialog
+            open={open}
+            onClose={handleClose}
+            sx={styles.dialog}
+            PaperProps={{ sx: { borderRadius: "3vw", padding: "1vw" } }}
+        >
             <IconButton onClick={handleClose} sx={{ position: "absolute", right: "1vw" }}>
                 <CancelIcon color="error" sx={styles.close_icon} />
             </IconButton>
@@ -104,11 +109,14 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, produ
                 <div className="info-container">
                     <img src={product.image} alt={product.name} />
                     <div className="text-container">
-                        <h1 style={{ alignItems: "center", display: "flex" }}>
-                            {product.name}
-                            <CurrencyText value={product.price} style={{ fontSize: "2vw", marginLeft: "auto" }} />
+                        <h1 style={{ fontSize: "3.2vw", paddingTop: "3vw" }}>{product.name}</h1>
+                        <h1>
+                            <CurrencyText
+                                value={product.price}
+                                style={{ fontWeight: "500", fontSize: "3.5vw", marginLeft: "auto" }}
+                            />
                         </h1>
-                        <p>{product.description}</p>
+                        <p style={{ fontSize: "2.1vw" }}>{product.description} </p>
                         <div className="specs1-container" style={{ width: "100%", justifyContent: "space-between" }}>
                             <Specs1 title="Quantidade" value="18 X 27" />
                             <Specs1 title="Tipo" value="Chata / Lisa" />
@@ -121,7 +129,9 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, produ
                     <Specs2 title="Tipo de cabeça do prego" value="Chata" colors={["#F5F5F5", "#FFFFFF"]} />
                     <Specs2 title="Tipo de corpo do prego" value="Quantidade" colors={["#EBEBEB", "#F5F5F5"]} />
                 </div>
-                <div className="story-container">{product.story}</div>
+                <div className="story-container" style={{ fontSize: "2.3vw", paddingTop: "1.5vw" }}>
+                    {product.story}
+                </div>
                 <div className="cart-container">
                     <IconButton onClick={() => changeQuantity(-1)}>
                         <MinusIcon style={styles.cart_icon} />
@@ -135,7 +145,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, produ
                                 backgroundColor: colors.light_grey,
                                 borderRadius: "7vw",
                                 height: "5vw",
-                                width: "10vw"
+                                width: "10vw",
                             },
                         }}
                         inputProps={{ sx: { textAlign: "center" }, inputMode: "numeric" }}
