@@ -98,7 +98,7 @@ export const Product: React.FC<ProductProps> = ({ product, style, innerRef, onCl
                 <TextField
                     value={quantity}
                     onChange={(event) => setQuantity(Number(event.target.value))}
-                    sx={{ width: "25vw" }}
+                    sx={{ width: "20%" }}
                     InputProps={{
                         sx: {
                             backgroundColor: colors.light_grey2,
