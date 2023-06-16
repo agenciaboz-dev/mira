@@ -4,7 +4,7 @@ import { ReactComponent as AvatarIcon } from "../../images/avatar_icon.svg"
 import { ReactComponent as LittleArrowDown } from "../../images/little_arrow_down.svg"
 import { ReactComponent as QrCodePlusIcon } from "../../images/qrcode_plus_icon.svg"
 import React, { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import { useProducts } from "../../hooks/useProducts"
 import { Product } from "./Product"
 import { useCart } from "../../hooks/useCart"
@@ -22,12 +22,13 @@ export const Cart: React.FC<CartProps> = ({}) => {
     const openMenu = Boolean(anchorEl)
 
     const navigate = useNavigate()
-    const { cart } = useCart()
-    const [qrCodeRef, qrCodePositions] = useMeasure()
-
     const storage = useLocalStorage()
+    const location = useLocation()
+    const { cart } = useCart()
+    
+    const [qrCodeRef, qrCodePositions] = useMeasure()
     const [tutorial, setTutorial] = useState(false)
-
+    
     const icon_style = { color: "white", height: "8vw", width: "8vw" }
     const button_style = { padding: "0" }
 
@@ -44,6 +45,15 @@ export const Cart: React.FC<CartProps> = ({}) => {
             setTutorial(true)
         }
     }, [])
+
+    useEffect(() => {
+        if (location.pathname == '/cart') {
+            window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+            });
+        }
+    }, [location.pathname]);
 
     return (
         <div className="Cart-Page">
