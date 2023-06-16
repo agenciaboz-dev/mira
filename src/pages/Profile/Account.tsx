@@ -97,7 +97,7 @@ export const Account: React.FC<AccountProps> = ({ user }) => {
                         </div>
 
                         <div className="qrcode-container">
-                            <QRCode value={"https://mira.agenciaboz.com.br"} size={20 * vw} />
+                            <QRCode value={"https://app.mirasuprimentos.com.br"} size={20 * vw} />
                             <div className="text">
                                 <h1>Baixe nosso aplicativo</h1>
                                 <p>
@@ -109,11 +109,25 @@ export const Account: React.FC<AccountProps> = ({ user }) => {
 
                         <div className="avatar-security-container">
                             <img src="/mira_text_tablet.png" alt="Mira" />
-                            <p className="avatar-security-text"><b>Olá! Mira aqui.</b><br />Essa área é dedicada a edição de detalhes da conta. Como esse dispositivo é de uso comum, essas funções estão boqueadas. Mas você pode baixar nosso aplicativo no seu próprio dispositivo utilizando o QR code acima.</p>
+                            <p className="avatar-security-text">
+                                <b>Olá! Mira aqui.</b>
+                                <br />
+                                Essa área é dedicada a edição de detalhes da conta. Como esse dispositivo é de uso comum,
+                                essas funções estão boqueadas. Mas você pode baixar nosso aplicativo no seu próprio
+                                dispositivo utilizando o QR code acima.
+                            </p>
                         </div>
 
                         <div className="buttons-container">
-                            <Button onClick={() => navigate("/cart")} style={{ fontSize: "3vw", width: "50vw", background: "linear-gradient(90deg, #9F9F9F 0%, #565656 91.94%)", padding: "1vw 3vw" }} >
+                            <Button
+                                onClick={() => navigate("/cart")}
+                                style={{
+                                    fontSize: "3vw",
+                                    width: "50vw",
+                                    background: "linear-gradient(90deg, #9F9F9F 0%, #565656 91.94%)",
+                                    padding: "1vw 3vw",
+                                }}
+                            >
                                 Cancelar
                             </Button>
                         </div>
