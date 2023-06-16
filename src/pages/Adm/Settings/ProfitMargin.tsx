@@ -30,7 +30,7 @@ export const ProfitMargin: React.FC<ProfitMarginProps> = ({}) => {
     const api = useApi()
 
     const { confirm } = useConfirmDialog()
-    const { products, setProducts } = useProducts()
+    const { products } = useProducts()
     const { snackbar } = useSnackbar()
 
     const [loading, setLoading] = useState(false)
@@ -77,12 +77,7 @@ export const ProfitMargin: React.FC<ProfitMarginProps> = ({}) => {
             content: `Esta ação irá alterar o preço de venda de todos os produtos e a página não pode ser fechada durante o processo. Deseja prosseguir?`,
             onConfirm: () => {
                 setLoading(true)
-                api.products.get({
-                    callback: (response: { data: Product[] }) => {
-                        setProducts(response.data)
-                        setTimeout(() => applyMargin(factor), 1000)
-                    },
-                })
+                applyMargin(factor)
             },
         })
     }
