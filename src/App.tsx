@@ -25,14 +25,14 @@ function App() {
 
     return (
         <ThemeProvider theme={muiTheme}>
-            <OrdersProvider>
-                <SnackbarProvider>
-                    <UserProvider>
-                        <CategoriesProvider>
-                            <ProductsProvider>
-                                <CartProvider>
-                                    <AddressProvider>
-                                        <BrowserRouter>
+            <BrowserRouter>
+                <OrdersProvider>
+                    <SnackbarProvider>
+                        <UserProvider>
+                            <CategoriesProvider>
+                                <ProductsProvider>
+                                    <CartProvider>
+                                        <AddressProvider>
                                             <Snackbar />
                                             <Routes>
                                                 <Route index element={<SplashScreen />} />
@@ -43,14 +43,14 @@ function App() {
                                                 <Route path="/profile/*" element={<Profile />} />
                                                 <Route path="/checkout/*" element={<Checkout />} />
                                             </Routes>
-                                        </BrowserRouter>
-                                    </AddressProvider>
-                                </CartProvider>
-                            </ProductsProvider>
-                        </CategoriesProvider>
-                    </UserProvider>
-                </SnackbarProvider>
-            </OrdersProvider>
+                                        </AddressProvider>
+                                    </CartProvider>
+                                </ProductsProvider>
+                            </CategoriesProvider>
+                        </UserProvider>
+                    </SnackbarProvider>
+                </OrdersProvider>
+            </BrowserRouter>
         </ThemeProvider>
     )
 }

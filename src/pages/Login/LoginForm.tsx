@@ -42,7 +42,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({}) => {
                 if (user) {
                     console.log(user)
                     setUser(user)
-                    navigate("/cart")
+                    navigate("/")
 
                     if (remember) {
                         storage.set("mira.user", user)
@@ -63,14 +63,6 @@ export const LoginForm: React.FC<LoginFormProps> = ({}) => {
             storage.set("mira.rememberme", false)
         }
     }
-
-    useEffect(() => {
-        const user = storage.get("mira.user")
-        if (user) {
-            setUser(user)
-            navigate("/cart")
-        }
-    }, [])
 
     return (
         <div className="LoginForm-Component">
@@ -99,8 +91,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({}) => {
                             size="small"
                         />
 
-                        <div className="submit-container">
-                            <Checkbox value={remember} handleChange={handleCheckboxChange} label="Mantenha-me conectado" />
+                        <div className="submit-container" style={{ justifyContent: "flex-end" }}>
                             <Button type="submit" variant="contained" style={{ width: "30vw" }}>
                                 {loading ? (
                                     <CircularProgress sx={{ color: "white" }} style={{ width: "5vw", height: "auto" }} />
