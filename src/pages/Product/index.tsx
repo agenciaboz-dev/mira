@@ -71,7 +71,7 @@ export const Product: React.FC<ProductProps> = ({ product, style, innerRef, onCl
                 </div>
 
                 <div className="product-description-container">
-                    <p>{product.description}</p>
+                    <p style={{ fontSize: "2.8vw", textAlign: "justify" }}>{product.description}</p>
                 </div>
 
                 <div className="specs-container">
