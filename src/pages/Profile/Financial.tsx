@@ -34,12 +34,14 @@ export const Financial: React.FC<FinancialProps> = ({ user }) => {
     const [cardNumberError, setCardNumberError] = useState("")
     const [expiryDateError, setExpiryDateError] = useState("")
     
-    const initialValues = user.cards[0] || {
+    const initialValues = {
+        ...user.cards[0],
+        expiry: `${user.cards[0].expiration_month}/${user.cards[0].expiration_year}`,
+    } || {
         id: 0,
         number: "",
         name: "",
-        expiration_month: "",
-        expiration_year: "",
+        expiry: "",
         cvv: "",
         type: "",
     }
