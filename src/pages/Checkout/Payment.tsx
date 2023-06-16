@@ -16,6 +16,7 @@ import { useOrder } from "../../hooks/useOrder"
 import { TextField } from "../../components/TextField"
 import MaskedInput from "react-text-mask"
 import { useCpfMask } from "burgos-masks"
+import { useSnackbar } from "burgos-snackbar"
 
 interface PaymentProps {}
 
@@ -44,6 +45,7 @@ export const Payment: React.FC<PaymentProps> = ({}) => {
     const { cart, total } = useCart()
     const { order, setOrder } = useOrder()
     const { address } = useAddress()
+    const { snackbar } = useSnackbar()
 
     const [paymentType, setPaymentType] = useState<"pix" | "credit" | undefined>("pix")
     const [disabled, setDisabled] = useState(false)
@@ -62,6 +64,11 @@ export const Payment: React.FC<PaymentProps> = ({}) => {
 
     const handleClick = () => {
         // pagseguro handling
+
+        if (!cardOwner || !cpf) {
+            snackbar({ severity: "warning", text: "Digite o nome e o CPF" })
+            return
+        }
 
         if (paymentType == "credit") {
             console.log(cardValues)
