@@ -41,9 +41,9 @@ export const Pix: React.FC<PixProps> = ({}) => {
 
     useEffect(() => {
         const data = {
-            user: { id: 1 },
-            address: { ...address },
+            user,
             total,
+            address: { ...address },
             cpf: location.state.cpf,
             name: location.state.name,
             products: cart,
