@@ -11,7 +11,7 @@ import { useCardNumberMask } from "../../hooks/useCardNumberMask"
 import { useNumberMask } from "../../hooks/useNumberMask"
 import { useApi } from "../../hooks/useApi"
 import { useNavigate } from "react-router-dom"
-import { useSnackbar } from "../../hooks/useSnackbar"
+import { useSnackbar } from "burgos-snackbar"
 import { useUser } from "../../hooks/useUser"
 import { useLocalStorage } from "../../hooks/useLocalStorage"
 

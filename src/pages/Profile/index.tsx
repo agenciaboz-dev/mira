@@ -4,7 +4,7 @@ import { useUser } from "../../hooks/useUser"
 import { Account } from "./Account"
 import { Header } from "./Header.index"
 import "./style.scss"
-import { useSnackbar } from "../../hooks/useSnackbar"
+import { useSnackbar } from "burgos-snackbar"
 import { Address } from "./Address"
 import { Financial } from "./Financial"
 

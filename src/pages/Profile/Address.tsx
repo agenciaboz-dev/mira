@@ -11,7 +11,7 @@ import { useApi } from "../../hooks/useApi"
 import { useUser } from "../../hooks/useUser"
 import { useLocalStorage } from "../../hooks/useLocalStorage"
 import { useNavigate } from "react-router-dom"
-import { useSnackbar } from "../../hooks/useSnackbar"
+import { useSnackbar } from "burgos-snackbar"
 import { Masked } from "../../definitions/masked_input"
 import { AddressField } from "../../components/AddressField"
 

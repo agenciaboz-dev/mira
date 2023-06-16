@@ -9,7 +9,7 @@ import { useColors } from "../../hooks/useColors"
 import { useUser } from "../../hooks/useUser"
 import { styles } from "./styles"
 import { CircularProgress } from "@mui/material"
-import { useSnackbar } from "../../hooks/useSnackbar"
+import { useSnackbar } from "burgos-snackbar"
 import { useNavigate } from "react-router-dom"
 import { QRCode } from "react-qrcode-logo"
 
