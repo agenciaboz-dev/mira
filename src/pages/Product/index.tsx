@@ -67,7 +67,7 @@ export const Product: React.FC<ProductProps> = ({ product, style, innerRef, onCl
 
                 <div className="title-container">
                     <CurrencyText value={product.price} />
-                    <h1>{product.name}</h1>
+                    <h1 style={{ fontSize: "4vw" }}>{product.name}</h1>
                 </div>
 
                 <div className="product-description-container">
