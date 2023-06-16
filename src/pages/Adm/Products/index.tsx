@@ -44,6 +44,12 @@ export const Products: React.FC<ProductsProps> = ({}) => {
             width: "5%",
         },
         {
+            name: "ID",
+            selector: (row) => row.id,
+            sortable: true,
+            width: "6%",
+        },
+        {
             name: "Nome",
             selector: (row) => row.name,
             sortable: true,
@@ -72,27 +78,18 @@ export const Products: React.FC<ProductsProps> = ({}) => {
             ),
         },
         {
-            name: "Preço",
-            selector: (row) => row.price,
+            name: "Custo",
+            selector: (row) => row.cost,
             sortable: true,
-            width: "11%",
-            cell: (row) => <CurrencyText value={row.price} />,
+            width: "10%",
+            cell: (row) => <CurrencyText value={row.cost} />,
         },
         {
-            name: "Estoque",
-            selector: (row) => row.stock,
+            name: "Venda",
+            selector: (row) => row.price,
             sortable: true,
-            cell: (row) => (
-                <CurrencyFormat
-                    value={row.stock}
-                    displayType="text"
-                    thousandSeparator="."
-                    decimalSeparator=","
-                    decimalScale={2}
-                    fixedDecimalScale={false}
-                    prefix={""}
-                />
-            ),
+            width: "10%",
+            cell: (row) => <CurrencyText value={row.price} />,
         },
         {
             name: "QR Code",
