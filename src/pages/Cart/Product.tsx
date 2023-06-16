@@ -62,7 +62,7 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
                     />
                 </p>
                 <p>
-                    Preço: <CurrencyText value={product.price * Number(quantity)} />
+                    Preço: <CurrencyText value={Number(product.price) * Number(quantity)} />
                 </p>
             </div>
             <IconButton onClick={removeProduct} sx={{ marginLeft: "auto" }}>

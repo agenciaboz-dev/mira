@@ -22,7 +22,17 @@ export const Specs2: React.FC<Specs2Props> = ({ title, value, colors }) => {
     return (
         <div className="Specs2-Component" style={container_style}>
             <p style={p_style}>{title}</p>
-            <p style={{ ...p_style, textAlign: "center", fontWeight: "normal", backgroundColor: colors[1] }}>{value}</p>
+            <p
+                style={{
+                    ...p_style,
+                    textAlign: "center",
+                    fontSize: "2vw",
+                    fontWeight: "normal",
+                    backgroundColor: colors[1],
+                }}
+            >
+                {value}
+            </p>
         </div>
     )
 }

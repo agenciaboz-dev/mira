@@ -118,14 +118,14 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, produ
                         </h1>
                         <p style={{ fontSize: "2.1vw" }}>{product.description} </p>
                         <div className="specs1-container" style={{ width: "100%", justifyContent: "space-between" }}>
-                            <Specs1 title="Quantidade" value="18 X 27" />
-                            <Specs1 title="Tipo" value="Chata / Lisa" />
-                            <Specs1 title="Peso" value="1Kg" />
+                            <Specs1 title="Quantidade" value={String(product.stock)} />
+                            <Specs1 title="Tipo" value={String(product.stock_type)} />
+                            <Specs1 title="Peso" value={String(product.weight) + " Kg"} />
                         </div>
                     </div>
                 </div>
                 <div className="specs-container">
-                    <Specs2 title="Fabricante" value="ArcelorMittal" colors={["#EBEBEB", "#F5F5F5"]} />
+                    <Specs2 title="Fabricante" value={product.brand} colors={["#EBEBEB", "#F5F5F5"]} />
                     <Specs2 title="Tipo de cabeça do prego" value="Chata" colors={["#F5F5F5", "#FFFFFF"]} />
                     <Specs2 title="Tipo de corpo do prego" value="Quantidade" colors={["#EBEBEB", "#F5F5F5"]} />
                 </div>
