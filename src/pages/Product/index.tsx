@@ -74,18 +74,20 @@ export const Product: React.FC<ProductProps> = ({ product, style, innerRef, onCl
                     <p style={{ fontSize: "2.8vw", textAlign: "justify" }}>{product.description}</p>
                 </div>
 
-                <div className="specs-container">
+                <div className="specs-container" style={{ gap: "2vw" }}>
                     <Paper sx={styles.paper}>
-                        <h3 style={{ fontSize: "3vw" }}>Dimensões</h3>
-                        <p style={{ fontSize: "3vw" }}>18 X 27</p>
+                        <h3 style={{ fontSize: "3vw" }}>Fabricante</h3>
+                        <p style={{ fontSize: "2.5vw" }}>{product.brand}</p>
                     </Paper>
                     <Paper sx={styles.paper}>
-                        <h3 style={{ fontSize: "3vw" }}>Tipo</h3>
-                        <p style={{ fontSize: "3vw" }}>Chata / Lisa</p>
+                        <h3 style={{ fontSize: "3vw" }}>Dimensões</h3>
+                        <p style={{ fontSize: "2.5vw" }}>
+                            {product.width}cm x {product.height}cm x {product.length}cm
+                        </p>
                     </Paper>
                     <Paper sx={styles.paper}>
                         <h3 style={{ fontSize: "3vw" }}>Peso</h3>
-                        <p style={{ fontSize: "3vw" }}>1 Kg</p>
+                        <p style={{ fontSize: "2.5vw" }}>{product.weight} Kg</p>
                     </Paper>
                 </div>
             </div>
