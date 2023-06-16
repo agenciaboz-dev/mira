@@ -9,7 +9,7 @@ export const useCart = () => {
 
     const total = useMemo(() => {
         return cart.reduce((total, product) => {
-            return total + product.price * product.quantity
+            return total + Number(product.price) * product.quantity
         }, 0)
     }, [cart])
 

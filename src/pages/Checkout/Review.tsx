@@ -52,7 +52,7 @@ export const Review: React.FC<ReviewProps> = ({}) => {
                                     Custo: <CurrencyText value={product.price} />
                                 </p>
                                 <p>
-                                    Total: <CurrencyText value={product.price * product.quantity} />
+                                    Total: <CurrencyText value={Number(product.price) * product.quantity} />
                                 </p>
                             </div>
                         </div>
