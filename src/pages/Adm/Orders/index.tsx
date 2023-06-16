@@ -2,13 +2,8 @@ import { Box, Button, CircularProgress, IconButton, Paper, Skeleton } from "@mui
 import React, { useEffect, useState } from "react"
 import { SearchField } from "../../../components/SearchField"
 import { useOrders } from "../../../hooks/useOrders"
-import AddIcon from "@mui/icons-material/Add"
 import styles from "./../Products/styles"
 import DataTable, { TableColumn } from "react-data-table-component"
-import ForwardIcon from "@mui/icons-material/Forward"
-import { useSnackbar } from "burgos-snackbar"
-import { useConfirmDialog } from "burgos-confirm"
-import { useApi } from "../../../hooks/useApi"
 import { useNavigate } from "react-router-dom"
 import { useStatusEnum } from "../../../hooks/useStatusEnum"
 import { CurrencyText } from "../../../components/CurrencyText"
@@ -17,16 +12,12 @@ import CircleIcon from "@mui/icons-material/Circle"
 interface OrdersProps {}
 
 export const Orders: React.FC<OrdersProps> = ({}) => {
-    const api = useApi()
     const navigate = useNavigate()
     const statusEnum = useStatusEnum()
 
     const { orders, refresh } = useOrders()
-    const { snackbar } = useSnackbar()
-    const { confirm } = useConfirmDialog()
 
     const [ordersList, setOrdersList] = useState(orders)
-    const [deleting, setDeleting] = useState(0)
 
     const columns: TableColumn<Order>[] = [
         {
@@ -96,33 +87,8 @@ export const Orders: React.FC<OrdersProps> = ({}) => {
         },
     ]
 
-    const handleDelete = (category: Order) => {
-        confirm({
-            content: "Deseja remover esse produto?",
-            title: "Remover produto",
-            onConfirm: () => {
-                setDeleting(category.id)
-                // api.orders.delete({
-                //     data: category,
-                //     callback: (response: { data: Product }) => {
-                //         refresh()
-                //         snackbar({
-                //             severity: "warning",
-                //             text: "Produto deletado",
-                //         })
-                //     },
-                //     finallyCallback: () => setDeleting(0),
-                // })
-            },
-        })
-    }
-
     const handleSearch = (result: Order[]) => {
         setOrdersList(result)
-    }
-
-    const handleNew = () => {
-        // setOpen(true)
     }
 
     useEffect(() => {
