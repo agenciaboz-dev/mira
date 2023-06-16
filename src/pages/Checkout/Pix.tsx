@@ -44,7 +44,7 @@ export const Pix: React.FC<PixProps> = ({}) => {
                 address,
                 total,
                 name: user!.name,
-                cpf: user!.cpf,
+                cpf: user!.cpf.replace(/\D/g, ""),
                 products: cart,
                 method: "pix",
             },
