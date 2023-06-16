@@ -68,6 +68,12 @@ export const useApi = () => {
                     .catch((error) => defaultError(error, options.errorCallback))
                     .finally(() => defaultFinally(options.finallyCallback))
             },
+            profitMargin: (options: ApiOptions) => {
+                api.post("/products/apply_profit_margin", options.data)
+                    .then((response) => options.callback(response))
+                    .catch((error) => defaultError(error, options.errorCallback))
+                    .finally(() => defaultFinally(options.finallyCallback))
+            },
         },
         categories: {
             get: (options: ApiOptions) => {

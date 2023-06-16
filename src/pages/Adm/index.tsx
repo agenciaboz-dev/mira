@@ -11,6 +11,7 @@ import { useUser } from "../../hooks/useUser"
 import { Suppliers } from "./Suppliers"
 import { Orders } from "./Orders"
 import { Order } from "./Orders/Order"
+import { Settings } from "./Settings"
 
 interface AdmProps {}
 
@@ -35,6 +36,7 @@ export const Adm: React.FC<AdmProps> = ({}) => {
                 <Route path="/suppliers" element={<Suppliers />} />
                 <Route path="/orders" element={<Orders />} />
                 <Route path="/orders/:id" element={<Order />} />
+                <Route path="/settings" element={<Settings />} />
             </Routes>
         </div>
     )

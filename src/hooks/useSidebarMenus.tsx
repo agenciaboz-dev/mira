@@ -3,6 +3,7 @@ import HandymanIcon from "@mui/icons-material/Handyman"
 import SellIcon from "@mui/icons-material/Sell"
 import FactCheckIcon from "@mui/icons-material/FactCheck"
 import ContactsIcon from "@mui/icons-material/Contacts"
+import SettingsIcon from "@mui/icons-material/Settings"
 
 export const useSidebarMenus = () => {
     const menus: SidebarMenu[] = [
@@ -29,6 +30,12 @@ export const useSidebarMenus = () => {
             title: "Pedidos",
             location: "/dashboard/orders",
             icon: <FactCheckIcon />,
+        },
+        {
+            id: 5,
+            title: "Configurações",
+            location: "/dashboard/settings",
+            icon: <SettingsIcon />,
         },
     ]
 
