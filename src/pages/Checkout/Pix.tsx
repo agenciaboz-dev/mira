@@ -30,7 +30,7 @@ export const Pix: React.FC<PixProps> = ({}) => {
     const [buttonText, setButtonText] = useState("Copiar código")
 
     const handleClick = () => {
-        clipboard.copy(qrCode?.id)
+        clipboard.copy(qrCode?.text)
         setButtonText("Copiado")
         setTimeout(() => setButtonText("Copiar código"), 5000)
         // setTimeout(() => navigate("/checkout/finish"), 5000)
