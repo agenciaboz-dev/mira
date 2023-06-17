@@ -35,7 +35,6 @@
         overflow-y: auto;
         // overflow-x: hidden;
         width: 100%;
-        max-height: 70vh;
         gap: 2vw;
         padding-bottom: 2vw;
         flex-wrap: wrap;
@@ -43,7 +42,7 @@
         
         .Product-Component {
             width: 48%;
-            height: fit-content;
+            height: 25vw;
             border-radius: 4vw;
             padding: 3vw;
             background-color: white;
@@ -66,6 +65,14 @@
                 gap: 2vw;
                 width: 100%;
                 font-size: 2vw;
+
+                .product-name {
+                    font-size: 1.9vw;
+                    display: flex;
+                    height: 8vw;
+                    width: 20vw;
+                    overflow: auto;
+                }
 
                 .quantity-input {
                     width: 5vw;
