@@ -182,7 +182,7 @@ export const Payment: React.FC<PaymentProps> = ({}) => {
                     // onClosing={() => setPaymentType(undefined)}
                 >
                     <p className="pix-children">
-                        Gere o código <span>copia e cola</span> ou page utilizando o leitor de <span>QR Code</span> de outro
+                        Gere o código <span>copia e cola</span> ou pague utilizando o leitor de <span>QR Code</span> de outro
                         dispositivo.
                     </p>
                 </Collapsible>
