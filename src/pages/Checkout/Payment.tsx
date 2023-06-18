@@ -29,7 +29,7 @@ export const Payment: React.FC<PaymentProps> = ({}) => {
     )
 
     const PixContainer: React.FC<{ open?: boolean }> = ({ open }) => (
-        <div className="container" style={{ backgroundColor: open ? colors.purple : "white", marginBottom: "2vw" }}>
+        <div className="container" style={{ backgroundColor: open ? colors.purple : "white", marginBottom: "4vw" }}>
             <PixIcon sx={{ color: open ? "white" : colors.purple, width: "5vw", height: "auto" }} />
             <h3 style={{ color: open ? "white" : colors.purple }}>PIX</h3>
         </div>
@@ -218,7 +218,7 @@ export const Payment: React.FC<PaymentProps> = ({}) => {
                             )}
                         />
                         <p className="pix-children">
-                            Gere o código <span>copia e cola</span> ou page utilizando o leitor de <span>QR Code</span> de
+                            Gere o código <span>copia e cola</span> ou pague utilizando o leitor de <span>QR Code</span> de
                             outro dispositivo.
                         </p>
                     </Box>
