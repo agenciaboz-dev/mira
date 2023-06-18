@@ -210,7 +210,7 @@ export const Payment: React.FC<PaymentProps> = ({}) => {
                             )}
                         />
                         <p className="pix-children">
-                            Gere o código <span>copia e cola</span> ou page utilizando o leitor de <span>QR Code</span> de
+                            Gere o código <span>copia e cola</span> ou pague utilizando o leitor de <span>QR Code</span> de
                             outro dispositivo.
                         </p>
                     </Box>
