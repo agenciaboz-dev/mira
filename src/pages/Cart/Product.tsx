@@ -58,7 +58,7 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
             </Badge>
             <div className="text-container">
                 <p>
-                    Produto: <span>{product.name}</span>
+                    Produto: <span className="product-name">{product.name}</span>
                 </p>
                 <p>
                     Quantidade:{" "}
