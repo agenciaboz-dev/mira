@@ -5,7 +5,7 @@ import UserContext from "./userContext"
 
 interface AddressContextValue {
     value: Address | undefined
-    setValue: (value: Address) => void
+    setValue: (value: Address | undefined) => void
 }
 
 interface AddressProviderProps {

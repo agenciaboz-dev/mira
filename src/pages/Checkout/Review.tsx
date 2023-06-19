@@ -12,9 +12,11 @@ import { useOrder } from "../../hooks/useOrder"
 interface ReviewProps {}
 
 export const Review: React.FC<ReviewProps> = ({}) => {
-    const { cart, total } = useCart()
     const navigate = useNavigate()
+
+    const { cart, total } = useCart()
     const { setOrder } = useOrder()
+    const { setAddress } = useAddress()
 
     const [openFreteModal, setOpenFreteModal] = useState(false)
 
@@ -62,6 +64,7 @@ export const Review: React.FC<ReviewProps> = ({}) => {
                     fullWidth
                     style={button_style}
                     onClick={() => {
+                        setAddress(undefined)
                         navigate("payment")
                     }}
                 >
