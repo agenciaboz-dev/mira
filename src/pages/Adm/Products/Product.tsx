@@ -512,6 +512,7 @@ export const Product: React.FC<ProductProps> = ({}) => {
                                     onClick={() => imageInputRef.current?.click()}
                                     smartImgFit={"orientation"}
                                     emptyLabel="Clique no botão acima para enviar uma imagem"
+                                    changeLabel="Clique no botão acima para trocar a imagem"
                                     // style={{ width: "100%", height: "30vw" }}
                                     style={{ width: "100%", height: "27.5vw", borderRadius: "0.5vw" }}
                                 />
