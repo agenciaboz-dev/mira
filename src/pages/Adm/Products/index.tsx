@@ -39,7 +39,11 @@ export const Products: React.FC<ProductsProps> = ({}) => {
             selector: (row) => row.image,
             sortable: true,
             cell: (row) => (
-                <Avatar src={row.image} sx={{ bgcolor: "transparent" }}>
+                <Avatar
+                    src={row.image}
+                    sx={{ bgcolor: "transparent" }}
+                    onClick={() => window.open(row.image, "_blank")?.focus()}
+                >
                     <CancelIcon color="error" sx={{ width: "100%", height: "100%" }} />
                 </Avatar>
             ),
