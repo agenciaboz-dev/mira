@@ -39,7 +39,14 @@ export const SearchField: React.FC<SearchFieldProps> = ({
         if (supplierList && setSupplierResult)
             setSupplierResult(supplierList.filter((item) => item.name.toLowerCase().includes(value.toLowerCase())))
         if (orderList && setOrderResult)
-            setOrderResult(orderList.filter((item) => item.user.name.toLowerCase().includes(value.toLowerCase())))
+            setOrderResult(
+                orderList.filter(
+                    (item) =>
+                        item.user.name.toLowerCase().includes(value.toLowerCase()) ||
+                        item.name.toLowerCase().includes(value.toLowerCase()) ||
+                        item.id.toString().toLowerCase().includes(value.toLowerCase())
+                )
+            )
     }, [value])
 
     const Button = () => button
