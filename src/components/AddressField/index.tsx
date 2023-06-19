@@ -71,6 +71,7 @@ export const AddressField: React.FC<AddressFieldProps> = ({ values, handleChange
                             inputMode: "numeric",
                             endAdornment: loading ? <CircularProgress size={"1.5rem"} color="primary" /> : <></>,
                         }}
+                        inputProps={{ inputMode: "numeric" }}
                     />
                 )}
             />
@@ -89,7 +90,7 @@ export const AddressField: React.FC<AddressFieldProps> = ({ values, handleChange
                             {...props}
                             className="small-input"
                             placeholder="Número"
-                            InputProps={{ inputMode: "numeric" }}
+                            inputProps={{ inputMode: "numeric" }}
                         />
                     )}
                 />

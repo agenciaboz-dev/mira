@@ -98,7 +98,7 @@ export const Address: React.FC<AddressProps> = ({}) => {
                                     inputRef={ref}
                                     {...props}
                                     placeholder="Telefone"
-                                    InputProps={{ inputMode: "numeric" }}
+                                    inputProps={{ inputMode: "numeric" }}
                                 />
                             )}
                         />
