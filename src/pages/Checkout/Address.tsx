@@ -94,7 +94,12 @@ export const Address: React.FC<AddressProps> = ({}) => {
                             value={values.phone}
                             onChange={handleChange}
                             render={(ref, props) => (
-                                <TextField inputRef={ref} {...props} placeholder="Telefone" inputMode="numeric" />
+                                <TextField
+                                    inputRef={ref}
+                                    {...props}
+                                    placeholder="Telefone"
+                                    inputProps={{ inputMode: "numeric" }}
+                                />
                             )}
                         />
                         <AddressField values={values} handleChange={handleChange} />

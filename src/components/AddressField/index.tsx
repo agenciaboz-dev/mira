@@ -67,7 +67,7 @@ export const AddressField: React.FC<AddressFieldProps> = ({ values, handleChange
                         inputRef={ref}
                         {...props}
                         placeholder="CEP"
-                        inputMode="numeric"
+                        inputProps={{ inputMode: "numeric" }}
                         InputProps={{ endAdornment: loading ? <CircularProgress size={"1.5rem"} color="primary" /> : <></> }}
                     />
                 )}
@@ -81,9 +81,14 @@ export const AddressField: React.FC<AddressFieldProps> = ({ values, handleChange
                     ref={numberRef}
                     value={values.number.toString()}
                     onChange={handleChange}
-                    inputMode="numeric"
                     render={(ref, props) => (
-                        <TextField inputRef={ref} {...props} className="small-input" placeholder="Número" />
+                        <TextField
+                            inputRef={ref}
+                            {...props}
+                            className="small-input"
+                            placeholder="Número"
+                            inputProps={{ inputMode: "numeric" }}
+                        />
                     )}
                 />
                 <TextField

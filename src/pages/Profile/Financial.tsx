@@ -174,7 +174,7 @@ export const Financial: React.FC<FinancialProps> = ({ user }) => {
                                         placeholder="Número do cartão"
                                         error={!!cardNumberError}
                                         helperText={cardNumberError}
-                                        inputMode="numeric"
+                                        inputProps={{ inputMode: "numeric" }}
                                     />
                                 )}
                             />
@@ -209,7 +209,7 @@ export const Financial: React.FC<FinancialProps> = ({ user }) => {
                                             placeholder="Expiração"
                                             error={!!expiryDateError}
                                             helperText={expiryDateError}
-                                            inputMode="numeric"
+                                            inputProps={{ inputMode: "numeric" }}
                                         />
                                     )}
                                 />
@@ -240,7 +240,12 @@ export const Financial: React.FC<FinancialProps> = ({ user }) => {
                                     value={values.cvv}
                                     onChange={handleChange}
                                     render={(ref, props) => (
-                                        <TextField inputRef={ref} {...props} placeholder="CVV" inputMode="numeric" />
+                                        <TextField
+                                            inputRef={ref}
+                                            {...props}
+                                            placeholder="CVV"
+                                            inputProps={{ inputMode: "numeric" }}
+                                        />
                                     )}
                                 />
                             </div>

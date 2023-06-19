@@ -99,7 +99,6 @@ export const Product: React.FC<ProductProps> = ({ product, style, innerRef, onCl
                     value={quantity}
                     onChange={(event) => setQuantity(Number(event.target.value))}
                     sx={{ width: "25vw" }}
-                    inputMode="numeric"
                     InputProps={{
                         sx: {
                             backgroundColor: colors.light_grey2,
