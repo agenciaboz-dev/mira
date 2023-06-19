@@ -105,8 +105,9 @@ export const Product: React.FC<ProductProps> = ({ product, style, innerRef, onCl
                             borderRadius: "7vw",
                             height: "8vw",
                         },
+                        inputMode: "numeric",
                     }}
-                    inputProps={{ sx: { textAlign: "center" }, inputMode: "numeric" }}
+                    inputProps={{ sx: { textAlign: "center" } }}
                 />
                 <IconButton onClick={() => changeQuantity(1)}>
                     <PlusIcon style={styles.cart_icon} />

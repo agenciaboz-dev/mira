@@ -171,7 +171,7 @@ export const CardForm: React.FC<CardFormProps> = ({ user, values, setValues, cho
                         inputRef={ref}
                         {...props}
                         placeholder="Número do cartão"
-                        inputProps={{inputMode: "numeric"}}
+                        InputProps={{ inputMode: "numeric" }}
                         error={!!cardNumberError}
                         helperText={cardNumberError}
                     />
@@ -194,7 +194,7 @@ export const CardForm: React.FC<CardFormProps> = ({ user, values, setValues, cho
                             placeholder="Mês"
                             error={!!cardMonthError}
                             helperText={cardMonthError}
-                            inputProps={{inputMode: "numeric"}}
+                            InputProps={{ inputMode: "numeric" }}
                         />
                     )}
                 />
@@ -212,7 +212,7 @@ export const CardForm: React.FC<CardFormProps> = ({ user, values, setValues, cho
                             placeholder="Ano"
                             error={!!cardYearError}
                             helperText={cardYearError}
-                            inputProps={{inputMode: "numeric"}}
+                            InputProps={{ inputMode: "numeric" }}
                         />
                     )}
                 />
@@ -230,7 +230,7 @@ export const CardForm: React.FC<CardFormProps> = ({ user, values, setValues, cho
                             placeholder="CVV"
                             error={!!cardCvvError}
                             helperText={cardCvvError}
-                            inputProps={{inputMode: "numeric"}}
+                            InputProps={{ inputMode: "numeric" }}
                         />
                     )}
                 />

@@ -67,8 +67,10 @@ export const AddressField: React.FC<AddressFieldProps> = ({ values, handleChange
                         inputRef={ref}
                         {...props}
                         placeholder="CEP"
-                        inputProps={{ inputMode: "numeric" }}
-                        InputProps={{ endAdornment: loading ? <CircularProgress size={"1.5rem"} color="primary" /> : <></> }}
+                        InputProps={{
+                            inputMode: "numeric",
+                            endAdornment: loading ? <CircularProgress size={"1.5rem"} color="primary" /> : <></>,
+                        }}
                     />
                 )}
             />
@@ -87,7 +89,7 @@ export const AddressField: React.FC<AddressFieldProps> = ({ values, handleChange
                             {...props}
                             className="small-input"
                             placeholder="Número"
-                            inputProps={{ inputMode: "numeric" }}
+                            InputProps={{ inputMode: "numeric" }}
                         />
                     )}
                 />

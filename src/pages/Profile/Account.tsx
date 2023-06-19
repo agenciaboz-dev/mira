@@ -110,7 +110,7 @@ export const Account: React.FC<AccountProps> = ({ user }) => {
                                     {...props}
                                     placeholder="Telefone"
                                     InputLabelProps={{ sx: styles.textfield }}
-                                    inputProps={{ inputMode: "numeric" }}
+                                    InputProps={{ inputMode: "numeric" }}
                                 />
                             )}
                         />
