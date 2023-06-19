@@ -24,6 +24,10 @@ const styles: Styles = {
     },
 
     header: {
+        position: "sticky",
+        top: "-1vw",
+        backgroundColor: "white",
+        zIndex: 2,
         gap: "1vw",
         alignItems: "center",
         justifyContent: "space-between",
