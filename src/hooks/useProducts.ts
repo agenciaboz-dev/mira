@@ -6,7 +6,10 @@ export const useProducts = () => {
     const products = productsContext.value
 
     const find = (id: number | string) => {
-        return products.filter((product) => product.id == id)[0]
+        const product_list = products.filter((product) => product.id == id)
+        if (product_list.length == 0) return null
+
+        return product_list[0]
     }
 
     return { products, setProducts: productsContext.setValue, refresh: productsContext.refresh, find }
