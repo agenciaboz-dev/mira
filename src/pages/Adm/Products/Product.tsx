@@ -1,5 +1,5 @@
 import { Autocomplete, Box, Button, CircularProgress, IconButton, MenuItem, Paper, TextField } from "@mui/material"
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import styles from "./styles"
 import { useNavigate, useParams } from "react-router-dom"
 import ForwardIcon from "@mui/icons-material/Forward"
@@ -106,6 +106,7 @@ export const Product: React.FC<ProductProps> = ({}) => {
     const numberMask = useNumberMask({})
     const volumeMask = useNumberMask({ allowDecimal: true, decimalLimit: 5 })
     const api = useApi()
+    const imageInputRef = useRef<HTMLButtonElement>(null)
 
     const { refresh } = useProducts()
     const { snackbar } = useSnackbar()
@@ -496,6 +497,7 @@ export const Product: React.FC<ProductProps> = ({}) => {
                                         disabled
                                     />
                                     <FileInputButton
+                                        ref={imageInputRef}
                                         onChange={(files) => setFiles(files)}
                                         value={files}
                                         behaviour="replace"
@@ -507,8 +509,9 @@ export const Product: React.FC<ProductProps> = ({}) => {
                                 </Box>
                                 <Avatar
                                     src={files[0]?.file || values.image}
-                                    readOnly
+                                    onClick={() => imageInputRef.current?.click()}
                                     smartImgFit={"orientation"}
+                                    emptyLabel="Clique no botão acima para enviar uma imagem"
                                     // style={{ width: "100%", height: "30vw" }}
                                     style={{ width: "100%", height: "27.5vw", borderRadius: "0.5vw" }}
                                 />
