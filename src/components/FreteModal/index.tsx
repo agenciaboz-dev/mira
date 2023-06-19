@@ -71,6 +71,7 @@ export const FreteModal: React.FC<FreteModalProps> = ({ open, setOpen }) => {
                                 endAdornment: loading ? <CircularProgress size={"1.5rem"} color="primary" /> : <></>,
                                 sx: { borderRadius: "7vw" },
                             }}
+                            inputProps={{ inputMode: "numeric" }}
                         />
                     )}
                 />
