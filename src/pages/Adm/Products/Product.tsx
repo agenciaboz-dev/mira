@@ -15,6 +15,7 @@ import { Form, Formik, useFormikContext } from "formik"
 import MaskedInput from "react-text-mask"
 import { PreparationAddornment } from "../../../components/PreparationAddornment"
 import { useConfirmDialog } from "burgos-confirm"
+import useMeasure from "react-use-measure"
 
 interface ProductProps {}
 
@@ -114,6 +115,7 @@ export const Product: React.FC<ProductProps> = ({}) => {
     const { categories } = useCategories()
     const { suppliers } = useSuppliers()
 
+    const [brandRef, brandAttr] = useMeasure()
     const [loading, setLoading] = useState(false)
     const [deleting, setDeleting] = useState(false)
     const [files, setFiles] = useState<ExtFile[]>([])
@@ -311,6 +313,7 @@ export const Product: React.FC<ProductProps> = ({}) => {
 
                                 <Box sx={styles.inputContainer}>
                                     <TextField
+                                        ref={brandRef}
                                         required
                                         label="Marca"
                                         name="brand"
@@ -325,6 +328,7 @@ export const Product: React.FC<ProductProps> = ({}) => {
                                         value={values.categories_ids!}
                                         onChange={handleChange}
                                         SelectProps={{ multiple: true }}
+                                        sx={{ maxWidth: brandAttr.width }}
                                     >
                                         <MenuItem value={0} style={{ display: "none" }} disabled></MenuItem>
                                         {categories.map((category) => (
