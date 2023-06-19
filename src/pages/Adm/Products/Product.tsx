@@ -235,7 +235,7 @@ export const Product: React.FC<ProductProps> = ({}) => {
     }
 
     return (
-        <Paper sx={{ ...styles.body, margin: "1vw" }} elevation={5}>
+        <Paper sx={{ ...styles.body, margin: "1vw", paddingTop: 0 }} elevation={5}>
             <Formik initialValues={initialValues} onSubmit={handleSubmit}>
                 {({ handleChange, values }) => (
                     <Form

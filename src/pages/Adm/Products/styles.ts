@@ -25,7 +25,7 @@ const styles: Styles = {
 
     header: {
         position: "sticky",
-        top: "-1vw",
+        top: "-0.4vw",
         backgroundColor: "white",
         zIndex: 2,
         gap: "1vw",
