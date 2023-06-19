@@ -88,22 +88,31 @@ export const Address: React.FC<AddressProps> = ({ user }) => {
                                 name="phone"
                                 value={values.phone}
                                 onChange={handleChange}
-                                render={(ref, props) => <TextField inputRef={ref} {...props} placeholder="Telefone" />}
+                                render={(ref, props) => (
+                                    <TextField inputRef={ref} {...props} placeholder="Telefone" inputMode="numeric" />
+                                )}
                             />
                             <AddressField values={values} handleChange={handleChange} />
 
-                        <div className="buttons-container">
-                            <Button onClick={() => navigate("/cart")} style={{ height: "10vw", width: "35vw", background: "linear-gradient(90deg, #9F9F9F 0%, #565656 91.94%)" }} >
-                                Cancelar
-                            </Button>
-                            <Button type="submit" style={{ height: "10vw", width: "35vw", marginRight: "1vw" }}>
-                                {loading ? (
-                                    <CircularProgress sx={{ color: "white" }} style={{ width: "6vw", height: "auto" }} />
-                                ) : (
-                                    "Salvar"
-                                )}
-                            </Button>
-                        </div>
+                            <div className="buttons-container">
+                                <Button
+                                    onClick={() => navigate("/cart")}
+                                    style={{
+                                        height: "10vw",
+                                        width: "35vw",
+                                        background: "linear-gradient(90deg, #9F9F9F 0%, #565656 91.94%)",
+                                    }}
+                                >
+                                    Cancelar
+                                </Button>
+                                <Button type="submit" style={{ height: "10vw", width: "35vw", marginRight: "1vw" }}>
+                                    {loading ? (
+                                        <CircularProgress sx={{ color: "white" }} style={{ width: "6vw", height: "auto" }} />
+                                    ) : (
+                                        "Salvar"
+                                    )}
+                                </Button>
+                            </div>
                         </Form>
                     )
                 }}

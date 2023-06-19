@@ -67,6 +67,7 @@ export const AddressField: React.FC<AddressFieldProps> = ({ values, handleChange
                         inputRef={ref}
                         {...props}
                         placeholder="CEP"
+                        inputMode="numeric"
                         InputProps={{ endAdornment: loading ? <CircularProgress size={"1.5rem"} color="primary" /> : <></> }}
                     />
                 )}
@@ -80,6 +81,7 @@ export const AddressField: React.FC<AddressFieldProps> = ({ values, handleChange
                     ref={numberRef}
                     value={values.number.toString()}
                     onChange={handleChange}
+                    inputMode="numeric"
                     render={(ref, props) => (
                         <TextField inputRef={ref} {...props} className="small-input" placeholder="Número" />
                     )}
@@ -110,17 +112,17 @@ export const AddressField: React.FC<AddressFieldProps> = ({ values, handleChange
                     className="small-input"
                     InputProps={{
                         style: {
-                          borderRadius: "10vw",
-                          color: "#555555",
-                          fontSize: "3.5vw",
-                          fontWeight: "bold",
-                          flexGrow: "1",
-                          alignSelf: "stretch",
+                            borderRadius: "10vw",
+                            color: "#555555",
+                            fontSize: "3.5vw",
+                            fontWeight: "bold",
+                            flexGrow: "1",
+                            alignSelf: "stretch",
                         },
                         inputProps: {
                             onFocus: handleFocus,
                         },
-                      }}
+                    }}
                 >
                     {estados.map((estado) => (
                         <MenuItem key={estado.value} value={estado.value} style={{ width: "100%" }}>

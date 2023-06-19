@@ -174,6 +174,7 @@ export const Financial: React.FC<FinancialProps> = ({ user }) => {
                                         placeholder="Número do cartão"
                                         error={!!cardNumberError}
                                         helperText={cardNumberError}
+                                        inputMode="numeric"
                                     />
                                 )}
                             />
@@ -195,20 +196,22 @@ export const Financial: React.FC<FinancialProps> = ({ user }) => {
                                 <label htmlFor="expiry">Data de expiração</label>
                                 <MaskedInput
                                     onBlur={() => handleExpiryBlur(values)}
-                                    mask={[/\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]}
+                                    mask={[/\d/, /\d/, "/", /\d/, /\d/, /\d/, /\d/]}
                                     guide={false}
                                     id="expiry"
                                     name="expiry"
                                     value={values.expiry}
                                     onChange={handleChange}
-                                    render={(ref, props) =>
-                                        < TextField
+                                    render={(ref, props) => (
+                                        <TextField
                                             inputRef={ref}
                                             {...props}
                                             placeholder="Expiração"
                                             error={!!expiryDateError}
                                             helperText={expiryDateError}
-                                        />}
+                                            inputMode="numeric"
+                                        />
+                                    )}
                                 />
                                 {/* <MaskedInput
                                     mask={numberMask}
@@ -236,7 +239,9 @@ export const Financial: React.FC<FinancialProps> = ({ user }) => {
                                     name="cvv"
                                     value={values.cvv}
                                     onChange={handleChange}
-                                    render={(ref, props) => <TextField inputRef={ref} {...props} placeholder="CVV" />}
+                                    render={(ref, props) => (
+                                        <TextField inputRef={ref} {...props} placeholder="CVV" inputMode="numeric" />
+                                    )}
                                 />
                             </div>
                         </div>
