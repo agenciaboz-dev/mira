@@ -8,7 +8,7 @@ interface Styles {
 }
 
 const styles: Styles = {
-    body: { flexDirection: "column", width: "100%", padding: "1vw", gap: "1vw", margin: "1vw" },
+    body: { flexDirection: "column", width: "100%", padding: "1vw", gap: "2vw", margin: "1vw" },
     header: {
         gap: "1vw",
         alignItems: "center",
@@ -23,7 +23,7 @@ const styles: Styles = {
         height: "80vh",
         overflowY: "auto",
         gap: "1vw",
-        padding: "1vw",
+        padding: "2vw",
     },
 }
 
