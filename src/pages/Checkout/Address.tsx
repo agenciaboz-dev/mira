@@ -64,7 +64,14 @@ export const Address: React.FC<AddressProps> = ({}) => {
                             name="phone"
                             value={values.phone}
                             onChange={handleChange}
-                            render={(ref, props) => <TextField inputRef={ref} {...props} placeholder="Telefone" />}
+                            render={(ref, props) => (
+                                <TextField
+                                    inputRef={ref}
+                                    {...props}
+                                    placeholder="Telefone"
+                                    inputProps={{ inputMode: "numeric" }}
+                                />
+                            )}
                         />
                         <AddressField values={values} handleChange={handleChange} />
 

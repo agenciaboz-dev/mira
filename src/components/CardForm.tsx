@@ -173,7 +173,13 @@ export const CardForm: React.FC<CardFormProps> = ({ user, values, setValues, cho
                 value={values.cpf}
                 onChange={(event) => setValues.setCpf(event.target.value)}
                 render={(ref, props) => (
-                    <TextField inputRef={ref} {...props} placeholder="CPF do titular" InputProps={{ style: input_style }} />
+                    <TextField
+                        inputRef={ref}
+                        {...props}
+                        placeholder="CPF do titular"
+                        InputProps={{ style: input_style }}
+                        inputProps={{ inputMode: "numeric" }}
+                    />
                 )}
             />
             <MaskedInput
@@ -191,6 +197,7 @@ export const CardForm: React.FC<CardFormProps> = ({ user, values, setValues, cho
                         error={!!cardNumberError}
                         helperText={cardNumberError}
                         InputProps={{ style: input_style }}
+                        inputProps={{ inputMode: "numeric" }}
                     />
                 )}
             />
@@ -212,6 +219,7 @@ export const CardForm: React.FC<CardFormProps> = ({ user, values, setValues, cho
                             InputProps={{ style: input_style }}
                             error={!!cardMonthError}
                             helperText={cardMonthError}
+                            inputProps={{ inputMode: "numeric" }}
                         />
                     )}
                 />
@@ -230,6 +238,7 @@ export const CardForm: React.FC<CardFormProps> = ({ user, values, setValues, cho
                             InputProps={{ style: input_style }}
                             error={!!cardYearError}
                             helperText={cardYearError}
+                            inputProps={{ inputMode: "numeric" }}
                         />
                     )}
                 />
@@ -249,6 +258,7 @@ export const CardForm: React.FC<CardFormProps> = ({ user, values, setValues, cho
                             InputProps={{ style: input_style }}
                             error={!!cardCvvError}
                             helperText={cardCvvError}
+                            inputProps={{ inputMode: "numeric" }}
                         />
                     )}
                 />
