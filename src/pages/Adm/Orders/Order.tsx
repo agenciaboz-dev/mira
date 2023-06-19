@@ -1,4 +1,17 @@
-import { Avatar, Box, IconButton, MenuItem, Paper, Skeleton, TextField } from "@mui/material"
+import {
+    Avatar,
+    Box,
+    IconButton,
+    MenuItem,
+    Paper,
+    Skeleton,
+    TextField,
+    RadioGroup,
+    Radio,
+    FormControl,
+    FormLabel,
+    FormControlLabel,
+} from "@mui/material"
 import React, { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import styles from "./styles"
@@ -7,7 +20,7 @@ import ForwardIcon from "@mui/icons-material/Forward"
 import colors from "../../../colors"
 import { useStatusEnum } from "../../../hooks/useStatusEnum"
 import CircleIcon from "@mui/icons-material/Circle"
-import { useCurrencyMask } from "burgos-masks"
+import { useCurrencyMask, useCpfMask } from "burgos-masks"
 import MaskedInput from "react-text-mask"
 import CancelIcon from "@mui/icons-material/Cancel"
 
@@ -19,6 +32,7 @@ export const Order: React.FC<OrderProps> = ({}) => {
     const api = useApi()
     const statusEnum = useStatusEnum()
     const currencyMask = useCurrencyMask()
+    const cpfMask = useCpfMask()
 
     const [order, setOrder] = useState<Order>()
 
@@ -50,21 +64,41 @@ export const Order: React.FC<OrderProps> = ({}) => {
                     value={new Date(order.date).toLocaleString()}
                     InputProps={{ readOnly: true }}
                 />
-                <TextField label="Cliente" variant="standard" value={order.name} InputProps={{ readOnly: true }} />
                 <TextField label="Usuário" variant="standard" value={order.user.name} InputProps={{ readOnly: true }} />
+
                 <TextField
+                    sx={{ padding: "0.5vw" }}
                     label="Status"
                     variant="standard"
                     value={statusEnum[order.status].title}
                     InputProps={{
                         readOnly: true,
                         startAdornment: <CircleIcon sx={{ width: "1vw", color: statusEnum[order.status].color }} />,
-                        sx: { gap: "0.6vw" },
+                        sx: { gap: "0.5vw" },
                     }}
                 />
             </Box>
             <Box sx={styles.mainContainer}>
                 <Paper sx={styles.paper}>
+                    <h3 style={{ color: "gray" }}>Dados</h3>
+                    <Box sx={{ gap: "1vw" }}>
+                        <TextField label="Cliente" variant="standard" value={order.name} InputProps={{ readOnly: true }} />
+                        <MaskedInput
+                            mask={cpfMask}
+                            guide={false}
+                            value={order.cpf}
+                            render={(ref, props) => (
+                                <TextField
+                                    inputRef={ref}
+                                    {...props}
+                                    label="CPF"
+                                    variant="standard"
+                                    value={order.cpf}
+                                    InputProps={{ readOnly: true }}
+                                />
+                            )}
+                        />
+                    </Box>
                     <Box sx={{ gap: "1vw" }}>
                         <MaskedInput
                             mask={currencyMask}
@@ -80,29 +114,54 @@ export const Order: React.FC<OrderProps> = ({}) => {
                                 />
                             )}
                         />
+                        <FormControl component="fieldset" sx={{ width: "33vw" }}>
+                            <FormLabel component="legend" sx={{ fontSize: "0.8vw" }}>
+                                Método de pagamento
+                            </FormLabel>
+                            <RadioGroup
+                                row
+                                aria-label="options"
+                                value={order.method == "card" ? "Cartão" : "PIX"}
+                                name="customized-radios"
+                            >
+                                <FormControlLabel value="card" control={<Radio />} label="Cartão" />
+                                <FormControlLabel value="PIX" control={<Radio />} label="Pix" />
+                            </RadioGroup>
+                        </FormControl>
+                    </Box>
+                    <Box sx={{ gap: "1vw" }}>
+                        <TextField label="Origem" variant="standard" value="Loja" InputProps={{ readOnly: true }} />
                         <TextField
-                            label="Método de pagamento"
+                            label="Entrega"
                             variant="standard"
-                            value={order.method == "card" ? "Cartão" : "PIX"}
+                            value={order.delivery == true ? "Sim" : "Não"}
                             InputProps={{ readOnly: true }}
                         />
                     </Box>
-                    <TextField label="CPF" variant="standard" value={order.cpf} InputProps={{ readOnly: true }} />
+                    {order.delivery && (
+                        <Box sx={{ gap: "1vw", flexDirection: "column" }}>
+                            <h4 style={{ color: "gray" }}>Endereço de entrega</h4>
+                            <p>
+                                {order.address.address},{order.address.district}, {order.address.number},
+                                {order.address.receiver},
+                            </p>
+                            <p>
+                                {order.address.cep}, ,{order.address.city}, ,{order.address.uf}
+                            </p>
+                        </Box>
+                    )}
                 </Paper>
                 <Paper sx={styles.paper}>
+                    <h3 style={{ color: "gray" }}>Produtos</h3>
                     {order.products.map((product) => (
-                        <Box key={product.id} sx={{ width: "100%", gap: "1vw" }}>
-                            <Avatar src={product.image} sx={{ bgcolor: "transparent" }}>
-                                <CancelIcon color="error" sx={{ width: "100%", height: "100%" }} />
-                            </Avatar>
-                            <TextField
-                                label="Produto"
-                                variant="standard"
-                                value={product.name}
-                                InputProps={{ readOnly: true }}
-                                sx={{ width: "10vw" }}
-                            />
-                        </Box>
+                        <Paper sx={{ width: "33.1vw", padding: "0.6vw" }}>
+                            <Box key={product.id} sx={{ width: "100%", gap: "1vw", alignItems: "center" }}>
+                                <Avatar src={product.image} sx={{ bgcolor: "transparent" }}>
+                                    <CancelIcon color="error" sx={{ width: "100%", height: "100%" }} />
+                                </Avatar>
+                                <p style={{ fontSize: "1vw" }}> {product.name} </p>
+                            </Box>
+                        </Paper>
                     ))}
                 </Paper>
             </Box>
