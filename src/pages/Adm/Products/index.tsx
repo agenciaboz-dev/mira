@@ -202,6 +202,7 @@ export const Products: React.FC<ProductsProps> = ({}) => {
                             selectAllRowsItem: true,
                             selectAllRowsItemText: "Todos",
                         }}
+                        noDataComponent={<p>Nenhum produto encontrado</p>}
                         columns={columns}
                         data={productList}
                         highlightOnHover
