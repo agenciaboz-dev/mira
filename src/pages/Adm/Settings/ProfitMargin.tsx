@@ -44,7 +44,7 @@ export const ProfitMargin: React.FC<ProfitMarginProps> = ({}) => {
         setCurrentProduct(product)
 
         api.products.profitMargin({
-            data: { product, price: (Number(product.cost) * factor).toFixed(2) },
+            data: { product, price: Number((Number(product.cost) * factor).toFixed(2)) },
             callback: () => {
                 if (products.indexOf(product) == products.length - 1) {
                     setLoading(false)
