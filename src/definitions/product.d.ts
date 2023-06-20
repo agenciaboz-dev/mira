@@ -22,3 +22,8 @@ declare interface Product {
     supplier: Supplier
     categories?: Category[]
 }
+
+declare interface orderProduct extends Product {
+    quantity: number
+    product: Product
+}

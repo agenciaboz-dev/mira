@@ -1,6 +1,6 @@
 declare interface Order {
     id: number
-    products: Product[]
+    products: orderProduct[]
     name: string
     cpf: string
     user: User
