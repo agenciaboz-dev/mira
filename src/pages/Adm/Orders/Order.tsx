@@ -25,6 +25,7 @@ import MaskedInput from "react-text-mask"
 import CancelIcon from "@mui/icons-material/Cancel"
 import { Orders } from "."
 
+
 interface OrderProps {}
 
 export const Order: React.FC<OrderProps> = ({}) => {
@@ -60,7 +61,7 @@ export const Order: React.FC<OrderProps> = ({}) => {
                 </IconButton>
                 <TextField label="Nº do Pedido" variant="standard" value={order.id} InputProps={{ readOnly: true }} />
                 <TextField
-                    label="Data"
+                    label="Data da compra"
                     variant="standard"
                     value={new Date(order.date).toLocaleString()}
                     InputProps={{ readOnly: true }}
@@ -101,20 +102,13 @@ export const Order: React.FC<OrderProps> = ({}) => {
                         />
                     </Box>
                     <Box sx={{ gap: "1vw" }}>
-                        <MaskedInput
-                            mask={currencyMask}
-                            guide={false}
-                            value={order.value}
-                            render={(ref, props) => (
-                                <TextField
-                                    inputRef={ref}
-                                    {...props}
-                                    label="Subtotal"
-                                    variant="standard"
-                                    InputProps={{ readOnly: true }}
-                                />
-                            )}
+                        <TextField
+                            label="Total"
+                            variant="standard"
+                            value={`R$ ${order.value.toString().replace(/\./g, ",")}`}
+                            InputProps={{ readOnly: true }}
                         />
+
                         <TextField label="Origem" variant="standard" value="Loja" InputProps={{ readOnly: true }} />
                     </Box>
                     <Box sx={{ gap: "1vw" }}>
@@ -144,18 +138,25 @@ export const Order: React.FC<OrderProps> = ({}) => {
                         <Box sx={{ gap: "1vw", flexDirection: "column" }}>
                             <h4 style={{ color: "gray" }}>Endereço de entrega</h4>
                             <p>
-                                {order.address.address}, {order.address.number}, {order.address.district}
+                                {order.address.receiver} | {order.address.phone}
+                            </p>
+                            <p>
+                                {order.address.address}, {order.address.number}, {order.address.complement},{" "}
+                                {order.address.district}
                             </p>
                             <p>
                                 {order.address.cep} {order.address.city}/{order.address.uf}
                             </p>
+                            <Box>
+                                <h4 style={{ color: "gray" }}>Acompanhe a entrega</h4>
+                            </Box>
                         </Box>
                     )}
                 </Paper>
                 <Paper sx={styles.paper}>
                     <h3 style={{ color: "gray" }}>Produtos ({order.products.length})</h3>
                     {order.products.map((product) => (
-                        <Paper sx={{ width: "33.1vw", padding: "0.6vw" }}>
+                        <Paper sx={{ width: "33.0vw", padding: "0.5vw" }}>
                             <Box
                                 key={product.id}
                                 sx={{
@@ -166,13 +167,14 @@ export const Order: React.FC<OrderProps> = ({}) => {
                                     justifyContent: "space-between",
                                 }}
                             >
-                                <Box sx={{ alignItems: "center" }}>
-                                    <Avatar src={product.image} sx={{ bgcolor: "transparent" }}>
+                                <Box sx={{ alignItems: "center", justifyContent: "space-between" }}>
+                                    <Avatar src={product.image} sx={{ bgcolor: "transparent", padding: "0.1vw" }}>
                                         <CancelIcon color="error" sx={{ width: "100%", height: "100%" }} />
                                     </Avatar>
-                                    <p style={{ paddingLeft: "1vw", fontSize: "1vw" }}> {product.name} </p>
+                                    <p style={{ paddingRight: "0.5vw", fontSize: "0.9vw", fontWeight: "500" }}>4 x</p>
+                                    <p style={{ paddingLeft: "1vw", fontSize: "0.8vw" }}>{product.name} </p>
                                 </Box>{" "}
-                                <p>R${product.cost}</p>
+                                <p style={{ fontSize: "0.9vw" }}> R${product.cost}</p>
                             </Box>
                         </Paper>
                     ))}
