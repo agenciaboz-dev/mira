@@ -5,6 +5,7 @@ import { useApi } from "../../hooks/useApi"
 import { useUser } from "../../hooks/useUser"
 import { useNavigate } from "react-router-dom"
 import { ReactComponent as LogoIcon } from "../../images/logo.svg"
+import { useWebsocket } from "../../hooks/useWebsocket"
 
 interface LoginProps {}
 
@@ -19,6 +20,7 @@ export const Login: React.FC<LoginProps> = ({}) => {
     const api = useApi()
     const { setUser } = useUser()
     const navigate = useNavigate()
+    const websocket = useWebsocket()
 
     const [error, setError] = useState("")
     const [loading, setLoading] = useState(false)
@@ -36,6 +38,7 @@ export const Login: React.FC<LoginProps> = ({}) => {
                     console.log(user)
                     setUser(user)
                     navigate("/dashboard/products")
+                    websocket.send({ adm: user })
                 } else {
                     setError("Usuário ou senha inválidos")
                 }

@@ -21,15 +21,10 @@ export const Adm: React.FC<AdmProps> = ({}) => {
     const { user } = useUser()
     const location = useLocation()
     const navigate = useNavigate()
-    const websocket = useWebsocket()
 
     useEffect(() => {
         if (!user) navigate("/login")
     }, [location.pathname])
-
-    useEffect(() => {
-        websocket.send({ adm: user })
-    }, [])
 
     return (
         <div className="Adm-Page">
