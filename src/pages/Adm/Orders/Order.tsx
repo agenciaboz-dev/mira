@@ -134,7 +134,7 @@ export const Order: React.FC<OrderProps> = ({}) => {
                         />
                     </Box>
 
-                    {order.delivery && (
+                    {order.delivery && order.address && (
                         <Box sx={{ gap: "1vw", flexDirection: "column" }}>
                             <h4 style={{ color: "gray" }}>Endereço de entrega</h4>
                             <p>
