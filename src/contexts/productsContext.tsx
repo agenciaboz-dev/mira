@@ -21,6 +21,7 @@ export const ProductsProvider: React.FC<ProductsProviderProps> = ({ children }) 
     const [value, setValue] = useState<Product[]>([])
 
     const refresh = () => {
+        setValue([])
         api.products.get({ callback: (response: { data: Product[] }) => setValue(response.data) })
     }
 
