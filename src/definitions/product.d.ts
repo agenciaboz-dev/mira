@@ -23,7 +23,7 @@ declare interface Product {
     categories?: Category[]
 }
 
-declare interface orderProduct extends Product {
+declare interface orderProduct {
     quantity: number
     product: Product
 }
