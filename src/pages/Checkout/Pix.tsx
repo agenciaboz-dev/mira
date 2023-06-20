@@ -43,7 +43,7 @@ export const Pix: React.FC<PixProps> = ({}) => {
         const data = {
             user,
             total,
-            address: { ...address },
+            address,
             cpf: location.state.cpf,
             name: location.state.name,
             products: cart,

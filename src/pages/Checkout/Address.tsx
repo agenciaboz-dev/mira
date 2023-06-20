@@ -43,7 +43,7 @@ export const Address: React.FC<AddressProps> = ({}) => {
     const handleSubmit = (values: AddressType) => {
         if (loading) return
         navigate("/checkout/payment")
-        setTimeout(() => setAddress(values), 500)
+        setAddress(values)
     }
 
     return (
