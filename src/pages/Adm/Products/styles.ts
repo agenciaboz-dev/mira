@@ -4,6 +4,9 @@ import { SxProps } from "@mui/material"
 interface Styles {
     body: SxProps
     list: SxProps
+    header: SxProps
+    formContainer: SxProps
+    inputContainer: SxProps
 }
 
 const styles: Styles = {
@@ -13,9 +16,30 @@ const styles: Styles = {
         padding: "1vw",
         gap: "1vw",
     },
+
     list: {
         padding: "1vw",
         flexDirection: "column",
+        gap: "1vw",
+    },
+
+    header: {
+        position: "sticky",
+        top: "-0.4vw",
+        backgroundColor: "white",
+        zIndex: 2,
+        gap: "1vw",
+        alignItems: "center",
+        justifyContent: "space-between",
+    },
+
+    formContainer: {
+        flexDirection: "column",
+        gap: "1vw",
+        width: "100%",
+    },
+
+    inputContainer: {
         gap: "1vw",
     },
 }

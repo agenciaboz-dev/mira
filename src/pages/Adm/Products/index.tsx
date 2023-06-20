@@ -16,11 +16,13 @@ import { useConfirmDialog } from "burgos-confirm"
 import QrCodeScannerIcon from "@mui/icons-material/QrCodeScanner"
 import { QrCodeModal } from "../../../components/QrcodeModal"
 import CancelIcon from "@mui/icons-material/Cancel"
+import { useNavigate } from "react-router-dom"
 
 interface ProductsProps {}
 
 export const Products: React.FC<ProductsProps> = ({}) => {
     const api = useApi()
+    const navigate = useNavigate()
 
     const { snackbar } = useSnackbar()
     const { confirm } = useConfirmDialog()
@@ -37,7 +39,11 @@ export const Products: React.FC<ProductsProps> = ({}) => {
             selector: (row) => row.image,
             sortable: true,
             cell: (row) => (
-                <Avatar src={row.image} sx={{ bgcolor: "transparent" }}>
+                <Avatar
+                    src={row.image}
+                    sx={{ bgcolor: "transparent" }}
+                    onClick={() => window.open(row.image, "_blank")?.focus()}
+                >
                     <CancelIcon color="error" sx={{ width: "100%", height: "100%" }} />
                 </Avatar>
             ),
@@ -53,11 +59,12 @@ export const Products: React.FC<ProductsProps> = ({}) => {
             name: "Nome",
             selector: (row) => row.name,
             sortable: true,
-            width: "24%",
+            width: "auto",
             cell: (row) => (
                 <p
                     title={row.name}
-                    style={{ whiteSpace: "nowrap", textOverflow: "ellipsis", width: "25vw", overflow: "hidden" }}
+                    onClick={() => navigate(`/dashboard/products/${row.id}`)}
+                    style={{ whiteSpace: "nowrap", textOverflow: "ellipsis", width: "27vw", overflow: "hidden" }}
                 >
                     {row.name}
                 </p>
@@ -67,10 +74,11 @@ export const Products: React.FC<ProductsProps> = ({}) => {
             name: "Marca",
             selector: (row) => row.brand,
             sortable: true,
-            width: "10%%",
+            width: "10%",
             cell: (row) => (
                 <p
                     title={row.brand}
+                    onClick={() => navigate(`/dashboard/products/${row.id}`)}
                     style={{ whiteSpace: "nowrap", textOverflow: "ellipsis", width: "10vw", overflow: "hidden" }}
                 >
                     {row.brand}
@@ -82,14 +90,22 @@ export const Products: React.FC<ProductsProps> = ({}) => {
             selector: (row) => row.cost,
             sortable: true,
             width: "10%",
-            cell: (row) => <CurrencyText value={row.cost} />,
+            cell: (row) => (
+                <Box onClick={() => navigate(`/dashboard/products/${row.id}`)}>
+                    <CurrencyText value={row.cost} />
+                </Box>
+            ),
         },
         {
             name: "Venda",
             selector: (row) => row.price,
             sortable: true,
             width: "10%",
-            cell: (row) => <CurrencyText value={row.price} />,
+            cell: (row) => (
+                <Box onClick={() => navigate(`/dashboard/products/${row.id}`)}>
+                    <CurrencyText value={row.price} />
+                </Box>
+            ),
         },
         {
             name: "QR Code",
@@ -98,16 +114,6 @@ export const Products: React.FC<ProductsProps> = ({}) => {
             cell: (row) => (
                 <IconButton onClick={() => handleQrCode(row)}>
                     <QrCodeScannerIcon color="primary" />
-                </IconButton>
-            ),
-        },
-        {
-            name: "Editar",
-            selector: (row) => row.id,
-            button: true,
-            cell: (row) => (
-                <IconButton onClick={() => handleEdit(row)}>
-                    <EditIcon color="primary" />
                 </IconButton>
             ),
         },
@@ -131,7 +137,7 @@ export const Products: React.FC<ProductsProps> = ({}) => {
     }
 
     const handleNew = () => {
-        setOpen(true)
+        navigate("/dashboard/products/0")
     }
 
     const handleQrCode = (product: Product) => {
@@ -196,11 +202,16 @@ export const Products: React.FC<ProductsProps> = ({}) => {
                             selectAllRowsItem: true,
                             selectAllRowsItemText: "Todos",
                         }}
+                        noDataComponent={<p>Nenhum produto encontrado</p>}
                         columns={columns}
                         data={productList}
                         highlightOnHover
                         fixedHeader
                         fixedHeaderScrollHeight={"37.1vw"}
+                        onRowClicked={(row) => navigate(`/dashboard/products/${row.id}`)}
+                        customStyles={{
+                            rows: { style: { cursor: "pointer" } },
+                        }}
                     />
                 ) : (
                     <Skeleton variant="rectangular" sx={{ width: "100%", height: "20vw" }} animation="wave" />
