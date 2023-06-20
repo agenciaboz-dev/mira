@@ -57,7 +57,7 @@ export const Order: React.FC<OrderProps> = ({}) => {
                 <IconButton onClick={() => navigate("/dashboard/orders")}>
                     <ForwardIcon sx={{ color: colors.primary, transform: "rotate(180deg)", width: "3vw", height: "3vw" }} />
                 </IconButton>
-                <TextField label="Pedido" variant="standard" value={order.id} InputProps={{ readOnly: true }} />
+                <TextField label="Nº do Pedido" variant="standard" value={order.id} InputProps={{ readOnly: true }} />
                 <TextField
                     label="Data"
                     variant="standard"
@@ -108,12 +108,15 @@ export const Order: React.FC<OrderProps> = ({}) => {
                                 <TextField
                                     inputRef={ref}
                                     {...props}
-                                    label="Valor"
+                                    label="Subtotal"
                                     variant="standard"
                                     InputProps={{ readOnly: true }}
                                 />
                             )}
                         />
+                        <TextField label="Origem" variant="standard" value="Loja" InputProps={{ readOnly: true }} />
+                    </Box>
+                    <Box sx={{ gap: "1vw" }}>
                         <FormControl component="fieldset" sx={{ width: "33vw" }}>
                             <FormLabel component="legend" sx={{ fontSize: "0.8vw" }}>
                                 Método de pagamento
@@ -121,16 +124,13 @@ export const Order: React.FC<OrderProps> = ({}) => {
                             <RadioGroup
                                 row
                                 aria-label="options"
-                                value={order.method == "card" ? "Cartão" : "PIX"}
+                                value={order.method == "card" ? "card" : "PIX"}
                                 name="customized-radios"
                             >
                                 <FormControlLabel value="card" control={<Radio />} label="Cartão" />
                                 <FormControlLabel value="PIX" control={<Radio />} label="Pix" />
                             </RadioGroup>
                         </FormControl>
-                    </Box>
-                    <Box sx={{ gap: "1vw" }}>
-                        <TextField label="Origem" variant="standard" value="Loja" InputProps={{ readOnly: true }} />
                         <TextField
                             label="Entrega"
                             variant="standard"
@@ -138,15 +138,15 @@ export const Order: React.FC<OrderProps> = ({}) => {
                             InputProps={{ readOnly: true }}
                         />
                     </Box>
+
                     {order.delivery && (
                         <Box sx={{ gap: "1vw", flexDirection: "column" }}>
                             <h4 style={{ color: "gray" }}>Endereço de entrega</h4>
                             <p>
-                                {order.address.address},{order.address.district}, {order.address.number},
-                                {order.address.receiver},
+                                {order.address.address}, {order.address.number}, {order.address.district}
                             </p>
                             <p>
-                                {order.address.cep}, ,{order.address.city}, ,{order.address.uf}
+                                {order.address.cep} {order.address.city}/{order.address.uf}
                             </p>
                         </Box>
                     )}
