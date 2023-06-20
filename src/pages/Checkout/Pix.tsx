@@ -12,6 +12,7 @@ import { useUser } from "../../hooks/useUser"
 import { useApi } from "../../hooks/useApi"
 import { useAddress } from "../../hooks/useAddress"
 import { Skeleton } from "@mui/material"
+import { useOrder } from "../../hooks/useOrder"
 
 interface PixProps {}
 
@@ -26,6 +27,7 @@ export const Pix: React.FC<PixProps> = ({}) => {
     const { address } = useAddress()
     const { cart, total } = useCart()
     const { user } = useUser()
+    const { quotation } = useOrder()
 
     const [qrCodeValue, setQrCodeValue] = useState("")
     const [qrCode, setQrCode] = useState<any>()
@@ -43,6 +45,7 @@ export const Pix: React.FC<PixProps> = ({}) => {
         const data = {
             user,
             total,
+            quotation,
             address: { ...address },
             cpf: location.state.cpf,
             name: location.state.name,
