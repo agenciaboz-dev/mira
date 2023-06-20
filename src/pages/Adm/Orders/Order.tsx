@@ -88,6 +88,7 @@ export const Order: React.FC<OrderProps> = ({}) => {
             </Box>
             <Box sx={styles.mainContainer}>
                 <Paper sx={styles.paper}>
+                    {order.error && <p style={{ color: "red" }}>error: {order.error}</p>}
                     <h3 style={{ color: "gray" }}>Dados</h3>
                     <Box sx={{ gap: "1vw" }}>
                         <TextField label="Cliente" variant="standard" value={order.name} InputProps={{ readOnly: true }} />

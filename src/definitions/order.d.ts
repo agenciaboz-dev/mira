@@ -10,4 +10,5 @@ declare interface Order {
     method: "card" | "pix"
     address: Address
     value: number
+    error?: string
 }
