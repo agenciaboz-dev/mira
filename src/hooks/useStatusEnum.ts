@@ -26,6 +26,10 @@ export const useStatusEnum = () => {
             title: "Erro",
             color: "red",
         },
+        {
+            title: "Cancelado",
+            color: "red",
+        },
     ]
 
     return status
