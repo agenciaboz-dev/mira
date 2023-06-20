@@ -214,7 +214,7 @@ export const Products: React.FC<ProductsProps> = ({}) => {
                         }}
                     />
                 ) : (
-                    <Skeleton variant="rectangular" sx={{ width: "100%", height: "20vw" }} animation="wave" />
+                    <Skeleton variant="rectangular" sx={{ width: "100%", height: "40vw" }} animation="wave" />
                 )}
             </Paper>
         </Box>

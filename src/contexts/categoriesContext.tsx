@@ -21,6 +21,7 @@ export const CategoriesProvider: React.FC<CategoriesProviderProps> = ({ children
     const api = useApi()
 
     const refresh = () => {
+        setValue([])
         api.categories.get({ callback: (response: { data: Category[] }) => setValue(response.data) })
     }
 

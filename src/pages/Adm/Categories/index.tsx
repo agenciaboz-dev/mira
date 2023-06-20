@@ -142,7 +142,7 @@ export const Categories: React.FC<CategoriesProps> = ({}) => {
                         fixedHeaderScrollHeight={"37.1vw"}
                     />
                 ) : (
-                    <Skeleton variant="rectangular" sx={{ width: "100%", height: "20vw" }} animation="wave" />
+                    <Skeleton variant="rectangular" sx={{ width: "100%", height: "40vw" }} animation="wave" />
                 )}
             </Paper>
         </Box>
