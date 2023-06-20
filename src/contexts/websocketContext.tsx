@@ -37,7 +37,19 @@ export const WebsocketProvider: React.FC<WebsocketProviderProps> = ({ children }
 
             if (data.refresh) {
                 if (data.refresh == "app") {
-                    window.location.reload()
+                    snackbar({
+                        severity: "info",
+                        text: "O servidor solicitou uma atualização. Sua página será recarregada em 60 segundos.",
+                    })
+                    setTimeout(() => window.location.reload(), 60000)
+                    setTimeout(
+                        () => snackbar({ severity: "info", text: "Sua página será atualizada em 30 segundos." }),
+                        30000
+                    )
+                    setTimeout(
+                        () => snackbar({ severity: "info", text: "Sua página será atualizada em 10 segundos." }),
+                        10000
+                    )
                 } else if (data.refresh == "orders") {
                     orders.refresh()
                 } else if (data.refresh == "products") {
