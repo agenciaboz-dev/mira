@@ -11,6 +11,7 @@ import {
     FormControl,
     FormLabel,
     FormControlLabel,
+    Button,
 } from "@mui/material"
 import React, { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
@@ -24,7 +25,6 @@ import { useCurrencyMask, useCpfMask } from "burgos-masks"
 import MaskedInput from "react-text-mask"
 import CancelIcon from "@mui/icons-material/Cancel"
 import { Orders } from "."
-
 
 interface OrderProps {}
 
@@ -52,7 +52,13 @@ export const Order: React.FC<OrderProps> = ({}) => {
             navigate("/dashboard/orders")
         }
     }, [])
+    const [textoBotao, setTextoBotao] = useState("Despachar")
+    const [buttonDisabled, setButtonDisabled] = useState(false)
 
+    const handleClick = () => {
+        setTextoBotao("Enviado")
+        setButtonDisabled(true)
+    }
     return id && order ? (
         <Paper sx={styles.body} elevation={5}>
             <Box sx={styles.header}>
@@ -102,6 +108,12 @@ export const Order: React.FC<OrderProps> = ({}) => {
                         />
                     </Box>
                     <Box sx={{ gap: "1vw" }}>
+                        <TextField
+                            label="Total"
+                            variant="standard"
+                            value={`R$ ${order.value.toFixed(2).toString().replace(/\./g, ",")}`}
+                            InputProps={{ readOnly: true }}
+                        />
                         <FormControl component="fieldset" sx={{ width: "33vw" }}>
                             <FormLabel component="legend" sx={{ fontSize: "0.8vw" }}>
                                 Método de pagamento
@@ -116,20 +128,18 @@ export const Order: React.FC<OrderProps> = ({}) => {
                                 <FormControlLabel value="PIX" control={<Radio />} label="Pix" />
                             </RadioGroup>
                         </FormControl>
-                        <TextField
-                            label="Total"
-                            variant="standard"
-                            value={`R$ ${order.value.toFixed(2).toString().replace(/\./g, ",")}`}
-                            InputProps={{ readOnly: true }}
-                        />
                     </Box>
-                    <Box sx={{ gap: "1vw" }}>
+
+                    <Box sx={{ gap: "1vw", justifyContent: "space-between" }}>
                         <TextField
                             label="Entrega"
                             variant="standard"
                             value={order.delivery == true ? "Sim" : "Não"}
                             InputProps={{ readOnly: true }}
                         />
+                        <Button variant="contained" onClick={handleClick} disabled={buttonDisabled} fullWidth>
+                            {textoBotao}
+                        </Button>
                     </Box>
 
                     {order.delivery && order.address && (
