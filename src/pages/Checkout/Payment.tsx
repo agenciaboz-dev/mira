@@ -43,7 +43,7 @@ export const Payment: React.FC<PaymentProps> = ({}) => {
     const cpfMask = useCpfMask()
     const { user, setUser } = useUser()
     const { cart, total } = useCart()
-    const { order, setOrder } = useOrder()
+    const { order, setOrder, quotation } = useOrder()
     const { address } = useAddress()
     const { snackbar } = useSnackbar()
 
@@ -105,6 +105,7 @@ export const Payment: React.FC<PaymentProps> = ({}) => {
                         user,
                         address,
                         total,
+                        quotation,
                         cpf: cpf.replace(/\D/g, ""),
                         name: cardOwner,
                         products: cart,
