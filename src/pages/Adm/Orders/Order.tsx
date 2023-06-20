@@ -114,18 +114,25 @@ export const Order: React.FC<OrderProps> = ({}) => {
                                     {...props}
                                     label="CPF"
                                     variant="standard"
-                                    value={order.cpf}
                                     InputProps={{ readOnly: true }}
                                 />
                             )}
                         />
                     </Box>
                     <Box sx={{ gap: "1vw" }}>
-                        <TextField
-                            label="Total"
-                            variant="standard"
-                            value={`R$ ${order.value.toFixed(2).toString().replace(/\./g, ",")}`}
-                            InputProps={{ readOnly: true }}
+                        <MaskedInput
+                            mask={currencyMask}
+                            guide={false}
+                            value={order.value.toString().replace(/\./g, ",")}
+                            render={(ref, props) => (
+                                <TextField
+                                    inputRef={ref}
+                                    {...props}
+                                    label="Total"
+                                    variant="standard"
+                                    InputProps={{ readOnly: true }}
+                                />
+                            )}
                         />
                         <FormControl component="fieldset" sx={{ width: "33vw" }}>
                             <FormLabel component="legend" sx={{ fontSize: "0.8vw" }}>
