@@ -15,6 +15,7 @@ import { CurrentCategoryProvider } from "./contexts/currentCategoryContext"
 import { SuppliersProvider } from "./contexts/suppliersContext"
 import { CurrentSupplierProvider } from "./contexts/currentSupplierContext"
 import { OrdersProvider } from "./contexts/ordersContext"
+import { WebsocketProvider } from "./contexts/websocketContext"
 
 function App() {
     const muiTheme = useMuiTheme()
@@ -32,13 +33,15 @@ function App() {
                                             <ProductsProvider>
                                                 <OrdersProvider>
                                                     <BrowserRouter>
-                                                        <Snackbar />
-                                                        <ConfirmDialog />
-                                                        <Routes>
-                                                            <Route index element={<Login />} />
-                                                            <Route path="/dashboard/*" element={<Adm />} />
-                                                            <Route path="/login" element={<Login />} />
-                                                        </Routes>
+                                                        <WebsocketProvider>
+                                                            <Snackbar />
+                                                            <ConfirmDialog />
+                                                            <Routes>
+                                                                <Route index element={<Login />} />
+                                                                <Route path="/dashboard/*" element={<Adm />} />
+                                                                <Route path="/login" element={<Login />} />
+                                                            </Routes>
+                                                        </WebsocketProvider>
                                                     </BrowserRouter>
                                                 </OrdersProvider>
                                             </ProductsProvider>

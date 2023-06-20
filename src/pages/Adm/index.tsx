@@ -13,6 +13,7 @@ import { Orders } from "./Orders"
 import { Order } from "./Orders/Order"
 import { Settings } from "./Settings"
 import { Product } from "./Products/Product"
+import { useWebsocket } from "../../hooks/useWebsocket"
 
 interface AdmProps {}
 
@@ -20,10 +21,15 @@ export const Adm: React.FC<AdmProps> = ({}) => {
     const { user } = useUser()
     const location = useLocation()
     const navigate = useNavigate()
+    const websocket = useWebsocket()
 
     useEffect(() => {
         if (!user) navigate("/login")
     }, [location.pathname])
+
+    useEffect(() => {
+        websocket.send({ adm: user })
+    }, [])
 
     return (
         <div className="Adm-Page">
