@@ -156,9 +156,8 @@ export const Order: React.FC<OrderProps> = ({}) => {
                 <Paper sx={styles.paper}>
                     <h3 style={{ color: "gray" }}>Produtos ({order.products.length})</h3>
                     {order.products.map((product) => (
-                        <Paper sx={{ width: "33.0vw", padding: "0.5vw" }}>
+                        <Paper key={product.product.id} sx={{ width: "33.0vw", padding: "0.5vw" }}>
                             <Box
-                                key={product.id}
                                 sx={{
                                     width: "100%",
                                     fontSize: "1vw",
@@ -168,13 +167,15 @@ export const Order: React.FC<OrderProps> = ({}) => {
                                 }}
                             >
                                 <Box sx={{ alignItems: "center", justifyContent: "space-between" }}>
-                                    <Avatar src={product.image} sx={{ bgcolor: "transparent", padding: "0.1vw" }}>
+                                    <Avatar src={product.product.image} sx={{ bgcolor: "transparent", padding: "0.1vw" }}>
                                         <CancelIcon color="error" sx={{ width: "100%", height: "100%" }} />
                                     </Avatar>
-                                    <p style={{ paddingRight: "0.5vw", fontSize: "0.9vw", fontWeight: "500" }}>4 x</p>
-                                    <p style={{ paddingLeft: "1vw", fontSize: "0.8vw" }}>{product.name} </p>
+                                    <p style={{ paddingRight: "0.5vw", fontSize: "0.9vw", fontWeight: "500" }}>
+                                        {product.quantity} x
+                                    </p>
+                                    <p style={{ paddingLeft: "1vw", fontSize: "0.8vw" }}>{product.product.name} </p>
                                 </Box>{" "}
-                                <p style={{ fontSize: "0.9vw" }}> R${product.cost}</p>
+                                <p style={{ fontSize: "0.9vw" }}> R${product.product.cost}</p>
                             </Box>
                         </Paper>
                     ))}
