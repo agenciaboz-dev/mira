@@ -136,6 +136,12 @@
                 .small-input {
                     flex: 0.2;
                     text-align: center;
+
+                    .MuiSelect-select {
+                        padding: 0;
+                        padding-right: 6vw;
+                        text-align: center;
+                    }
                 }
             }
         }
