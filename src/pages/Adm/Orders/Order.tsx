@@ -102,16 +102,6 @@ export const Order: React.FC<OrderProps> = ({}) => {
                         />
                     </Box>
                     <Box sx={{ gap: "1vw" }}>
-                        <TextField
-                            label="Total"
-                            variant="standard"
-                            value={`R$ ${order.value.toString().replace(/\./g, ",")}`}
-                            InputProps={{ readOnly: true }}
-                        />
-
-                        <TextField label="Origem" variant="standard" value="Loja" InputProps={{ readOnly: true }} />
-                    </Box>
-                    <Box sx={{ gap: "1vw" }}>
                         <FormControl component="fieldset" sx={{ width: "33vw" }}>
                             <FormLabel component="legend" sx={{ fontSize: "0.8vw" }}>
                                 Método de pagamento
@@ -126,6 +116,14 @@ export const Order: React.FC<OrderProps> = ({}) => {
                                 <FormControlLabel value="PIX" control={<Radio />} label="Pix" />
                             </RadioGroup>
                         </FormControl>
+                        <TextField
+                            label="Total"
+                            variant="standard"
+                            value={`R$ ${order.value.toFixed(2).toString().replace(/\./g, ",")}`}
+                            InputProps={{ readOnly: true }}
+                        />
+                    </Box>
+                    <Box sx={{ gap: "1vw" }}>
                         <TextField
                             label="Entrega"
                             variant="standard"
@@ -156,7 +154,7 @@ export const Order: React.FC<OrderProps> = ({}) => {
                 <Paper sx={styles.paper}>
                     <h3 style={{ color: "gray" }}>Produtos ({order.products.length})</h3>
                     {order.products.map((product) => (
-                        <Paper key={product.product.id} sx={{ width: "33.0vw", padding: "0.5vw" }}>
+                        <Paper key={product.product.id} sx={{ width: "33.0vw", padding: "1vw" }}>
                             <Box
                                 sx={{
                                     width: "100%",
