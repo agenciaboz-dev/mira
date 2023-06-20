@@ -40,7 +40,7 @@ export const Payment: React.FC<PaymentProps> = ({}) => {
     const api = useApi()
     const { user, setUser } = useUser()
     const { cart, total } = useCart()
-    const { order, setOrder } = useOrder()
+    const { order, setOrder, quotation } = useOrder()
     const { address } = useAddress()
 
     const [paymentType, setPaymentType] = useState<"pix" | "credit" | undefined>()
@@ -100,6 +100,7 @@ export const Payment: React.FC<PaymentProps> = ({}) => {
                     user,
                     address,
                     total,
+                    quotation,
                     name: user!.name,
                     cpf: user!.cpf,
                     products: cart,

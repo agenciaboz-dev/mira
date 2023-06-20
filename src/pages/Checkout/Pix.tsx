@@ -11,6 +11,7 @@ import { useUser } from "../../hooks/useUser"
 import { useApi } from "../../hooks/useApi"
 import { useAddress } from "../../hooks/useAddress"
 import { Skeleton } from "@mui/material"
+import { useOrder } from "../../hooks/useOrder"
 
 interface PixProps {}
 
@@ -24,6 +25,7 @@ export const Pix: React.FC<PixProps> = ({}) => {
     const { address } = useAddress()
     const { cart, total } = useCart()
     const { user } = useUser()
+    const { quotation } = useOrder()
 
     const [qrCodeValue, setQrCodeValue] = useState("")
     const [qrCode, setQrCode] = useState<any>()
@@ -43,6 +45,7 @@ export const Pix: React.FC<PixProps> = ({}) => {
                 user,
                 address,
                 total,
+                quotation,
                 name: user!.name,
                 cpf: user!.cpf.replace(/\D/g, ""),
                 products: cart,
@@ -60,7 +63,6 @@ export const Pix: React.FC<PixProps> = ({}) => {
 
     return (
         <div className="Pix-Component">
-            
             <h4>Como você gostaria de efetuar o pagamento do PIX?</h4>
             <p>Mostre o QR code na sua tela ou copie o código copia e cola para efetuar o pagamento.</p>
             <p>Esse código é válido por 1 hora.</p>
@@ -86,7 +88,6 @@ export const Pix: React.FC<PixProps> = ({}) => {
                     />
                 )}
             </div>
-
         </div>
     )
 }

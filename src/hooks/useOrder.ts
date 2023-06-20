@@ -8,5 +8,5 @@ export const useOrder = () => {
     const order = orderContext.value
     const setOrder = orderContext.setValue
 
-    return { order: order, setOrder: setOrder }
+    return { order: order, setOrder: setOrder, ...orderContext }
 }

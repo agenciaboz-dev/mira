@@ -19,7 +19,7 @@ export const FreteModal: React.FC<FreteModalProps> = ({ open, setOpen }) => {
     const api = useApi()
     const navigate = useNavigate()
 
-    const { order, setOrder } = useOrder()
+    const order = useOrder()
     const { cart, total } = useCart()
 
     const [cep, setCep] = useState("")
@@ -33,8 +33,8 @@ export const FreteModal: React.FC<FreteModalProps> = ({ open, setOpen }) => {
 
     const handleContinue = () => {
         if (!quotation) return
-        setOrder({ ...order, quotation })
         navigate("/checkout/address")
+        order.setQuotation(quotation)
     }
 
     useEffect(() => {
