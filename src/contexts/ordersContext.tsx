@@ -23,6 +23,7 @@ export const OrdersProvider: React.FC<OrdersProviderProps> = ({ children }) => {
     const [value, setValue] = useState<Order[]>([])
 
     const refresh = () => {
+        setValue([])
         api.orders.get((response: { data: Order[] }) => setValue(response.data))
     }
 

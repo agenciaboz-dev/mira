@@ -21,6 +21,7 @@ export const SuppliersProvider: React.FC<SuppliersProviderProps> = ({ children }
     const api = useApi()
 
     const refresh = () => {
+        setValue([])
         api.suppliers.get({ callback: (response: { data: Supplier[] }) => setValue(response.data) })
     }
 
