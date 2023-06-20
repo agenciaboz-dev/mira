@@ -12,6 +12,7 @@ import {
     FormLabel,
     FormControlLabel,
     Button,
+    CircularProgress,
 } from "@mui/material"
 import React, { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
@@ -25,6 +26,7 @@ import { useCurrencyMask, useCpfMask } from "burgos-masks"
 import MaskedInput from "react-text-mask"
 import CancelIcon from "@mui/icons-material/Cancel"
 import { Orders } from "."
+import { useOrders } from "../../../hooks/useOrders"
 
 interface OrderProps {}
 
@@ -35,8 +37,24 @@ export const Order: React.FC<OrderProps> = ({}) => {
     const statusEnum = useStatusEnum()
     const currencyMask = useCurrencyMask()
     const cpfMask = useCpfMask()
+    const orders = useOrders()
 
     const [order, setOrder] = useState<Order>()
+    const [loadingButton, setLoadingButton] = useState(false)
+
+    const handleClick = () => {
+        if (loadingButton) return
+
+        setLoadingButton(true)
+        api.orders.close({
+            data: order,
+            callback: (response: { data: Order }) => {
+                setOrder(response.data)
+                orders.refresh()
+            },
+            finallyCallback: () => setLoadingButton(false),
+        })
+    }
 
     useEffect(() => {
         console.log(order)
@@ -52,13 +70,7 @@ export const Order: React.FC<OrderProps> = ({}) => {
             navigate("/dashboard/orders")
         }
     }, [])
-    const [textoBotao, setTextoBotao] = useState("Despachar")
-    const [buttonDisabled, setButtonDisabled] = useState(false)
 
-    const handleClick = () => {
-        setTextoBotao("Enviado")
-        setButtonDisabled(true)
-    }
     return id && order ? (
         <Paper sx={styles.body} elevation={5}>
             <Box sx={styles.header}>
@@ -138,8 +150,14 @@ export const Order: React.FC<OrderProps> = ({}) => {
                             value={order.delivery == true ? "Sim" : "Não"}
                             InputProps={{ readOnly: true }}
                         />
-                        <Button variant="contained" onClick={handleClick} disabled={buttonDisabled} fullWidth>
-                            {textoBotao}
+                        <Button variant="contained" disabled={order.status != 2} onClick={handleClick} fullWidth>
+                            {loadingButton ? (
+                                <CircularProgress size="1.5rem" sx={{ color: "white" }} />
+                            ) : order.delivery ? (
+                                "Despachar"
+                            ) : (
+                                "Finalizar"
+                            )}
                         </Button>
                     </Box>
 
