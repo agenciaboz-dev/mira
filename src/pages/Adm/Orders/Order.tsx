@@ -23,6 +23,7 @@ import CircleIcon from "@mui/icons-material/Circle"
 import { useCurrencyMask, useCpfMask } from "burgos-masks"
 import MaskedInput from "react-text-mask"
 import CancelIcon from "@mui/icons-material/Cancel"
+import { Orders } from "."
 
 interface OrderProps {}
 
@@ -152,14 +153,26 @@ export const Order: React.FC<OrderProps> = ({}) => {
                     )}
                 </Paper>
                 <Paper sx={styles.paper}>
-                    <h3 style={{ color: "gray" }}>Produtos</h3>
+                    <h3 style={{ color: "gray" }}>Produtos ({order.products.length})</h3>
                     {order.products.map((product) => (
                         <Paper sx={{ width: "33.1vw", padding: "0.6vw" }}>
-                            <Box key={product.id} sx={{ width: "100%", gap: "1vw", alignItems: "center" }}>
-                                <Avatar src={product.image} sx={{ bgcolor: "transparent" }}>
-                                    <CancelIcon color="error" sx={{ width: "100%", height: "100%" }} />
-                                </Avatar>
-                                <p style={{ fontSize: "1vw" }}> {product.name} </p>
+                            <Box
+                                key={product.id}
+                                sx={{
+                                    width: "100%",
+                                    fontSize: "1vw",
+                                    gap: "1vw",
+                                    alignItems: "center",
+                                    justifyContent: "space-between",
+                                }}
+                            >
+                                <Box sx={{ alignItems: "center" }}>
+                                    <Avatar src={product.image} sx={{ bgcolor: "transparent" }}>
+                                        <CancelIcon color="error" sx={{ width: "100%", height: "100%" }} />
+                                    </Avatar>
+                                    <p style={{ paddingLeft: "1vw", fontSize: "1vw" }}> {product.name} </p>
+                                </Box>{" "}
+                                <p>R${product.cost}</p>
                             </Box>
                         </Paper>
                     ))}
