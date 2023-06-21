@@ -2,10 +2,9 @@ import { createContext, useEffect, useState } from "react"
 import React from "react"
 import { useApi } from "../hooks/useApi"
 import useWebSocket, { ReadyState } from "react-use-websocket"
-import { useOrders } from "../hooks/useOrders"
-import { useProducts } from "../hooks/useProducts"
 import { useSnackbar } from "burgos-snackbar"
 import { useUser } from "../hooks/useUser"
+import { useWsRefresh } from "../hooks/useWsRefresh"
 
 export interface Websocket {}
 
@@ -25,10 +24,9 @@ export default WebsocketContext
 
 export const WebsocketProvider: React.FC<WebsocketProviderProps> = ({ children }) => {
     const api = useApi()
-    const orders = useOrders()
-    const products = useProducts()
     const { snackbar } = useSnackbar()
     const { user } = useUser()
+    const handleRefresh = useWsRefresh()
 
     const { sendMessage, lastMessage, readyState } = useWebSocket(`wss://app.agenciaboz.com.br:4102`, {
         onMessage: (message) => {
@@ -36,27 +34,7 @@ export const WebsocketProvider: React.FC<WebsocketProviderProps> = ({ children }
             console.log(data)
 
             if (data.refresh) {
-                if (data.refresh == "app") {
-                    snackbar({
-                        severity: "info",
-                        text: "O servidor solicitou uma atualização. Sua página será recarregada em 60 segundos.",
-                    })
-                    
-                    setTimeout(
-                        () => snackbar({ severity: "info", text: "Sua página será atualizada em 30 segundos." }),
-                        30000
-                    )
-                    setTimeout(
-                        () => snackbar({ severity: "info", text: "Sua página será atualizada em 10 segundos." }),
-                        50000
-                    )
-                    setTimeout(() => window.location.reload(), 60000)
-                    
-                } else if (data.refresh == "orders") {
-                    orders.refresh()
-                } else if (data.refresh == "products") {
-                    products.refresh()
-                }
+                handleRefresh(data)
             }
         },
         retryOnError: true,
