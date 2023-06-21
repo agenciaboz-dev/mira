@@ -13,6 +13,7 @@ import { useApi } from "../../../hooks/useApi"
 import { useCurrentCategory } from "../../../hooks/useCurrentCategory"
 import { CategoryModal } from "../../../components/CategoryModal"
 import CancelIcon from "@mui/icons-material/Cancel"
+import { TableSkeleton } from "../../../components/TableSkeleton"
 
 interface CategoriesProps {}
 
@@ -142,7 +143,7 @@ export const Categories: React.FC<CategoriesProps> = ({}) => {
                         fixedHeaderScrollHeight={"37.1vw"}
                     />
                 ) : (
-                    <Skeleton variant="rectangular" sx={{ width: "100%", height: "40vw" }} animation="wave" />
+                    <TableSkeleton />
                 )}
             </Paper>
         </Box>

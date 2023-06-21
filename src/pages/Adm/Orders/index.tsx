@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom"
 import { useStatusEnum } from "../../../hooks/useStatusEnum"
 import { CurrencyText } from "../../../components/CurrencyText"
 import CircleIcon from "@mui/icons-material/Circle"
+import { TableSkeleton } from "../../../components/TableSkeleton"
 
 interface OrdersProps {}
 
@@ -124,7 +125,7 @@ export const Orders: React.FC<OrdersProps> = ({}) => {
                         }}
                     />
                 ) : (
-                    <Skeleton variant="rectangular" sx={{ width: "100%", height: "40vw" }} animation="wave" />
+                    <TableSkeleton />
                 )}
             </Paper>
         </Box>

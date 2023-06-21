@@ -17,6 +17,7 @@ import QrCodeScannerIcon from "@mui/icons-material/QrCodeScanner"
 import { QrCodeModal } from "../../../components/QrcodeModal"
 import CancelIcon from "@mui/icons-material/Cancel"
 import { useNavigate } from "react-router-dom"
+import { TableSkeleton } from "../../../components/TableSkeleton"
 
 interface ProductsProps {}
 
@@ -214,7 +215,7 @@ export const Products: React.FC<ProductsProps> = ({}) => {
                         }}
                     />
                 ) : (
-                    <Skeleton variant="rectangular" sx={{ width: "100%", height: "40vw" }} animation="wave" />
+                    <TableSkeleton />
                 )}
             </Paper>
         </Box>

@@ -12,6 +12,7 @@ import { useConfirmDialog } from "burgos-confirm"
 import { useApi } from "../../../hooks/useApi"
 import { useCurrentSupplier } from "../../../hooks/useCurrentSupplier"
 import { SupplierModal } from "../../../components/SupplierModal"
+import { TableSkeleton } from "../../../components/TableSkeleton"
 
 interface SuppliersProps {}
 
@@ -136,7 +137,7 @@ export const Suppliers: React.FC<SuppliersProps> = ({}) => {
                         fixedHeaderScrollHeight={"37.1vw"}
                     />
                 ) : (
-                    <Skeleton variant="rectangular" sx={{ width: "100%", height: "40vw" }} animation="wave" />
+                    <TableSkeleton />
                 )}
             </Paper>
         </Box>
