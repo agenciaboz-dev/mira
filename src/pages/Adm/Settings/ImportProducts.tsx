@@ -9,6 +9,7 @@ import { useCategories } from "../../../hooks/useCategories"
 import { useSnackbar } from "burgos-snackbar"
 import { useConfirmDialog } from "burgos-confirm"
 import UploadFileIcon from "@mui/icons-material/UploadFile"
+import { saveAs } from "file-saver"
 
 interface ImportProductsProps {}
 
@@ -47,6 +48,10 @@ export const ImportProducts: React.FC<ImportProductsProps> = ({}) => {
     const [products, setProducts] = useState<Product[]>([])
     const [newProducts, setNewProducts] = useState(0)
     const [updateProducts, setUpdateProducts] = useState(0)
+
+    const handleDownload = () => {
+        saveAs("https://app.agenciaboz.com.br:4102/images/template.xlsx", "modelo lista de produtos.xlsx")
+    }
 
     const handleUpload = () => {
         if (loading) return
@@ -138,6 +143,10 @@ export const ImportProducts: React.FC<ImportProductsProps> = ({}) => {
     }, [files])
     return (
         <Paper sx={{ flexDirection: "column", gap: "1vw", padding: "1vw" }} elevation={3}>
+            <Button variant="contained" onClick={handleDownload}>
+                {" "}
+                Baixar modelo de planilha{" "}
+            </Button>
             <FileInputButton
                 onChange={(files) => setFiles(files)}
                 value={files}
