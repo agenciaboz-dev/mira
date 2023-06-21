@@ -11,6 +11,7 @@ const styles: Styles = {
         flexDirection: "column",
         margin: "1vw",
         padding: "1vw",
+        gap: "1vw",
     },
 }
 
