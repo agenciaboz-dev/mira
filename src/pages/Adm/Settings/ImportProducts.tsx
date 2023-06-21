@@ -121,6 +121,10 @@ export const ImportProducts: React.FC<ImportProductsProps> = ({}) => {
                     delete product.category?.products
                     if (product.id || product.name) {
                         valid = true
+
+                        if (!product.id && (!product.supplier_id || !product.category?.id)) {
+                            valid = false
+                        }
                     }
                     if (valid) products.push(product)
                 })
