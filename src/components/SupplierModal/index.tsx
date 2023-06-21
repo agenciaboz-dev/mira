@@ -39,8 +39,6 @@ export const SupplierModal: React.FC<SupplierModalProps> = ({}) => {
                 callback: (response: { data: Supplier }) => {
                     console.log(response.data)
                     setOpen(false)
-                    refresh()
-                    refreshProducts()
                     snackbar({ severity: "success", text: "Fornecedor atualizado" })
                 },
                 finallyCallback: () => setLoading(false),
@@ -50,8 +48,6 @@ export const SupplierModal: React.FC<SupplierModalProps> = ({}) => {
                 data: values,
                 callback: (response: { data: Supplier }) => {
                     setOpen(false)
-                    refresh()
-                    refreshProducts()
                     snackbar({ severity: "success", text: "Fornecedor adicionado" })
                 },
                 finallyCallback: () => setLoading(false),

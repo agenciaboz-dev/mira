@@ -190,7 +190,6 @@ export const Product: React.FC<ProductProps> = ({}) => {
                 data: formData,
                 callback: (response: { data: Product }) => {
                     console.log(response.data)
-                    refresh()
                     snackbar({ severity: "success", text: "Produto atualizado" })
                     navigate("/dashboard/products")
                 },
@@ -200,7 +199,6 @@ export const Product: React.FC<ProductProps> = ({}) => {
             api.products.add({
                 data: formData,
                 callback: (response: { data: Product }) => {
-                    refresh()
                     snackbar({ severity: "success", text: "Produto adicionado" })
                     navigate("/dashboard/products")
                 },
