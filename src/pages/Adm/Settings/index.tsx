@@ -3,6 +3,7 @@ import React from "react"
 import { ProfitMargin } from "./ProfitMargin"
 import styles from "./styles"
 import { ReloadPage } from "./ReloadPage"
+import { ImportProducts } from "./ImportProducts"
 
 interface SettingsProps {}
 
@@ -11,6 +12,7 @@ export const Settings: React.FC<SettingsProps> = ({}) => {
         <Paper sx={styles.body} elevation={5}>
             <ProfitMargin />
             <ReloadPage />
+            <ImportProducts />
         </Paper>
     )
 }
