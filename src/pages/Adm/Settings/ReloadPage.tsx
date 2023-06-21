@@ -54,7 +54,7 @@ export const ReloadPage: React.FC<ReloadPageProps> = ({}) => {
                         )}
                     />
                     <Button type="submit" variant="contained">
-                        {loading ? <CircularProgress size={"1.5rem"} sx={{ color: "white" }} /> : "Enviar"}
+                        {loading ? <CircularProgress size={"1.5rem"} sx={{ color: "white" }} /> : "ok"}
                     </Button>
                 </Form>
             )}

@@ -97,7 +97,7 @@ export const ProfitMargin: React.FC<ProfitMarginProps> = ({}) => {
                         />
 
                         <Button variant="contained" type="submit">
-                            {loading ? <CircularProgress size={"1.5rem"} sx={{ color: "white" }} /> : "Aplicar"}
+                            {loading ? <CircularProgress size={"1.5rem"} sx={{ color: "white" }} /> : "ok"}
                         </Button>
                     </Form>
                 )}
