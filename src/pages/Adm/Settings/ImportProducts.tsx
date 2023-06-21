@@ -8,6 +8,7 @@ import { useSuppliers } from "../../../hooks/useSuppliers"
 import { useCategories } from "../../../hooks/useCategories"
 import { useSnackbar } from "burgos-snackbar"
 import { useConfirmDialog } from "burgos-confirm"
+import UploadFileIcon from "@mui/icons-material/UploadFile"
 
 interface ImportProductsProps {}
 
@@ -113,15 +114,17 @@ export const ImportProducts: React.FC<ImportProductsProps> = ({}) => {
                 parsed.map((product) => {
                     let valid = false
                     delete product.category?.products
-                    Object.entries(product).map(([key, value]) => {
-                        if (value) valid = true
-                    })
+                    if (product.id || product.name) {
+                        valid = true
+                    }
                     if (valid) products.push(product)
                 })
 
                 if (products.length == 0) {
-                    // error
+                    snackbar({ severity: "error", text: "Nenhum produto válido foi encontrado na lista" })
+                    setFiles([])
                 } else {
+                    console.log(products)
                     const newProducts = products.filter((product: Product) => !product.id)
                     const updateProducts = products.filter((product: Product) => product.id)
 
@@ -162,8 +165,9 @@ export const ImportProducts: React.FC<ImportProductsProps> = ({}) => {
                             )}
                         </Box>
                     </Box>
-                    <Button variant="contained" onClick={handleUpload}>
-                        {loading ? <CircularProgress size={"1.5rem"} sx={{ color: "white" }} /> : "Enviar"}
+                    <Button variant="contained" onClick={handleUpload} sx={{ gap: "0.5vw" }}>
+                        <UploadFileIcon />
+                        {loading ? <CircularProgress size={"1.5rem"} sx={{ color: "white" }} /> : <>Enviar</>}
                     </Button>
                 </>
             )}
