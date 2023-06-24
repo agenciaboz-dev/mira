@@ -243,9 +243,10 @@ export const Product: React.FC<ProductProps> = ({}) => {
                             position: "relative",
                             flexDirection: "column",
                             gap: "1vw",
-                            height: "45vw",
+                            height: "50vw",
                             overflowY: "auto",
-                            paddingTop: "0.4vw",
+                            marginTop: "1vw",
+                            paddingRight: "1vw",
                             width: "100%",
                         }}
                     >
