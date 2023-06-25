@@ -122,9 +122,13 @@
                     flex: 0.2;
                     text-align: center;
                     
-                    // div {
-                    //     border: 1px solid $blue2;
-                    // }
+                    div {
+                        // border: 1px solid $blue2;
+                        background-color: transparent;
+                        color: $dark-grey;
+                        font-weight: bold;
+                        text-align: start;
+                    }
                 }
             }
 
