@@ -8,7 +8,7 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-
+    position: relative;
     gap: 5vw;
     padding: 7vw;
 
@@ -19,6 +19,7 @@
         align-items: center;
         justify-content: space-between;
         color: white;
+        z-index: 2;
 
         h2 {
             font-size: 6vw;
@@ -29,10 +30,14 @@
     .product-list {
         flex-direction: column;
         overflow-y: auto;
-        width: 100%;
-        height: 70vh;
+        height: 80vh;
+        width: 86vw;
+
+        position: absolute;
+        top: 15vw;
         gap: 5vw;
-        padding-bottom: 2vw;
+        padding-top: 11vw;
+        padding-bottom: 23vw;
         
         .Product-Component {
             width: 99%;
@@ -99,6 +104,7 @@
     color: $dark_grey2;
     gap: 3vw;
     border: 1px solid $dark_grey;
+    z-index: 2;
 
     p {
         font-size: 4vw;
