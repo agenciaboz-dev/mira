@@ -8,6 +8,7 @@ import { CircularProgress, MenuItem } from "@mui/material"
 import { useSnackbar } from "../../hooks/useSnackbar"
 import { useApi } from "../../hooks/useApi"
 import { useFormikContext } from "formik"
+import { useLocation } from "react-router-dom";
 
 interface AddressFieldProps {
     values: FormikAdressValues
@@ -22,6 +23,7 @@ export const AddressField: React.FC<AddressFieldProps> = ({ values, handleChange
     const api = useApi()
     const numberRef = useRef<MaskedInput>(null)
     const [loading, setLoading] = useState(false)
+    const location = useLocation();
     
     const handleFocus = (event: React.FocusEvent<HTMLInputElement>) => {
         event.target.style.borderRadius = "10vw";
@@ -121,11 +123,11 @@ export const AddressField: React.FC<AddressFieldProps> = ({ values, handleChange
                     InputProps={{
                         style: {
                             borderRadius: "10vw",
-                            color: "#555555",
                             fontSize: "3.5vw",
-                            fontWeight: "bold",
                             flexGrow: "1",
                             alignSelf: "stretch",
+                            color: location.pathname === "/profile/address" ? "#555555" : "#53337d",
+                            fontWeight: location.pathname === "/profile/address" ? "bold" : "normal",
                         },
                         inputProps: {
                             onFocus: handleFocus,
