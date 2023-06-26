@@ -24,6 +24,7 @@
         h2 {
             font-size: 6vw;
             font-weight: 500;
+            user-select: none;
         }
     }
 
@@ -32,12 +33,11 @@
         overflow-y: auto;
         height: 80vh;
         width: 86vw;
-
         position: absolute;
         top: 15vw;
         gap: 5vw;
         padding-top: 11vw;
-        padding-bottom: 23vw;
+        padding-bottom: 40vw;
         
         .Product-Component {
             width: 99%;

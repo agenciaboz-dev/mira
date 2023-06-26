@@ -15,30 +15,31 @@ export const Review = () => {
     }, [value])
 
     return <div className="Review-Page">
-        <div className="main-container">
-            <h1>Avaliação</h1>
-            <div className="rating-container">
-                <Rating
-                    name="simple-controlled"
-                    value={value}
-                    onChange={(event, newValue) => {
-                        setValue(newValue);
-                    }}
-                 />
-            </div>
+        <div className="title-container">
+            <h2>Avaliação</h2>
+        </div>
 
-            <div className="buttons-container">
-                <Button onClick={() => navigate("/cart")} style={{ height: "10vw", width: "35vw", background: "linear-gradient(90deg, #9F9F9F 0%, #565656 91.94%)" }} >
-                    Cancelar
-                </Button>
-                <Button type="submit" style={{ height: "10vw", width: "35vw", marginRight: "1vw" }}>
-                    {loading ? (
-                        <CircularProgress sx={{ color: "white" }} style={{ width: "6vw", height: "auto" }} />
-                    ) : (
-                        "Salvar"
-                    )}
-                </Button>
-            </div>
+        <div className="rating-container">
+            <Rating
+                name="simple-controlled"
+                value={value}
+                onChange={(event, newValue) => {
+                    setValue(newValue);
+                }}
+                />
+        </div>
+
+        <div className="buttons-container">
+            <Button onClick={() => navigate("/cart")} style={{ height: "10vw", width: "35vw", background: "linear-gradient(90deg, #9F9F9F 0%, #565656 91.94%)" }} >
+                Cancelar
+            </Button>
+            <Button type="submit" style={{ height: "10vw", width: "35vw", marginRight: "1vw" }}>
+                {loading ? (
+                    <CircularProgress sx={{ color: "white" }} style={{ width: "6vw", height: "auto" }} />
+                ) : (
+                    "Salvar"
+                )}
+            </Button>
         </div>
     </div>
 }
