@@ -4,5 +4,6 @@ import { ButtonProps } from "@mui/material"
 import { style } from "./style"
 
 export const Button: React.FC<ButtonProps> = (props) => {
-    return <MuiButton {...props} sx={style} />
+    const sx = { ...style, ...props.sx }
+    return <MuiButton {...props} sx={sx} />
 }

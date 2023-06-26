@@ -20,6 +20,7 @@ import { OrdersProvider } from "./contexts/orderContext"
 import { useIdleTimer } from "react-idle-timer"
 import { TimeoutPrompt } from "./components/TimeoutPrompt"
 import { useReset } from "./hooks/useReset"
+import { ProdutList } from "./pages/ProductList"
 
 const timeout = 240_000
 const promptBeforeIdle = 120_000
@@ -92,7 +93,8 @@ const Container = () => {
                                             <Route path="/cart" element={<Cart />} />
                                             <Route path="/scan" element={<Camera />} />
                                             <Route path="/profile/*" element={<Profile />} />
-                                            <Route path="/checkout/*" element={<Checkout />} />
+                <Route path="/checkout/*" element={<Checkout />} />
+                <Route path="/products" element={<ProdutList />} />
             </Routes>
         </>
     )

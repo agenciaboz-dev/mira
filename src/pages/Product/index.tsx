@@ -15,6 +15,7 @@ import { ReactComponent as PlusIcon } from "../../images/product/plus.svg"
 import { Button } from "../../components/Button"
 import TextField from "@mui/material/TextField"
 import { useCart } from "../../hooks/useCart"
+import FormatListNumberedIcon from "@mui/icons-material/FormatListNumbered"
 
 interface ProductProps {
     product: ProductType
@@ -57,6 +58,14 @@ export const Product: React.FC<ProductProps> = ({ product, style, innerRef, onCl
         <div className="Product-Page" style={style} ref={innerRef}>
             <div className="main-container">
                 <img className="image" src={product.image} alt={product.name} />
+
+                <IconButton
+                    sx={{ marginRight: "auto", position: "absolute", top: "2vw", left: "2vw" }}
+                    onClick={() => navigate("/products", { state: { currentProduct: product } })}
+                    color="primary"
+                >
+                    <FormatListNumberedIcon sx={{ ...styles.cancel_icon, color: "none" }} />
+                </IconButton>
 
                 <IconButton
                     sx={{ marginLeft: "auto", position: "absolute", top: "2vw", right: "2vw" }}

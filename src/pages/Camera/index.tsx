@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react"
-import { useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import { Button } from "../../components/Button"
 import { Scanner } from "../../components/Scanner"
 import "./style.scss"
@@ -21,7 +21,7 @@ interface CameraProps {}
 export const Camera: React.FC<CameraProps> = ({}) => {
     const [scanning, setScanning] = useState(true)
     const [result, setResult] = useState("")
-    const [product, setProduct] = useState<Product>()
+    const [product, setProduct] = useState<Product | undefined>(useLocation().state?.product)
     const [error, setError] = useState("")
     const [loading, setLoading] = useState(false)
     const [productPosition, setProductPosition] = useState("")
@@ -134,7 +134,7 @@ export const Camera: React.FC<CameraProps> = ({}) => {
                             >
                                 {error ? "Tentar novamente" : "Aponte a câmera para um QR Code"}
                             </Button>
-                            <div className="cancel-button" onClick={() => navigate(-1)}>
+                            <div className="cancel-button" onClick={() => navigate("/cart")}>
                                 <CancelIcon sx={{ color: colors.red, width: "5vw", height: "auto" }} />
                                 Cancelar leitura
                             </div>
