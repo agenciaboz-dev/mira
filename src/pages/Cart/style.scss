@@ -8,7 +8,7 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-
+    position: relative;
     gap: 3vw;
     padding: 2vw 4vw;
 
@@ -19,6 +19,7 @@
         align-items: center;
         justify-content: space-between;
         color: white;
+        z-index: 2;
 
         button {
             padding: 0;
@@ -34,11 +35,14 @@
         flex-direction: row;
         overflow-y: auto;
         // overflow-x: hidden;
-        width: 100%;
+        height: 85vh;
+        width: 93vw;
         gap: 2vw;
-        padding-bottom: 2vw;
+        padding: 8vw 1.5vw 22vw 0;
         flex-wrap: wrap;
         justify-content: space-between;
+        position: absolute;
+        top: 7vw;
         
         .Product-Component {
             width: 48%;
@@ -107,6 +111,7 @@
     color: $dark_grey;
     gap: 1vw;
     border: 1px solid $dark-grey;
+    z-index: 2;
 
     p {
         font-size: 3vw;
