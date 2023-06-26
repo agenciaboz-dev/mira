@@ -22,12 +22,67 @@
         color: white;
         height: 16vw;
         width: 86vw;
+        z-index: 2;
 
         h2 {
             color: white;
             text-align: center;
             font-size: 6vw;
             font-weight: 500;
+        }
+    }
+
+    .product-list {
+        flex-direction: column;
+        overflow-y: auto;
+        height: 80vh;
+        width: 86vw;
+        position: absolute;
+        top: 15vw;
+        gap: 5vw;
+        padding-top: 11vw;
+        padding-bottom: 40vw;
+        
+        .Product-Component {
+            width: 99%;
+            border-radius: 10vw;
+            padding: 3vw 6vw;
+            background-color: white;
+            align-items: center;
+            box-shadow: 2px 8px 0px $blue;
+            gap: 5vw;
+            border: 1px solid $dark_grey;
+
+            .MuiBadge-badge {
+                top: 2vw;
+                right: 2vw;
+                width: 8vw;
+                height: 8vw;
+                border-radius: 100%;
+            }
+
+            .right-container {
+                flex-direction: column;
+                font-weight: bold;
+                gap: 1vw;
+                width: 100%;
+                font-size: 4vw;
+
+                p {
+                    gap: 1vw;
+                }
+
+                span {
+                    font-weight: normal;
+                }
+
+                .product-name {
+                    display: flex;
+                    height: 14vw;
+                    width: 100%;
+                    overflow: auto;
+                }
+            }
         }
     }
 
