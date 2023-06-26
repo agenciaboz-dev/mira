@@ -2,7 +2,7 @@
 
 .Cart-Page {
     width: 100vw;
-    min-height: -webkit-fill-available;
+    height:  calc(var(--vh, 1vh) * 100);
     flex-direction: column;
     background-image: url("../../../public/bricks_webp.webp");
     background-position: center;

@@ -4,7 +4,7 @@
     position: relative;
     width: 100%;
     flex-direction: column;
-    min-height: -webkit-fill-available;
+    height:  calc(var(--vh, 1vh) * 100);
     // overflow: hidden;
 
     .button-wrapper {

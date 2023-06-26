@@ -18,6 +18,7 @@ import { Checkout } from "./pages/Checkout"
 import { AddressProvider } from "./contexts/addressContext"
 import { OrdersProvider } from "./contexts/orderContext"
 import { Review } from "./pages/Review"
+import { ScrollTop } from "./components/ScrollTop"
 
 function App() {
     const muiTheme = useMuiTheme()
@@ -31,6 +32,7 @@ function App() {
                             <CartProvider>
                                 <AddressProvider>
                                     <BrowserRouter>
+                                        <ScrollTop />
                                         <Snackbar />
                                         <Routes>
                                             <Route index element={<Login />} />
