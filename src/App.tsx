@@ -19,6 +19,7 @@ import { AddressProvider } from "./contexts/addressContext"
 import { OrdersProvider } from "./contexts/orderContext"
 import { Review } from "./pages/Review"
 import { ScrollTop } from "./components/ScrollTop"
+import { ProdutList } from "./pages/ProductList"
 
 function App() {
     const muiTheme = useMuiTheme()
@@ -43,6 +44,7 @@ function App() {
                                             <Route path="/profile/*" element={<Profile />} />
                                             <Route path="/checkout/*" element={<Checkout />} />
                                             <Route path="/review" element={<Review />} />
+                                            <Route path="/products" element={<ProdutList />} />
                                         </Routes>
                                     </BrowserRouter>
                                 </AddressProvider>
