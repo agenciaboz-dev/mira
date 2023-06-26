@@ -139,6 +139,7 @@ export const Product: React.FC<ProductProps> = ({}) => {
               stock: 0,
               stock_warehouse: 0,
               stock_type: 0,
+              shelf: "",
               id: 0,
               image: "",
               price: 0,
@@ -375,29 +376,38 @@ export const Product: React.FC<ProductProps> = ({}) => {
                                     />
                                 </Box>
 
-                                <MaskedInput
-                                    mask={numberMask}
-                                    guide={false}
-                                    name="preparation"
-                                    value={values.preparation || ""}
-                                    onChange={handleChange}
-                                    render={(ref, props) => (
-                                        <TextField
-                                            required
-                                            inputRef={ref}
-                                            {...props}
-                                            label="Tempo médio de preparo"
-                                            InputProps={{
-                                                endAdornment: (
-                                                    <PreparationAddornment
-                                                        handleChange={handleChange}
-                                                        value={values.prep_unit}
-                                                    />
-                                                ),
-                                            }}
-                                        />
-                                    )}
-                                />
+                                <Box sx={{ gap: "1vw" }}>
+                                    <MaskedInput
+                                        mask={numberMask}
+                                        guide={false}
+                                        name="preparation"
+                                        value={values.preparation || ""}
+                                        onChange={handleChange}
+                                        render={(ref, props) => (
+                                            <TextField
+                                                required
+                                                inputRef={ref}
+                                                {...props}
+                                                label="Tempo médio de preparo"
+                                                InputProps={{
+                                                    endAdornment: (
+                                                        <PreparationAddornment
+                                                            handleChange={handleChange}
+                                                            value={values.prep_unit}
+                                                        />
+                                                    ),
+                                                }}
+                                            />
+                                        )}
+                                    />
+
+                                    <TextField
+                                        label="Prateleira"
+                                        name="shelf"
+                                        value={values.shelf}
+                                        onChange={handleChange}
+                                    />
+                                </Box>
 
                                 <Box sx={{ gap: "1vw" }}>
                                     <MaskedInput
@@ -433,6 +443,7 @@ export const Product: React.FC<ProductProps> = ({}) => {
                                         )}
                                     />
                                 </Box>
+
                                 <Box sx={{ gap: "1vw" }}>
                                     <MaskedInput
                                         mask={volumeMask}
