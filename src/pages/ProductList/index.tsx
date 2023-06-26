@@ -54,7 +54,9 @@ export const ProdutList: React.FC<ProdutListProps> = ({}) => {
                 <Button sx={{ flex: 0.45 }} onClick={() => navigate("/scan", { state: { product: currentProduct } })}>
                     Voltar
                 </Button>
-                <Button sx={{ flex: 0.45 }}>Carrinho</Button>
+                <Button sx={{ flex: 0.45 }} onClick={() => navigate("/cart")}>
+                    Carrinho
+                </Button>
             </Box>
         </Box>
     )
