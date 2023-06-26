@@ -148,7 +148,7 @@ export const Camera: React.FC<CameraProps> = ({}) => {
                     style={{
                         zIndex: 10,
                         position: "absolute",
-                        top: "100vh",
+                        top: "calc(var(--vh, 1vh) * 100)",
                         left: 0,
                         transition: "1s",
                         transform: productPosition || "",
