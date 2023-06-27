@@ -60,7 +60,8 @@ export const Product: React.FC<ProductProps> = ({ product, style, innerRef, onCl
         }
     }
     //List to test product image carousel
-    const images = [{ id: 1 }, { id: 2 }, { id: 3 }]
+    const gallery = product.gallery?.split(",") || []
+    const images = [product.image, ...gallery]
 
     useEffect(() => {
         const seen_similar_items_tutorial = storage.get("mira.seen_similar_items_tutorial")
@@ -78,8 +79,8 @@ export const Product: React.FC<ProductProps> = ({ product, style, innerRef, onCl
                 <div className="carousel-container">
                     <Carousel showThumbs={false} autoPlay infiniteLoop={true} transitionTime={1200}>
                         {images.map((image) => (
-                            <div key={image.id} className="image" style={{ width: "100%" }}>
-                                <img src={product.image} alt="" />
+                            <div key={images.indexOf(image)} className="image" style={{ width: "100%" }}>
+                                <img src={image} alt={image} />
                             </div>
                         ))}
                     </Carousel>
