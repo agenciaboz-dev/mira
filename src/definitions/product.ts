@@ -17,4 +17,5 @@ export interface Product {
     length: number | string
     preparation: number
     prep_unit: number
+    gallery?: string
 }

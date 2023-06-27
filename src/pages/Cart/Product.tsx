@@ -57,9 +57,20 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
                 <img style={{ width: "15vw", height: "15vw" }} src={product.image} />
             </Badge>
             <div className="text-container">
-                <p>
-                    Produto: <span className="product-name">{product.name}</span>
-                </p>
+                <div
+                    style={{
+                        textOverflow: "ellipsis",
+                        overflow: "hidden",
+                        //whiteSpace: "nowrap",
+                        width: "40vw",
+                        flexDirection: "column",
+                    }}
+                >
+                    Produto:{" "}
+                    <span style={{ fontWeight: "400" }} className="product-name">
+                        {product.name}
+                    </span>
+                </div>
                 <p>
                     Quantidade:{" "}
                     <MaskedInput
