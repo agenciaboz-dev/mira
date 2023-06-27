@@ -16,6 +16,8 @@ import { Button } from "../../components/Button"
 import TextField from "@mui/material/TextField"
 import { useCart } from "../../hooks/useCart"
 import FormatListNumberedIcon from "@mui/icons-material/FormatListNumbered"
+import { SimilarItemsTutorialMask } from "../../components/SimilarItemsTutorialMask"
+import { useLocalStorage } from "../../hooks/useLocalStorage"
 import { Carousel } from "react-responsive-carousel"
 import "react-responsive-carousel/lib/styles/carousel.min.css"
 
@@ -34,8 +36,10 @@ export const Product: React.FC<ProductProps> = ({ product, style, innerRef, onCl
     const { add } = useCart()
     const colors = useColors()
     const navigate = useNavigate()
+    const storage = useLocalStorage()
 
     const [quantity, setQuantity] = useState(1)
+    const [similarItemsTutorial, setSimilarItemsTutorial] = useState(false)
 
     const changeQuantity = (value: number) => {
         if (quantity == 1 && value == -1) return
@@ -59,6 +63,16 @@ export const Product: React.FC<ProductProps> = ({ product, style, innerRef, onCl
     const gallery = product.gallery?.split(",") || []
     const images = [product.image, ...gallery]
 
+    useEffect(() => {
+        const seen_similar_items_tutorial = storage.get("mira.seen_similar_items_tutorial")
+        if (seen_similar_items_tutorial) {
+            console.log("tutorial de produtos similares visto")
+        } else {
+            console.log("tutorial de produtos similares não visto")
+            setSimilarItemsTutorial(true)
+        }
+    }, [])
+
     return (
         <div className="Product-Page" style={style} ref={innerRef}>
             <div className="main-container">
@@ -71,6 +85,8 @@ export const Product: React.FC<ProductProps> = ({ product, style, innerRef, onCl
                         ))}
                     </Carousel>
                 </div>
+
+                {similarItemsTutorial && <SimilarItemsTutorialMask />}
 
                 <IconButton
                     sx={{ marginRight: "auto", position: "absolute", top: "2vw", left: "2vw" }}

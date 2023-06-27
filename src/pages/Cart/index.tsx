@@ -39,9 +39,9 @@ export const Cart: React.FC<CartProps> = ({}) => {
     useEffect(() => {
         const has_accessed = storage.get("has_accessed")
         if (has_accessed) {
-            console.log("acessou")
+            console.log("usuario acessou anteriormente, tutorial ja exibido")
         } else {
-            console.log("nao")
+            console.log("primeiro acesso, exibir tutorial")
             setTutorial(true)
         }
     }, [])
