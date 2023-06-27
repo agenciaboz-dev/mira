@@ -21,12 +21,10 @@ export const styles = {
                 borderRadius: "3vw",
             },
         },
-
         ".info-container": {
             gap: "2vw",
 
             img: {
-                width: "50%",
                 aspectRatio: "1/1",
                 borderRadius: "3vw",
             },

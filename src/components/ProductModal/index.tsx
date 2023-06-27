@@ -96,7 +96,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, produ
         setOpen(false)
     }
 
-    const images = [{ id: 1 }, { id: 2 }, { id: 3 }]
+    const images = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 3 }]
     return (
         <Dialog
             open={open}
@@ -113,9 +113,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, produ
                     <div className="carousel-container">
                         <Carousel showThumbs={false} autoPlay infiniteLoop={true} transitionTime={1200}>
                             {images.map((image) => (
-                                <div key={image.id}>
-                                    <img style={{ padding: 0 }} src={product.image} alt={product.name} />
-                                </div>
+                                <img key={image.id} style={{ padding: "1.6vw" }} src={product.image} alt={product.name} />
                             ))}
                         </Carousel>
                     </div>
