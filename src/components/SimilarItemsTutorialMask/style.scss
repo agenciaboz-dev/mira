@@ -16,8 +16,8 @@
 
     .focus {
         position: absolute;
-        width: 15vw;
-        height: 15vw;
+        width: 12.5vw;
+        height: 12.5vw;
         border-radius: 50%;
         z-index: 9;
         box-shadow: 0 0 0 100vh rgba(white, 0.7);
@@ -25,7 +25,7 @@
 
     .balloon-container {
         position: relative;
-        margin-top: 37vw;
+        margin-top: 35vw;
         justify-content: center;
         align-items: center;
         z-index: 10;
@@ -33,17 +33,17 @@
         .balloon {
             position: absolute;
             width: 85vw;
-            transform: scaleY(0.5);
+            transform: scaleY(0.75);
         }
 
         .balloon-text {
             font-weight: 600;
             position: absolute;
-            top: -10vw;
-            width: 75%;
+            top: -12vw;
+            width: 50%;
             height: 90%;
             text-align: justify;
-            font-size: 5vw;
+            font-size: 4vw;
         }
     }
 
