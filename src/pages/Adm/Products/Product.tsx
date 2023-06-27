@@ -16,6 +16,7 @@ import MaskedInput from "react-text-mask"
 import { PreparationAddornment } from "../../../components/PreparationAddornment"
 import { useConfirmDialog } from "burgos-confirm"
 import useMeasure from "react-use-measure"
+import { colors as muiColors } from "@mui/material"
 
 interface ProductProps {}
 
@@ -103,6 +104,7 @@ export const Product: React.FC<ProductProps> = ({}) => {
     const id = useParams().id as string
     const products = useProducts()
     const product = products.find(id)
+    console.log(product)
     const navigate = useNavigate()
     const numberMask = useNumberMask({})
     const volumeMask = useNumberMask({ allowDecimal: true, decimalLimit: 5 })
@@ -119,6 +121,7 @@ export const Product: React.FC<ProductProps> = ({}) => {
     const [loading, setLoading] = useState(false)
     const [deleting, setDeleting] = useState(false)
     const [files, setFiles] = useState<ExtFile[]>([])
+    const [gallery, setGallery] = useState<ExtFile[]>([])
     const [supplier, setSupplier] = useState<Supplier | undefined>(product?.supplier || suppliers[0])
 
     const initialValues: FormValues = product
@@ -181,9 +184,18 @@ export const Product: React.FC<ProductProps> = ({}) => {
             supplier_id: supplier!.id,
         }
 
+        console.log(data)
+
         const formData = new FormData()
-        console.log(files)
+
         if (files.length > 0) formData.append("file", files[0].file!)
+
+        if (gallery.length > 0) {
+            gallery.map((file) => {
+                formData.append(`gallery-${gallery.indexOf(file)}`, file.file!)
+            })
+        }
+
         formData.append("data", JSON.stringify(data))
 
         if (product) {
@@ -238,7 +250,7 @@ export const Product: React.FC<ProductProps> = ({}) => {
     return (
         <Paper sx={{ ...styles.body, margin: "1vw", paddingTop: 0 }} elevation={5}>
             <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-                {({ handleChange, values }) => (
+                {({ handleChange, values, setFieldValue }) => (
                     <Form
                         style={{
                             position: "relative",
@@ -497,6 +509,66 @@ export const Product: React.FC<ProductProps> = ({}) => {
                                     multiline
                                     minRows={5}
                                 />
+
+                                <FileInputButton
+                                    onChange={(files) => setGallery(files)}
+                                    value={gallery}
+                                    behaviour="add"
+                                    label="Adicionar imagem na galeria"
+                                    accept="image/*"
+                                    color={colors.primary}
+                                    // style={{ width: "12vw", padding: "0.5vw" }}
+                                />
+
+                                <Box sx={{ gap: "1vw", flexWrap: "wrap", padding: "1vw" }}>
+                                    {values.gallery
+                                        ?.split(",")
+                                        .filter((image) => image != "")
+                                        .map((image) => (
+                                            <Avatar
+                                                key={image}
+                                                src={image}
+                                                onClick={(event) => {
+                                                    event.preventDefault()
+                                                    setFieldValue(
+                                                        "gallery",
+                                                        values.gallery
+                                                            ?.split(",")
+                                                            .filter((item) => item != image)
+                                                            .toString()
+                                                    )
+                                                }}
+                                                smartImgFit={"orientation"}
+                                                changeLabel="Clique para remover a imagem"
+                                                // style={{ width: "100%", height: "30vw" }}
+                                                style={{
+                                                    width: "10.94vw",
+                                                    height: "10.94vw",
+                                                    borderRadius: "0.5vw",
+                                                    boxShadow: `3px -5px 0 ${colors.primary}`,
+                                                }}
+                                            />
+                                        ))}
+                                    {gallery.map((file) => (
+                                        <Avatar
+                                            key={file.id}
+                                            src={file.file}
+                                            onClick={(event) => {
+                                                event.preventDefault()
+                                                setGallery(gallery.filter((item) => item.id != file.id))
+                                            }}
+                                            smartImgFit={"orientation"}
+                                            changeLabel="Clique para remover a imagem"
+                                            // style={{ width: "100%", height: "30vw" }}
+                                            style={{
+                                                width: "10.94vw",
+                                                height: "10.94vw",
+                                                borderRadius: "0.5vw",
+                                                boxShadow: `3px -5px 0 ${muiColors.green[500]}`,
+                                            }}
+                                        />
+                                    ))}
+                                </Box>
                             </Box>
 
                             {/* right-inputs */}

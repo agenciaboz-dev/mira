@@ -12,6 +12,7 @@ declare interface Product {
     price: number | string
     cost: number | string
     image: string
+    gallery?: string
     video: string
     usage: string
     weight: number | string
