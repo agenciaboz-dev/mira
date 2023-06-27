@@ -43,7 +43,7 @@ export const Menu: React.FC<MenuProps> = ({ open, anchorEl, handleClose }) => {
                 },
             }}
         >
-            <MenuItem style={{ fontSize: "3vw" }} onClick={() => storage.set("has_accessed", false)}>Resetar Tutorial</MenuItem>
+            <MenuItem style={{ fontSize: "3vw" }} onClick={() => {storage.set("has_accessed", false); storage.set("mira.seen_similar_items_tutorial", false)}}>Resetar Tutoriais</MenuItem>
             <MenuItem style={{ fontSize: "3vw" }} onClick={() => menuNavigate("/cart")}>Carrinho</MenuItem>
             <MenuItem style={{ fontSize: "3vw" }} onClick={() => menuNavigate("/profile/account")}>Detalhes da Conta</MenuItem>
             <MenuItem style={{ fontSize: "3vw" }} onClick={logout}>Sair</MenuItem>
