@@ -77,7 +77,7 @@ export const Product: React.FC<ProductProps> = ({ product, style, innerRef, onCl
         <div className="Product-Page" style={style} ref={innerRef}>
             <div className="main-container">
                 <div className="carousel-container">
-                    <Carousel showThumbs={false} autoPlay infiniteLoop={true} transitionTime={1200}>
+                    <Carousel showThumbs={false} autoPlay infiniteLoop={true} interval={7000} transitionTime={1000}>
                         {images.map((image) => (
                             <div key={images.indexOf(image)} className="image" style={{ width: "100%" }}>
                                 <img src={image} alt={image} />
