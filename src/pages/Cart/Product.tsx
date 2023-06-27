@@ -54,19 +54,20 @@ export const Product: React.FC<ProductProps> = ({ product }) => {
                 color={"secondary"}
                 sx={{ color: colors.blue }}
             >
-                <img style={{ width: "15vw", height: "15vw" }} src={product.image} />
+                <img style={{ width: "15vw", height: "15vw", padding: 0 }} src={product.image} />
             </Badge>
             <div className="text-container">
                 <div
-                    style={{
-                        textOverflow: "ellipsis",
+                    style={
+                        {
+                            /* textOverflow: "ellipsis",
                         overflow: "hidden",
                         //whiteSpace: "nowrap",
                         width: "40vw",
-                        flexDirection: "column",
-                    }}
+                        flexDirection: "column",*/
+                        }
+                    }
                 >
-                    Produto:{" "}
                     <span style={{ fontWeight: "400" }} className="product-name">
                         {product.name}
                     </span>

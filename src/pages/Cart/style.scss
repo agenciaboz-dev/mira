@@ -62,14 +62,16 @@
                 font-weight: bold;
                 gap: 1vw;
                 width: 100vw;
-                font-size: 4vw;
+                font-size: 3.25vw;
+                justify-content: center;
+                padding-left: 1.15vw;
                 
 
                 .quantity-input {
                     width: 10vw;
                     border-radius: 1vw;
                     border: none;
-                    font-size: 4vw;
+                    font-size: 3.25vw;
                     padding: 1vw;
                     outline: 1px solid $light_grey;
                     margin-left: 1vw;
@@ -85,8 +87,8 @@
 
                 .product-name {
                     display: flex;
-                    width: 37vw;
-                    font-size: 3.6vw;
+                    width: -28vw;
+                    font-size: 3.25vw;
                     
                 }
             }
