@@ -13,6 +13,14 @@ export const styles = {
         gap: "2vw",
         padding: "4vw",
         fontSize: "2.5vw",
+        ".carousel-container": {
+            width: "100%",
+            padding: "0.5vw",
+
+            ".carousel": {
+                borderRadius: "3vw",
+            },
+        },
 
         ".info-container": {
             gap: "2vw",

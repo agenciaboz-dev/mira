@@ -24,6 +24,8 @@ import { ReactComponent as PlusIcon } from "../../images/product/plus.svg"
 import { Button } from "../Button"
 import { Specs1 } from "./Specs1"
 import { Specs2 } from "./Specs2"
+import { Carousel } from "react-responsive-carousel"
+import "react-responsive-carousel/lib/styles/carousel.min.css"
 
 interface ProductModalProps {
     open: boolean
@@ -94,7 +96,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, produ
         setOpen(false)
     }
 
-
+    const images = [{ id: 1 }, { id: 2 }, { id: 3 }]
     return (
         <Dialog
             open={open}
@@ -108,7 +110,15 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, produ
 
             <DialogContent sx={styles.content_container}>
                 <div className="info-container">
-                    <img style={{ padding: "1.6vw" }} src={product.image} alt={product.name} />
+                    <div className="carousel-container">
+                        <Carousel showThumbs={false} autoPlay infiniteLoop={true} transitionTime={1200}>
+                            {images.map((image) => (
+                                <div key={image.id}>
+                                    <img style={{ padding: 0 }} src={product.image} alt={product.name} />
+                                </div>
+                            ))}
+                        </Carousel>
+                    </div>
                     <div className="text-container">
                         <h1 style={{ fontSize: "3.2vw", paddingTop: "3vw" }}>{product.name}</h1>
                         <h1>
