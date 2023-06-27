@@ -18,6 +18,8 @@ import { useCart } from "../../hooks/useCart"
 import FormatListNumberedIcon from "@mui/icons-material/FormatListNumbered"
 import { SimilarItemsTutorialMask } from "../../components/SimilarItemsTutorialMask"
 import { useLocalStorage } from "../../hooks/useLocalStorage"
+import { Carousel } from "react-responsive-carousel"
+import "react-responsive-carousel/lib/styles/carousel.min.css"
 
 interface ProductProps {
     product: ProductType
@@ -57,6 +59,8 @@ export const Product: React.FC<ProductProps> = ({ product, style, innerRef, onCl
             navigate(-1)
         }
     }
+    //List to test product image carousel
+    const images = [{ id: 1 }, { id: 2 }, { id: 3 }]
 
     useEffect(() => {
         const seen_similar_items_tutorial = storage.get("mira.seen_similar_items_tutorial")
@@ -71,7 +75,15 @@ export const Product: React.FC<ProductProps> = ({ product, style, innerRef, onCl
     return (
         <div className="Product-Page" style={style} ref={innerRef}>
             <div className="main-container">
-                <img className="image" src={product.image} alt={product.name} />
+                <div className="carousel-container">
+                    <Carousel showThumbs={false} autoPlay infiniteLoop={true} transitionTime={1200}>
+                        {images.map((image) => (
+                            <div key={image.id} className="image" style={{ width: "100%" }}>
+                                <img src={product.image} alt="" />
+                            </div>
+                        ))}
+                    </Carousel>
+                </div>
 
                 {similarItemsTutorial && <SimilarItemsTutorialMask />}
 
