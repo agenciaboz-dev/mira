@@ -15,9 +15,6 @@ import { ReactComponent as PlusIcon } from "../../images/product/plus.svg"
 import { Button } from "../../components/Button"
 import TextField from "@mui/material/TextField"
 import { useCart } from "../../hooks/useCart"
-import { Carousel } from "react-responsive-carousel"
-import "react-responsive-carousel/lib/styles/carousel.min.css"
-
 
 interface ProductProps {
     product: ProductType
@@ -55,22 +52,11 @@ export const Product: React.FC<ProductProps> = ({ product, style, innerRef, onCl
             navigate(-1)
         }
     }
-    //List to test product image carousel
-    const gallery = product.gallery?.split(",") || []
-    const images = [product.image, ...gallery]
 
     return (
         <div className="Product-Page" style={style} ref={innerRef}>
             <div className="main-container">
-                <div className="carousel-container">
-                    <Carousel showThumbs={false} autoPlay infiniteLoop={true} transitionTime={1200}>
-                        {images.map((image) => (
-                            <div key={images.indexOf(image)} className="image" style={{ width: "100%" }}>
-                                <img src={image} alt={image} />
-                            </div>
-                        ))}
-                    </Carousel>
-                </div>
+                <img className="image" src={product.image} alt={product.name} />
 
                 <IconButton
                     sx={{ marginLeft: "auto", position: "absolute", top: "5vw", right: "5vw" }}
