@@ -20,11 +20,20 @@
         gap: 3vw;
         flex-direction: column;
 
-        .image {
-            border-radius: 5vw;
-            height: 33vh;
-            width: auto;
-            object-fit: contain;
+        .carousel-container{
+            width: 100%;
+            flex-direction: column;
+            margin-top: 6vw;
+        
+            .carousel {
+                border-radius: 3vw;
+            }
+            .image {
+                border-radius: 5vw;
+                height: 33vh;
+                width: auto;
+                object-fit: contain;
+            }
         }
     
         .title-container {
