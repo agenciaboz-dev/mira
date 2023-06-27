@@ -16,6 +16,8 @@ import { Button } from "../../components/Button"
 import TextField from "@mui/material/TextField"
 import { useCart } from "../../hooks/useCart"
 import FormatListNumberedIcon from "@mui/icons-material/FormatListNumbered"
+import { SimilarItemsTutorialMask } from "../../components/SimilarItemsTutorialMask"
+import { useLocalStorage } from "../../hooks/useLocalStorage"
 
 interface ProductProps {
     product: ProductType
@@ -32,8 +34,10 @@ export const Product: React.FC<ProductProps> = ({ product, style, innerRef, onCl
     const { add } = useCart()
     const colors = useColors()
     const navigate = useNavigate()
+    const storage = useLocalStorage()
 
     const [quantity, setQuantity] = useState(1)
+    const [similarItemsTutorial, setSimilarItemsTutorial] = useState(false)
 
     const changeQuantity = (value: number) => {
         if (quantity == 1 && value == -1) return
@@ -54,10 +58,22 @@ export const Product: React.FC<ProductProps> = ({ product, style, innerRef, onCl
         }
     }
 
+    useEffect(() => {
+        const seen_similar_items_tutorial = storage.get("mira.seen_similar_items_tutorial")
+        if (seen_similar_items_tutorial) {
+            console.log("tutorial de produtos similares visto")
+        } else {
+            console.log("tutorial de produtos similares não visto")
+            setSimilarItemsTutorial(true)
+        }
+    }, [])
+
     return (
         <div className="Product-Page" style={style} ref={innerRef}>
             <div className="main-container">
                 <img className="image" src={product.image} alt={product.name} />
+
+                {similarItemsTutorial && <SimilarItemsTutorialMask />}
 
                 <IconButton
                     sx={{ marginRight: "auto", position: "absolute", top: "2vw", left: "2vw" }}

@@ -44,7 +44,7 @@ export const Menu: React.FC<MenuProps> = ({ open, anchorEl, handleClose }) => {
                 }
             }}
         >
-            <MenuItem onClick={() => storage.set("has_accessed", false)}>Resetar Tutorial</MenuItem>
+            <MenuItem onClick={() => {storage.set("has_accessed", false); storage.set("mira.seen_similar_items_tutorial", false)}}>Resetar Tutoriais</MenuItem>
             <MenuItem onClick={() => menuNavigate("/cart")}>Carrinho</MenuItem>
             <MenuItem onClick={() => menuNavigate("/profile/account")}>Detalhes da Conta</MenuItem>
             <MenuItem onClick={() => menuNavigate("/profile/address")}>Endereço de Entrega</MenuItem>
