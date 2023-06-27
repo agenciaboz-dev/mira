@@ -85,10 +85,22 @@
             }
         }
     }
-
-    .buttons-container {
-        justify-content: space-between;
-        margin-top: auto;
-        width: 100%;
+        
+        .bottom-container {
+            margin-top: auto;
+            width: 100%;
+            flex-direction: column;
+            box-shadow: 2px 8px 0px $blue;
+            border-radius: 10vw;
+            background-color: white;
+            padding: 5vw;
+            color: $dark_grey2;
+            gap: 3vw;
+            border: 1px solid $dark_grey;
+            z-index: 2;
+        
+        .buttons-container {
+            justify-content: space-between;
+        }
     }
 }
