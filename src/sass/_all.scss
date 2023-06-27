@@ -58,7 +58,7 @@ section {
     display: contents;
 }
 
-div {
+div:not(#keyboardDiv, #keyboardDiv div) {
     display: flex;
 }
 
@@ -100,6 +100,14 @@ input:-webkit-autofill:focus,
 input:-webkit-autofill:active{
     -webkit-box-shadow: 0 0 0 30px $background-color inset !important;
 }
+
+// .ha {
+//    display: block!important;
+   
+//    div {
+
+//    }
+// }
 
 @media (orientation: landscape) {
     ::-webkit-scrollbar {
