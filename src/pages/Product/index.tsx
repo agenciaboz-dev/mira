@@ -16,6 +16,8 @@ import { Button } from "../../components/Button"
 import TextField from "@mui/material/TextField"
 import { useCart } from "../../hooks/useCart"
 import { Carousel } from "react-responsive-carousel"
+import "react-responsive-carousel/lib/styles/carousel.min.css"
+
 
 interface ProductProps {
     product: ProductType
