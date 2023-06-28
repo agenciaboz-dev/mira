@@ -1,5 +1,5 @@
 import "./style.scss"
-import { Box, Button, IconButton, MenuItem, Avatar, TextField, CircularProgress } from "@mui/material"
+import { Box, Button, Skeleton, MenuItem, Avatar, TextField, CircularProgress } from "@mui/material"
 import { ReactComponent as AvatarIcon } from "../../images/avatar_icon.svg"
 import React, { useEffect, useState } from "react"
 import QrCodeScannerIcon from "@mui/icons-material/QrCodeScanner"
@@ -45,7 +45,7 @@ export const Cart: React.FC<CartProps> = ({}) => {
     const [product, setProduct] = useState<ProductType>()
     const [productList, setProductList] = useState(products)
     const [title, setTitle] = useState("Todos")
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
 
     const icon_style = { color: "white", height: "auto", width: "5vw" }
 
@@ -85,7 +85,10 @@ export const Cart: React.FC<CartProps> = ({}) => {
     }
 
     useEffect(() => {
-        setProductList(products)
+        if (products) {
+            setProductList(products)
+            setLoading(false)
+        }
     }, [products])
 
     return (
@@ -160,21 +163,35 @@ export const Cart: React.FC<CartProps> = ({}) => {
                     </Formik>
                     <h1>{title}</h1>
                     <div className="product-list">
-                        {productList.map((product) => (
-                            <MenuItem className="product-container" key={product.id} onClick={() => onProductClick(product)}>
-                                <img src={product.image} alt={product.name} />
-                                <p
-                                    style={{
-                                        whiteSpace: "nowrap",
-                                        textOverflow: "ellipsis",
-                                        overflow: "hidden",
-                                        width: "20vw",
-                                    }}
-                                >
-                                    {product.name}
-                                </p>
-                            </MenuItem>
-                        ))}
+                        {loading
+                            ? skeletons.map((index) => (
+                                  <Box key={index} sx={{ flexDirection: "column", gap: "1vw" }}>
+                                      <Skeleton variant="rectangular" sx={{ width: "20vw", height: "16vw" }} />
+                                      <Skeleton
+                                          variant="rectangular"
+                                          sx={{ width: "20vw", height: "2vw", marginBottom: "2vw" }}
+                                      />
+                                  </Box>
+                              ))
+                            : productList.map((product) => (
+                                  <MenuItem
+                                      className="product-container"
+                                      key={product.id}
+                                      onClick={() => onProductClick(product)}
+                                  >
+                                      <img src={product.image} alt={product.name} />
+                                      <p
+                                          style={{
+                                              whiteSpace: "nowrap",
+                                              textOverflow: "ellipsis",
+                                              overflow: "hidden",
+                                              width: "20vw",
+                                          }}
+                                      >
+                                          {product.name}
+                                      </p>
+                                  </MenuItem>
+                              ))}
                     </div>
                 </div>
             </div>
