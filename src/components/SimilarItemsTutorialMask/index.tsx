@@ -11,7 +11,7 @@ export const SimilarItemsTutorialMask = () => {
     const storage = useLocalStorage()
 
     const focus_style: React.CSSProperties = {
-        top: "1vw",
+        top: "1.5vw",
         left: "1vw",
     }
 
