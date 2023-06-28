@@ -104,7 +104,7 @@ export const Product: React.FC<ProductProps> = ({ product, style, innerRef, onCl
 
 
                 <IconButton
-                    sx={{ marginLeft: "auto", position: "absolute", top: "2vw", right: "2vw" }}
+                    sx={{ marginLeft: "auto", position: "absolute", top: "4vw", right: "4vw" }}
                     onClick={() => handleClose()}
                 >
                     <CancelIcon sx={styles.cancel_icon} />

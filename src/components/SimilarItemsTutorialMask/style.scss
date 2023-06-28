@@ -32,16 +32,20 @@
 
         .balloon {
             position: absolute;
-            width: 85vw;
         }
 
         .balloon-text {
             font-weight: 600;
             position: absolute;
-            top: -13vw;
-            width: 70%;
+            top: -11vw;
+            left: 17vw;
+            width: 65%;
             height: 90%;
             text-align: justify;
+
+            p {
+                font-size: 3.75vw;
+            }
         }
     }
 
