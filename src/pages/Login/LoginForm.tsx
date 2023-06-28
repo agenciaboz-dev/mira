@@ -55,7 +55,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({}) => {
         })
     }
 
-    const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => {
+    const handleCheckboxChange = (checked: boolean) => {
         setRemember(checked)
         if (checked) {
             storage.set("mira.rememberme", true)
@@ -69,6 +69,11 @@ export const LoginForm: React.FC<LoginFormProps> = ({}) => {
         if (user) {
             setUser(user)
             navigate("/cart")
+        }
+
+        const remember = localStorage.getItem("mira.rememberme")
+        if (remember === undefined || remember === null) {
+            handleCheckboxChange(true)
         }
     }, [])
 
@@ -104,7 +109,12 @@ export const LoginForm: React.FC<LoginFormProps> = ({}) => {
                         <div className="forgot-password">Esqueceu a senha?</div>
 
                         <div className="submit-container">
-                            <Checkbox value={remember} handleChange={handleCheckboxChange} label="Mantenha-me conectado" checkboxStyle={{backgroundColor: "white", height: "6vw", width: "6vw"}} />
+                            <Checkbox
+                                value={remember}
+                                handleChange={(event, checked) => handleCheckboxChange(checked)}
+                                label="Mantenha-me conectado"
+                                checkboxStyle={{ backgroundColor: "white", height: "6vw", width: "6vw" }}
+                            />
                             <Button type="submit" variant="contained" style={{ height: "10vw", width: "30vw" }}>
                                 {loading ? (
                                     <CircularProgress sx={{ color: "white" }} style={{ width: "5vw", height: "auto" }} />
