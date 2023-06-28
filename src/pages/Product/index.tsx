@@ -76,6 +76,20 @@ export const Product: React.FC<ProductProps> = ({ product, style, innerRef, onCl
     return (
         <div className="Product-Page" style={style} ref={innerRef}>
             <div className="main-container">
+                <div className="similar-products-button-container">
+                    <Button
+                        style={{ fontSize: "3.75vw", width: "85%", padding: "2vw 2vw 2vw 12vw", lineHeight: "1.25" }}
+                        onClick={() => navigate("/products", { state: { currentProduct: product } })}
+                    >
+                    <IconButton
+                        sx={{ marginRight: "auto", position: "absolute", left: "1vw", color: "white" }}
+                    >
+                        <FormatListNumberedIcon sx={{ ...styles.cancel_icon, color: "none" }} />
+                    </IconButton>
+                        Clique e veja produtos similares
+                    </Button>
+                </div>
+
                 <div className="carousel-container">
                     <Carousel showThumbs={false} autoPlay infiniteLoop={true} interval={7000} transitionTime={1000}>
                         {images.map((image) => (
@@ -88,13 +102,6 @@ export const Product: React.FC<ProductProps> = ({ product, style, innerRef, onCl
 
                 {similarItemsTutorial && <SimilarItemsTutorialMask />}
 
-                <IconButton
-                    sx={{ marginRight: "auto", position: "absolute", top: "2vw", left: "2vw" }}
-                    onClick={() => navigate("/products", { state: { currentProduct: product } })}
-                    color="primary"
-                >
-                    <FormatListNumberedIcon sx={{ ...styles.cancel_icon, color: "none" }} />
-                </IconButton>
 
                 <IconButton
                     sx={{ marginLeft: "auto", position: "absolute", top: "2vw", right: "2vw" }}
