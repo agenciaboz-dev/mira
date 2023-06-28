@@ -98,6 +98,8 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, produ
 
     const gallery = product.gallery?.split(",") || []
     const images = [product.image, ...gallery]
+
+
     return (
         <Dialog
             open={open}
@@ -113,11 +115,13 @@ export const ProductModal: React.FC<ProductModalProps> = ({ open, setOpen, produ
                 <div className="info-container">
                     <div className="carousel-container">
                         <Carousel showThumbs={false} autoPlay infiniteLoop={true} interval={7000} transitionTime={1000}>
-                            {images.map((image) => (
-                                <div key={images.indexOf(image)} className="image" style={{ width: "100%" }}>
-                                    <img src={image} alt={image} />
-                                </div>
-                            ))}
+                            {images
+                                .filter((image) => image != "")
+                                .map((image) => (
+                                    <div key={images.indexOf(image)} className="image" style={{ width: "100%" }}>
+                                        <img src={image} alt={image} />
+                                    </div>
+                                ))}
                         </Carousel>
                     </div>
                     <div className="text-container">
