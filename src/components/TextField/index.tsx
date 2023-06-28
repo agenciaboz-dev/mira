@@ -22,17 +22,20 @@ const StyledTextField = styled(Text)`
 `
 
 export const TextField: React.FC<TextFieldProps> = (props, {}) => {
+    const sx = {
+        backgroundColor: "white",
+        borderRadius: "10vw",
+
+        // boxShadow: "2px 5px 0px #1A7FB7",
+        ...props.sx,
+    }
+
     return (
         <StyledTextField
             {...props}
             InputProps={{
                 ...props.InputProps,
-                sx: {
-                    backgroundColor: "white",
-                    borderRadius: "10vw",
-
-                    // boxShadow: "2px 5px 0px #1A7FB7",
-                },
+                sx: sx,
             }}
             inputProps={{ ...props.inputProps, sx: { padding: "1.5vw 2vw" } }}
         />

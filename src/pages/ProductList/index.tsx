@@ -1,17 +1,24 @@
 import React, { useEffect, useState } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 import { Product } from "../../definitions/product"
-import { Box, Skeleton } from "@mui/material"
+import { Box, Skeleton, CircularProgress } from "@mui/material"
 import styles from "./styles"
 import { useApi } from "../../hooks/useApi"
 import { ProductContainer } from "./ProductContainer"
 import { Button } from "../../components/Button"
 import { useArray } from "burgos-array"
+import { TextField } from "../../components/TextField"
+import SearchIcon from "@mui/icons-material/Search"
+import { Form, Formik } from "formik"
 
 interface ProdutListProps {}
 
+interface FormValues {
+    name: string
+}
+
 export const ProdutList: React.FC<ProdutListProps> = ({}) => {
-    const currentProduct: Product = useLocation().state.currentProduct
+    const currentProduct: Product | undefined = useLocation().state?.currentProduct || undefined
     const api = useApi()
     const navigate = useNavigate()
     const skeletons = useArray().newArray(10)
@@ -19,22 +26,55 @@ export const ProdutList: React.FC<ProdutListProps> = ({}) => {
     const [products, setProducts] = useState<Product[]>([])
     const [loading, setLoading] = useState(true)
 
-    useEffect(() => {
+    const initialValues = {
+        name: currentProduct?.name.split(" ")[0] || "",
+    }
+
+    const handleSubmit = (values: FormValues) => {
+        if (loading) return
+        setLoading(true)
+
         api.products.name({
-            data: { name: currentProduct.name.split(" ")[0] },
+            data: values,
             callback: (response: { data: Product[] }) => {
                 setProducts(response.data)
             },
             finallyCallback: () => setLoading(false),
         })
+    }
+
+    useEffect(() => {
+        if (currentProduct) {
+            api.products.name({
+                data: { name: currentProduct.name.split(" ")[0] },
+                callback: (response: { data: Product[] }) => {
+                    setProducts(response.data)
+                },
+                finallyCallback: () => setLoading(false),
+            })
+        } else {
+            setLoading(false)
+        }
     }, [])
 
     return (
         <Box sx={styles.body}>
             <Box sx={styles.title}>
-                <p style={{ fontSize: "5vw" }}>
-                    Produtos similares a "<span style={{ fontWeight: "bold" }}>{currentProduct.name.split(" ")[0]}</span>"
-                </p>
+                <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+                    {({ values, handleChange }) => (
+                        <Form>
+                            <TextField
+                                name="name"
+                                value={values.name}
+                                onChange={handleChange}
+                                InputProps={{
+                                    startAdornment: loading ? <CircularProgress size={"1.5rem"} /> : <SearchIcon />,
+                                }}
+                                placeholder="Buscar"
+                            />
+                        </Form>
+                    )}
+                </Formik>
             </Box>
 
             <Box sx={styles.list}>
