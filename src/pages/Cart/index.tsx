@@ -1,5 +1,5 @@
 import "./style.scss"
-import { Box, Button, IconButton, MenuItem, Avatar } from "@mui/material"
+import { Box, Button, IconButton, MenuItem, Avatar, TextField, CircularProgress } from "@mui/material"
 import { ReactComponent as AvatarIcon } from "../../images/avatar_icon.svg"
 import React, { useEffect, useState } from "react"
 import QrCodeScannerIcon from "@mui/icons-material/QrCodeScanner"
@@ -18,8 +18,16 @@ import { useCategories } from "../../hooks/useCategories"
 import CategoryIcon from "@mui/icons-material/Category"
 import { Button as DesignedButton } from "../../components/Button"
 import { useReset } from "../../hooks/useReset"
+import { useArray } from "burgos-array"
+import SearchIcon from "@mui/icons-material/Search"
+import { Form, Formik } from "formik"
+import { useApi } from "../../hooks/useApi"
 
 interface CartProps {}
+
+interface SearchFormValues {
+    name: string
+}
 
 export const Cart: React.FC<CartProps> = ({}) => {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
@@ -27,6 +35,8 @@ export const Cart: React.FC<CartProps> = ({}) => {
 
     const navigate = useNavigate()
     const reset = useReset()
+    const skeletons = useArray().newArray(15)
+    const api = useApi()
     const { cart } = useCart()
     const { products } = useProducts()
     const { categories } = useCategories()
@@ -35,8 +45,24 @@ export const Cart: React.FC<CartProps> = ({}) => {
     const [product, setProduct] = useState<ProductType>()
     const [productList, setProductList] = useState(products)
     const [title, setTitle] = useState("Todos")
+    const [loading, setLoading] = useState(false)
 
     const icon_style = { color: "white", height: "auto", width: "5vw" }
+
+    const searchValues: SearchFormValues = {
+        name: "",
+    }
+
+    const handleSearchSubmit = (values: SearchFormValues) => {
+        if (loading) return
+        setLoading(true)
+
+        api.products.name({
+            data: values,
+            callback: (response: { data: ProductType[] }) => setProductList(response.data),
+            finallyCallback: () => setLoading(false),
+        })
+    }
 
     const handleCloseMenu = () => {
         setAnchorEl(null)
@@ -109,6 +135,29 @@ export const Cart: React.FC<CartProps> = ({}) => {
                     ))}
                 </Box>
                 <div className="product-list-container">
+                    <Formik initialValues={searchValues} onSubmit={handleSearchSubmit}>
+                        {({ values, handleChange }) => (
+                            <Form>
+                                <TextField
+                                    variant="standard"
+                                    name="name"
+                                    value={values.name}
+                                    onChange={handleChange}
+                                    placeholder="Digite o que está procurando"
+                                    color="secondary"
+                                    autoComplete="off"
+                                    InputProps={{
+                                        sx: { gap: "1vw" },
+                                        startAdornment: loading ? (
+                                            <CircularProgress size="1.3rem" color="secondary" />
+                                        ) : (
+                                            <SearchIcon color="secondary" />
+                                        ),
+                                    }}
+                                />
+                            </Form>
+                        )}
+                    </Formik>
                     <h1>{title}</h1>
                     <div className="product-list">
                         {productList.map((product) => (
