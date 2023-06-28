@@ -26,13 +26,13 @@ function App() {
 
     return (
         <ThemeProvider theme={muiTheme}>
+                                    <BrowserRouter>
             <SnackbarProvider>
                 <OrdersProvider>
                     <UserProvider>
                         <ProductsProvider>
                             <CartProvider>
                                 <AddressProvider>
-                                    <BrowserRouter>
                                         <ScrollTop />
                                         <Snackbar />
                                         <Routes>
@@ -46,13 +46,13 @@ function App() {
                                             <Route path="/review" element={<Review />} />
                                             <Route path="/products" element={<ProdutList />} />
                                         </Routes>
-                                    </BrowserRouter>
                                 </AddressProvider>
                             </CartProvider>
                         </ProductsProvider>
                     </UserProvider>
                 </OrdersProvider>
             </SnackbarProvider>
+                                    </BrowserRouter>
         </ThemeProvider>
     )
 }
