@@ -78,30 +78,35 @@ export const Product: React.FC<ProductProps> = ({ product, style, innerRef, onCl
             <div className="main-container">
                 <div className="similar-products-button-container">
                     <Button
-                        style={{ fontSize: "3.5vw", width: "85%", padding: "2vw 2vw 2vw 12vw", lineHeight: "1.25", zIndex: "4" }}
+                        style={{
+                            fontSize: "3.5vw",
+                            width: "85%",
+                            padding: "2vw 2vw 2vw 12vw",
+                            lineHeight: "1.25",
+                            zIndex: "4",
+                        }}
                         onClick={() => navigate("/products", { state: { currentProduct: product } })}
                     >
-                    <IconButton
-                        sx={{ marginRight: "auto", position: "absolute", left: "3vw", color: "white" }}
-                    >
-                        <FormatListNumberedIcon sx={{ ...styles.cancel_icon, color: "none" }} />
-                    </IconButton>
+                        <IconButton sx={{ marginRight: "auto", position: "absolute", left: "3vw", color: "white" }}>
+                            <FormatListNumberedIcon sx={{ ...styles.cancel_icon, color: "none" }} />
+                        </IconButton>
                         Clique e veja produtos similares
                     </Button>
                 </div>
 
                 <div className="carousel-container">
                     <Carousel showThumbs={false} autoPlay infiniteLoop={true} interval={7000} transitionTime={1000}>
-                        {images.map((image) => (
-                            <div key={images.indexOf(image)} className="image" style={{ width: "100%" }}>
-                                <img src={image} alt={image} />
-                            </div>
-                        ))}
+                        {images
+                            .filter((image) => image != "")
+                            .map((image) => (
+                                <div key={images.indexOf(image)} className="image" style={{ width: "100%" }}>
+                                    <img src={image} alt={image} />
+                                </div>
+                            ))}
                     </Carousel>
                 </div>
 
                 {similarItemsTutorial && <SimilarItemsTutorialMask />}
-
 
                 <IconButton
                     sx={{ marginLeft: "auto", position: "absolute", top: "4vw", right: "4vw" }}
