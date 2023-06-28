@@ -1,5 +1,5 @@
 import "./style.scss"
-import { ReactComponent as TutorialFocus } from "../../images/tutorial_focus.svg"
+import { ReactComponent as RectangularTutorialFocus } from "../../images/rectangular_tutorial_focus.svg"
 import { ReactComponent as Balloon } from "../../images/balloon.svg"
 import { ReactComponent as AvatarBG } from "../../images/avatar_bg.svg"
 import { useNavigate } from "react-router-dom"
@@ -11,8 +11,8 @@ export const SimilarItemsTutorialMask = () => {
     const storage = useLocalStorage()
 
     const focus_style: React.CSSProperties = {
-        top: "0.75vw",
-        left: "0.75vw",
+        top: "1vw",
+        left: "1vw",
     }
 
     const completeSimilarItemsTutorial = () => {
@@ -23,7 +23,7 @@ export const SimilarItemsTutorialMask = () => {
     return (
         storage.get("mira.seen_similar_items_tutorial") ? null :
         <div className="similar_items_tutorial-mask" onClick={completeSimilarItemsTutorial} >
-            <TutorialFocus style={focus_style} className="focus"/>
+            <RectangularTutorialFocus style={focus_style} className="focus"/>
             <div className="balloon-container">
                 <Balloon className="balloon" />
                 <div className="balloon-text">
