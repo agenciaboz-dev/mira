@@ -25,7 +25,7 @@
     
     .balloon-container {
         position: relative;
-        margin-top: 38vw;
+        margin-top: 42vw;
         justify-content: center;
         align-items: center;
         z-index: 2;
@@ -33,17 +33,15 @@
         .balloon {
             position: absolute;
             width: 85vw;
-            transform: scaleY(0.5);
         }
 
         .balloon-text {
             font-weight: 600;
             position: absolute;
-            top: -10vw;
-            width: 75%;
+            top: -13vw;
+            width: 70%;
             height: 90%;
             text-align: justify;
-            font-size: 5vw;
         }
     }
 
