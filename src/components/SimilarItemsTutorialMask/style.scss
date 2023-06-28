@@ -16,19 +16,19 @@
 
     .focus {
         position: absolute;
-        width: 15vw;
-        height: 15vw;
-        border-radius: 50%;
-        z-index: 9;
+        width: 85vw;
+        height: 18vw;
+        border-radius: 4vw;
+        z-index: 1;
         box-shadow: 0 0 0 100vh rgba(white, 0.7);
     }
-
+    
     .balloon-container {
         position: relative;
-        margin-top: 37vw;
+        margin-top: 38vw;
         justify-content: center;
         align-items: center;
-        z-index: 10;
+        z-index: 2;
 
         .balloon {
             position: absolute;
@@ -52,7 +52,7 @@
         width: 60vw;
         right: 3vw;
         top: 50vw;
-        z-index: 11;
+        z-index: 3;
     }
 
     .avatar-bg {
@@ -60,6 +60,6 @@
         height: -webkit-fill-available;
         width: 100vw;
         top: 0;
-        z-index: 10;
+        z-index: 2;
     }
 }

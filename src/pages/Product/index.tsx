@@ -78,7 +78,7 @@ export const Product: React.FC<ProductProps> = ({ product, style, innerRef, onCl
             <div className="main-container">
                 <div className="similar-products-button-container">
                     <Button
-                        style={{ fontSize: "3.75vw", width: "85%", padding: "2vw 2vw 2vw 12vw", lineHeight: "1.25" }}
+                        style={{ fontSize: "3.75vw", width: "85%", padding: "2vw 2vw 2vw 12vw", lineHeight: "1.25", zIndex: "4" }}
                         onClick={() => navigate("/products", { state: { currentProduct: product } })}
                     >
                     <IconButton
