@@ -8,9 +8,10 @@ import { Cart } from "../../definitions/cart"
 import { ProductStory } from "../../components/ProductStory"
 
 import Rating from '@mui/material/Rating';
+import { Product as ProductType } from "../../definitions/product"
 
 interface ProductProps {
-    product: Cart
+    product: ProductType
 }
 
 export const Product: React.FC<ProductProps> = ({ product }) => {

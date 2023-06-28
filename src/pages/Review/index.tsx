@@ -1,21 +1,24 @@
 import React, { useState, useEffect } from "react"
 import "./style.scss"
 import { Button } from "../../components/Button"
-import { useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import { CircularProgress } from "@mui/material"
 import Rating from '@mui/material/Rating';
 
 import { useProducts } from "../../hooks/useProducts"
 import { Product } from "./Product"
 import { useCart } from "../../hooks/useCart"
+import { useUser } from "../../hooks/useUser"
+import { Order } from "../../definitions/cart"
 
 interface CartProps {}
 
 export const Review = () => {
     const navigate = useNavigate()
     const [loading, setLoading] = useState(false)
+    const order:Order = useLocation().state.order
 
-    const { cart } = useCart()
+    console.log({order})
 
     return <div className="Review-Page">
         <div className="title-container">
@@ -23,8 +26,8 @@ export const Review = () => {
         </div>
 
         <div className="product-list">
-            {cart.map((product) => (
-                <Product key={product.id} product={product} />
+            {order.products.map((product) => (
+                <Product key={product.product.id} product={product.product} />
             ))}
         </div>
 
