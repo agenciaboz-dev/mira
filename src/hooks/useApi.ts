@@ -114,11 +114,19 @@ export const useApi = () => {
                     .catch((error) => defaultError(error, options.errorCallback))
                     .finally(() => defaultFinally(options.finallyCallback))
             },
-            cancelReview: (options: ApiOptions) => {
-                api.post("/orders/reviews/cancel", options.data)
-                    .then((response) => options.callback(response))
-                    .catch((error) => defaultError(error, options.errorCallback))
-                    .finally(() => defaultFinally(options.finallyCallback))
+            review: {
+                cancel: (options: ApiOptions) => {
+                    api.post("/orders/reviews/cancel", options.data)
+                        .then((response) => options.callback(response))
+                        .catch((error) => defaultError(error, options.errorCallback))
+                        .finally(() => defaultFinally(options.finallyCallback))
+                },
+                send: (options: ApiOptions) => {
+                    api.post("/orders/reviews/send", options.data)
+                        .then((response) => options.callback(response))
+                        .catch((error) => defaultError(error, options.errorCallback))
+                        .finally(() => defaultFinally(options.finallyCallback))
+                },
             },
         },
         delivery: {

@@ -25,9 +25,14 @@ export const Review = () => {
     }
 
     const handleCancelReview = () => {
-        api.order.cancelReview({callback: apiCallback, data: {id: order.id}})
+        api.order.review.cancel({callback: apiCallback, data: {id: order.id}})
     }
 
+    const handleSendReview = () => {
+        api.order.review.send({callback: apiCallback, data: {id: order.id, products: order.products}})
+        // products acima precisa ser atualizado
+    }
+    
     console.log({order})
 
     return <div className="Review-Page">
@@ -47,7 +52,7 @@ export const Review = () => {
                 <Button onClick={() => handleCancelReview()} style={{ height: "10vw", width: "35vw", background: "linear-gradient(90deg, #9F9F9F 0%, #565656 91.94%)" }} >
                     Cancelar
                 </Button>
-                <Button type="submit" style={{ height: "10vw", width: "35vw", marginRight: "1vw" }}>
+                <Button onClick={() => handleSendReview()} type="submit" style={{ height: "10vw", width: "35vw", marginRight: "1vw" }}>
                     {loading ? (
                         <CircularProgress sx={{ color: "white" }} style={{ width: "6vw", height: "auto" }} />
                     ) : (

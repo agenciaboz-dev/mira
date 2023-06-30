@@ -15,7 +15,7 @@ interface ProductProps {
 }
 
 export const Product: React.FC<ProductProps> = ({ product }) => {
-    const [value, setValue] = React.useState<number | null>(2);
+    const [value, setValue] = useState<number | null>(2);
     const [story, setStory] = useState(false)
 
     // const { cart, setCart } = useCart()
