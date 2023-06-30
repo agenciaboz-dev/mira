@@ -10,6 +10,7 @@ import { Product } from "./Product"
 import { useCart } from "../../hooks/useCart"
 import { useUser } from "../../hooks/useUser"
 import { Order } from "../../definitions/cart"
+import { useApi } from "../../hooks/useApi"
 
 interface CartProps {}
 
@@ -17,6 +18,15 @@ export const Review = () => {
     const navigate = useNavigate()
     const [loading, setLoading] = useState(false)
     const order:Order = useLocation().state.order
+    const api = useApi()
+
+    const apiCallback = () => {
+        navigate("/cart") 
+    }
+
+    const handleCancelReview = () => {
+        api.order.cancelReview({callback: apiCallback, data: {id: order.id}})
+    }
 
     console.log({order})
 
@@ -34,7 +44,7 @@ export const Review = () => {
         <div className="bottom-container">
             <p>Se desejar, avalie os produtos acima, referentes à sua última compra. Obrigado!</p>
             <div className="buttons-container">
-                <Button onClick={() => navigate("/cart")} style={{ height: "10vw", width: "35vw", background: "linear-gradient(90deg, #9F9F9F 0%, #565656 91.94%)" }} >
+                <Button onClick={() => handleCancelReview()} style={{ height: "10vw", width: "35vw", background: "linear-gradient(90deg, #9F9F9F 0%, #565656 91.94%)" }} >
                     Cancelar
                 </Button>
                 <Button type="submit" style={{ height: "10vw", width: "35vw", marginRight: "1vw" }}>
