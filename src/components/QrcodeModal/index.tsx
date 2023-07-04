@@ -30,7 +30,7 @@ export const QrCodeModal: React.FC<QrCodeModalProps> = ({ open, setOpen }) => {
 
     const [loading, setLoading] = useState(true)
     const [hover, setHover] = useState(false)
-    const [codeValue, setCodeValue] = useState(`mirasuprimentos/${currentProduct?.id}`)
+    const [codeValue, setCodeValue] = useState(`https://app.mirasuprimentos.com.br/download?id=${currentProduct?.id}`)
 
     const downloadMenuItemStyle: SxProps = {
         position: "absolute",
