@@ -20,25 +20,27 @@ import { OrdersProvider } from "./contexts/orderContext"
 import { Review } from "./pages/Review"
 import { ScrollTop } from "./components/ScrollTop"
 import { ProdutList } from "./pages/ProductList"
+import { Download } from "./pages/Download"
 
 function App() {
     const muiTheme = useMuiTheme()
 
     return (
         <ThemeProvider theme={muiTheme}>
-                                    <BrowserRouter>
-            <SnackbarProvider>
-                <OrdersProvider>
-                    <UserProvider>
-                        <ProductsProvider>
-                            <CartProvider>
-                                <AddressProvider>
+            <BrowserRouter>
+                <SnackbarProvider>
+                    <OrdersProvider>
+                        <UserProvider>
+                            <ProductsProvider>
+                                <CartProvider>
+                                    <AddressProvider>
                                         <ScrollTop />
                                         <Snackbar />
                                         <Routes>
                                             <Route index element={<Login />} />
                                             <Route path="/*" element={<Login />} />
                                             <Route path="/login/*" element={<Login />} />
+                                            <Route path="/download" element={<Download />} />
                                             <Route path="/cart" element={<Cart />} />
                                             <Route path="/scan" element={<Camera />} />
                                             <Route path="/profile/*" element={<Profile />} />
@@ -46,13 +48,13 @@ function App() {
                                             <Route path="/review" element={<Review />} />
                                             <Route path="/products" element={<ProdutList />} />
                                         </Routes>
-                                </AddressProvider>
-                            </CartProvider>
-                        </ProductsProvider>
-                    </UserProvider>
-                </OrdersProvider>
-            </SnackbarProvider>
-                                    </BrowserRouter>
+                                    </AddressProvider>
+                                </CartProvider>
+                            </ProductsProvider>
+                        </UserProvider>
+                    </OrdersProvider>
+                </SnackbarProvider>
+            </BrowserRouter>
         </ThemeProvider>
     )
 }
