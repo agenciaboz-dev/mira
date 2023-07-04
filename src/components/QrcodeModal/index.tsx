@@ -69,7 +69,7 @@ export const QrCodeModal: React.FC<QrCodeModalProps> = ({ open, setOpen }) => {
 
     useEffect(() => {
         if (open) {
-            setCodeValue(`mirasuprimentos/${currentProduct?.id}`)
+            setCodeValue(`https://app.mirasuprimentos.com.br/download?id=${currentProduct?.id}`)
             console.log(codeValue)
             setTimeout(() => {
                 setLoading(false)
