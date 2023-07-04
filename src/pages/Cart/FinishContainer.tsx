@@ -11,7 +11,7 @@ export const FinishContainer: React.FC<FinishContainerProps> = ({}) => {
     const navigate = useNavigate()
 
     return (
-        <div className="FinishContainer-Component" onClick={() => navigate("/checkout")}>
+        <div className="FinishContainer-Component">
             <p>
                 {cart.length || "Nenhum"} {cart.length > 1 ? "itens" : "item"} no carrinho
             </p>
@@ -20,7 +20,19 @@ export const FinishContainer: React.FC<FinishContainerProps> = ({}) => {
                 <h3>Total:</h3>
                 <CurrencyText value={total} />
             </div>
-            <Button style={{ fontSize: "4vw", fontWeight: "bold", padding: "2vw 3vw" }}>Finalizar Compra</Button>
+            <Button
+                style={{
+                    fontSize: "4vw",
+                    fontWeight: "bold",
+                    padding: "2vw 3vw",
+                    background: !cart.length ? "linear-gradient(90deg, #9F9F9F 0%, #565656 91.94%)" : "",
+                    boxShadow: !cart.length ? "none" : "",
+                }}
+                disabled={!cart.length}
+                onClick={() => navigate("/checkout")}
+            >
+                Finalizar Compra
+            </Button>
         </div>
     )
 }
