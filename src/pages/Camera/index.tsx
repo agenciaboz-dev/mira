@@ -72,12 +72,13 @@ export const Camera: React.FC<CameraProps> = ({}) => {
         console.log(result)
         if (result && !error) {
             setLoading(true)
-            if (validateCode(result)) {
-                if (productInCart(Number(result.split("/")[1]))) {
+            const id = validateCode(result)
+            if (id) {
+                if (productInCart(id)) {
                     setError("Produto já está no carrinho")
                 } else {
                     api.products.id({
-                        data: { id: Number(result.split("/")[1]) },
+                        data: { id },
                         callback: (response: { data: Product }) => {
                             setProduct(response.data)
                         },
