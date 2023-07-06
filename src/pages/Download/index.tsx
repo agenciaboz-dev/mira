@@ -41,8 +41,6 @@ export const Download: React.FC<DownloadProps> = ({}) => {
             <Box
                 sx={{
                     borderRadius: "100%",
-                    width: "50vw",
-                    height: "50vw",
                     backgroundColor: "white",
                     justifyContent: "center",
                     alignItems: "center",
@@ -69,7 +67,10 @@ export const Download: React.FC<DownloadProps> = ({}) => {
                             alt="Download para Android"
                         />
                     </a>
-                    <a href="">
+
+                    {/*
+                    !-----Habilitar quando tiver a conta
+                     <a href="">
                         <img
                             src={apple}
                             style={{
@@ -80,7 +81,7 @@ export const Download: React.FC<DownloadProps> = ({}) => {
                             }}
                             alt="Download para iOS"
                         />
-                    </a>
+                    </a> */}
                 </Box>
             </Box>
         </Box>
