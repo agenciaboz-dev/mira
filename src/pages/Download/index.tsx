@@ -1,11 +1,12 @@
 import { Box, SxProps } from "@mui/material"
 import React from "react"
 import { ReactComponent as LogoIcon } from "../../images/logo.svg"
-import { ReactComponent as AppleIcon } from "../../images/apple-download.svg"
-import { ReactComponent as GoogleIcon } from "../../images/google-download.svg"
+import google from "../../images/google-download.png"
+import apple from "../../images/apple-download.png"
 import { useColors } from "../../hooks/useColors"
 
 import { Button } from "../../components/Button"
+import { getParsedCommandLineOfConfigFile } from "typescript"
 
 interface DownloadProps {}
 
@@ -40,8 +41,8 @@ export const Download: React.FC<DownloadProps> = ({}) => {
             <Box
                 sx={{
                     borderRadius: "100%",
-                    width: "60vw",
-                    height: "60vw",
+                    width: "50vw",
+                    height: "50vw",
                     backgroundColor: "white",
                     justifyContent: "center",
                     alignItems: "center",
@@ -57,25 +58,27 @@ export const Download: React.FC<DownloadProps> = ({}) => {
             <Box sx={{ justifyContent: "space-between", width: "100%" }}>
                 <Box sx={platform_style}>
                     <a href="https://play.google.com/store/apps/details?id=com.mira.guide">
-                        <GoogleIcon
+                        <img
+                            src={google}
                             style={{
                                 position: "relative",
                                 left: "4.5vw",
                                 width: "70vw",
                                 height: "auto",
-                                backgroundColor: "white",
                             }}
+                            alt="Download para Android"
                         />
                     </a>
-                    <a href="https://play.google.com/store/apps/details?id=com.mira.guide">
-                        <AppleIcon
+                    <a href="">
+                        <img
+                            src={apple}
                             style={{
                                 position: "relative",
                                 left: "4.5vw",
                                 width: "70vw",
                                 height: "auto",
-                                backgroundColor: "white",
                             }}
+                            alt="Download para iOS"
                         />
                     </a>
                 </Box>
