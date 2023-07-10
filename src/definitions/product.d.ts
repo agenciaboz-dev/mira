@@ -10,6 +10,8 @@ declare interface Product {
     profit: number | string
     story: string
     price: number | string
+    aliquot: number | string
+    ncm: string
     cost: number | string
     image: string
     gallery?: string

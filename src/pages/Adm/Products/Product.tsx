@@ -146,6 +146,8 @@ export const Product: React.FC<ProductProps> = ({}) => {
               id: 0,
               image: "",
               price: 0,
+              ncm: "",
+              aliquot: 0,
               profit: 0,
               cost: 0,
               brand: "",
@@ -265,9 +267,7 @@ export const Product: React.FC<ProductProps> = ({}) => {
                     >
                         <Box sx={styles.header}>
                             <IconButton onClick={() => navigate("/dashboard/products")}>
-                                <ForwardIcon
-                                    sx={{ color: colors.primary, transform: "rotate(180deg)", width: "3vw", height: "3vw" }}
-                                />
+                                <ForwardIcon sx={{ color: colors.primary, transform: "rotate(180deg)", width: "3vw", height: "3vw" }} />
                             </IconButton>
                             <Box sx={styles.inputContainer}>
                                 {product && (
@@ -295,14 +295,7 @@ export const Product: React.FC<ProductProps> = ({}) => {
                                         value={{ ...supplier!, label: supplier?.code }}
                                         onChange={handleSupplierName}
                                         sx={{ width: "100%" }}
-                                        renderInput={(params) => (
-                                            <TextField
-                                                {...params}
-                                                required
-                                                label="Código do fornecedor"
-                                                name="supplier.code"
-                                            />
-                                        )}
+                                        renderInput={(params) => <TextField {...params} required label="Código do fornecedor" name="supplier.code" />}
                                     />
                                     <Autocomplete
                                         disablePortal
@@ -312,26 +305,33 @@ export const Product: React.FC<ProductProps> = ({}) => {
                                         value={{ ...supplier!, label: supplier?.name }}
                                         onChange={handleSupplierName}
                                         sx={{ width: "100%" }}
-                                        renderInput={(params) => (
+                                        renderInput={(params) => <TextField {...params} required label="Nome do fornecedor" name="supplier.name" />}
+                                    />
+                                </Box>
+
+                                <Box sx={styles.inputContainer}>
+                                    <TextField required name="ncm" label="Código NCM" onChange={handleChange} value={values.ncm} />
+                                    <MaskedInput
+                                        mask={numberMask}
+                                        guide={false}
+                                        name="aliquot"
+                                        onChange={handleChange}
+                                        value={values.aliquot || ""}
+                                        render={(ref, props) => (
                                             <TextField
-                                                {...params}
+                                                inputRef={ref}
+                                                {...props}
                                                 required
-                                                label="Nome do fornecedor"
-                                                name="supplier.name"
+                                                label="Alíquota"
+                                                placeholder="Alíquota"
+                                                InputProps={{ endAdornment: <p>%</p> }}
                                             />
                                         )}
                                     />
                                 </Box>
 
                                 <Box sx={styles.inputContainer}>
-                                    <TextField
-                                        ref={brandRef}
-                                        required
-                                        label="Marca"
-                                        name="brand"
-                                        value={values.brand}
-                                        onChange={handleChange}
-                                    />
+                                    <TextField ref={brandRef} required label="Marca" name="brand" value={values.brand} onChange={handleChange} />
                                     <TextField
                                         required
                                         label="Categorias"
@@ -402,23 +402,13 @@ export const Product: React.FC<ProductProps> = ({}) => {
                                                 {...props}
                                                 label="Tempo médio de preparo"
                                                 InputProps={{
-                                                    endAdornment: (
-                                                        <PreparationAddornment
-                                                            handleChange={handleChange}
-                                                            value={values.prep_unit}
-                                                        />
-                                                    ),
+                                                    endAdornment: <PreparationAddornment handleChange={handleChange} value={values.prep_unit} />,
                                                 }}
                                             />
                                         )}
                                     />
 
-                                    <TextField
-                                        label="Prateleira"
-                                        name="shelf"
-                                        value={values.shelf}
-                                        onChange={handleChange}
-                                    />
+                                    <TextField label="Prateleira" name="shelf" value={values.shelf} onChange={handleChange} />
                                 </Box>
 
                                 <Box sx={{ gap: "1vw" }}>
@@ -429,13 +419,7 @@ export const Product: React.FC<ProductProps> = ({}) => {
                                         value={values.weight || ""}
                                         onChange={handleChange}
                                         render={(ref, props) => (
-                                            <TextField
-                                                required
-                                                inputRef={ref}
-                                                {...props}
-                                                label="Peso"
-                                                InputProps={{ endAdornment: <p>kg</p> }}
-                                            />
+                                            <TextField required inputRef={ref} {...props} label="Peso" InputProps={{ endAdornment: <p>kg</p> }} />
                                         )}
                                     />
                                     <MaskedInput
@@ -445,13 +429,7 @@ export const Product: React.FC<ProductProps> = ({}) => {
                                         value={values.width || ""}
                                         onChange={handleChange}
                                         render={(ref, props) => (
-                                            <TextField
-                                                required
-                                                inputRef={ref}
-                                                {...props}
-                                                label="Largura"
-                                                InputProps={{ endAdornment: <p>cm</p> }}
-                                            />
+                                            <TextField required inputRef={ref} {...props} label="Largura" InputProps={{ endAdornment: <p>cm</p> }} />
                                         )}
                                     />
                                 </Box>
@@ -464,13 +442,7 @@ export const Product: React.FC<ProductProps> = ({}) => {
                                         value={values.height || ""}
                                         onChange={handleChange}
                                         render={(ref, props) => (
-                                            <TextField
-                                                required
-                                                inputRef={ref}
-                                                {...props}
-                                                label="Altura"
-                                                InputProps={{ endAdornment: <p>cm</p> }}
-                                            />
+                                            <TextField required inputRef={ref} {...props} label="Altura" InputProps={{ endAdornment: <p>cm</p> }} />
                                         )}
                                     />
                                     <MaskedInput
@@ -574,14 +546,7 @@ export const Product: React.FC<ProductProps> = ({}) => {
                             {/* right-inputs */}
                             <Box sx={styles.formContainer}>
                                 <Box sx={styles.inputContainer}>
-                                    <TextField
-                                        required
-                                        label="Link de imagem"
-                                        name="image"
-                                        value={values.image}
-                                        onChange={handleChange}
-                                        disabled
-                                    />
+                                    <TextField required label="Link de imagem" name="image" value={values.image} onChange={handleChange} disabled />
                                     <FileInputButton
                                         ref={imageInputRef}
                                         onChange={(files) => setFiles(files)}
@@ -602,13 +567,7 @@ export const Product: React.FC<ProductProps> = ({}) => {
                                     // style={{ width: "100%", height: "30vw" }}
                                     style={{ width: "100%", height: "27.5vw", borderRadius: "0.5vw" }}
                                 />
-                                <TextField
-                                    required
-                                    label="Link de vídeo"
-                                    name="video"
-                                    value={values.video}
-                                    onChange={handleChange}
-                                />
+                                <TextField required label="Link de vídeo" name="video" value={values.video} onChange={handleChange} />
 
                                 <TextField
                                     required

@@ -5,7 +5,6 @@ import { Login } from "./Login"
 import "./style.scss"
 import { Sidebar } from "../../components/Sidebar"
 import { Products } from "./Products"
-import { ProductModal } from "../../components/ProductModal"
 import { Categories } from "./Categories"
 import { useUser } from "../../hooks/useUser"
 import { Suppliers } from "./Suppliers"
@@ -29,7 +28,6 @@ export const Adm: React.FC<AdmProps> = ({}) => {
     return (
         <div className="Adm-Page">
             <Sidebar />
-            <ProductModal />
             <Routes>
                 <Route index element={<Products />} />
                 <Route path="/dashboard" element={<Dashboard />} />
