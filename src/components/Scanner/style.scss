@@ -8,14 +8,29 @@
     position: absolute;
     
     .scanner-placeholder {
-        margin-top: 10vh;
+        margin-top: 25vh;
         // position: absolute;
         z-index: 1;
-        width: 50vw;
-        height: 50vw;
+        width: 40vw;
+        height: 40vw;
         // border: 5px red solid;
         border-radius: 2vw;
         box-shadow: 0 0 0 100vh rgba($color: #000000, $alpha: 0.5);
     }
-
+   //ipad mini
+    @media (max-width: 768px) {
+        .scanner-placeholder {
+            width: 35vw;
+            height: 35vw;
+            margin-top: 20vh;
+        }
+    }
+    //android
+    @media (max-width: 576px) {
+        .scanner-placeholder {
+            width: 30vw;
+            height: 30vw;
+            margin-top: 20vh;
+        }
+    }
 }
