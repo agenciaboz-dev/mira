@@ -4,7 +4,7 @@ import { ReactComponent as LogoIcon } from "../../images/logo.svg"
 import google from "../../images/google-download.png"
 import apple from "../../images/apple-download.png"
 import { useColors } from "../../hooks/useColors"
-
+// import { downloadStyles } from "./styles";
 import { Button } from "../../components/Button"
 import { getParsedCommandLineOfConfigFile } from "typescript"
 
@@ -28,17 +28,21 @@ export const Download: React.FC<DownloadProps> = ({}) => {
     }
 
     return (
-        <Box
+        <Box  className="desktop-download"
+            
             sx={{
                 flexDirection: "column",
                 gap: "15vw",
                 alignItems: "center",
                 backgroundColor: colors.purple,
+                backgroundSize: "cover", 
                 width: "100vw",
                 padding: "10vw",
+               
+                
             }}
         >
-            <Box
+            <Box className="desktop-download-logo"
                 sx={{
                     borderRadius: "100%",
                     backgroundColor: "white",
