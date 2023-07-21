@@ -8,46 +8,52 @@ import { Button } from "../../../components/Button";
 import { CircularProgress } from "@mui/material";
 
 interface ResetPasswordFormProps {
-  // Se houver alguma propriedade específica para o componente, adicione aqui.
+  
 }
 
 interface FormValues {
-    password: string;
-    confirmPassword: string;
+  password: string;
+  confirmPassword: string;
 }
 
 const ResetPasswordForm: React.FC<ResetPasswordFormProps> = () => {
   const { token } = useParams();
   const navigate = useNavigate();
   const initialValues: FormValues = { password: "", confirmPassword: "" };
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+
   const [resetSuccess, setResetSuccess] = useState("");
   const [resetError, setResetError] = useState("");
   const [loading, setLoading] = useState(false);
 
+  console.log("Token:", token);
 
-  const handleSubmit  = () => {
+  const handleSubmit = async (values: FormValues) => {
     setLoading(true);
-    setResetError(""); // Reset error
-    setResetSuccess(""); // Reset success
+    setResetError("");
+    setResetSuccess("");
 
-    if (password === confirmPassword) {
-      // Enviar a nova senha e o token para o backend
-      axios
-        .post("https://app.agenciaboz.com.br:4202/api/user/password-reset", { token, password })
-        .then((response) => {
-          // Sucesso na redefinição de senha
-          console.log(response.data.message);
-          navigate("/login");
-        })
-        .catch((error) => {
-          // Tratar erros de redefinição de senha
-          console.error(error.response.data.error);
-        });
-    } else {
-      // Tratar o caso em que as senhas não coincidem
-      console.error("As senhas não coincidem.");
+    try {
+      if (values.password === values.confirmPassword) {
+        const response = await axios.post(
+          `https://app.agenciaboz.com.br:4202/api/user/password-reset`,
+          {
+            password: values.password,
+            token: token,
+          }
+        );
+
+        console.log(response.data.message);
+        setResetSuccess("Senha redefinida com sucesso.");
+        navigate("/login");
+      } else {
+        console.error("As senhas não coincidem.");
+        setResetError("As senhas não coincidem.");
+      }
+    } catch (error) {
+      console.error(error);
+      setResetError("Ocorreu um erro ao solicitar a recuperação de senha.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -69,15 +75,17 @@ const ResetPasswordForm: React.FC<ResetPasswordFormProps> = () => {
               onChange={handleChange}
               fullWidth
               size="small"
+              type="password"
             />
 
             <TextField
-                name="confirmPassword"
-                placeholder="Confirmar nova senha"
-                value={values.confirmPassword}
-                onChange={handleChange}
-                fullWidth
-                size="small"
+              name="confirmPassword"
+              placeholder="Confirmar nova senha"
+              value={values.confirmPassword}
+              onChange={handleChange}
+              fullWidth
+              size="small"
+              type="password"
             />
 
             <Button
@@ -96,8 +104,15 @@ const ResetPasswordForm: React.FC<ResetPasswordFormProps> = () => {
               )}
             </Button>
             {resetSuccess && (
-              <h3 style={{ alignSelf: "center", color: "white" }}>
-                {resetSuccess}
+              <h3
+                style={{
+                  alignSelf: "center",
+                  color: "white",
+                  display: "flex",
+                  padding: "2vw",
+                }}
+              >
+                Senha mudada com sucesso!
               </h3>
             )}
             {resetError && (

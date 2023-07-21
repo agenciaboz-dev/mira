@@ -23,6 +23,7 @@ export const RecoverPasswordForm: React.FC<RecoverPasswordFormProps> = () => {
   const [recoverError, setRecoverError] = useState("");
   const [loading, setLoading] = useState(false);
 
+
   const initialValues: FormValues = { email: "" };
 
   const handleSubmit = async (values: FormValues) => {
@@ -87,8 +88,8 @@ export const RecoverPasswordForm: React.FC<RecoverPasswordFormProps> = () => {
               )}
             </Button>
             {recoverSuccess && (
-              <h3 style={{ alignSelf: "center", color: "white" }}>
-                {recoverSuccess}
+              <h3 style={{ alignSelf: "center", color: "white", display: "flex", padding:"2vw" }}>
+                Um email foi enviado para você com as instruções para recuperar sua senha!
               </h3>
             )}
             {recoverError && (
