@@ -98,8 +98,7 @@
     }
 
     .forgot-password {
-        display: none;
-
+        display: flex;
         position: absolute;
         color: $blue2;
         font-size: 3.5vw;

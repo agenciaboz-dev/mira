@@ -1,0 +1,71 @@
+@import '/src/sass/colors';
+
+.PasswordRecover-Component {
+    flex-direction: column;
+    width: 100vw;
+    height: 100%;
+    background-color: $purple;
+    padding: 7.5vw 7vw;
+    gap: 5vw;
+
+    // .tp-signup-divider {
+    //     background-image: url("../../../public/bricks_webp.webp");
+    //     background-position: center;
+    //     background-repeat: no-repeat;
+    //     background-size: cover;
+    // }
+
+    // * {
+    //     z-index: 1;
+    // }
+
+    h1 {
+        font-size: 9vw;
+        color: white;
+        text-align: center;
+    }
+
+    p {
+        font-size: 4.5vw;
+        color: white;
+        text-align: center;
+        margin: 10px;
+    }
+
+    input {
+        font-size: 4vw;
+        padding: 2vw 4vw;
+        height: fit-content;
+    }
+    
+    .signup-arrow-up {
+        height: 8vw;
+        width: 8vw;
+        transform: rotate(180deg);
+    }
+
+    .form {
+        flex-direction: column !important;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    buttom {
+        display: flex;
+        flex-direction: column;
+    }
+
+    input {
+        padding: 10px;
+    }
+
+    .Form-Recover {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+
+}
+

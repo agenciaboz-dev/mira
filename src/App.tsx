@@ -21,6 +21,8 @@ import { Review } from "./pages/Review"
 import { ScrollTop } from "./components/ScrollTop"
 import { ProdutList } from "./pages/ProductList"
 import { Download } from "./pages/Download"
+import { RecoverPasswordForm } from "./pages/Senha/RecuperarSenha"
+import ResetPasswordForm from "./pages/Senha/ResetarSenha"
 
 function App() {
     const muiTheme = useMuiTheme()
@@ -47,6 +49,8 @@ function App() {
                                             <Route path="/checkout/*" element={<Checkout />} />
                                             <Route path="/review" element={<Review />} />
                                             <Route path="/products" element={<ProdutList />} />
+                                            <Route path="/password-recovery" element={<RecoverPasswordForm/>} />
+                                            <Route path="/password-reset/:token" element={<ResetPasswordForm />} />
                                         </Routes>
                                     </AddressProvider>
                                 </CartProvider>
