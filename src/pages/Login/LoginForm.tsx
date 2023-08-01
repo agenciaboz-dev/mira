@@ -85,15 +85,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({}) => {
             <Formik initialValues={initialValues} onSubmit={handleSubmit}>
                 {({ values, handleChange }) => (
                     <Form>
-                        <TextField
-                            name="user"
-                            placeholder="E-mail"
-                            value={values.user}
-                            onChange={handleChange}
-                            fullWidth
-                            size="small"
-                            required
-                        />
+                        <TextField name="user" placeholder="E-mail" value={values.user} onChange={handleChange} fullWidth size="small" required />
 
                         <TextField
                             name="password"
@@ -106,9 +98,9 @@ export const LoginForm: React.FC<LoginFormProps> = ({}) => {
                             required
                         />
 
-                        <p onClick={() => navigate("/password-recovery")}>
-                        <div className="forgot-password">Esqueceu a senha?</div>
-                        </p>
+                        {/* <p onClick={() => navigate("/password-recovery")}>
+                            <div className="forgot-password">Esqueceu a senha?</div>
+                        </p> */}
 
                         <div className="submit-container">
                             <Checkbox
@@ -118,11 +110,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({}) => {
                                 checkboxStyle={{ backgroundColor: "white", height: "6vw", width: "6vw" }}
                             />
                             <Button type="submit" variant="contained" style={{ height: "10vw", width: "30vw" }}>
-                                {loading ? (
-                                    <CircularProgress sx={{ color: "white" }} style={{ width: "5vw", height: "auto" }} />
-                                ) : (
-                                    "Login"
-                                )}
+                                {loading ? <CircularProgress sx={{ color: "white" }} style={{ width: "5vw", height: "auto" }} /> : "Login"}
                             </Button>
                         </div>
                         <h3 style={{ alignSelf: "center" }}>{loginError}</h3>
