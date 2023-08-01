@@ -11,4 +11,5 @@ declare interface Order {
     address: Address
     value: number
     error?: string
+    nfe?: string
 }

@@ -27,6 +27,7 @@ import MaskedInput from "react-text-mask"
 import CancelIcon from "@mui/icons-material/Cancel"
 import { Orders } from "."
 import { useOrders } from "../../../hooks/useOrders"
+import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf"
 
 interface OrderProps {}
 
@@ -78,12 +79,7 @@ export const Order: React.FC<OrderProps> = ({}) => {
                     <ForwardIcon sx={{ color: colors.primary, transform: "rotate(180deg)", width: "3vw", height: "3vw" }} />
                 </IconButton>
                 <TextField label="Nº do Pedido" variant="standard" value={order.id} InputProps={{ readOnly: true }} />
-                <TextField
-                    label="Data da compra"
-                    variant="standard"
-                    value={new Date(order.date).toLocaleString()}
-                    InputProps={{ readOnly: true }}
-                />
+                <TextField label="Data da compra" variant="standard" value={new Date(order.date).toLocaleString()} InputProps={{ readOnly: true }} />
                 <TextField label="Usuário" variant="standard" value={order.user.name} InputProps={{ readOnly: true }} />
 
                 <TextField
@@ -94,6 +90,32 @@ export const Order: React.FC<OrderProps> = ({}) => {
                     InputProps={{
                         readOnly: true,
                         startAdornment: <CircleIcon sx={{ width: "1vw", color: statusEnum[order.status].color }} />,
+                        sx: { gap: "0.5vw" },
+                    }}
+                />
+                <TextField
+                    label="NFe"
+                    variant="standard"
+                    value={order.nfe ? (order.nfe.split("https").length > 1 ? "Autorizado" : order.nfe) : "não existe"}
+                    InputProps={{
+                        readOnly: true,
+                        endAdornment: order.nfe ? (
+                            order.nfe.split("https").length > 1 ? (
+                                <IconButton
+                                    color="primary"
+                                    sx={{ width: "2vw", height: "2vw" }}
+                                    onClick={() => {
+                                        window.open(order.nfe, "_blank")!.focus()
+                                    }}
+                                >
+                                    <PictureAsPdfIcon sx={{}} />
+                                </IconButton>
+                            ) : (
+                                <></>
+                            )
+                        ) : (
+                            <></>
+                        ),
                         sx: { gap: "0.5vw" },
                     }}
                 />
@@ -109,13 +131,7 @@ export const Order: React.FC<OrderProps> = ({}) => {
                             guide={false}
                             value={order.cpf}
                             render={(ref, props) => (
-                                <TextField
-                                    inputRef={ref}
-                                    {...props}
-                                    label="CPF"
-                                    variant="standard"
-                                    InputProps={{ readOnly: true }}
-                                />
+                                <TextField inputRef={ref} {...props} label="CPF" variant="standard" InputProps={{ readOnly: true }} />
                             )}
                         />
                     </Box>
@@ -125,25 +141,14 @@ export const Order: React.FC<OrderProps> = ({}) => {
                             guide={false}
                             value={order.value.toString().replace(/\./g, ",")}
                             render={(ref, props) => (
-                                <TextField
-                                    inputRef={ref}
-                                    {...props}
-                                    label="Total"
-                                    variant="standard"
-                                    InputProps={{ readOnly: true }}
-                                />
+                                <TextField inputRef={ref} {...props} label="Total" variant="standard" InputProps={{ readOnly: true }} />
                             )}
                         />
                         <FormControl component="fieldset" sx={{ width: "33vw" }}>
                             <FormLabel component="legend" sx={{ fontSize: "0.8vw" }}>
                                 Método de pagamento
                             </FormLabel>
-                            <RadioGroup
-                                row
-                                aria-label="options"
-                                value={order.method == "card" ? "card" : "PIX"}
-                                name="customized-radios"
-                            >
+                            <RadioGroup row aria-label="options" value={order.method == "card" ? "card" : "PIX"} name="customized-radios">
                                 <FormControlLabel value="card" control={<Radio />} label="Cartão" />
                                 <FormControlLabel value="PIX" control={<Radio />} label="Pix" />
                             </RadioGroup>
@@ -158,13 +163,7 @@ export const Order: React.FC<OrderProps> = ({}) => {
                             InputProps={{ readOnly: true }}
                         />
                         <Button variant="contained" disabled={order.status != 2} onClick={handleClick} fullWidth>
-                            {loadingButton ? (
-                                <CircularProgress size="1.5rem" sx={{ color: "white" }} />
-                            ) : order.delivery ? (
-                                "Despachar"
-                            ) : (
-                                "Finalizar"
-                            )}
+                            {loadingButton ? <CircularProgress size="1.5rem" sx={{ color: "white" }} /> : order.delivery ? "Despachar" : "Finalizar"}
                         </Button>
                     </Box>
 
@@ -175,8 +174,7 @@ export const Order: React.FC<OrderProps> = ({}) => {
                                 {order.address.receiver} | {order.address.phone}
                             </p>
                             <p>
-                                {order.address.address}, {order.address.number}, {order.address.complement},{" "}
-                                {order.address.district}
+                                {order.address.address}, {order.address.number}, {order.address.complement}, {order.address.district}
                             </p>
                             <p>
                                 {order.address.cep} {order.address.city}/{order.address.uf}
@@ -204,9 +202,7 @@ export const Order: React.FC<OrderProps> = ({}) => {
                                     <Avatar src={product.product.image} sx={{ bgcolor: "transparent", padding: "0.1vw" }}>
                                         <CancelIcon color="error" sx={{ width: "100%", height: "100%" }} />
                                     </Avatar>
-                                    <p style={{ paddingRight: "0.5vw", fontSize: "0.9vw", fontWeight: "500" }}>
-                                        {product.quantity} x
-                                    </p>
+                                    <p style={{ paddingRight: "0.5vw", fontSize: "0.9vw", fontWeight: "500" }}>{product.quantity} x</p>
                                     <p style={{ paddingLeft: "1vw", fontSize: "0.8vw" }}>{product.product.name} </p>
                                 </Box>{" "}
                                 <p style={{ fontSize: "0.9vw" }}> R${product.product.cost}</p>
