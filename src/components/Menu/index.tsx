@@ -38,15 +38,29 @@ export const Menu: React.FC<MenuProps> = ({ open, anchorEl, handleClose }) => {
                     borderBottomLeftRadius: "2vw",
                     borderBottomRightRadius: "2vw",
                     color: "white",
-                    marginTop: "0vw",
+                    marginTop: "3vw",
                     marginLeft: "2vw",
                 },
             }}
         >
-            <MenuItem style={{ fontSize: "3vw" }} onClick={() => {storage.set("has_accessed", false); storage.set("mira.seen_similar_items_tutorial", false)}}>Resetar Tutoriais</MenuItem>
-            <MenuItem style={{ fontSize: "3vw" }} onClick={() => menuNavigate("/cart")}>Carrinho</MenuItem>
-            <MenuItem style={{ fontSize: "3vw" }} onClick={() => menuNavigate("/profile/account")}>Detalhes da Conta</MenuItem>
-            <MenuItem style={{ fontSize: "3vw" }} onClick={logout}>Sair</MenuItem>
+            <MenuItem
+                style={{ fontSize: "3vw" }}
+                onClick={() => {
+                    storage.set("has_accessed", false)
+                    storage.set("mira.seen_similar_items_tutorial", false)
+                }}
+            >
+                Resetar Tutoriais
+            </MenuItem>
+            <MenuItem style={{ fontSize: "3vw" }} onClick={() => menuNavigate("/cart")}>
+                Carrinho
+            </MenuItem>
+            <MenuItem style={{ fontSize: "3vw" }} onClick={() => menuNavigate("/profile/account")}>
+                Detalhes da Conta
+            </MenuItem>
+            <MenuItem style={{ fontSize: "3vw" }} onClick={logout}>
+                Sair
+            </MenuItem>
         </MuiMenu>
     )
 }
