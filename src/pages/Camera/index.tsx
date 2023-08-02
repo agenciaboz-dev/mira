@@ -15,7 +15,6 @@ import useMeasure from "react-use-measure"
 import { useCart } from "../../hooks/useCart"
 import { useApi } from "../../hooks/useApi"
 import { useSnackbar } from "burgos-snackbar"
-import SearchIcon from "@mui/icons-material/Search"
 
 interface CameraProps {}
 
@@ -116,10 +115,6 @@ export const Camera: React.FC<CameraProps> = ({}) => {
         <div className="Camera-Page" ref={cameraRef}>
             <Scanner scanning={scanning} handleResult={handleResult} />
             <div className="button-wrapper" style={{ gap: "5vw" }}>
-                <Button sx={{ zIndex: 10, gap: "1.5vw" }} onClick={() => navigate("/products")}>
-                    <SearchIcon />
-                    Buscar
-                </Button>
                 <div className="button-container">
                     {loading ? (
                         <CircularProgress style={{ width: "17vw", height: "auto" }} sx={{ color: colors.blue }} />

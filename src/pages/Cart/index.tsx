@@ -1,5 +1,5 @@
 import "./style.scss"
-import { Button, IconButton } from "@mui/material"
+import { Button, IconButton, Tooltip } from "@mui/material"
 import { ReactComponent as AvatarIcon } from "../../images/avatar_icon.svg"
 import { ReactComponent as LittleArrowDown } from "../../images/little_arrow_down.svg"
 import React, { useEffect, useState } from "react"
@@ -15,6 +15,7 @@ import { TutorialMask } from "../../components/TutorialMask"
 import { FinishContainer } from "./FinishContainer"
 import { Menu } from "../../components/Menu"
 import useMeasure from "react-use-measure"
+import SearchIcon from "@mui/icons-material/Search"
 
 interface CartProps {}
 
@@ -48,16 +49,26 @@ export const Cart: React.FC<CartProps> = ({}) => {
     return (
         <div className="Cart-Page">
             <div className="title-container">
-                <IconButton onClick={(event) => setAnchorEl(event.currentTarget)}>
-                    <AvatarIcon />
-                    <LittleArrowDown
-                        style={{ width: "4vw", marginLeft: "-3vw", marginBottom: "0", alignSelf: "flex-end" }}
-                    />
-                </IconButton>
-                <h2>Carrinho</h2>
-                <IconButton onClick={() => navigate("/scan")}>
-                    <QrCodePlusIcon ref={qrCodeRef} style={icon_style} />
-                </IconButton>
+                <h2 style={{ fontSize: "4vw", marginLeft: "3vw" }}>Carrinho</h2>
+                {/* <Button sx={{ zIndex: 10, gap: "1.5vw" }} onClick={() => navigate("/products")}>
+                    Buscar
+                </Button> */}
+                <div style={{ gap: "5vw" }}>
+                    <Tooltip title="Buscar Produtos">
+                        <IconButton onClick={() => navigate("/products")}>
+                            <SearchIcon style={icon_style} />
+                        </IconButton>
+                    </Tooltip>
+                    <IconButton onClick={() => navigate("/scan")}>
+                        <QrCodePlusIcon ref={qrCodeRef} style={icon_style} />
+                    </IconButton>
+                    <IconButton onClick={(event) => setAnchorEl(event.currentTarget)}>
+                        <AvatarIcon />
+                        <LittleArrowDown
+                            style={{ width: "4vw", marginLeft: "-3vw", marginBottom: "0", alignSelf: "flex-end" }}
+                        />
+                    </IconButton>
+                </div>
             </div>
 
             {tutorial && <TutorialMask iconPositions={qrCodePositions} />}
