@@ -43,7 +43,7 @@ export const SignupForm: React.FC<SignupFormProps> = ({}) => {
         confirm: "",
         phone: "",
         cpf: "",
-        pronoun: "select",
+        pronoun: "",
     }
 
     const handleSubmit = (values: FormikValues) => {
@@ -77,7 +77,7 @@ export const SignupForm: React.FC<SignupFormProps> = ({}) => {
             <Formik initialValues={initialValues} onSubmit={handleSubmit}>
                 {({ values, handleChange }) => (
                     <Form>
-                        <div style={{ width: "100%", gap: "1vw" }}>
+                        <div style={{ width: "100%", gap: "2vw" }}>
                             <TextField
                                 name="name"
                                 placeholder="Nome"
@@ -87,7 +87,14 @@ export const SignupForm: React.FC<SignupFormProps> = ({}) => {
                                 size="small"
                                 required
                             />
-                            <FormControl sx={{ width: "40%", backgroundColor: "white", borderRadius: "5vw" }}>
+                            <FormControl
+                                sx={{
+                                    width: "40%",
+                                    backgroundColor: "white",
+                                    borderRadius: "5vw",
+                                    height: "11vw",
+                                }}
+                            >
                                 <Select
                                     labelId="demo-simple-select-label"
                                     id="demo-simple-select"
@@ -97,15 +104,12 @@ export const SignupForm: React.FC<SignupFormProps> = ({}) => {
                                     name="pronoun"
                                     required
                                 >
-                                    <MenuItem value="select" disabled>
-                                        <em>Tratamento</em>
-                                    </MenuItem>
                                     {listPronouns.map((pronouns) => (
                                         <MenuItem key={pronouns.value} value={pronouns.value}>
                                             {pronouns.label}
                                         </MenuItem>
                                     ))}
-                                    <MenuItem value="Nenhuma das opções">Nenhuma</MenuItem>
+                                    <MenuItem value="Nenhuma">Nenhuma das opções</MenuItem>
                                 </Select>
                             </FormControl>
                         </div>
