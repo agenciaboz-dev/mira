@@ -105,7 +105,7 @@ export const SignupForm: React.FC<SignupFormProps> = ({}) => {
                                             {pronouns.label}
                                         </MenuItem>
                                     ))}
-                                    <MenuItem value="Nenhuma das opções">Nenhuma</MenuItem>
+                                    <MenuItem value="Nenhuma">Nenhuma das opções</MenuItem>
                                 </Select>
                             </FormControl>
                         </div>
