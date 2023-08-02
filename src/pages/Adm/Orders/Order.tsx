@@ -96,25 +96,20 @@ export const Order: React.FC<OrderProps> = ({}) => {
                 <TextField
                     label="NFe"
                     variant="standard"
-                    value={order.nfe ? (order.nfe.split("https").length > 1 ? "Autorizado" : order.nfe) : "não existe"}
+                    value={order.nfe ? (order.nfe.split("https").length > 1 ? "Autorizado" : order.nfe) : "Aguardando"}
                     InputProps={{
                         readOnly: true,
-                        endAdornment: order.nfe ? (
-                            order.nfe.split("https").length > 1 ? (
-                                <IconButton
-                                    color="primary"
-                                    sx={{ width: "2vw", height: "2vw" }}
-                                    onClick={() => {
-                                        window.open(order.nfe, "_blank")!.focus()
-                                    }}
-                                >
-                                    <PictureAsPdfIcon sx={{}} />
-                                </IconButton>
-                            ) : (
-                                <></>
-                            )
-                        ) : (
-                            <></>
+                        endAdornment: (
+                            <IconButton
+                                disabled={order.nfe ? (order.nfe.split("https").length > 1 ? false : true) : true}
+                                color="primary"
+                                sx={{ width: "2vw", height: "2vw" }}
+                                onClick={() => {
+                                    window.open(order.nfe, "_blank")!.focus()
+                                }}
+                            >
+                                <PictureAsPdfIcon sx={{}} />
+                            </IconButton>
                         ),
                         sx: { gap: "0.5vw" },
                     }}
