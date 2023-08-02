@@ -90,12 +90,9 @@ export const ProdutList: React.FC<ProdutListProps> = ({}) => {
                     : products.map((product) => <ProductContainer key={product.id} product={product} />)}
             </Box>
 
-            <Box sx={styles.buttons}>
-                <Button sx={{ flex: 0.45 }} onClick={() => navigate("/scan", { state: { product: currentProduct } })}>
+            <Box sx={{ ...styles.buttons, width: "100%" }}>
+                <Button sx={{ width: "100%" }} onClick={() => navigate("/cart")}>
                     Voltar
-                </Button>
-                <Button sx={{ flex: 0.45 }} onClick={() => navigate("/cart")}>
-                    Carrinho
                 </Button>
             </Box>
         </Box>

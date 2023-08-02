@@ -1,5 +1,5 @@
 import "./style.scss"
-import { Button, IconButton } from "@mui/material"
+import { Button, IconButton, Tooltip } from "@mui/material"
 import { ReactComponent as AvatarIcon } from "../../images/avatar_icon.svg"
 import { ReactComponent as LittleArrowDown } from "../../images/little_arrow_down.svg"
 import { ReactComponent as QrCodePlusIcon } from "../../images/qrcode_plus_icon.svg"
@@ -14,6 +14,7 @@ import { TutorialMask } from "../../components/TutorialMask"
 import { FinishContainer } from "./FinishContainer"
 import { Menu } from "../../components/Menu"
 import useMeasure from "react-use-measure"
+import SearchIcon from "@mui/icons-material/Search"
 
 interface CartProps {}
 
@@ -25,10 +26,10 @@ export const Cart: React.FC<CartProps> = ({}) => {
     const storage = useLocalStorage()
     const location = useLocation()
     const { cart } = useCart()
-    
+
     const [qrCodeRef, qrCodePositions] = useMeasure()
     const [tutorial, setTutorial] = useState(false)
-    
+
     const icon_style = { color: "white", height: "8vw", width: "8vw" }
     const button_style = { padding: "0" }
 
@@ -47,27 +48,37 @@ export const Cart: React.FC<CartProps> = ({}) => {
     }, [])
 
     useEffect(() => {
-        if (location.pathname == '/cart') {
+        if (location.pathname == "/cart") {
             window.scrollTo({
-            top: 0,
-            behavior: "smooth",
-            });
+                top: 0,
+                behavior: "smooth",
+            })
         }
-    }, [location.pathname]);
+    }, [location.pathname])
 
     return (
         <div className="Cart-Page">
             <div className="title-container">
-                <IconButton onClick={(event) => setAnchorEl(event.currentTarget)} style={button_style}>
-                    <AvatarIcon style={{ width: "8vw" }} />
-                    <LittleArrowDown
-                        style={{ width: "3vw", marginLeft: "-3vw", marginBottom: "2vw", alignSelf: "flex-end" }}
-                    />
-                </IconButton>
-                <h2 style={{ pointerEvents: "none" }}>Carrinho</h2>
-                <IconButton onClick={() => navigate("/scan")} style={button_style}>
-                    <QrCodePlusIcon ref={qrCodeRef} style={icon_style} />
-                </IconButton>
+                <h2 style={{ fontSize: "4vw", marginLeft: "3vw" }}>Carrinho</h2>
+                {/* <Button sx={{ zIndex: 10, gap: "1.5vw" }} onClick={() => navigate("/products")}>
+                    Buscar
+                </Button> */}
+                <div style={{ gap: "5vw" }}>
+                    <Tooltip title="Buscar Produtos">
+                        <IconButton onClick={() => navigate("/products")}>
+                            <SearchIcon style={icon_style} />
+                        </IconButton>
+                    </Tooltip>
+                    <IconButton onClick={() => navigate("/scan")}>
+                        <QrCodePlusIcon ref={qrCodeRef} style={icon_style} />
+                    </IconButton>
+                    <IconButton onClick={(event) => setAnchorEl(event.currentTarget)}>
+                        <AvatarIcon />
+                        <LittleArrowDown
+                            style={{ width: "4vw", marginLeft: "-3vw", marginBottom: "0", alignSelf: "flex-end" }}
+                        />
+                    </IconButton>
+                </div>
             </div>
 
             {tutorial && <TutorialMask iconPositions={qrCodePositions} />}
