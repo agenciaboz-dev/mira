@@ -58,12 +58,10 @@ export const Cart: React.FC<CartProps> = ({}) => {
 
     return (
         <div className="Cart-Page">
-            <div className="title-container">
-                <h2 style={{ fontSize: "4vw", marginLeft: "3vw" }}>Carrinho</h2>
-                {/* <Button sx={{ zIndex: 10, gap: "1.5vw" }} onClick={() => navigate("/products")}>
-                    Buscar
-                </Button> */}
-                <div style={{ gap: "5vw" }}>
+            <div className="title-container" style={{ padding: "0 2vw 0 3vw" }}>
+                <h2 style={{ fontSize: "4vw", marginLeft: "0.5vw" }}>Carrinho</h2>
+
+                <div style={{ gap: "2vw", padding: "0" }}>
                     <Tooltip title="Buscar Produtos">
                         <IconButton onClick={() => navigate("/products")}>
                             <SearchIcon style={icon_style} />
@@ -72,8 +70,8 @@ export const Cart: React.FC<CartProps> = ({}) => {
                     <IconButton onClick={() => navigate("/scan")}>
                         <QrCodePlusIcon ref={qrCodeRef} style={icon_style} />
                     </IconButton>
-                    <IconButton onClick={(event) => setAnchorEl(event.currentTarget)}>
-                        <AvatarIcon />
+                    <IconButton onClick={(event) => setAnchorEl(event.currentTarget)} sx={{ padding: "1vw" }}>
+                        <AvatarIcon style={{ width: "8vw" }} />
                         <LittleArrowDown
                             style={{ width: "4vw", marginLeft: "-3vw", marginBottom: "0", alignSelf: "flex-end" }}
                         />
