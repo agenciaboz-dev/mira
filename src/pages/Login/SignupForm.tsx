@@ -163,17 +163,7 @@ export const SignupForm: React.FC<SignupFormProps> = ({}) => {
                             size="small"
                             required
                         />
-                        <MaskedInput
-                            mask={["(", /\d/, /\d/, ")", " ", /\d/, /\d/, /\d/, /\d/, /\d/, "-", /\d/, /\d/, /\d/, /\d/]}
-                            guide={false}
-                            name="phone"
-                            value={values.phone}
-                            onChange={handleChange}
-                            render={(ref, props) => (
-                                <TextField inputRef={ref} {...props} placeholder="Telefone" fullWidth size="small" />
-                            )}
-                            required
-                        />
+
                         <Button type="submit" variant="contained" style={{ fontSize: "3.5vw" }} fullWidth>
                             {loading ? (
                                 <CircularProgress sx={{ color: "white" }} style={{ width: "10vw", height: "auto" }} />
