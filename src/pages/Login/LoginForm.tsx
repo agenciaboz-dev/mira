@@ -98,7 +98,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({}) => {
                             required
                         />
 
-                        <div onClick={() => navigate("/password-recovery")}>
+                        <div onClick={() => navigate("/password/forgot")}>
                             <p className="forgot-password">Esqueceu a senha?</p>
                         </div>
 
