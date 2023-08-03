@@ -101,6 +101,21 @@ input:-webkit-autofill:active{
     -webkit-box-shadow: 0 0 0 30px $background-color inset !important;
 }
 
+::-moz-selection {
+    background: $purple;
+    color: white;
+  }
+
+  ::-webkit-selection {
+    background: $purple;
+    color: white;
+  }
+  
+  ::selection {
+    background: $purple;
+    color: white;
+  }
+
 @media (orientation: landscape) {
     ::-webkit-scrollbar {
         width: 5px;
