@@ -22,6 +22,7 @@ import { ScrollTop } from "./components/ScrollTop"
 import { ProdutList } from "./pages/ProductList"
 import { Download } from "./pages/Download"
 import { Password } from "./pages/Password"
+import { WildCard } from "./pages/WildCard"
 
 function App() {
     const muiTheme = useMuiTheme()
@@ -39,7 +40,6 @@ function App() {
                                         <Snackbar />
                                         <Routes>
                                             <Route index element={<Login />} />
-                                            <Route path="/*" element={<Login />} />
                                             <Route path="/login/*" element={<Login />} />
                                             <Route path="/download" element={<Download />} />
                                             <Route path="/cart" element={<Cart />} />
@@ -49,6 +49,7 @@ function App() {
                                             <Route path="/review" element={<Review />} />
                                             <Route path="/products" element={<ProdutList />} />
                                             <Route path="/password/*" element={<Password />} />
+                                            <Route path="*" element={<WildCard />} />
                                         </Routes>
                                     </AddressProvider>
                                 </CartProvider>
