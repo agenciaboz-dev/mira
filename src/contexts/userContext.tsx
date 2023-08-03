@@ -28,11 +28,11 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
         if (value) {
             const orders = value.orders
 
-            if (orders.length > 0) {
-                const order = orders[orders.length-1]
+            if (orders?.length > 0) {
+                const order = orders[orders.length - 1]
 
                 if (!order.review) {
-                    navigate("/review", {state: {order: order}})
+                    navigate("/review", { state: { order: order } })
                 }
             }
         }
