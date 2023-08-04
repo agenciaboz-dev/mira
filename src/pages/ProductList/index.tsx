@@ -67,7 +67,21 @@ export const ProdutList: React.FC<ProdutListProps> = ({}) => {
                                 name="name"
                                 value={values.name}
                                 onChange={handleChange}
-                                sx={{ border: "none!important", outline: "none" }}
+                                sx={{
+                                    border: "none!important",
+                                    outline: "none",
+                                    "& .MuiOutlinedInput-root": {
+                                        "& fieldset": {
+                                            border: "none", // Remover a borda do TextField
+                                        },
+                                        "&:hover fieldset": {
+                                            border: "none", // Remover a borda do TextField quando passar o mouse
+                                        },
+                                        "&.Mui-focused fieldset": {
+                                            border: "none", // Remover a borda do TextField quando estiver em foco
+                                        },
+                                    },
+                                }}
                                 InputProps={{
                                     startAdornment: loading ? <CircularProgress size={"1.5rem"} /> : <SearchIcon />,
                                     sx: { border: "none" },
