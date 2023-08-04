@@ -180,9 +180,9 @@ export const Reset: React.FC<ResetProps> = ({}) => {
                         ) : (
                             <></>
                         )}
+                        <p style={{ position: "relative", top: "5vw", padding: "2vw" }}>{feedback}</p>
                     </Box>
                 </Box>
-                <p>{feedback}</p>
             </Box>
         </Box>
     )
