@@ -109,6 +109,7 @@ export const Payment: React.FC<PaymentProps> = ({}) => {
                         encrypted,
                         holder: cardOwner,
                         security_code: cardCvv,
+                        type: cardType,
                     },
                 },
                 callback: (response: any) => {
