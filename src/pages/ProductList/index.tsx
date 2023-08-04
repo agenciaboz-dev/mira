@@ -67,7 +67,21 @@ export const ProdutList: React.FC<ProdutListProps> = ({}) => {
                                 name="name"
                                 value={values.name}
                                 onChange={handleChange}
-                                sx={{ border: "none!important", outline: "none" }}
+                                sx={{
+                                    border: "none!important",
+                                    outline: "none",
+                                    "& .MuiOutlinedInput-root": {
+                                        "& fieldset": {
+                                            border: "none", // Remover a borda do TextField
+                                        },
+                                        "&:hover fieldset": {
+                                            border: "none", // Remover a borda do TextField quando passar o mouse
+                                        },
+                                        "&.Mui-focused fieldset": {
+                                            border: "none", // Remover a borda do TextField quando estiver em foco
+                                        },
+                                    },
+                                }}
                                 InputProps={{
                                     startAdornment: loading ? <CircularProgress size={"1.5rem"} /> : <SearchIcon />,
                                     sx: { border: "none" },
@@ -82,7 +96,14 @@ export const ProdutList: React.FC<ProdutListProps> = ({}) => {
 
             <Box sx={styles.list}>
                 {loading
-                    ? skeletons.map((index) => <Skeleton key={index} variant="rectangular" sx={{ width: "100%", height: "50vh" }} animation="wave" />)
+                    ? skeletons.map((index) => (
+                          <Skeleton
+                              key={index}
+                              variant="rectangular"
+                              sx={{ width: "100%", height: "50vh" }}
+                              animation="wave"
+                          />
+                      ))
                     : products.map((product) => <ProductContainer key={product.id} product={product} />)}
             </Box>
 
