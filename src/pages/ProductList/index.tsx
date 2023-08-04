@@ -67,9 +67,12 @@ export const ProdutList: React.FC<ProdutListProps> = ({}) => {
                                 name="name"
                                 value={values.name}
                                 onChange={handleChange}
+                                sx={{ border: "none!important", outline: "none" }}
                                 InputProps={{
                                     startAdornment: loading ? <CircularProgress size={"1.5rem"} /> : <SearchIcon />,
+                                    sx: { border: "none" },
                                 }}
+                                inputProps={{ style: { border: "none" } }}
                                 placeholder="Buscar"
                             />
                         </Form>
@@ -90,11 +93,9 @@ export const ProdutList: React.FC<ProdutListProps> = ({}) => {
                     : products.map((product) => <ProductContainer key={product.id} product={product} />)}
             </Box>
 
-            <Box sx={{ ...styles.buttons, width: "100%" }}>
-                <Button sx={{ width: "100%" }} onClick={() => navigate("/cart")}>
-                    Voltar
-                </Button>
-            </Box>
+            <Button fullWidth onClick={() => navigate("/cart")} sx={{ marginTop: "auto" }}>
+                Voltar
+            </Button>
         </Box>
     )
 }
