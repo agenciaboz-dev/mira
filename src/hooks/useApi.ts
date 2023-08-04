@@ -60,12 +60,6 @@ export const useApi = () => {
                     .catch((error) => defaultError(error, options.errorCallback))
                     .finally(() => defaultFinally(options.finallyCallback))
             },
-            recoverPassword: (options: ApiOptions) => {
-                api.post("/user/recover", options.data)
-                    .then((response) => options.callback(response))
-                    .catch((error) => defaultError(error, options.errorCallback))
-                    .finally(() => defaultFinally(options.finallyCallback))
-            },
         },
         adm: {
             login: (options: ApiOptions) => {

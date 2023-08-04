@@ -99,9 +99,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({}) => {
                             size="small"
                         />
 
-                        <div onClick={() => navigate("/password/forgot")}>
-                            <p className="forgot-password">Esqueceu a senha?</p>
-                        </div>
+                        <div className="forgot-password">Esqueceu a senha?</div>
 
                         <div className="submit-container">
                             <Checkbox checkboxStyle={{}} value={remember} handleChange={handleCheckboxChange} label="Mantenha-me conectado" />
