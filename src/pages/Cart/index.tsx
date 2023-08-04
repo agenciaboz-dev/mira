@@ -1,5 +1,5 @@
 import "./style.scss"
-import { Button, IconButton } from "@mui/material"
+import { Button, IconButton, MenuItem } from "@mui/material"
 import { ReactComponent as AvatarIcon } from "../../images/avatar_icon.svg"
 import { ReactComponent as LittleArrowDown } from "../../images/little_arrow_down.svg"
 import { ReactComponent as QrCodePlusIcon } from "../../images/qrcode_plus_icon.svg"
@@ -14,6 +14,7 @@ import { TutorialMask } from "../../components/TutorialMask"
 import { FinishContainer } from "./FinishContainer"
 import { Menu } from "../../components/Menu"
 import useMeasure from "react-use-measure"
+import SearchIcon from "@mui/icons-material/Search"
 
 interface CartProps {}
 
@@ -25,10 +26,10 @@ export const Cart: React.FC<CartProps> = ({}) => {
     const storage = useLocalStorage()
     const location = useLocation()
     const { cart } = useCart()
-    
+
     const [qrCodeRef, qrCodePositions] = useMeasure()
     const [tutorial, setTutorial] = useState(false)
-    
+
     const icon_style = { color: "white", height: "8vw", width: "8vw" }
     const button_style = { padding: "0" }
 
@@ -47,22 +48,20 @@ export const Cart: React.FC<CartProps> = ({}) => {
     }, [])
 
     useEffect(() => {
-        if (location.pathname == '/cart') {
+        if (location.pathname == "/cart") {
             window.scrollTo({
-            top: 0,
-            behavior: "smooth",
-            });
+                top: 0,
+                behavior: "smooth",
+            })
         }
-    }, [location.pathname]);
+    }, [location.pathname])
 
     return (
         <div className="Cart-Page">
             <div className="title-container">
                 <IconButton onClick={(event) => setAnchorEl(event.currentTarget)} style={button_style}>
                     <AvatarIcon style={{ width: "8vw" }} />
-                    <LittleArrowDown
-                        style={{ width: "3vw", marginLeft: "-3vw", marginBottom: "2vw", alignSelf: "flex-end" }}
-                    />
+                    <LittleArrowDown style={{ width: "3vw", marginLeft: "-3vw", marginBottom: "2vw", alignSelf: "flex-end" }} />
                 </IconButton>
                 <h2 style={{ pointerEvents: "none" }}>Carrinho</h2>
                 <IconButton onClick={() => navigate("/scan")} style={button_style}>
@@ -77,6 +76,28 @@ export const Cart: React.FC<CartProps> = ({}) => {
                     <Product key={product.id} product={product} />
                 ))}
             </div>
+
+            <Button
+                variant="contained"
+                color="secondary"
+                sx={{
+                    position: "fixed",
+                    bottom: "50vw",
+                    right: "8vw",
+                    zIndex: 5,
+                    minWidth: 0,
+                    width: "18vw",
+                    height: "18vw",
+                    borderRadius: "5vw",
+                    backgroundColor: "white",
+                    color: "#555",
+                    border: "1px solid #555",
+                    boxShadow: "2px 8px 0px #1a7fb7",
+                }}
+                onClick={() => navigate("/products")}
+            >
+                <SearchIcon sx={{ width: "8.5vw", height: "auto" }} />
+            </Button>
 
             <FinishContainer />
             <Menu open={openMenu} anchorEl={anchorEl} handleClose={handleCloseMenu} />
