@@ -29,7 +29,9 @@ export const Forgot: React.FC<ForgotProps> = ({}) => {
         api.user.recoverPassword({
             data: values,
             callback: (response: { data?: User }) => {
-                setResult(response.data ? "Por favor, siga as instruções enviadas por e-mail" : "Nenhuma conta encontrada")
+                setResult(
+                    response.data ? "Por gentileza, siga as instruções enviadas por e-mail." : "Nenhuma conta encontrada"
+                )
             },
             finallyCallback: () => setLoading(false),
         })
@@ -76,8 +78,8 @@ export const Forgot: React.FC<ForgotProps> = ({}) => {
                 >
                     <h2 style={{ alignSelf: "start" }}>Redefinir senha</h2>
                     <p style={{ fontSize: "2.9vw", textAlign: "justify" }}>
-                        Informe o e-mail, nome de usuário ou cpf da sua conta. Caso exista, enviaremos um link para o e-mail
-                        associado a conta contendo as instruções para atualização da senha.
+                        Para recuperar sua senha, informe seu endereço de e-mail, nome de usuário ou CPF. Enviaremos um link
+                        para o e-mail cadastrado em sua conta.
                     </p>
                     <Formik initialValues={{ user: "" }} onSubmit={handleSubmit}>
                         {({ values, handleChange }) => (
@@ -107,7 +109,7 @@ export const Forgot: React.FC<ForgotProps> = ({}) => {
                             </Form>
                         )}
                     </Formik>
-                    <p>{result}</p>
+                    <p style={{ fontSize: "3.3vw" }}>{result}</p>
                 </Box>
             </Box>
         </Box>
