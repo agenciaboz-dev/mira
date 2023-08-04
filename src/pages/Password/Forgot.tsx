@@ -53,7 +53,7 @@ export const Forgot: React.FC<ForgotProps> = ({}) => {
                 gap: "5vw",
             }}
         >
-            <div style={{ position: "relative", flexDirection: "column", alignItems: "center", height: "100%" }}>
+            <div style={{ position: "relative", flexDirection: "column", alignItems: "center" }}>
                 <Logo style={{ width: "50vw", height: "auto", flexShrink: 0, marginTop: "8vw" }} />
                 <Divider style={{ position: "absolute", width: "100vw", top: "50vw", objectFit: "fill" }} />
             </div>
@@ -65,6 +65,8 @@ export const Forgot: React.FC<ForgotProps> = ({}) => {
                     width: "100%",
                     padding: "7vw 7vw",
                     color: "white",
+                    position: "relative",
+                    top: "28vw",
                 }}
             >
                 <Box
@@ -75,7 +77,7 @@ export const Forgot: React.FC<ForgotProps> = ({}) => {
                         color: "white",
                         gap: "5vw",
                         position: "relative",
-                        bottom: "14vw",
+                        bottom: "10vw",
                     }}
                 >
                     <h2 style={{ alignSelf: "start" }}>Redefinir senha</h2>
