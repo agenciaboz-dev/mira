@@ -30,7 +30,9 @@ export const Forgot: React.FC<ForgotProps> = ({}) => {
             data: values,
             callback: (response: { data?: User }) => {
                 setResult(
-                    response.data ? "Por gentileza, siga as instruções enviadas por e-mail." : "Nenhuma conta encontrada"
+                    response.data
+                        ? "Por gentileza, siga as instruções enviadas por e-mail."
+                        : "Nenhuma conta encontrada! Cadastre-se primeiro."
                 )
             },
             finallyCallback: () => setLoading(false),
