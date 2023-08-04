@@ -52,6 +52,11 @@ export const Reset: React.FC<ResetProps> = ({}) => {
             return
         }
 
+        if (!values.password) {
+            setFeedback("Insira uma senha")
+            return
+        }
+
         setLoading(true)
         api.user.password({
             data: { id: user.id, password: values.password },
