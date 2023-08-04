@@ -58,7 +58,7 @@ export const Reset: React.FC<ResetProps> = ({}) => {
             callback: (response: { data: User }) => {
                 setFeedback(
                     response.data
-                        ? "Senha alterada com sucesso, redirecionando para página de login"
+                        ? "Senha alterada com sucesso, redirecionando para página de login!"
                         : "Houve um erro ao tentar alterar a senha"
                 )
                 setTimeout(() => navigate("/login"), 2000)
@@ -75,6 +75,8 @@ export const Reset: React.FC<ResetProps> = ({}) => {
                 console.log(user)
                 if (user) {
                     setUser(user)
+                } else {
+                    setFeedback("Usuário não encontrado")
                 }
             },
             finallyCallback: () => setUserLoading(false),
@@ -84,38 +86,43 @@ export const Reset: React.FC<ResetProps> = ({}) => {
     return (
         <Box
             sx={{
+                width: "100vw",
+                minHeight: "-webkit-fill-available",
+                overflow: "hidden",
                 flexDirection: "column",
                 backgroundImage: `url(${background})`,
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
-                width: "100%",
-                padding: "0vw",
                 color: "white",
-                gap: "5vw",
             }}
         >
-            <div style={{ position: "relative", flexDirection: "column", alignItems: "center", height: "100%" }}>
+            <Box sx={{ flexDirection: "column", alignItems: "center" }}>
                 <Logo style={{ width: "50vw", height: "auto", flexShrink: 0, marginTop: "8vw" }} />
                 <Divider style={{ position: "absolute", width: "100vw", top: "50vw", objectFit: "fill" }} />
-            </div>
+            </Box>
             <Box
                 sx={{
                     flexDirection: "column",
                     backgroundColor: colors.purple,
-                    height: "100%",
+                    height: "70%",
                     width: "100%",
-                    padding: "7vw 7vw",
+                    padding: "0vw 7vw",
+                    position: "relative",
+                    top: "32vw",
                     color: "white",
                 }}
             >
                 <Box
                     sx={{
                         flexDirection: "column",
-                        backgroundColor: colors.purple,
                         width: "100%",
+                        height: "100%",
                         color: "white",
                         gap: "5vw",
+                        margin: "0",
+                        position: "relative",
+                        bottom: "5vw",
                     }}
                 >
                     <Box
@@ -125,8 +132,6 @@ export const Reset: React.FC<ResetProps> = ({}) => {
                             width: "100%",
                             color: "white",
                             gap: "8w",
-                            position: "relative",
-                            bottom: "14vw",
                         }}
                     >
                         <h2 style={{ alignSelf: "start" }}>Resetar senha</h2>
@@ -136,7 +141,7 @@ export const Reset: React.FC<ResetProps> = ({}) => {
                                 <Skeleton variant="rounded" animation="wave" sx={skeletonStyle} />
                                 <Skeleton variant="rounded" animation="wave" sx={skeletonStyle} />
                             </Box>
-                        ) : (
+                        ) : user ? (
                             <Formik initialValues={initialValues} onSubmit={handleSubmit}>
                                 {({ values, handleChange }) => (
                                     <Form style={{ display: "contents" }}>
@@ -168,14 +173,16 @@ export const Reset: React.FC<ResetProps> = ({}) => {
                                                     "Enviar"
                                                 )}
                                             </Button>
-                                            <p>{feedback}</p>
                                         </Box>
                                     </Form>
                                 )}
                             </Formik>
+                        ) : (
+                            <></>
                         )}
                     </Box>
                 </Box>
+                <p>{feedback}</p>
             </Box>
         </Box>
     )
