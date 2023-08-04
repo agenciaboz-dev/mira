@@ -38,8 +38,8 @@ export const Menu: React.FC<MenuProps> = ({ open, anchorEl, handleClose }) => {
                     borderBottomLeftRadius: "8vw",
                     borderBottomRightRadius: "8vw",
                     color: "white",
-                    marginLeft: "1vw",
-                    marginTop: "2vw",
+                    marginLeft: "-3vw",
+                    marginTop: "1vw",
                 },
             }}
         >
