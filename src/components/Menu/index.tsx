@@ -31,6 +31,7 @@ export const Menu: React.FC<MenuProps> = ({ open, anchorEl, handleClose }) => {
             MenuListProps={{
                 "aria-labelledby": "basic-button",
             }}
+            
             PaperProps={{
                 sx: {
                     backgroundColor: colors.purple,
@@ -38,19 +39,12 @@ export const Menu: React.FC<MenuProps> = ({ open, anchorEl, handleClose }) => {
                     borderBottomLeftRadius: "8vw",
                     borderBottomRightRadius: "8vw",
                     color: "white",
-                    marginLeft: "-3vw",
-                    marginTop: "1vw",
-                },
+                    marginLeft: "1vw",
+                    marginTop: "-0.25vw"
+                }
             }}
         >
-            <MenuItem
-                onClick={() => {
-                    storage.set("has_accessed", false)
-                    storage.set("mira.seen_similar_items_tutorial", false)
-                }}
-            >
-                Resetar Tutoriais
-            </MenuItem>
+            <MenuItem onClick={() => {storage.set("has_accessed", false); storage.set("mira.seen_similar_items_tutorial", false)}}>Resetar Tutoriais</MenuItem>
             <MenuItem onClick={() => menuNavigate("/cart")}>Carrinho</MenuItem>
             <MenuItem onClick={() => menuNavigate("/profile/account")}>Detalhes da Conta</MenuItem>
             <MenuItem onClick={() => menuNavigate("/profile/address")}>Endereço de Entrega</MenuItem>
