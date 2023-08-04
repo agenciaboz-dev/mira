@@ -37,7 +37,7 @@ export const Reset: React.FC<ResetProps> = ({}) => {
 
     const skeletonStyle: SxProps = {
         width: "100%",
-        height: "10vw",
+        height: "12vw",
         borderRadius: "5vw",
         backgroundColor: colors.purple2,
     }
@@ -132,7 +132,7 @@ export const Reset: React.FC<ResetProps> = ({}) => {
                         <h2 style={{ alignSelf: "start" }}>Resetar senha</h2>
 
                         {userLoading ? (
-                            <Box sx={{ flexDirection: "column", gap: "5vw" }}>
+                            <Box sx={{ flexDirection: "column", gap: "5vw", paddingTop: "5vw" }}>
                                 <Skeleton variant="rounded" animation="wave" sx={skeletonStyle} />
                                 <Skeleton variant="rounded" animation="wave" sx={skeletonStyle} />
                             </Box>
