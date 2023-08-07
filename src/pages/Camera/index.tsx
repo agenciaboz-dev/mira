@@ -25,7 +25,6 @@ export const Camera: React.FC<CameraProps> = ({}) => {
     const [error, setError] = useState("")
     const [loading, setLoading] = useState(false)
     const [productPosition, setProductPosition] = useState("")
-    const [forceUpdate, setForceUpdate] = useState(0)
 
     const navigate = useNavigate()
     const colors = useColors()
@@ -68,13 +67,6 @@ export const Camera: React.FC<CameraProps> = ({}) => {
         setTimeout(() => retry(), 1000)
     }
 
-    useEffect(() => {
-        setTimeout(() => {
-            setForceUpdate(forceUpdate + 1)
-            // @ts-ignore
-            window.ReactNativeWebView?.postMessage("blabla")
-        }, 30)
-    }, [forceUpdate])
 
     useEffect(() => {
         console.log(result)
