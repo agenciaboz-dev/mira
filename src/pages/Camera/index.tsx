@@ -111,8 +111,8 @@ export const Camera: React.FC<CameraProps> = ({}) => {
 
     return (
         <div className="Camera-Page" ref={cameraRef}>
-            <p style={{ display: "none" }}>{forceUpdate}</p>
             <Scanner scanning={scanning} handleResult={handleResult} />
+            <CircularProgress sx={{ opacity: 0, position: "absolute" }} />
             <div className="button-wrapper" style={{ gap: "5vw" }}>
                 <div className="button-container">
                     {loading ? (
@@ -141,6 +141,7 @@ export const Camera: React.FC<CameraProps> = ({}) => {
                         </>
                     )}
                 </div>
+                C
             </div>
             {product && (
                 <ProductPage
