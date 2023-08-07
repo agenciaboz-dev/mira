@@ -25,6 +25,7 @@ export const Camera: React.FC<CameraProps> = ({}) => {
     const [error, setError] = useState("")
     const [loading, setLoading] = useState(false)
     const [productPosition, setProductPosition] = useState("")
+    const [forceUpdate, setForceUpdate] = useState(0)
 
     const navigate = useNavigate()
     const colors = useColors()
@@ -68,6 +69,14 @@ export const Camera: React.FC<CameraProps> = ({}) => {
     }
 
     useEffect(() => {
+        setTimeout(() => {
+            setForceUpdate(forceUpdate + 1)
+            // @ts-ignore
+            window.ReactNativeWebView?.postMessage("blabla")
+        }, 30)
+    }, [forceUpdate])
+
+    useEffect(() => {
         console.log(result)
         if (result && !error) {
             setLoading(true)
@@ -103,16 +112,14 @@ export const Camera: React.FC<CameraProps> = ({}) => {
     useEffect(() => {
         if (productView.height)
             setTimeout(
-                () =>
-                    setProductPosition(
-                        `translateY(-${productView.height <= cameraView.height ? productView.height : cameraView.height}px)`
-                    ),
+                () => setProductPosition(`translateY(-${productView.height <= cameraView.height ? productView.height : cameraView.height}px)`),
                 500
             )
     }, [productView.height])
 
     return (
         <div className="Camera-Page" ref={cameraRef}>
+            <p style={{ display: "none" }}>{forceUpdate}</p>
             <Scanner scanning={scanning} handleResult={handleResult} />
             <div className="button-wrapper" style={{ gap: "5vw" }}>
                 <div className="button-container">
