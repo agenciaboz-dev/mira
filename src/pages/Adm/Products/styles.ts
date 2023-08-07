@@ -21,6 +21,7 @@ const styles: Styles = {
         padding: "1vw",
         flexDirection: "column",
         gap: "1vw",
+        height: "90.5%",
     },
 
     header: {

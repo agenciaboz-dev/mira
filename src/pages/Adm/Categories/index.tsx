@@ -140,7 +140,7 @@ export const Categories: React.FC<CategoriesProps> = ({}) => {
                         data={categoriesList}
                         highlightOnHover
                         fixedHeader
-                        fixedHeaderScrollHeight={"37.1vw"}
+                        fixedHeaderScrollHeight={"38.1vw"}
                     />
                 ) : (
                     <TableSkeleton />

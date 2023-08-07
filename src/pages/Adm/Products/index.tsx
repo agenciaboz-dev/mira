@@ -208,7 +208,7 @@ export const Products: React.FC<ProductsProps> = ({}) => {
                         data={productList}
                         highlightOnHover
                         fixedHeader
-                        fixedHeaderScrollHeight={"37.1vw"}
+                        fixedHeaderScrollHeight={"38.1vw"}
                         onRowClicked={(row) => navigate(`/dashboard/products/${row.id}`)}
                         customStyles={{
                             rows: { style: { cursor: "pointer" } },

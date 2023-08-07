@@ -134,7 +134,7 @@ export const Suppliers: React.FC<SuppliersProps> = ({}) => {
                         data={suppliersList}
                         highlightOnHover
                         fixedHeader
-                        fixedHeaderScrollHeight={"37.1vw"}
+                        fixedHeaderScrollHeight={"38.1vw"}
                     />
                 ) : (
                     <TableSkeleton />
