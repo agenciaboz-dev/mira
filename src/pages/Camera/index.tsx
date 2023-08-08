@@ -141,7 +141,6 @@ export const Camera: React.FC<CameraProps> = ({}) => {
                         </>
                     )}
                 </div>
-                C
             </div>
             {product && (
                 <ProductPage
