@@ -68,7 +68,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({}) => {
         const user = storage.get("mira.user")
         if (user) {
             setUser(user)
-            navigate("/cart")
+            navigate("/redirect", { state: { path: "/cart" } })
         }
 
         const remember = localStorage.getItem("mira.rememberme")

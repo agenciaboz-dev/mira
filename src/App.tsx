@@ -23,6 +23,7 @@ import { ProdutList } from "./pages/ProductList"
 import { Download } from "./pages/Download"
 import { Password } from "./pages/Password"
 import { WildCard } from "./pages/WildCard"
+import { Redirect } from "./pages/Redirect"
 
 function App() {
     const muiTheme = useMuiTheme()
@@ -49,6 +50,7 @@ function App() {
                                             <Route path="/review" element={<Review />} />
                                             <Route path="/products" element={<ProdutList />} />
                                             <Route path="/password/*" element={<Password />} />
+                                            <Route path="/redirect" element={<Redirect />} />
                                             <Route path="*" element={<WildCard />} />
                                         </Routes>
                                     </AddressProvider>
