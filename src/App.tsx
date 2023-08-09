@@ -24,6 +24,7 @@ import { Download } from "./pages/Download"
 import { Password } from "./pages/Password"
 import { WildCard } from "./pages/WildCard"
 import { Redirect } from "./pages/Redirect"
+import { PrivacyPolicy } from "./pages/PrivacyPolicy"
 
 function App() {
     const muiTheme = useMuiTheme()
@@ -51,6 +52,7 @@ function App() {
                                             <Route path="/products" element={<ProdutList />} />
                                             <Route path="/password/*" element={<Password />} />
                                             <Route path="/redirect" element={<Redirect />} />
+                                            <Route path="/privacypolicy" element={<PrivacyPolicy />} />
                                             <Route path="*" element={<WildCard />} />
                                         </Routes>
                                     </AddressProvider>
