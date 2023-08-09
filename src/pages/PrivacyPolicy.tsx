@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom"
 interface PrivacyPolicyProps {}
 
 export const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({}) => {
-    const lang = useParams().lang
+    const lang = useParams().lang || "br"
 
     const titleStyle: React.CSSProperties = {
         fontWeight: "bold",
