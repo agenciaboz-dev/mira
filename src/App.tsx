@@ -52,6 +52,7 @@ function App() {
                                             <Route path="/products" element={<ProdutList />} />
                                             <Route path="/password/*" element={<Password />} />
                                             <Route path="/redirect" element={<Redirect />} />
+                                            <Route path="/privacypolicy" element={<PrivacyPolicy />} />
                                             <Route path="/privacypolicy/:lang" element={<PrivacyPolicy />} />
                                             <Route path="*" element={<WildCard />} />
                                         </Routes>
