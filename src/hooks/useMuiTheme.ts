@@ -5,7 +5,7 @@ export const useMuiTheme = () => {
     const colors = useColors()
     const THEME = createTheme({
         typography: {
-             "fontFamily": ["Inter"].join(','),
+            fontFamily: ["Inter"].join(","),
             //  "fontSize": 14,
             //  "fontWeightLight": 300,
             //  "fontWeightRegular": 400,
@@ -22,15 +22,15 @@ export const useMuiTheme = () => {
             },
             text: {
                 primary: colors.purple,
-                // secondary: colors.primary,
+
                 // disabled: colors.primary,
             },
             success: {
                 main: colors.green,
             },
             // error: {
-            //     main: colors.red,
-            // }
+            // main: colors.light_grey2,
+            // },
         },
     })
 
