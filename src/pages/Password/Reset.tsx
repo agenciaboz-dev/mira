@@ -10,6 +10,8 @@ import { Button } from "../../components/Button"
 import background from "../../images/bricks_webp.webp"
 import { ReactComponent as Logo } from "../../images/logo.svg"
 import { ReactComponent as Divider } from "../../images/pasta_de_dente.svg"
+import styled from "@emotion/styled"
+import "./style.scss"
 
 interface ResetProps {}
 
@@ -36,12 +38,50 @@ export const Reset: React.FC<ResetProps> = ({}) => {
     }
 
     const skeletonStyle: SxProps = {
-        width: "100%",
-        height: "12vw",
         borderRadius: "5vw",
         backgroundColor: colors.purple2,
+        "@media (max-width: 768px)": {
+            width: "100%",
+            height: "12vw",
+        },
+        "@media (min-width: 768px)": {
+            width: "100%",
+            height: "3vw",
+        },
     }
+    const ResponsiveLogo = styled(Logo)`
+        @media (max-width: 768px) {
+            width: 50vw;
+            height: auto;
+            flex-shrink: 0;
+            margin-top: 8vw;
+        }
+        @media (min-width: 768px) {
+            width: 15vw;
+            height: auto;
+            flex-shrink: 0;
+            margin-top: 2vw;
+            position: absolute;
+            right: 10vw;
+        }
+    `
+    const ResponsiveDivider = styled(Divider)`
+        @media (max-width: 768px) {
+            position: absolute;
+            width: 100vw;
+            top: 50vw;
+            objectfit: fill;
+        }
+        @media (min-width: 768px) {
+            position: relative;
+            width: 122vw;
+            height: 15.5vw;
+            right: 9vw;
+            top: 9vw;
+        }
+    `
 
+    const isMobile = window.matchMedia("(max-width: 768px)").matches
     const handleSubmit = (values: FormValues) => {
         if (loading) return
         if (!user) return
@@ -63,10 +103,12 @@ export const Reset: React.FC<ResetProps> = ({}) => {
             callback: (response: { data: User }) => {
                 setFeedback(
                     response.data
-                        ? "Senha alterada com sucesso, redirecionando para página de login!"
+                        ? isMobile
+                            ? "Senha alterada com sucesso, redirecionando para página de login!"
+                            : "Agora é só entrar pelo nosso APP!"
                         : "Houve um erro ao tentar alterar a senha"
                 )
-                setTimeout(() => navigate("/login"), 2000)
+                setTimeout(() => (isMobile ? navigate("/login") : feedback), 2000)
             },
             finallyCallback: () => setLoading(false),
         })
@@ -91,43 +133,82 @@ export const Reset: React.FC<ResetProps> = ({}) => {
     return (
         <Box
             sx={{
-                width: "100vw",
-                minHeight: "-webkit-fill-available",
-                overflow: "hidden",
-                flexDirection: "column",
-                backgroundImage: `url(${background})`,
-                backgroundPosition: "center",
-                backgroundRepeat: "no-repeat",
-                backgroundSize: "cover",
-                color: "white",
+                "@media (max-width: 768px)": {
+                    width: "100vw",
+                    minHeight: "-webkit-fill-available",
+                    overflow: "hidden",
+                    flexDirection: "column",
+                    backgroundImage: `url(${background})`,
+                    backgroundPosition: "center",
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize: "cover",
+                    color: "white",
+                },
+                "@media (min-width: 768px)": {
+                    width: "100%",
+                    height: "100%",
+                    flexDirection: "column",
+                    backgroundImage: `url(${background})`,
+                },
             }}
         >
-            <Box sx={{ flexDirection: "column", alignItems: "center" }}>
-                <Logo style={{ width: "50vw", height: "auto", flexShrink: 0, marginTop: "8vw" }} />
-                <Divider style={{ position: "absolute", width: "100vw", top: "50vw", objectFit: "fill" }} />
-            </Box>
             <Box
                 sx={{
                     flexDirection: "column",
-                    backgroundColor: colors.purple,
-                    height: "70%",
-                    width: "100%",
-                    padding: "0vw 7vw",
-                    position: "relative",
-                    top: "32vw",
-                    color: "white",
+                    alignItems: "center",
+                }}
+            >
+                <ResponsiveLogo />
+                <ResponsiveDivider />
+            </Box>
+            <Box
+                sx={{
+                    "@media (max-width: 768px)": {
+                        flexDirection: "column",
+                        backgroundColor: colors.purple,
+                        height: "70%",
+                        width: "100%",
+                        padding: "0vw 7vw",
+                        position: "relative",
+                        top: "32vw",
+                        color: "white",
+                    },
+                    "@media (min-width: 768px)": {
+                        flexDirection: "column",
+                        backgroundColor: colors.purple,
+                        height: "51vh",
+                        width: "100%",
+                        padding: "0vw 7vw",
+                        position: "relative",
+                        top: "9.0vw",
+                        color: "white",
+                    },
                 }}
             >
                 <Box
                     sx={{
-                        flexDirection: "column",
-                        width: "100%",
-                        height: "100%",
-                        color: "white",
-                        gap: "5vw",
-                        margin: "0",
-                        position: "relative",
-                        bottom: "5vw",
+                        "@media (max-width:768px)": {
+                            flexDirection: "column",
+                            width: "100%",
+                            height: "max-content",
+                            color: "white",
+
+                            gap: "5vw",
+                            margin: "0",
+                            position: "relative",
+                            top: "2vw",
+                        },
+                        "@media (min-width:768px)": {
+                            flexDirection: "column",
+                            width: "100%",
+                            height: "max-content",
+                            color: "white",
+
+                            gap: "5vw",
+                            margin: "0",
+                            position: "relative",
+                            bottom: "1.5vw",
+                        },
                     }}
                 >
                     <Box
@@ -137,12 +218,22 @@ export const Reset: React.FC<ResetProps> = ({}) => {
                             width: "100%",
                             color: "white",
                             gap: "8w",
+                            //backgroundColor: "purple",
                         }}
                     >
-                        <h2 style={{ alignSelf: "start" }}>Resetar senha</h2>
-
+                        <h2 className="styleHeader">Resetar senha</h2>
                         {userLoading ? (
-                            <Box sx={{ flexDirection: "column", gap: "5vw", paddingTop: "5vw" }}>
+                            <Box
+                                sx={{
+                                    "@media (max-width:768px)": { flexDirection: "column", gap: "5vw", paddingTop: "5vw" },
+                                    "@media (min-width:768px)": {
+                                        flexDirection: "column",
+                                        gap: "2vw",
+                                        marginLeft: "4vw",
+                                        width: "40%",
+                                    },
+                                }}
+                            >
                                 <Skeleton variant="rounded" animation="wave" sx={skeletonStyle} />
                                 <Skeleton variant="rounded" animation="wave" sx={skeletonStyle} />
                             </Box>
@@ -150,7 +241,12 @@ export const Reset: React.FC<ResetProps> = ({}) => {
                             <Formik initialValues={initialValues} onSubmit={handleSubmit}>
                                 {({ values, handleChange }) => (
                                     <Form style={{ display: "contents" }}>
-                                        <Box sx={{ flexDirection: "column", gap: "6vw" }}>
+                                        <Box
+                                            sx={{
+                                                "@media (max-width:768px)": { flexDirection: "column", gap: "6vw" },
+                                                "@media (min-width:768px)": { flexDirection: "column", gap: "4vw" },
+                                            }}
+                                        >
                                             <Box sx={{ flexDirection: "column", gap: "2vw" }}>
                                                 <TextField
                                                     placeholder="Nova senha"
@@ -158,7 +254,22 @@ export const Reset: React.FC<ResetProps> = ({}) => {
                                                     value={values.password}
                                                     onChange={handleChange}
                                                     type="password"
-                                                    sx={{ fontSize: "3vw", height: "12vw", padding: "2vw 1vw" }}
+                                                    sx={{
+                                                        "@media (max-width: 768px)": {
+                                                            fontSize: "3vw",
+                                                            height: "12vw",
+                                                            padding: "2vw 1vw",
+                                                        },
+                                                        "@media (min-width: 768px)": {
+                                                            fontSize: "1vw",
+                                                            width: "60%",
+                                                            marginLeft: "2vw",
+
+                                                            "& .MuiOutlinedInput-input": {
+                                                                height: "0vh",
+                                                            },
+                                                        },
+                                                    }}
                                                     required
                                                 />
                                                 <TextField
@@ -167,13 +278,41 @@ export const Reset: React.FC<ResetProps> = ({}) => {
                                                     value={values.confirmPassword}
                                                     onChange={handleChange}
                                                     type="password"
-                                                    sx={{ fontSize: "3vw", height: "12vw", padding: "2vw 1vw" }}
+                                                    sx={{
+                                                        "@media (max-width: 768px)": {
+                                                            fontSize: "3vw",
+                                                            height: "12vw",
+                                                            padding: "2vw 1vw",
+                                                        },
+                                                        "@media (min-width: 768px)": {
+                                                            fontSize: "1vw",
+                                                            width: "60%",
+                                                            marginLeft: "2vw",
+                                                            "& .MuiOutlinedInput-input": {
+                                                                height: "0vh",
+                                                            },
+                                                        },
+                                                    }}
                                                     required
                                                 />
                                             </Box>
-                                            <Button type="submit">
+                                            <Button
+                                                type="submit"
+                                                sx={{
+                                                    "@media (min-width: 768px)": {
+                                                        width: "20%",
+                                                        height: "2.5vw",
+                                                        fontSize: "1.2vw",
+                                                        marginLeft: "17.5vw",
+                                                    },
+                                                }}
+                                            >
                                                 {loading ? (
-                                                    <CircularProgress size="1.5rem" sx={{ color: "white" }} />
+                                                    isMobile ? (
+                                                        <CircularProgress size="1.5rem" sx={{ color: "white" }} />
+                                                    ) : (
+                                                        <CircularProgress size="5rem" sx={{ color: "white" }} />
+                                                    )
                                                 ) : (
                                                     "Enviar"
                                                 )}
@@ -185,7 +324,7 @@ export const Reset: React.FC<ResetProps> = ({}) => {
                         ) : (
                             <></>
                         )}
-                        <p style={{ position: "relative", top: "5vw", padding: "2vw" }}>{feedback}</p>
+                        <p className="feedback">{feedback}</p>
                     </Box>
                 </Box>
             </Box>

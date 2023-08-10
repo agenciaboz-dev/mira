@@ -1,0 +1,23 @@
+.styleHeader{
+    align-self: start;
+    @media (min-width:768px){
+        font-size: 1.8vw;
+        margin-left: 4vw;
+        margin-bottom: 2vw;
+    }
+}
+.feedback{
+    @media (max-width:768px){
+        position: relative;
+        top: 5vw;
+        padding: 2vw;
+    }
+    @media (min-width:768px){
+        font-size: 1vw;
+        position: relative;
+        bottom: 7vw;
+        left: 2.2vw;
+        padding: 2vw;
+    }
+    
+}
