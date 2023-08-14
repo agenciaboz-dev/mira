@@ -1,0 +1,40 @@
+.h1_style{
+    font-weight: 800;
+    @media (max-width:768px) {
+        font-size: 25vw;
+    }
+    @media (min-width:768px) {
+        font-size: 12vw;
+    }
+}
+.p_style{
+    textAlign:center; 
+    @media (max-width:768px) {
+        font-size: 3.5vw;  
+    }
+    @media (min-width:768px) {
+        font-size: 1.0vw;
+    }
+}
+.p2_style{
+    text-align: center;
+    @media (max-width:768px) {
+         font-size: 5vw;
+    }
+    @media (min-width:768px) {
+        font-size: 1.3vw;
+    }
+}
+.img_style{
+    
+    @media (max-width:768px) {
+         width:45vw;
+    }
+    @media (min-width:768px) {
+        width:10vw;
+    }
+}
+
+
+
+ 
