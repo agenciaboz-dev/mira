@@ -23,7 +23,7 @@ export const Card: React.FC<CardProps> = ({ card }) => {
 
             <div className="name-expiration">
                 <h3>{card.name || "Nome"}</h3>
-                <h4>{card.expiration_month ? `${card.expiration_month}/${card.expiration_year}` : ""}</h4>
+                <h4>{card.expiration_month ? card.expiry : ""}</h4>
             </div>
         </div>
     )
