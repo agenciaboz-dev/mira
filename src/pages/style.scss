@@ -34,6 +34,14 @@
         width:10vw;
     }
 }
+.spanStyle{
+    @media (max-width:768px) {
+        font-size: 4vw;
+   }
+   @media (min-width:768px) {
+    font-size: 3vw;
+   }
+}
 
 
 

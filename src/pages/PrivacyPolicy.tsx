@@ -11,7 +11,6 @@ export const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({}) => {
     const colors = useColors()
     const titleStyle: React.CSSProperties = {
         fontWeight: "bold",
-        fontSize: "4vw",
     }
 
     return (
@@ -20,7 +19,9 @@ export const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({}) => {
                 flexDirection: "column",
                 gap: "2vw",
                 padding: "8vw",
-                fontSize: "3.5vw",
+                "@media (max-width:768px)": { fontSize: "3.5vw" },
+                "@media (min-width:768px)": { fontSize: "1.5vw" },
+
                 backgroundColor: colors.purple,
                 textAlign: "justify",
                 color: "white",
@@ -30,7 +31,9 @@ export const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({}) => {
             <img src={Logo} style={{ width: "14vw", height: "auto", alignSelf: "flex-end" }} alt="Logo Mira Suprimentos" />
             {lang == "en" ? (
                 <>
-                    <span style={titleStyle}>Privacy Policy</span>
+                    <span className="spanStyle" style={titleStyle}>
+                        Privacy Policy
+                    </span>
                     <p>
                         Mira Suprimentos built the Mira Suprimentos app as a Free app. This SERVICE is provided by Mira
                         Suprimentos at no cost and is intended for use as is. This page is used to inform visitors regarding
