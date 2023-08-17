@@ -12,7 +12,7 @@ const styles: Styles = {
         position: "relative",
         flexDirection: "column",
         width: "100%",
-        padding: "5vw",
+        padding: "7vw",
         backgroundImage: 'url("/bricks_webp.webp")',
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
@@ -30,9 +30,9 @@ const styles: Styles = {
 
     title: {
         border: "1px solid grey",
-        padding: "2vw",
+        padding: "1.5vw",
         boxShadow: "2px 8px 0px #1a7fb7",
-        borderRadius: "5vw",
+        borderRadius: "15vw",
         background: "white",
         justifyContent: "center",
         color: "#505050",
