@@ -38,11 +38,11 @@
         .balloon-text {
             font-weight: 600;
             position: absolute;
-            top: -26.5vw;
+            top: -27.5vw;
             width: 75%;
             height: 90%;
             text-align: justify;
-            font-size: 5vw;
+            font-size: 3.75vw;
         }
     }
 
@@ -61,4 +61,24 @@
         top: 80vw;
         z-index: 10;
     }
+
+    .close-tutorial-button {
+        position: absolute;
+        align-items: center;
+        bottom: 16vw;
+        left: 12vw;
+        color: white;
+        gap: 2vw;
+        z-index: 11;
+        
+        .cancel-icon {
+            height: 12vw;
+            width: 12vw;
+        }
+        
+        p {
+            font-size: 8vw;
+        }
+    }
+
 }
