@@ -19,7 +19,7 @@ import { AddressProvider } from "./contexts/addressContext"
 import { OrdersProvider } from "./contexts/orderContext"
 import { Review } from "./pages/Review"
 import { ScrollTop } from "./components/ScrollTop"
-import { ProdutList } from "./pages/ProductList"
+import { ProductList } from "./pages/ProductList"
 import { Download } from "./pages/Download"
 import { Password } from "./pages/Password"
 import { WildCard } from "./pages/WildCard"
@@ -49,7 +49,7 @@ function App() {
                                             <Route path="/profile/*" element={<Profile />} />
                                             <Route path="/checkout/*" element={<Checkout />} />
                                             <Route path="/review" element={<Review />} />
-                                            <Route path="/products" element={<ProdutList />} />
+                                            <Route path="/products" element={<ProductList />} />
                                             <Route path="/password/*" element={<Password />} />
                                             <Route path="/redirect" element={<Redirect />} />
                                             <Route path="/privacypolicy/:lang?" element={<PrivacyPolicy />} />

@@ -11,13 +11,13 @@ import { TextField } from "../../components/TextField"
 import SearchIcon from "@mui/icons-material/Search"
 import { Form, Formik } from "formik"
 
-interface ProdutListProps {}
+interface ProductListProps {}
 
 interface FormValues {
     name: string
 }
 
-export const ProdutList: React.FC<ProdutListProps> = ({}) => {
+export const ProductList: React.FC<ProductListProps> = ({}) => {
     const currentProduct: Product | undefined = useLocation().state?.currentProduct || undefined
     const api = useApi()
     const navigate = useNavigate()
