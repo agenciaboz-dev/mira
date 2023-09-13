@@ -25,6 +25,7 @@ import { Password } from "./pages/Password"
 import { WildCard } from "./pages/WildCard"
 import { Redirect } from "./pages/Redirect"
 import { PrivacyPolicy } from "./pages/PrivacyPolicy"
+import { ConfirmDialog, ConfirmDialogProvider } from "burgos-confirm"
 
 function App() {
     const muiTheme = useMuiTheme()
@@ -33,33 +34,36 @@ function App() {
         <ThemeProvider theme={muiTheme}>
             <BrowserRouter>
                 <SnackbarProvider>
-                    <OrdersProvider>
-                        <UserProvider>
-                            <ProductsProvider>
-                                <CartProvider>
-                                    <AddressProvider>
-                                        <ScrollTop />
-                                        <Snackbar />
-                                        <Routes>
-                                            <Route index element={<Login />} />
-                                            <Route path="/login/*" element={<Login />} />
-                                            <Route path="/download" element={<Download />} />
-                                            <Route path="/cart" element={<Cart />} />
-                                            <Route path="/scan" element={<Camera />} />
-                                            <Route path="/profile/*" element={<Profile />} />
-                                            <Route path="/checkout/*" element={<Checkout />} />
-                                            <Route path="/review" element={<Review />} />
-                                            <Route path="/products" element={<ProductList />} />
-                                            <Route path="/password/*" element={<Password />} />
-                                            <Route path="/redirect" element={<Redirect />} />
-                                            <Route path="/privacypolicy/:lang?" element={<PrivacyPolicy />} />
-                                            <Route path="*" element={<WildCard />} />
-                                        </Routes>
-                                    </AddressProvider>
-                                </CartProvider>
-                            </ProductsProvider>
-                        </UserProvider>
-                    </OrdersProvider>
+                    <ConfirmDialogProvider>
+                        <OrdersProvider>
+                            <UserProvider>
+                                <ProductsProvider>
+                                    <CartProvider>
+                                        <AddressProvider>
+                                            <ScrollTop />
+                                            <Snackbar />
+                                            <ConfirmDialog />
+                                            <Routes>
+                                                <Route index element={<Login />} />
+                                                <Route path="/login/*" element={<Login />} />
+                                                <Route path="/download" element={<Download />} />
+                                                <Route path="/cart" element={<Cart />} />
+                                                <Route path="/scan" element={<Camera />} />
+                                                <Route path="/profile/*" element={<Profile />} />
+                                                <Route path="/checkout/*" element={<Checkout />} />
+                                                <Route path="/review" element={<Review />} />
+                                                <Route path="/products" element={<ProductList />} />
+                                                <Route path="/password/*" element={<Password />} />
+                                                <Route path="/redirect" element={<Redirect />} />
+                                                <Route path="/privacypolicy/:lang?" element={<PrivacyPolicy />} />
+                                                <Route path="*" element={<WildCard />} />
+                                            </Routes>
+                                        </AddressProvider>
+                                    </CartProvider>
+                                </ProductsProvider>
+                            </UserProvider>
+                        </OrdersProvider>
+                    </ConfirmDialogProvider>
                 </SnackbarProvider>
             </BrowserRouter>
         </ThemeProvider>

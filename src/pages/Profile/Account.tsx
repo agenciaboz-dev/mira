@@ -9,8 +9,9 @@ import { useColors } from "../../hooks/useColors"
 import { useUser } from "../../hooks/useUser"
 import { styles } from "./styles"
 import { CircularProgress, Button as ButtonMui } from "@mui/material"
-import { useSnackbar } from "../../hooks/useSnackbar"
 import { useNavigate } from "react-router-dom"
+import { useConfirmDialog } from "burgos-confirm"
+import { useSnackbar } from "burgos-snackbar"
 
 interface AccountProps {
     user: User
@@ -25,7 +26,8 @@ export const Account: React.FC<AccountProps> = ({ user }) => {
     const api = useApi()
     const navigate = useNavigate()
     const { snackbar } = useSnackbar()
-    const { setUser } = useUser()
+    const { confirm } = useConfirmDialog()
+    const { setUser, logout } = useUser()
 
     const [loading, setLoading] = useState(false)
     const [currentPasswordError, setCurrentPasswordError] = useState("")
@@ -43,7 +45,21 @@ export const Account: React.FC<AccountProps> = ({ user }) => {
         setNewPasswordError("")
     }
 
-    const handleDeleteAccount = () => {}
+    const handleDeleteAccount = () => {
+        confirm({
+            title: "Certeza",
+            content: "Tem certeza que deseja deletar sua conta?",
+            onConfirm: () => {
+                api.user.delete({
+                    data: user,
+                    callback: (response: { data: User }) => {
+                        logout()
+                        snackbar({ severity: "warning", text: "Usuário deletado" })
+                    },
+                })
+            },
+        })
+    }
 
     const handleSubmit = (values: FormValues) => {
         setLoading(true)
@@ -154,7 +170,6 @@ export const Account: React.FC<AccountProps> = ({ user }) => {
                             onClick={handleDeleteAccount}
                             sx={{
                                 paddingTop: "3vw",
-                                textDecoration: "underline",
                                 textShadow: "red",
                                 alignSelf: "flex-end",
                                 color: "white",
@@ -175,11 +190,7 @@ export const Account: React.FC<AccountProps> = ({ user }) => {
                                 Cancelar
                             </Button>
                             <Button type="submit" style={{ height: "10vw", width: "35vw", marginRight: "1vw" }}>
-                                {loading ? (
-                                    <CircularProgress sx={{ color: "white" }} style={{ width: "6vw", height: "auto" }} />
-                                ) : (
-                                    "Salvar"
-                                )}
+                                {loading ? <CircularProgress sx={{ color: "white" }} style={{ width: "6vw", height: "auto" }} /> : "Salvar"}
                             </Button>
                         </div>
                     </Form>
