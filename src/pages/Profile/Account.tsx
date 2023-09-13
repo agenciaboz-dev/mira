@@ -30,6 +30,7 @@ export const Account: React.FC<AccountProps> = ({ user }) => {
     const { setUser, logout } = useUser()
 
     const [loading, setLoading] = useState(false)
+    const [loadingDelete, setLoadingDelete] = useState(false)
     const [currentPasswordError, setCurrentPasswordError] = useState("")
     const [newPasswordError, setNewPasswordError] = useState("")
 
@@ -50,12 +51,14 @@ export const Account: React.FC<AccountProps> = ({ user }) => {
             title: "Certeza",
             content: "Tem certeza que deseja deletar sua conta?",
             onConfirm: () => {
+                setLoadingDelete(true)
                 api.user.delete({
                     data: user,
                     callback: (response: { data: User }) => {
                         logout()
                         snackbar({ severity: "warning", text: "Usuário deletado" })
                     },
+                    finallyCallback: () => setLoadingDelete(false),
                 })
             },
         })
@@ -175,7 +178,11 @@ export const Account: React.FC<AccountProps> = ({ user }) => {
                                 color: "white",
                             }}
                         >
-                            <p style={{ textDecoration: "underline" }}>Excluir Conta</p>
+                            {loadingDelete ? (
+                                <CircularProgress sx={{ color: "white" }} style={{ width: "6vw", height: "auto" }} />
+                            ) : (
+                                <p style={{ textDecoration: "underline" }}>Excluir Conta</p>
+                            )}
                         </ButtonMui>
 
                         <div className="buttons-container">
@@ -190,7 +197,11 @@ export const Account: React.FC<AccountProps> = ({ user }) => {
                                 Cancelar
                             </Button>
                             <Button type="submit" style={{ height: "10vw", width: "35vw", marginRight: "1vw" }}>
-                                {loading ? <CircularProgress sx={{ color: "white" }} style={{ width: "6vw", height: "auto" }} /> : "Salvar"}
+                                {loading ? (
+                                    <CircularProgress sx={{ color: "white" }} style={{ width: "6vw", height: "auto" }} />
+                                ) : (
+                                    "Salvar"
+                                )}
                             </Button>
                         </div>
                     </Form>
