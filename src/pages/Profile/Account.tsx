@@ -8,7 +8,7 @@ import { useApi } from "../../hooks/useApi"
 import { useColors } from "../../hooks/useColors"
 import { useUser } from "../../hooks/useUser"
 import { styles } from "./styles"
-import { CircularProgress } from "@mui/material"
+import { CircularProgress, Button as ButtonMui } from "@mui/material"
 import { useSnackbar } from "../../hooks/useSnackbar"
 import { useNavigate } from "react-router-dom"
 
@@ -42,6 +42,8 @@ export const Account: React.FC<AccountProps> = ({ user }) => {
         setCurrentPasswordError("")
         setNewPasswordError("")
     }
+
+    const handleDeleteAccount = () => {}
 
     const handleSubmit = (values: FormValues) => {
         setLoading(true)
@@ -147,6 +149,19 @@ export const Account: React.FC<AccountProps> = ({ user }) => {
                             error={!!newPasswordError}
                             helperText={newPasswordError}
                         />
+
+                        <ButtonMui
+                            onClick={handleDeleteAccount}
+                            sx={{
+                                paddingTop: "3vw",
+                                textDecoration: "underline",
+                                textShadow: "red",
+                                alignSelf: "flex-end",
+                                color: "white",
+                            }}
+                        >
+                            <p style={{ textDecoration: "underline" }}>Excluir Conta</p>
+                        </ButtonMui>
 
                         <div className="buttons-container">
                             <Button
